@@ -9,6 +9,26 @@
 
 <body>
 
+  <div id="password-overlay" class="password-overlay">
+  <div class="password-box">
+    <h3>NDA-protected work</h3>
+
+    <input 
+      type="password" 
+      id="password-input" 
+      placeholder="Enter password"
+    />
+
+    <button id="submit-btn" disabled>Submit</button>
+
+    <p id="error-message" class="error-message"></p>
+
+    <a href="mailto:hello@sophiaakrofi.com" class="request-access">
+      Request access by contacting me →
+    </a>
+  </div>
+</div>
+
   <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner">
@@ -141,6 +161,28 @@
       </div>
     </div>
   </footer>
+
+  const correctPassword = "hello123"; // change this
+
+  const input = document.getElementById("password-input");
+  const button = document.getElementById("submit-btn");
+  const overlay = document.getElementById("password-overlay");
+  const error = document.getElementById("error-message");
+
+  // Enable button when typing
+  input.addEventListener("input", () => {
+    button.disabled = input.value.length === 0;
+  });
+
+  // Submit logic
+  button.addEventListener("click", () => {
+    if (input.value === correctPassword) {
+      overlay.style.display = "none";
+    } else {
+      error.textContent = "Incorrect password";
+    }
+  });
+</script>
 
 </body>
 </html>
