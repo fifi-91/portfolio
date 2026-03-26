@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Protected — Sophia Akrofi</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+
+<body>
+
+<div class="password-overlay">
+  <div class="password-box">
+    <h3>NDA-protected work</h3>
+
+    <input 
+      type="password" 
+      id="password-input" 
+      placeholder="Enter password"
+    />
+
+    <button id="submit-btn" disabled>Submit</button>
+
+    <p id="error-message" class="error-message"></p>
+
+    <a href="mailto:hello@sophiaakrofi.com">
+      Request access by contacting me →
+    </a>
+  </div>
+</div>
+
+<script>
+  const correctPassword = "hello123";
+
+  const params = new URLSearchParams(window.location.search);
+  const project = params.get("project");
+
+  const input = document.getElementById("password-input");
+  const button = document.getElementById("submit-btn");
+  const error = document.getElementById("error-message");
+
+  input.addEventListener("input", () => {
+    button.disabled = input.value.length === 0;
+  });
+
+  button.addEventListener("click", () => {
+    if (input.value === correctPassword) {
+      if (project === "saudi") {
+        window.location.href = "saudi.html";
+      } else if (project === "luna") {
+        window.location.href = "luna.html";
+      }
+    } else {
+      error.textContent = "Incorrect password";
+    }
+  });
+</script>
+
+</body>
+</html>
