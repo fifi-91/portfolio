@@ -571,6 +571,12 @@ a {
   z-index: 10;
 }
 
+.experience-role {
+  font-size: 12px;
+  bottom: 24px;
+  top: auto;
+}
+
   .hero-title h1 {
     font-size: 44px;
   }
