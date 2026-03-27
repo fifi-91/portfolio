@@ -280,6 +280,7 @@ a {
   align-items: center;
   justify-content: center;
   background: #ffffff;
+  position: relative; /* ADD THIS */
 }
 
 .experience-card:last-child {
@@ -292,7 +293,58 @@ a {
   width: auto;
   height: auto;
 }
+.experience-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
+/* LOGOS */
+.logo-dark,
+.logo-light {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* default */
+.logo-light {
+  opacity: 0;
+}
+
+/* TEXT */
+.experience-role {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 36px);
+  transform: translateX(-50%);
+
+  color: #ffffff;
+  font-size: 16px;
+
+  opacity: 0;
+  transition: opacity 0.25s ease;
+
+  white-space: nowrap;
+}
+
+/* HOVER STATE */
+.experience-card:hover {
+  background: #000;
+}
+
+.experience-card:hover .logo-dark {
+  opacity: 0;
+}
+
+.experience-card:hover .logo-light {
+  opacity: 1;
+}
+
+.experience-card:hover .experience-role {
+  opacity: 1;
+}
 /* CONTACT BANNER */
 
 .contact-banner {
