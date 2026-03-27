@@ -20,7 +20,30 @@
     </div>
   </nav>
 
-  
+  <div class="nav-mobile">
+  <div id="menuToggle">
+    <img src="./images/menu.svg" alt="Menu">
+  </div>
+</div>
+
+  <div class="mobile-menu" id="mobileMenu">
+
+  <div class="mobile-menu-inner">
+
+    <button class="menu-close" id="menuClose">
+      <img src="./images/close.svg" alt="Close">
+    </button>
+
+    <div class="mobile-links">
+      <a href="#" class="active">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About</a>
+      <a href="mailto:hello@sophiaakrofi.com">Contact</a>
+    </div>
+
+  </div>
+
+</div>
 
   <main>
     <section class="hero section-pad">
@@ -175,6 +198,21 @@
       </div>
     </div>
   </footer>
+
+<script>
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuToggle.addEventListener("click", () => {
+    mobileMenu.classList.add("active");
+  });
+
+  const menuClose = document.getElementById("menuClose");
+
+menuClose.addEventListener("click", () => {
+  mobileMenu.classList.remove("active");
+});
+</script>
 
 </body>
 </html>
