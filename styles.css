@@ -930,68 +930,140 @@ a {
 
 /* SIDE PROJECTS */
 
+.side-projects .section-label {
+  margin-bottom: 22px;
+}
+
 .side-project {
   display: grid;
   grid-template-columns: 400px 1fr;
   gap: 40px;
+  align-items: center;
   padding: 60px 0;
+
   border-top: 1px solid #ededed;
-  
+
+  max-width: 1440px; /* 🔥 important */
+  margin: 0 auto;     /* 🔥 centers layout */
 }
 
-
-.side-project:first-child {
+.side-project:first-of-type {
   border-top: none;
 }
 
 .side-text h2 {
   font-size: 40px;
-  margin-bottom: 12px;
+  line-height: 1.325;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #000000;
 }
 
 .side-text h4 {
-  font-size: 18px;
-  margin-bottom: 12px;
-  color: #222;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 400;
+  margin-bottom: 16px;
+  color: #222222;
 }
 
 .side-text p {
   font-size: 14px;
   line-height: 1.5;
-  color: #555;
+  color: #555252;
+  margin-bottom: 14px;
 }
 
-/* IMAGE GROUPS */
+.side-text a {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+  text-decoration: underline;
+  color: #000000;
+}
+
+.side-images {
+  width: 100%;
+  max-width: 823px;   /* 🔥 THIS is the magic number from your hero */
+  justify-self: end;  /* 🔥 pushes it to the right */
+}
 
 .side-images.two {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: 358px 448px; /* exact Figma */
+  gap: 17px;
 }
 
-.side-images.two img {
-  width: 100%;
-  aspect-ratio: 1 / 1;   /* 🔥 forces equal height */
-  object-fit: cover;     /* 🔥 prevents distortion */
+.side-images.two img:first-child {
+  width: 358px;
+  height: 448px;
+  object-fit: cover;
+}
+
+.side-images.two img:last-child {
+  width: 448px;
+  height: 448px;
+  object-fit: cover;
 }
 
 .side-images.grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 20px; /* 🔥 slightly more breathing room */
 }
 
-.side-images img {
+.side-images.grid-3 img,
+.side-images.grid-3 video {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.side-images video {
-  width: 100%;
-  height: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
+}
+
+@media (max-width: 900px) {
+  .side-project {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+
+  .side-images.two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .side-images.two img:first-child,
+  .side-images.two img:last-child {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .side-project {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+    padding: 32px 0 40px;
+  }
+
+  .side-text h2 {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .side-text h4 {
+    font-size: 18px;
+  }
+
+  .side-images.two,
+  .side-images.grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
 }
 
 /* CTA */
@@ -1213,31 +1285,11 @@ a {
   }
 }
 
-  .side-project {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
   .side-text h2 {
     font-size: 28px;
   }
 
-.side-images.two {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  max-width: 500px; /* controls size */
-}
 
-.side-images.two img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-}
-
-  .side-images.grid-3 {
-    grid-template-columns: 1fr 1fr;
-  }
 
   .cta-big {
     font-size: 24px;
