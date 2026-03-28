@@ -623,6 +623,26 @@ a {
     gap: 16px;
   }
 
+   /* 🔥 FORCE STACK */
+  .coding-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px;
+  }
+
+  /* 🔥 SWITCH VIDEOS */
+  .video-desktop {
+    display: none !important;
+  }
+
+  .video-mobile {
+    display: block !important;
+    width: 100%;
+    height: auto;
+  }
+
+
+
 
   .section-dark .project-grid {
   grid-template-columns: 1fr;
@@ -1946,6 +1966,43 @@ a {
   display: block;
 }
 
+.coding-inner {
+  display: grid;
+  grid-template-columns: 429px 1fr;
+  column-gap: 80px;
+  align-items: center;
+}
+
+.coding-text {
+  max-width: 420px;
+}
+
+.coding-video {
+  width: 100%;
+}
+
+.coding-video video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.coding-section {
+  background: #000;
+  color: #fff;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.coding-text h3,
+.coding-text p {
+  color: #fff;
+}
+
+.coding-text p {
+  color: rgba(255,255,255,0.8);
+}
+
 /* =========================
    VELVET ROOM BANNER
 ========================= */
@@ -1998,4 +2055,29 @@ a {
   object-fit: contain !important;
   background: #000;
   height: 100%;
+}
+/* =========================
+   FINAL VIDEO CONTROL (OVERRIDE EVERYTHING)
+========================= */
+
+/* desktop */
+.video-desktop-wrap {
+  display: block !important;
+}
+
+.video-mobile-wrap {
+  display: none !important;
+}
+
+/* mobile */
+@media (max-width: 700px) {
+
+  .video-desktop-wrap {
+    display: none !important;
+  }
+
+  .video-mobile-wrap {
+    display: block !important;
+  }
+
 }
