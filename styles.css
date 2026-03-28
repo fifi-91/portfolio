@@ -870,11 +870,9 @@ a {
   display: flex;
   flex-direction: column;
   background: #fff;
-  border: 1px solid #F2F2F2;
+  border: none; /* 🔥 REMOVE BORDER */
   box-shadow: 1px 1px 4px rgba(177,177,177,0.25);
-  text-decoration: none;
-  padding: 0; /* 🔥 THIS is the key */
-
+  padding: 0;
 }
 
 .project-image {
