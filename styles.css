@@ -249,15 +249,21 @@ main {
 
 .process-list {
   width: 100%;
+  max-width: 1059px;   /* match your hero width */
+}
+
+.process-section,
+.expertise {
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .process-row {
   display: grid;
-  grid-template-columns: 67px 1fr 366px;
-  column-gap: 24px;
+  grid-template-columns: 80px 1.2fr 1fr;
   align-items: start;
-  padding: 26px 0;
-  border-top: 1px solid #f2f2f2;
+  padding: 48px 0;
+  border-top: 1px solid #eaeaea;
 }
 
 .process-row:first-child {
@@ -277,11 +283,13 @@ main {
   line-height: 1.333;
   font-weight: 500;
   color: #000000;
-  padding-top: 6px;
+  padding-top: 12px;
+  margin-right: 24px;
 }
 
 .process-items {
   padding-top: 2px;
+  max-width: 420px;
 }
 
 .process-items p {
@@ -1165,6 +1173,7 @@ main {
   }
 }
 
+
 /* CTA */
 
 .cta-big {
@@ -1474,11 +1483,12 @@ main {
     row-gap: 24px;
   }
 
-  .process-row {
-    grid-template-columns: 1fr;
-    row-gap: 8px;
-    padding: 24px 0;
-  }
+.process-row {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  gap: 8px;
+}
 
   .process-number {
     font-size: 48px;
@@ -1489,7 +1499,8 @@ main {
   }
 
   .process-items p {
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 1.2;
   }
 
   /* EXPERIENCE */
