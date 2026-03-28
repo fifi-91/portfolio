@@ -196,26 +196,6 @@ a {
   margin-bottom: 24px;
 }
 
-.project-layout {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-
-}
-
-.project-card {
-  border: 1px solid #f2f2f2;
-  background: #ffffff;
-  overflow: hidden;
-  aspect-ratio: 406 / 404;
-}
-
-.project-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 /* EXPERTISE */
 
 .expertise {
@@ -525,14 +505,6 @@ a {
   .process-items {
     grid-column: 2;
   }
-
- .project-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 12px;
-  align-items: center;
-}
-
   .experience-card:nth-child(2) {
     border-right: 1px solid #e8e8e8;
   }
@@ -591,10 +563,6 @@ a {
   .experience-grid {
     grid-template-columns: 1fr;
   }
-
-  .project-layout {
-  grid-template-columns: 1fr !important;
-}
 
   .experience-card {
     border-right: 1px solid #e8e8e8;
@@ -836,6 +804,63 @@ a {
   line-height: 1.3;
 }
 
+
+.selected-work {
+  padding-top: 0;
+  padding-bottom: 96px;
+}
+
+.selected-work .section-label {
+  margin-bottom: 24px;
+}
+
+.project-cards {
+  display: flex;
+  grid-template-columns: repeat(3, 406px);
+  gap: 11px;
+  width: fill;
+  justify-content: flex-start;
+  
+}
+
+.project-card-clean {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border: 1px solid #F2F2F2;
+  box-shadow: 1px 1px 4px rgba(177, 177, 177, 0.25);
+  overflow: hidden;
+}
+
+.project-card-clean-image {
+  aspect-ratio: 4 / 3; /* 🔥 THIS FIXES EVERYTHING */
+  height: fit-content;
+  width:100%;
+  overflow: hidden;
+}
+
+
+.project-card-clean-image img {
+   height: fit-content;
+  width:fit-content;
+}
+
+.project-card-clean-text {
+  padding: 16px;
+}
+
+.project-card-clean-text p {
+  font-family: 'Switzer', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: #313131;
+}
+
+
 .password-overlay {
   position: fixed;
   top: 0;
@@ -862,56 +887,6 @@ a {
 }
 
 
-/* =========================
-   NEW PROJECT CARDS
-========================= */
-
-.project-card-new {
-  width: 100%;
-  max-width: 406px;
-  height: 404px;
-
-  display: flex;
-  flex-direction: column;
-
-  background: #FFFFFF;
-  border: 1px solid #F2F2F2;
-  box-shadow: 1px 1px 4px rgba(177,177,177,0.25);
-
-  overflow: hidden;
-}
-
-/* IMAGE (TOP) */
-.project-image {
-  width: 100%;
-  height: 320px;
-}
-
-.project-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-
-  border-bottom: 1px solid #EEEEEE;
-}
-
-/* TEXT (BOTTOM) */
-.project-info {
-  height: 84px; /* 404 - 320 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 24px;
-}
-
-.project-info p {
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: 300;
-  text-align: center;
-  color: #313131;
-}
 
 .password-box button {
   margin-top: 10px;
@@ -1189,6 +1164,35 @@ a {
     text-align: left;
   }
 
+  .project-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .project-card-clean {
+    width: 345px;
+    height: 272px;
+  }
+
+  .project-card-clean-image {
+    width: 345px;
+    height: 212px;
+  }
+
+  .project-card-clean-text {
+    width: 100%;
+    height: 60px;
+    padding: 12px 40px 16px;
+  }
+
+  .project-card-clean-text p {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
   .side-project {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -1218,7 +1222,6 @@ a {
   .cta-big {
     font-size: 24px;
   }
-}
 
 /* =========================
    MOBILE REFINEMENT (REAL)
@@ -1273,25 +1276,7 @@ a {
   }
 
   /* PROJECT GRID */
-.project-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 12px;
-  align-items: center;
-}
 
-  .project-card-new {
-    max-width: 345px;
-    height: 272px;
-  }
-
-  .project-image {
-    height: 212px;
-  }
-
-  .project-info {
-    height: 60px; /* 272 - 212 */
-  }
 
   /* EXPERTISE */
   .expertise {
@@ -2009,3 +1994,8 @@ a {
   align-self: flex-start;
 }
 
+.contain-image {
+  object-fit: contain !important;
+  background: #000;
+  height: 100%;
+}
