@@ -889,7 +889,9 @@ a {
   gap: 40px;
   padding: 60px 0;
   border-top: 1px solid #ededed;
+  
 }
+
 
 .side-project:first-child {
   border-top: none;
@@ -915,9 +917,15 @@ a {
 /* IMAGE GROUPS */
 
 .side-images.two {
-  display: flex;
-  max-width: 420px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+}
+
+.side-images.two img {
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* 🔥 forces equal height */
+  object-fit: cover;     /* 🔥 prevents distortion */
 }
 
 .side-images.grid-3 {
