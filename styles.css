@@ -198,7 +198,7 @@ main {
 
 .selected-work {
   padding-top: 0;
-  padding-bottom: 96px;
+  padding-bottom: 40px;
 }
 
 .selected-work .section-label {
@@ -699,6 +699,27 @@ main {
     font-size: 24px;
   }
 
+  .project-cards {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px;
+  }
+
+  .project-card-clean {
+    width: 100% !important;
+  }
+
+  .project-card-clean-image {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .project-card-clean-image img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+  }
+
   @media (max-width: 768px) {
 
   .project-grid {
@@ -844,7 +865,7 @@ main {
 
 .selected-work {
   padding-top: 0;
-  padding-bottom: 96px;
+  padding-bottom: 52px;
 }
 
 .selected-work .section-label {
@@ -1046,11 +1067,11 @@ main {
   grid-template-columns: 400px 1fr;
   gap: 40px;
   align-items: center;
-  padding: 60px 0;
+  padding: 40px 0;
 
   border-top: 1px solid #ededed;
 
-  max-width: 1440px; /* 🔥 important */
+  max-width: 100%; /* 🔥 important */
   margin: 0 auto;     /* 🔥 centers layout */
 }
 
