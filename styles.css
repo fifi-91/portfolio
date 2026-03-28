@@ -873,6 +873,8 @@ a {
   border: 1px solid #F2F2F2;
   box-shadow: 1px 1px 4px rgba(177,177,177,0.25);
   text-decoration: none;
+  padding: 0; /* 🔥 THIS is the key */
+
 }
 
 .project-image {
@@ -880,6 +882,16 @@ a {
   height: 320px;
   overflow: hidden;
   border-bottom: 1px solid #EEEEEE;
+  padding: 0;
+  background: none;
+  margin: 0;
+
+}
+
+@media (max-width: 600px) {
+  .project-image {
+    height: 212px;
+  }
 }
 
 .project-image img {
@@ -887,6 +899,8 @@ a {
   height: 100%;
   object-fit: cover;
   display: block;
+  box-shadow: none;
+
 }
 
 .project-info {
@@ -1144,10 +1158,6 @@ a {
   .project-sub {
     font-size: 20px;
   }
-
-  .project-image {
-  height: 212px;
-}
 
   .project-grid-2 {
     grid-template-columns: 1fr;
