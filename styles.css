@@ -460,10 +460,9 @@ main {
 .footer-inner {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 48px 100px 48px;
-  min-height: 270px;
+  padding: 72px 100px 48px;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
@@ -1531,7 +1530,7 @@ main {
   font-size: 14px;
   line-height: 1.4;
   font-weight: 400;
-  color: #7f7f7f;
+  color: #6f6f6f;
 }
 
 .footer-inner {
