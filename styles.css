@@ -460,7 +460,7 @@ main {
 .footer-inner {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 72px 100px 48px;
+  padding: 48px 100px 48px;
   min-height: 270px;
   display: flex;
   align-items: flex-end;
@@ -1524,14 +1524,14 @@ main {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 18px;
+  gap: 24px;
 }
 
 .footer-madeby {
-  font-size: 16px;
-  line-height: 1.3125;
+  font-size: 14px;
+  line-height: 1.4;
   font-weight: 400;
-  color: #6f6f6f;
+  color: #7f7f7f;
 }
 
 .footer-inner {
