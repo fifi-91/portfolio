@@ -109,18 +109,7 @@ main {
   font-weight: 700;
 }
 
-.nav-cta {
-  padding: 8px 16px;
-  border: 1px solid #000;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-}
 
-.nav-cta:hover {
-  background: #000;
-  color: #fff;
-}
 
 
 .nav-mobile {
@@ -1799,7 +1788,7 @@ main {
 
 .project-media {
   background: #F3F3F3;
-  padding: 120px 0;
+  padding: 40px 0;
   display: flex;
   justify-content: center;
 }
@@ -1821,8 +1810,8 @@ main {
 ========================= */
 
 .case-section {
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .case-grid {
@@ -1929,7 +1918,9 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  align-items: start;
+  max-width: 600px;
+  align-items: end;
+  justify-self: end;
 }
 
 .approach-small-image img {
@@ -1950,8 +1941,10 @@ main {
 .approach-small-image img,
 .approach-bottom-image img {
   width: 100%;
+  max-width: 900px;
   height: auto;
   display: block;
+  margin: 0 auto;
 }
 
 /* =========================
@@ -1993,18 +1986,20 @@ main {
   flex-direction: column;
   gap: 24px;
   width: 100%; /* ✅ FIX */
+  align-items: flex-end;
 }
 
 .deliverables-card {
-  background: #F1F1F1;
-  padding: 16px;
+  padding: 12px;
   width: 100%; /* ✅ FIX */
 }
 
 .deliverables-card img {
   width: 100%;
-  height: auto; /* ✅ FIX */
+  max-width: 500px;
+  height: auto;
   display: block;
+  margin-left: auto;
 }
 
 /* =========================
@@ -2114,8 +2109,8 @@ main {
 ========================= */
 
 .reflection {
-  padding-top: 120px;
-  padding-bottom: 160px; /* 👈 creates space before footer */
+  padding-top: 40px;
+  padding-bottom: 40px; /* 👈 creates space before footer */
 }
 
 .reflection-inner {
@@ -2142,8 +2137,8 @@ main {
 }
 
 .luna-application {
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .velvet-hero-media {
