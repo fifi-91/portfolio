@@ -1525,7 +1525,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px; /* was 24 — too loose */
+  gap: 8px; /* was 24 — too loose */
 }
 
 .footer-madeby {
