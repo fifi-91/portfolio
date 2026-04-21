@@ -1846,6 +1846,15 @@ main {
   margin-top: 16px;
 }
 
+.case-text p strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.case-text p {
+  margin-bottom: 14px;
+}
+
 /* LIST */
 
 .case-text ol {
@@ -2141,6 +2150,22 @@ main {
   padding-bottom: 40px;
 }
 
+.luna-app-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.luna-app-card img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 .velvet-hero-media {
   position: relative;
   width: 100%;
@@ -2151,6 +2176,30 @@ main {
   width: 100%;
   height: auto;
   display: block;
+}
+
+.luna-ai-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+  align-items: start;
+}
+
+.luna-ai-card img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #EDEDED;
+}
+
+@media (max-width: 700px) {
+  .luna-ai-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
 }
 
 /* LOGO OVERLAY */
