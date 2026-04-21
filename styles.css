@@ -218,7 +218,7 @@ main {
 
 .booking-section {
   padding-top: 24px;
-  padding-bottom: 60px;
+  padding-bottom: 24px;
 }
 
 .booking-wrap {
@@ -226,7 +226,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 720px;
   padding-left: 0;
   padding-right: 0;
 }
@@ -375,7 +374,7 @@ main {
 
 .expertise {
   padding-top: 0;
-  padding-bottom: 54px;
+  padding-bottom: 24px;
   display: grid;
   grid-template-columns: 309px 1fr;
   column-gap: 108px;
@@ -389,13 +388,13 @@ main {
 }
 
 .expertise-copy p {
-  font-size: 32px;
-  line-height: 1.3125;
+  font-size: 20px;
+  line-height: 1.4;
   font-weight: 400;
 }
 
 .expertise-copy p + p {
-  margin-top: 28px;
+  margin-top: 24px;
 }
 
 .expertise-copy strong {
@@ -405,8 +404,8 @@ main {
 /* PROCESS */
 
 .process-section {
-  padding-top: 96px;
-  padding-bottom: 58px;
+  padding-top: 32px;
+  padding-bottom: 24px;
   display: grid;
   grid-template-columns: 309px 1fr;
   column-gap: 108px;
@@ -445,7 +444,7 @@ main {
 }
 
 .process-title {
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.333;
   font-weight: 500;
   color: #000000;
@@ -1638,7 +1637,7 @@ main {
   }
 
   .process-title {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .process-items p {
@@ -2645,8 +2644,8 @@ main {
 ========================= */
 
 .testimonials {
-  padding-top: 96px;
-  padding-bottom: 96px;
+  padding-top: 32px;
+  padding-bottom: 24px;
   border-top: 1px solid #ededed;
 }
 
