@@ -209,10 +209,10 @@ main {
 
 .hero-proof {
   margin-top: 16px;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.4;
   font-weight: 400;
-  color: #555252;
+  color: rgb(22, 22, 22)252;
 }
 
 /* SELECTED WORK */
