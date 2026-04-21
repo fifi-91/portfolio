@@ -1517,6 +1517,8 @@ main {
     font-size: 24px;
   }
 
+}
+
   /* FOOTER */
 
   .footer-left {
@@ -1555,7 +1557,6 @@ main {
   .footer-right p {
     font-size: 14px;
   }
-}
 
 .project-hero {
   padding-top: 120px;
