@@ -28,6 +28,7 @@
       <a href="projects.html">Projects</a>
       <a href="about.html">About</a>
       <a href="mailto:hello@sophiaakrofi.com">Contact</a>
+      <a href="#book-call" class="nav-cta">Book a call</a>
     </div>
 
     <!-- 👇 MOVE IT HERE -->
@@ -53,6 +54,7 @@
       <a href="projects.html">Projects</a>
       <a href="about.html">About</a>
       <a href="mailto:hello@sophiaakrofi.com">Contact</a>
+      <a href="#book-call" class="mobile-nav-cta">Book a call</a>
     </div>
 
   </div>
@@ -104,7 +106,7 @@
   </div>
 </section>
 
-    <section class="booking-section">
+    <section class="booking-section" id="book-call">
   <div class="booking-wrap section-pad">
 
     <div class="booking-card">
@@ -430,6 +432,12 @@ menuToggle.addEventListener("click", () => {
 
 menuClose.addEventListener("click", () => {
   mobileMenu.classList.remove("active");
+});
+
+document.querySelectorAll('.mobile-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('active');
+  });
 });
 </script>
 
