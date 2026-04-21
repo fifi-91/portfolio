@@ -560,7 +560,8 @@ main {
 .booking-embed .calendly-inline-widget {
   width: 100%;
   min-width: 100% !important;
-  height: 592px !important;
+  height: auto !important;
+  min-height: 0 !important;
   overflow: visible !important;
 }
 
