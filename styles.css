@@ -2728,6 +2728,14 @@ main {
   margin-top: 24px;
 }
 
+.testimonials-sub {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #555252;
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
 .testimonial-arrow {
   background: none;
   border: none;
