@@ -119,7 +119,7 @@
     <div class="booking-widget">
       <div
         class="calendly-inline-widget"
-        data-url="https://calendly.com/hello-sophiaakrofi/30min"
+        data-url="https://calendly.com/hello-sophiaakrofi/30min?hide_event_type_details=1&hide_gdpr_banner=1"
       ></div>
     </div>
 
@@ -185,6 +185,93 @@
         </div>
       </div>
     </section>
+
+    <section class="testimonials section-pad">
+  <div class="testimonials-inner">
+
+    <p class="section-label">Testimonials</p>
+
+    <div class="testimonial-slider">
+
+      <button class="testimonial-arrow testimonial-arrow-left" id="testimonialPrev" aria-label="Previous testimonial">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <title>chevron-left</title>
+          <g fill="#212121" stroke-linejoin="miter" stroke-linecap="butt">
+            <path d="M16 21L7 12L16 3" stroke="#212121" stroke-width="1" stroke-miterlimit="10" stroke-linecap="square" fill="none"></path>
+          </g>
+        </svg>
+      </button>
+
+      <div class="testimonial-track-wrap">
+        <div class="testimonial-track" id="testimonialTrack">
+
+          <!-- TESTIMONIAL 1 -->
+          <div class="testimonial-slide active">
+            <div class="testimonial-avatar">
+              <img src="./images/eugena_washington.jpg" alt="Eugena Washington">
+            </div>
+
+            <h3 class="testimonial-name">Eugena Washington</h3>
+            <p class="testimonial-role">Media personality</p>
+
+            <div class="testimonial-quote">
+              <p><strong>“Sophia turned my dull, one-dimensional website into a beautiful and immersive world where my community can thrive.”</strong></p>
+
+              <p>
+                Working with her was an eye-opener about how proper digital designers work.
+                She is very empathetic, and that made the process a real joy
+              </p>
+            </div>
+          </div>
+
+          <!-- TESTIMONIAL 2 -->
+          <div class="testimonial-slide">
+            <div class="testimonial-avatar">
+              <img src="./images/Kahlil_ashanti.jpg" alt="Kahlil Ashanti">
+            </div>
+
+            <h3 class="testimonial-name">Kahlil Ashanti</h3>
+            <p class="testimonial-role">CEO, Mantis Labs</p>
+
+            <div class="testimonial-quote">
+              <p><strong>“Sophia Akrofi is so much more than a world class designer.”</strong></p>
+
+              <p>
+                Her understanding of narrative storytelling and her ability to weave that into
+                the fabric of the designs is truly unique. Every time we worked with her she
+                seemed to have an innate ability to elevate the visuals in a way that drove
+                measurable results, regardless of the industry or platform
+              </p>
+
+              <p>
+                I would not hesitate to recommend her to anyone looking to improve the way they
+                show up in a crowded market. In a world full of AI, she brings a level of
+                humanity that allows your brand to cut through the noise
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="testimonial-arrow testimonial-arrow-right" id="testimonialNext" aria-label="Next testimonial">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <title>chevron-right</title>
+          <g fill="#212121" stroke-linejoin="miter" stroke-linecap="butt">
+            <path d="M8 21L17 12L8 3" stroke="#212121" stroke-width="1" stroke-miterlimit="10" stroke-linecap="square" fill="none"></path>
+          </g>
+        </svg>
+      </button>
+
+    </div>
+
+    <div class="testimonial-dots">
+      <button class="testimonial-dot active" data-slide="0" aria-label="Go to testimonial 1"></button>
+      <button class="testimonial-dot" data-slide="1" aria-label="Go to testimonial 2"></button>
+    </div>
+
+  </div>
+</section>
 
     <section class="experience section-pad">
       <h3 class="section-label">Experience</h3>
@@ -339,6 +426,39 @@ menuClose.addEventListener("click", () => {
 });
 </script>
 
+<script>
+  const track = document.getElementById('testimonialTrack');
+  const slides = document.querySelectorAll('.testimonial-slide');
+  const nextBtn = document.getElementById('testimonialNext');
+  const prevBtn = document.getElementById('testimonialPrev');
+  const dots = document.querySelectorAll('.testimonial-dot');
+
+  let index = 0;
+
+  function updateSlider() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+  }
+
+  nextBtn.addEventListener('click', () => {
+    index = (index + 1) % slides.length;
+    updateSlider();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    index = (index - 1 + slides.length) % slides.length;
+    updateSlider();
+  });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      index = i;
+      updateSlider();
+    });
+  });
+</script>
 
 </body>
 </html>
