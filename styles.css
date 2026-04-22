@@ -109,6 +109,17 @@ main {
   font-weight: 700;
 }
 
+.nav-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  height: 29px;
+  border: 1px solid #000000;
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 400;
+}
 
 
 
@@ -130,6 +141,8 @@ main {
   transition: transform 0.35s ease;
 
   z-index: 20000;
+  overflow-y: auto;
+
 }
 
 .mobile-menu.active {
@@ -137,18 +150,13 @@ main {
 }
 
 
-.mobile-menu-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
 .mobile-links {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   padding-top: 24px; /* 🔥 push links down */
+  padding-bottom: px;
+  height: auto !important;
   gap: 0;
 }
 
@@ -156,6 +164,20 @@ main {
   font-size: 16px;
   font-weight: 500;
 }
+
+.mobile-nav-cta {
+  display: inline-flex !important;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px !important;
+  padding-bottom: 24px;
+  border: 1px solid #000000;
+  width: auto !important;
+  margin-top: 24px;
+  line-height: 21px;
+}
+
+
 
 .menu-close {
   position: absolute;
@@ -1415,7 +1437,7 @@ main {
     justify-content: flex-end;
   }
 
-.mobile-links a {
+.mobile-links a:not(.mobile-nav-cta) {
   width: 100%;
   padding: 24px 0;
   border-bottom: 1px solid #ffffff;
@@ -1430,6 +1452,8 @@ main {
   font-weight: 700;
   color: #222222;
 }
+
+
   .about-hero {
     grid-template-columns: 1fr;
     row-gap: 24px;
