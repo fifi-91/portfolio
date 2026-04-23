@@ -234,7 +234,7 @@ main {
   font-size: 16px;
   line-height: 1.4;
   font-weight: 400;
-  color: rgb(22, 22, 22)252;
+  color: rgb(22, 22, 22);
 }
 
 /* SELECTED WORK */
@@ -538,56 +538,72 @@ main {
   align-items: center;
   justify-content: center;
   background: #ffffff;
-  position: relative; /* ADD THIS */
+  position: relative;
+  overflow: hidden;
 }
 
 .experience-card:last-child {
   border-right: 1px solid #e8e8e8;
 }
 
-.experience-card img {
-  max-width: 145px;
-  max-height: 40px;
-  width: auto;
-  height: auto;
-}
 .experience-inner {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-/* LOGOS */
+.experience-logo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .logo-dark,
 .logo-light {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* default */
 .logo-light {
   opacity: 0;
 }
 
-/* TEXT */
+.logo-svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-inline: clamp(20px, 4vw, 36px);
+}
+
+.logo-svg svg {
+  display: block;
+  width: 100%;
+  max-width: clamp(110px, 16vw, 140px);
+  height: auto;
+}
+
+.logo-telegraph svg {
+  max-width: clamp(130px, 18vw, 240px);
+}
+
 .experience-role {
   position: absolute;
   left: 50%;
-  top: calc(50% + 36px);
+  top: calc(50% + clamp(28px, 3.2vw, 42px));
   transform: translateX(-50%);
-
   color: #ffffff;
-  font-size: 16px;
-
+  font-size: clamp(12px, 1.2vw, 16px);
   opacity: 0;
   transition: opacity 0.25s ease;
-
   white-space: nowrap;
 }
 
-/* HOVER STATE */
 .experience-card:hover {
   background: #000;
 }
@@ -803,9 +819,9 @@ main {
     border-top: none;
   }
 
-  .experience-card:first-child {
-    border-top: 1px solid #e8e8e8;
-  }
+  .experience-card {
+  border-top: 1px solid #e8e8e8;
+}
 
   .nav-links,
   .footer-links {
@@ -931,6 +947,26 @@ main {
 
   @media (max-width: 768px) {
 
+
+    .experience-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+.experience-card {
+  height: 120px;
+  border-right: 1px solid #e8e8e8;
+  border-top: none;
+}
+
+.experience-card:nth-child(1),
+.experience-card:nth-child(2) {
+  border-top: 1px solid #e8e8e8;
+}
+
+.experience-role {
+  font-size: 12px;
+  top: calc(50% + 20px);
+}
   .project-grid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -948,6 +984,7 @@ main {
     width: calc(100% - 40px);
     margin: 60px auto 0;
   }
+
 
 }
 
