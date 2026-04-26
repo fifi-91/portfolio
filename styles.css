@@ -1113,7 +1113,7 @@ main {
 
 .selected-work {
   padding-top: 0;
-  padding-bottom: 32px;
+  padding-bottom: 40px;
 }
 
 .selected-work .section-label {
@@ -2350,8 +2350,9 @@ main {
 /* DIVIDER — FIXED (aligned to content edges) */
 
 .section-divider {
-  width: calc(100% - 200px); /* aligns with 100px padding */
-  margin: 80px auto 0; /* IMPORTANT: no bottom margin */
+  width: 100%;
+  margin-top: 40px auto 0; /* IMPORTANT: no bottom margin */
+  margin-bottom: 40px;
   border-top: 1px solid #EDEDED;
 }
 
@@ -2957,4 +2958,18 @@ main {
   .testimonial-quote p + p {
     margin-top: 16px;
   }
+}
+
+.freelance-projects {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.freelance-projects .section-label {
+  margin-bottom: 16px;
+}
+
+.freelance-projects .side-project {
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
