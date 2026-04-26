@@ -96,7 +96,7 @@
   </div>
 </a>
 
-<a href="#" onclick="openOverlay('accru')" class="project-card-clean">
+<a href="accru.html" onclick="openOverlay('accru')" class="project-card-clean">
   <div class="project-card-clean-image">
     <img src="./images/Project-card_accruPay.png" alt="Global Payment Orchestration Platform">
   </div>
@@ -474,10 +474,12 @@ if (input) {
 function checkPassword() {
   if (input.value === PASSWORD) {
     if (currentProject === "luna") {
-      window.location.href = "luna.html";
-    } else {
-      window.location.href = "saudi.html";
-    }
+  window.location.href = "luna.html";
+} else if (currentProject === "accru") {
+  window.location.href = "accru.html";
+} else {
+  window.location.href = "saudi.html";
+}
   } else {
     error.textContent = "Incorrect password";
   }
