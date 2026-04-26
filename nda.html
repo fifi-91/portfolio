@@ -57,11 +57,13 @@
 
   button.addEventListener("click", () => {
     if (input.value === correctPassword) {
-      if (project === "saudi") {
-        window.location.href = "saudi.html";
-      } else if (project === "luna") {
-        window.location.href = "luna.html";
-      }
+      if (currentProject === "luna") {
+  window.location.href = "luna.html";
+} else if (currentProject === "accru") {
+  window.location.href = "accru.html";
+} else {
+  window.location.href = "saudi.html";
+}
     } else {
       error.textContent = "Incorrect password";
     }
