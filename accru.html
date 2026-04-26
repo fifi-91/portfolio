@@ -5,61 +5,460 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AccruPay — Sophia Akrofi</title>
 
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JWHDGBM765"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JWHDGBM765');
+  </script>
+
   <link rel="stylesheet" href="styles.css"/>
 </head>
 
 <body>
 
-  <!-- NAV (same as other pages) -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <div class="logo">Sophia Akrofi</div>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="about.html">About</a>
-        <a href="mailto:hello@sophiaakrofi.com">Contact</a>
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">Sophia Akrofi</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="about.html">About</a>
+      <a href="mailto:hello@sophiaakrofi.com">Contact</a>
+      <a href="index.html#book-call" class="nav-cta">Book a call</a>
+    </div>
+
+    <div class="nav-mobile">
+      <div id="menuToggle">
+        <img src="./images/menu.svg" alt="Menu">
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <main>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-inner">
+    <button class="menu-close" id="menuClose">
+      <img src="./images/close.svg" alt="Close">
+    </button>
 
-    <!-- HERO -->
-    <section class="section-pad">
+    <div class="mobile-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="about.html">About</a>
+      <a href="mailto:hello@sophiaakrofi.com">Contact</a>
+      <a href="index.html#book-call" class="mobile-nav-cta">Book a call</a>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- PROJECT HERO -->
+  <section class="project-hero section-pad">
+    <div class="project-hero-inner">
+
       <h1>Global Payment Orchestration Platform</h1>
-      <p>
-        Designing a resilient, developer-first payment infrastructure platform enabling businesses to switch providers seamlessly.
+
+      <h2 class="project-sub">
+        Designing resilient payment infrastructure for global businesses
+      </h2>
+
+      <div class="project-meta">
+        <span>FYC LABS</span>
+        <span>•</span>
+        <span>Recently launched</span>
+      </div>
+
+      <p class="project-description">
+        Led product strategy, design direction, brand system, and developer experience for AccruPay, a recently launched developer-first payment orchestration platform helping businesses route transactions across multiple providers without being locked into one gateway.
+        <br><br>
+        <strong>Core POV:</strong> payment infrastructure should not collapse because one provider fails. AccruPay was designed to make routing, switching, and recovery feel simple enough for teams to trust, while keeping the technical logic credible enough for developers to adopt.
+        <br><br>
+        The platform gives merchants greater resilience, faster provider switching, clearer integration paths, and a stronger technical foundation for global payment independence.
       </p>
-    </section>
 
-    <!-- HERO IMAGE -->
-    <section class="section-pad">
-      <img src="./images/accru-hero.png" alt="AccruPay platform" />
-    </section>
+      <div class="project-details">
+        <p><strong>Role</strong> Product Strategy, Design Direction, Brand System + Developer Experience</p>
+        <p><strong>Client type</strong> B2B SaaS / Fintech Infrastructure</p>
+        <p><strong>High-level impact</strong> Defined the product narrative, core journeys, brand system, developer onboarding, and launch-ready website experience from zero</p>
+        <p><strong>Status</strong> Recently launched, with the product foundation now supporting early customer conversations, demos, and continued platform development</p>
+        <p><strong>Context</strong> Payment routing, PSP switching, developer tools, and infrastructure resilience</p>
+      </div>
 
-    <!-- OVERVIEW -->
-    <section class="section-pad">
-      <h3>Overview</h3>
+    </div>
+  </section>
+
+  <!-- HERO IMAGE -->
+  <section class="project-media">
+    <div class="project-media-inner">
+      <img src="./images/test-images.jpg" alt="AccruPay platform overview">
+    </div>
+  </section>
+
+  <section class="case-section section-pad">
+    <div class="case-grid">
+
+      <div class="case-text">
+        <p class="case-label">Challenge</p>
+
+        <p>
+          Payment infrastructure is often invisible until it fails. For businesses processing transactions at scale, reliance on a single payment provider creates operational risk, revenue loss, and limited negotiating power.
+        </p>
+
+        <p>
+          AccruPay needed to communicate a complex technical proposition in a way that felt credible to developers, clear to business leaders, and differentiated from heavier payment orchestration platforms.
+        </p>
+
+        <p>
+          The sharper problem: most payment products talk about flexibility, but the real business fear is interruption. If approvals drop, routes fail, or one gateway becomes unreliable, teams need control immediately, not after a rebuild.
+        </p>
+
+        <p>The product challenge was to:</p>
+
+        <ol>
+          <li><strong>Position payment routing as business resilience</strong> rather than a technical feature</li>
+          <li><strong>Translate complex infrastructure into simple product storytelling</strong> for developer and commercial audiences</li>
+          <li><strong>Create a visual system from scratch</strong> across brand, product, website, and marketing touchpoints</li>
+          <li><strong>Design for trust in a high-stakes category</strong> where reliability, compliance, and clarity are critical</li>
+          <li><strong>Support future product scale</strong> across documentation, pricing, onboarding, support, and dashboard experiences</li>
+          <li><strong>Clarify the payment flow</strong> across provider connection, routing logic, failover, retries, and transaction visibility</li>
+        </ol>
+
+        <p class="case-highlight">
+          The design challenge: How do you make payment infrastructure feel simple, resilient, and credible without reducing the technical depth of the product?
+        </p>
+      </div>
+
+      <div class="case-image">
+        <img src="./images/test-images.jpg" alt="AccruPay challenge">
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="case-section section-pad">
+    <div class="case-grid">
+
+      <div class="case-text">
+        <p class="case-label">Discovery & Strategy</p>
+
+        <p class="case-title">Reframing payments as resilience</p>
+
+        <p>
+          I shaped the strategic foundation around a clear insight: businesses do not only need payment flexibility, they need operational continuity. When a provider fails, approval rates drop, or fees rise, teams need the ability to switch routes quickly without rebuilding their stack.
+        </p>
+
+        <p>
+          This shifted the product narrative from “another payment tool” to a more defensible proposition: <strong>payment independence through lightweight orchestration</strong>.
+        </p>
+
+        <ul>
+          <li><strong>Developer audience:</strong> needed simplicity, clean APIs, documentation, and integration confidence</li>
+          <li><strong>Commercial audience:</strong> needed reliability, reduced lock-in, approval-rate resilience, and protection against revenue loss</li>
+          <li><strong>Founder audience:</strong> needed a brand and platform story that could stand apart in a crowded fintech space</li>
+        </ul>
+
+        <p>
+          This strategy informed the full experience, from homepage messaging and proof points to pricing, support, documentation, and product interface patterns.
+        </p>
+
+        <p class="case-highlight">
+          Strategic stance: AccruPay should not look like a heavy enterprise payments suite. It should feel like a sharp, lightweight infrastructure layer that gives teams freedom without adding operational drag.
+        </p>
+      </div>
+
+      <div class="case-image">
+        <img src="./images/test-images.jpg" alt="AccruPay strategy">
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="case-section section-pad">
+    <div class="approach-top">
+
+      <div class="case-text">
+        <p class="case-label">Approach</p>
+
+        <p>
+          I approached AccruPay as a product strategy, infrastructure storytelling, and developer experience challenge. The work needed to define how the platform worked, how it was understood, and how it could be trusted by both technical and commercial audiences.
+        </p>
+
+        <ol>
+          <li><strong>Product narrative:</strong> Reframed the platform around resilience, provider independence, and fast switching rather than generic payment flexibility.</li>
+
+          <li><strong>Brand system:</strong> Developed a lightweight identity system using signal, routing, and connection as visual themes. The brand needed to feel technical, calm, and trustworthy without becoming cold.</li>
+
+          <li><strong>Information architecture:</strong> Structured the website around the questions different audiences would ask: why switch, how routing works, what pricing looks like, how developers integrate, and where to get support.</li>
+
+          <li><strong>Interface foundations:</strong> Designed modular UI patterns for cards, pricing, support, documentation, use cases, proof points, and onboarding flows.</li>
+
+          <li><strong>Developer-first experience:</strong> Created a cleaner entry point for SDK setup, API references, mock PSPs, routing rules, webhook events, and sandbox access.</li>
+
+          <li><strong>Launch foundation:</strong> Built a system that could support the live website immediately while leaving room for future dashboard, documentation, and product modules.</li>
+        </ol>
+
+        <p>
+          The result was a product and brand foundation that could scale across marketing, documentation, dashboard features, and future platform modules.
+        </p>
+      </div>
+
+      <div class="approach-top-images">
+        <div class="approach-small-image">
+          <img src="./images/test-images.jpg" alt="AccruPay brand system">
+        </div>
+
+        <div class="approach-small-image">
+          <img src="./images/test-images.jpg" alt="AccruPay interface system">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="approach-bottom-image">
+      <img src="./images/test-images.jpg" alt="AccruPay product architecture">
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="case-section section-pad">
+    <div class="deliverables-grid">
+
+      <div class="deliverables-text">
+        <p class="case-label">Deliverables</p>
+
+        <p class="case-title">What I Designed</p>
+
+        <ul class="deliverables-list">
+          <li><strong>Full product positioning</strong> around payment resilience, provider independence, and lightweight orchestration</li>
+
+          <li><strong>Brand identity system</strong>
+            <ul>
+              <li>Logo exploration and refinement</li>
+              <li>Sub-brand visual logic</li>
+              <li>Colour, typography, iconography, and motion direction</li>
+              <li>Developer-focused visual language</li>
+            </ul>
+          </li>
+
+          <li><strong>Marketing website system</strong> covering homepage, why AccruPay, pricing, support, documentation, and demo pathways</li>
+          <li><strong>Developer onboarding flows</strong> including sandbox access, API key setup, mock PSPs, and routing rules</li>
+          <li><strong>Product UI foundations</strong> for cards, status modules, quick actions, and dashboard patterns</li>
+          <li><strong>Use-case architecture</strong> across e-commerce, financial services, healthcare, travel, marketplaces, and higher-risk categories</li>
+          <li><strong>Content strategy</strong> translating technical infrastructure into clear product and business value</li>
+          <li><strong>Launch-ready experience</strong> supporting the live site, investor conversations, customer demos, and next-stage product development</li>
+        </ul>
+      </div>
+
+      <div class="deliverables-media">
+        <div class="deliverables-card">
+          <img src="./images/test-images.jpg" alt="AccruPay deliverables">
+        </div>
+
+        <div class="deliverables-card">
+          <img src="./images/test-images.jpg" alt="AccruPay interface components">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="case-section section-pad">
+    <p class="case-label">Product System</p>
+
+    <div class="bilingual-grid">
+
+      <div class="bilingual-intro">
+        <p>
+          The AccruPay system was designed to support multiple user needs without fragmenting the experience. Business users needed proof, simplicity, and reassurance. Developers needed clarity, speed, and technical confidence.
+        </p>
+      </div>
+
+      <div class="bilingual-images-top">
+        <img src="./images/test-images.jpg" alt="AccruPay product system">
+        <img src="./images/test-images.jpg" alt="AccruPay support system">
+        <img src="./images/test-images.jpg" alt="AccruPay pricing system">
+      </div>
+
+      <div class="bilingual-body">
+        <p><strong>Key system considerations:</strong></p>
+
+        <ul>
+          <li>Clear hierarchy between commercial messaging and technical detail</li>
+          <li>Reusable card systems for benefits, resources, pricing, support, and industry use cases</li>
+          <li>Consistent CTA patterns across demo, documentation, sandbox, and support flows</li>
+          <li>Soft visual gradients to make infrastructure feel more approachable</li>
+          <li>Technical credibility through restrained layouts, documentation cues, and code-led content</li>
+          <li>Flexible content patterns that could explain product value before the full platform UI matured</li>
+        </ul>
+
+        <p class="case-highlight">
+          Result: A flexible visual and content system that can scale across product marketing, developer documentation, and platform UI.
+        </p>
+      </div>
+
+      <div class="bilingual-images-bottom">
+        <img src="./images/test-images.jpg" alt="AccruPay cards">
+        <img src="./images/test-images.jpg" alt="AccruPay resources">
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="case-section section-pad">
+
+    <div class="case-label">Developer Experience</div>
+
+    <div class="case-text" style="max-width: 720px; margin-bottom: 32px;">
+      <p class="case-title">Core flow: connect, route, recover</p>
+
       <p>
-        AccruPay is a payment orchestration platform designed to give businesses control, flexibility, and resilience across global payment systems.
+        The developer experience was structured around a simple operational model: connect payment providers, define routing rules, process transactions, and recover quickly when a provider fails.
       </p>
-    </section>
 
-  </main>
+      <ul>
+        <li><strong>Connect:</strong> add PSP credentials, configure API keys, and validate setup in sandbox</li>
+        <li><strong>Route:</strong> define logic by provider, geography, transaction type, cost, or availability</li>
+        <li><strong>Recover:</strong> support retries, fallback routing, and clearer visibility when payments fail</li>
+      </ul>
 
-    <script>
-  const menuToggle = document.getElementById("menuToggle");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const menuClose = document.getElementById("menuClose");
+      <p class="case-highlight">
+        The goal was not to make payments look simple by hiding complexity. The goal was to structure complexity so teams could act quickly when money was on the line.
+      </p>
+    </div>
 
-  menuToggle.addEventListener("click", () => {
-    mobileMenu.classList.add("active");
-  });
+    <div class="fe-grid">
+      <div class="fe-card">
+        <img src="./images/test-images.jpg" alt="Developer docs">
+      </div>
 
-  menuClose.addEventListener("click", () => {
-    mobileMenu.classList.remove("active");
-  });
+      <div class="fe-card">
+        <img src="./images/test-images.jpg" alt="SDK setup">
+      </div>
+
+      <div class="fe-card">
+        <img src="./images/test-images.jpg" alt="Routing rules">
+      </div>
+
+      <div class="fe-card">
+        <img src="./images/test-images.jpg" alt="Sandbox access">
+      </div>
+    </div>
+
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="outcomes section-pad">
+    <div class="outcomes-grid">
+
+      <div class="outcomes-text">
+        <p class="section-label">OUTCOMES</p>
+
+        <h3>What This Enabled</h3>
+
+        <ul class="outcomes-list">
+          <li><strong>Recently launched product presence</strong> with a full brand, website, and product story live for early market conversations</li>
+          <li><strong>Clear product positioning</strong> for a complex payment infrastructure proposition</li>
+          <li><strong>Full visual and brand foundation</strong> created from scratch for a new fintech product</li>
+          <li><strong>Reusable product marketing system</strong> across homepage, support, pricing, documentation, and demo flows</li>
+          <li><strong>Developer-first onboarding structure</strong> supporting API references, SDK setup, mock PSPs, sandbox access, and routing rules</li>
+          <li><strong>Sharper technical storytelling</strong> across provider connection, payment routing, fallback behaviour, and transaction visibility</li>
+          <li><strong>Clearer commercial story</strong> connecting uptime, provider switching, approval rates, and market expansion</li>
+          <li><strong>Scalable UI patterns</strong> for future product features, resource cards, dashboard modules, and industry use cases</li>
+        </ul>
+
+        <p class="outcomes-summary">
+          The work established AccruPay as a credible, resilient, and developer-focused payment orchestration platform with a stronger foundation for launch, fundraising, client conversations, and future product build-out.
+        </p>
+      </div>
+
+      <div class="outcomes-image">
+        <img src="./images/test-images.jpg" alt="AccruPay outcomes">
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="reflection section-pad">
+    <div class="reflection-inner">
+
+      <p class="section-label">REFLECTION</p>
+
+      <h3>What This Taught Me</h3>
+
+      <div class="reflection-body">
+        <ul>
+          <li>How to translate complex fintech infrastructure into a clear product and brand story</li>
+          <li>How to design for both developer confidence and executive-level business value</li>
+          <li>How to create early-stage product systems that can scale across marketing, documentation, and interface design</li>
+          <li>How to shape a product from zero to a credible launch foundation through strategy, structure, and craft</li>
+          <li>How to balance technical honesty with a sharper commercial point of view</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="contact-banner">
+    <img src="./images/Contact-banner-dandelion.png" alt="Dandelion field">
+    <div class="contact-overlay section-pad">
+      <div class="contact-details">
+        <p>Contact</p>
+        <a href="mailto:hello@sophiaakrofi.com">hello@sophiaakrofi.com</a>
+      </div>
+
+      <a href="projects.html" class="passion-link">View passion projects →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <p class="footer-madeby">This website was designed and built by</p>
+      <h2>Sophia Akrofi</h2>
+    </div>
+
+    <div class="footer-right">
+      <div class="footer-links">
+        <a href="mailto:hello@sophiaakrofi.com">Contact</a>
+        <a href="https://www.instagram.com/soph_akro/">Instagram</a>
+        <a href="https://www.linkedin.com/in/sophia-akrofi">LinkedIn</a>
+      </div>
+      <p>© 2025 Sophia Akrofi</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+const menuClose = document.getElementById("menuClose");
+
+menuToggle.addEventListener("click", () => {
+  mobileMenu.classList.add("active");
+});
+
+menuClose.addEventListener("click", () => {
+  mobileMenu.classList.remove("active");
+});
 </script>
+
 </body>
 </html>
