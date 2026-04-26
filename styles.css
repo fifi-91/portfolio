@@ -2973,3 +2973,106 @@ main {
   padding-top: 24px;
   padding-bottom: 24px;
 }
+
+.dad-impact {
+  background: #222222;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.dad-impact-heading {
+  margin-bottom: 32px;
+}
+
+.dad-impact-heading h2 {
+  font-size: 48px;
+  line-height: 1.3;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.dad-impact-line {
+  width: 100%;
+  height: 1px;
+  background: #ffffff;
+  margin-top: 10px;
+}
+
+.dad-impact-inner {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.dad-impact-text h2 {
+  font-size: 32px;
+  line-height: 1.3;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.dad-impact-text h4 {
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.dad-impact-text p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #eeeeee;
+  margin-bottom: 16px;
+}
+
+.dad-impact-text a {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.dad-impact-images {
+  display: grid;
+  grid-template-columns: 448px 448px;
+  gap: 17px;
+  justify-content: end;
+}
+
+.dad-impact-images img {
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .dad-impact-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .dad-impact-images {
+    grid-template-columns: 1fr 1fr;
+    justify-content: start;
+  }
+
+  .dad-impact-images img:first-child,
+  .dad-impact-images img:last-child {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .dad-impact-heading h2 {
+    font-size: 32px;
+  }
+
+  .dad-impact-images {
+    grid-template-columns: 1fr;
+  }
+}
