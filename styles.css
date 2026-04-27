@@ -2156,6 +2156,18 @@ main {
   }
 }
 
+.strategic-full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: 40px;
+}
+
+.strategic-full-bleed img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* =========================
    BILINGUAL DESIGN SYSTEM
 ========================= */
