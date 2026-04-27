@@ -2101,6 +2101,62 @@ main {
 }
 
 /* =========================
+   ACCRUPAY DISCOVERY SECTION
+========================= */
+
+.discovery-layout {
+  display: grid;
+  grid-template-columns: 429px 1fr;
+  column-gap: 64px;
+  align-items: start;
+}
+
+.discovery-text {
+  max-width: 429px;
+}
+
+.discovery-image-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2px;
+  justify-self: end;
+  width: 100%;
+  max-width: 760px;
+  align-items: start;
+}
+
+.discovery-image-grid img {
+  width: 100%;
+  height: 220px;
+  display: block;
+  object-fit: cover;
+  background: #f7f7f7;
+  filter: drop-shadow(0px 4px 16px rgba(0,0,0,0.05));
+}
+
+@media (max-width: 900px) {
+  .discovery-layout {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+  }
+
+  .discovery-image-grid {
+    max-width: 100%;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 600px) {
+  .discovery-image-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .discovery-image-grid img {
+    height: auto;
+  }
+}
+
+/* =========================
    BILINGUAL DESIGN SYSTEM
 ========================= */
 
@@ -3076,3 +3132,4 @@ main {
     grid-template-columns: 1fr;
   }
 }
+
