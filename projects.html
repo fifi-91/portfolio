@@ -304,17 +304,13 @@ input.addEventListener('input', () => {
 // check password
 function checkPassword() {
   if (input.value === PASSWORD) {
-
-if (input.value === correctPassword) {
-  if (project === "luna") {
-    window.location.href = "luna.html";
-  } else if (project === "accru") {
-    window.location.href = "accru.html";
-  } else {
-    window.location.href = "saudi.html";
-  }
-}
-
+    if (currentProject === "luna") {
+      window.location.href = "luna.html";
+    } else if (currentProject === "accru") {
+      window.location.href = "accru.html";
+    } else {
+      window.location.href = "saudi.html";
+    }
   } else {
     error.textContent = "Incorrect password";
   }
