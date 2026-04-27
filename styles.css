@@ -2045,6 +2045,41 @@ main {
   margin: 0 auto;
 }
 
+.accru-approach-layout {
+  display: grid;
+  grid-template-columns: 429px 1fr;
+  column-gap: 64px;
+  align-items: start;
+}
+
+.accru-approach-images {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  justify-self: end;
+  width: 100%;
+  max-width: 560px;
+}
+
+.accru-approach-images img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .accru-approach-layout {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+  }
+
+  .accru-approach-images {
+    max-width: 100%;
+    justify-self: start;
+  }
+}
+
 /* =========================
    DELIVERABLES SECTION
 ========================= */
