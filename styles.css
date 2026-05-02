@@ -241,7 +241,7 @@ main {
 
 .selected-work {
   padding-top: 0;
-  padding-bottom: 40px;
+  padding-bottom: 48px;
 }
 
 .selected-work .section-label {
@@ -3214,7 +3214,8 @@ main {
 
 .code-section {
   padding-left: 100px;
-  padding-top: 24px;
+  padding-top: 32px;
+  padding-bottom: 40px;
   overflow: hidden;
 }
 
