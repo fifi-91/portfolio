@@ -350,7 +350,7 @@ main {
 @media (max-width: 700px) {
   .booking-section {
     padding-top: 40px;
-    padding-bottom: 80px;
+    padding-bottom: 20px;
   }
 
   .booking-wrap {
@@ -388,8 +388,8 @@ main {
  .booking-widget {
   width: 100%;
   max-width: 420px;
-  height: 850px;
-  margin: 0 auto;
+  height: 600px;
+  margin: 0;
   position: relative;
   z-index: 2;
   overflow: hidden;
@@ -3206,6 +3206,95 @@ main {
 
   .dad-impact-images {
     grid-template-columns: 1fr;
+  }
+}
+/* =========================
+   CODE SECTION (FINAL)
+========================= */
+
+.code-section {
+  padding-left: 100px;
+  padding-top: 24px;
+  overflow: hidden;
+}
+
+/* GRID */
+.code-inner {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  column-gap: 40px;
+  align-items: start;
+}
+
+/* TEXT */
+.code-text {
+  max-width: 420px;
+}
+
+.code-text h3 {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.code-text p {
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+/* 🔥 MEDIA COLUMN = BREAKOUT */
+.code-media-col {
+  margin-right: -100px;
+}
+
+/* MEDIA GRID */
+.code-media {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+
+  aspect-ratio: 3 / 0.6; /* ✅ forces equal height */
+}
+
+/* MEDIA ITEMS */
+.code-media video,
+.code-media img {
+  width: 100%;
+  height: 100%;       /* ✅ fill grid cell */
+  display: block;
+  object-fit: cover;  /* ✅ clean cropping */
+}
+
+/* CAPTION */
+.code-caption {
+  margin-top: 8px;
+  font-size: 12px;
+  opacity: 0.3;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .code-section {
+    padding-left: 24px;
+  }
+
+  .code-inner {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+
+  .code-media-col {
+    margin-right: 0;
+  }
+
+  .code-media {
+    grid-template-columns: 1fr;
+    aspect-ratio: auto; /* ✅ remove lock on mobile */
+  }
+
+  .code-media video,
+  .code-media img {
+    height: auto; /* ✅ natural stacking */
   }
 }
 
