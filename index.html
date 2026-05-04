@@ -15,6 +15,9 @@
   </script>
 
   <link rel="stylesheet" href="styles.css"/>
+    <!-- 👇 ADD THIS HERE -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -28,7 +31,9 @@
       <a href="projects.html">Projects</a>
       <a href="about.html">About</a>
       <a href="mailto:hello@sophiaakrofi.com">Contact</a>
-      <a href="#book-call" class="nav-cta">Book a call</a>
+      <a href="#" class="nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">
+  Book a call
+</a>
     </div>
 
     <!-- 👇 MOVE IT HERE -->
@@ -54,7 +59,9 @@
       <a href="projects.html">Projects</a>
       <a href="about.html">About</a>
       <a href="mailto:hello@sophiaakrofi.com">Contact</a>
-      <a href="#book-call" class="mobile-nav-cta">Book a call</a>
+      <a href="#" class="mobile-nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">
+  Book a call
+</a>
     </div>
 
   </div>
@@ -167,36 +174,6 @@
 </section>
 
 <div class="section-divider"></div>
-
-    <section class="booking-section" id="book-call">
-  <div class="booking-wrap section-pad">
-
-    <div class="booking-card">
-      <div class="booking-card-inner">
-        <h2>Available for select projects</h2>
-        <p>
-          Working with teams building innovative digital, AI-native and scalable products. <br>
-          Book a call to discuss collaboration.
-        </p>
-      </div>
-    </div>
-
-    <div class="booking-widget">
-     <div 
-  class="calendly-inline-widget"
-  data-url="https://calendly.com/hello-sophiaakrofi/30min?hide_event_type_details=1&hide_gdpr_banner=1"
-  style="min-width:320px;height:760px;">
-</div>
-    </div>
-
-  </div>
-</section>
-
-<script 
-  type="text/javascript"
-  src="https://assets.calendly.com/assets/external/widget.js"
-  async
-></script>
 
 <section class="testimonials section-pad">
   <div class="testimonials-inner">
@@ -727,6 +704,8 @@ function draw() {
 
 draw();
 </script>
+
+<script src="https://assets.calendly.com/assets/external/widget.js"></script>
 
 </body>
 </html>
