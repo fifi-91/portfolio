@@ -3376,3 +3376,19 @@ main {
     font-size: 24px;
   }
 }
+
+/* =========================
+   INDEX — SHAPE EVOLUTION
+========================= */
+.shape-canvas-section {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#shapeCanvas {
+  width: 120px;
+  height: 120px;
+  display: block;
+}
