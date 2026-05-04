@@ -15,6 +15,8 @@
   </script>
   
   <link rel="stylesheet" href="styles.css"/>
+    <!-- calendly -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 </head>
 
 <body>
@@ -28,7 +30,9 @@
         <a href="projects.html" class="active">Projects</a>
         <a href="about.html">About</a>
         <a href="mailto:hello@sophiaakrofi.com">Contact</a>
-        <a href="index.html#book-call" class="nav-cta">Book a call</a>
+        <a href="#" class="nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">
+  Book a call
+</a>
         
       </div>
 
@@ -55,7 +59,9 @@
       <a href="projects.html" class="active">Projects</a>
       <a href="about.html">About</a>
       <a href="mailto:hello@sophiaakrofi.com">Contact</a>
-      <a href="index.html#book-call" class="mobile-nav-cta">Book a call</a>
+      <a href="#" class="mobile-nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">
+  Book a call
+</a>
     </div>
 
   </div>
@@ -493,6 +499,8 @@ The product enabled data-driven property acquisition decisions at scale and gene
     mobileMenu.classList.remove("active");
   });
 </script>
+
+<script src="https://assets.calendly.com/assets/external/widget.js"></script>
 
 </body>
 </html>
