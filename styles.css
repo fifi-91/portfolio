@@ -3392,3 +3392,12 @@ main {
   height: 120px;
   display: block;
 }
+
+.deliverables-card video,
+.deliverables-video {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+}
