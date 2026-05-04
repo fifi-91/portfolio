@@ -3401,3 +3401,21 @@ main {
   display: block;
   margin-left: auto;
 }
+
+/* =========================
+   FOOTER — DARK THEME
+========================= */
+
+.footer {
+  background: #222222;
+}
+
+.footer-inner h2,
+.footer-links a {
+  color: #ffffff;
+}
+
+.footer-madeby,
+.footer-right p {
+  color: #7E7E7E;
+}
