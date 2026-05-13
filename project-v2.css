@@ -1166,6 +1166,32 @@
   border-radius: 999px;
 }
 
+.p2-strip-grid div {
+  overflow: hidden;
+  border-radius: 8px;
+  display: block;
+  position: relative;
+}
+
+.p2-strip-grid div:hover img {
+  transform: scale(1.04);
+}
+
+.p2-strip-grid div::after {
+  content: attr(data-cap);
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  font-family: var(--p2-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0,0,0,0.6);
+  padding: 5px 9px;
+  border-radius: 999px;
+}
+
 @media (max-width: 900px) {
   .p2-strip-grid { grid-template-columns: 1fr 1fr; }
 }
