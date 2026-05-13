@@ -103,7 +103,7 @@
 
 .dir-row {
   display: grid;
-  grid-template-columns: 60px 1fr 240px 110px 110px;
+  grid-template-columns: 60px 1fr 240px 110px;
   gap: 24px;
   padding: 22px 8px;
   align-items: center;
