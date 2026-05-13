@@ -1,0 +1,529 @@
+/* ==========================================================
+   VELVET ROOM — case study extras
+   Layered on top of project-v2.css for the Velvet project page.
+   Stays inside the same monochrome p2- visual language;
+   adds a slightly warmer accent for cinematic tone.
+   ========================================================== */
+
+:root {
+  --vr-cream:    #f3eee5;
+  --vr-velvet:   #2a1a1c;
+  --vr-wine:     #7a3b3f;
+  --vr-gold:     #d4a76a;
+  --vr-paper:    #faf7f1;
+  --vr-ink:      #1a1416;
+  --vr-line:     #e6dfd2;
+  --vr-serif:    'Cormorant Garamond', 'Times New Roman', Times, serif;
+}
+
+/* Body title accent — gentle warm tint to italic emphasis (only on velvet page) */
+body.p2-velvet .p2-hero-title em,
+body.p2-velvet .p2-section-title em,
+body.p2-velvet .p2-next-link h3 em {
+  font-family: var(--vr-serif);
+  color: var(--vr-wine);
+  font-style: italic;
+  font-weight: 500;
+}
+
+body.p2-velvet .p2-hero-meta .dot { background: var(--vr-wine); }
+
+/* Hero video — let the brand mark sit over the corner */
+.velvet-overmark {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  z-index: 3;
+  width: clamp(140px, 18vw, 240px);
+  height: auto;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.35));
+  opacity: 0.96;
+  pointer-events: none;
+}
+
+@media (max-width: 700px) {
+  .velvet-overmark {
+    bottom: 18px;
+    left: 18px;
+    width: 120px;
+  }
+}
+
+/* =========================================================
+   PRINCIPLES SANDBOX
+   ========================================================= */
+.velvet-principles {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .velvet-principles { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.vp-modes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vp-mode {
+  background: #fff;
+  border: 1px solid var(--p2-line);
+  border-radius: 14px;
+  padding: 18px 20px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  position: relative;
+  font-family: 'Switzer', sans-serif;
+}
+
+.vp-mode:hover {
+  border-color: #0a0a0a;
+  transform: translateY(-1px);
+}
+
+.vp-mode.is-active,
+.vp-mode[aria-pressed="true"] {
+  background: var(--vr-velvet);
+  color: #fff;
+  border-color: var(--vr-velvet);
+}
+
+.vp-mode .vp-no {
+  font-family: var(--p2-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--p2-mute);
+  margin-bottom: 8px;
+}
+
+.vp-mode[aria-pressed="true"] .vp-no { color: rgba(255, 255, 255, 0.55); }
+
+.vp-mode .vp-title {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+
+.vp-mode .vp-desc {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--p2-ink-soft);
+}
+
+.vp-mode[aria-pressed="true"] .vp-desc { color: rgba(255, 255, 255, 0.7); }
+
+/* Stage */
+.vp-stage {
+  position: relative;
+  background:
+    radial-gradient(circle at 30% 10%, rgba(212, 167, 106, 0.06), transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(122, 59, 63, 0.05), transparent 50%),
+    var(--vr-paper);
+  border-radius: 18px;
+  border: 1px solid var(--vr-line);
+  padding: 56px 32px 32px;
+  min-height: 560px;
+  overflow: hidden;
+}
+
+.vp-stage-head,
+.vp-stage-status {
+  position: absolute;
+  top: 16px;
+  font-family: var(--p2-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--p2-mute);
+}
+
+.vp-stage-head { left: 24px; }
+.vp-stage-status { right: 24px; display: flex; align-items: center; gap: 8px; }
+
+.vp-stage-status .pulse {
+  width: 8px; height: 8px;
+  background: var(--vr-wine);
+  border-radius: 50%;
+  position: relative;
+}
+.vp-stage-status .pulse::after {
+  content: "";
+  position: absolute; inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--vr-wine);
+  animation: vpPulse 1.6s ease-out infinite;
+}
+
+@keyframes vpPulse {
+  from { transform: scale(0.6); opacity: 1; }
+  to   { transform: scale(1.8); opacity: 0; }
+}
+
+/* Frame: holds the curtain + cards */
+.vp-frame {
+  position: relative;
+  width: 100%;
+  height: 460px;
+  border-radius: 12px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(26, 20, 22, 0.04) 0%, transparent 30%),
+    var(--vr-paper);
+  border: 1px solid var(--vr-line);
+}
+
+.vp-curtain {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at top, rgba(122, 59, 63, 0.10), transparent 60%),
+    repeating-linear-gradient(180deg, rgba(26, 20, 22, 0.02) 0 6px, transparent 6px 12px);
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.vp-preview {
+  position: absolute;
+  inset: 0;
+  padding: 56px 56px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .vp-preview { padding: 32px 24px; }
+  .vp-frame { height: 420px; }
+}
+
+/* All cards share core treatment */
+.vp-card {
+  position: absolute;
+  inset: 56px 56px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  background: #fff;
+  border: 1px solid var(--vr-line);
+  border-radius: 14px;
+  padding: 36px 40px;
+  box-shadow: 0 30px 60px -32px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(20px) scale(0.97);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .vp-card { inset: 32px 24px; padding: 24px; gap: 12px; }
+}
+
+.vp-card-tag {
+  font-family: var(--p2-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--p2-mute);
+  align-self: flex-start;
+  padding: 4px 10px;
+  border: 1px solid var(--vr-line);
+  border-radius: 999px;
+}
+
+.vp-card-headline {
+  font-family: var(--vr-serif);
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--vr-velvet);
+  font-weight: 400;
+}
+.vp-card-headline em {
+  font-style: italic;
+  color: var(--vr-wine);
+}
+
+.vp-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: var(--p2-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--p2-mute);
+}
+.vp-card-meta em {
+  font-style: italic;
+  font-family: var(--vr-serif);
+  font-weight: 500;
+  color: var(--vr-velvet);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.vp-card-cta {
+  align-self: flex-start;
+  margin-top: 4px;
+  background: var(--vr-velvet);
+  color: var(--vr-cream);
+  font-family: 'Switzer', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.vp-card-cta:hover { background: var(--vr-wine); transform: translateY(-1px); }
+.vp-card-cta .arr { transition: transform 0.3s ease; }
+.vp-card-cta:hover .arr { transform: translateX(4px); }
+
+/* Narrative card — pull quote */
+.vp-card-quote {
+  font-family: var(--vr-serif);
+  font-size: clamp(22px, 2.6vw, 32px);
+  line-height: 1.3;
+  font-style: italic;
+  color: var(--vr-velvet);
+  margin: 0;
+  position: relative;
+  padding-left: 24px;
+  border-left: 2px solid var(--vr-gold);
+}
+
+/* Specificity card — palette */
+.vp-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  max-width: 240px;
+}
+.vp-grid span {
+  display: block;
+  aspect-ratio: 1/1;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Mode visibility */
+.vp-frame[data-mode="intimacy"]    .vp-card-intimacy,
+.vp-frame[data-mode="narrative"]   .vp-card-narrative,
+.vp-frame[data-mode="specificity"] .vp-card-specificity {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* =========================================================
+   FOUNDER NARRATIVE
+   ========================================================= */
+.velvet-founder {
+  background: var(--vr-paper);
+  border-top: 1px solid var(--vr-line);
+  border-bottom: 1px solid var(--vr-line);
+}
+
+.velvet-founder-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .velvet-founder-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.velvet-founder-image {
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--vr-velvet);
+  aspect-ratio: 4/5;
+}
+
+.velvet-founder-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.velvet-founder-text h3 {
+  font-family: 'Switzer', sans-serif;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin-bottom: 24px;
+  color: var(--p2-ink);
+  max-width: 18ch;
+}
+
+.velvet-founder-text h3 em {
+  font-family: var(--vr-serif);
+  font-style: italic;
+  color: var(--vr-wine);
+  font-weight: 500;
+}
+
+.velvet-founder-text p {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--p2-ink-soft);
+  margin-bottom: 32px;
+  max-width: 56ch;
+}
+
+.velvet-founder-text p em {
+  font-family: var(--vr-serif);
+  font-style: italic;
+  color: var(--vr-velvet);
+}
+
+/* Pull quote from founder */
+.velvet-quote {
+  margin: 0;
+  padding: 24px 32px;
+  background: var(--vr-velvet);
+  color: var(--vr-cream);
+  border-radius: 14px;
+  position: relative;
+  max-width: 56ch;
+}
+
+.velvet-quote::before {
+  content: "“";
+  position: absolute;
+  top: 4px;
+  left: 16px;
+  font-family: var(--vr-serif);
+  font-size: 64px;
+  line-height: 1;
+  color: var(--vr-gold);
+  opacity: 0.6;
+}
+
+.velvet-quote p {
+  font-family: var(--vr-serif);
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.4;
+  font-style: italic;
+  color: var(--vr-cream);
+  margin: 0 0 16px;
+  padding-left: 8px;
+}
+
+.velvet-quote cite {
+  display: block;
+  font-family: var(--p2-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-style: normal;
+  color: rgba(243, 238, 229, 0.6);
+  padding-left: 8px;
+}
+
+/* =========================================================
+   LIVE-SITE CTA (above next project, replaces .vr-banner)
+   ========================================================= */
+.velvet-cta {
+  background: var(--vr-velvet);
+  color: var(--vr-cream);
+  padding: 88px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.velvet-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 0% 100%, rgba(212, 167, 106, 0.18), transparent 50%),
+    radial-gradient(circle at 100% 0%, rgba(122, 59, 63, 0.25), transparent 50%);
+  pointer-events: none;
+}
+
+.velvet-cta-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.velvet-cta-eyebrow {
+  font-family: var(--p2-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vr-gold);
+  margin-bottom: 24px;
+}
+
+.velvet-cta-link {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  color: var(--vr-cream);
+  text-decoration: none;
+  border-top: 1px solid rgba(243, 238, 229, 0.18);
+  border-bottom: 1px solid rgba(243, 238, 229, 0.18);
+  padding: 40px 0;
+  transition: padding 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.velvet-cta-link:hover { padding: 56px 0; }
+
+.velvet-cta-link h3 {
+  font-family: 'Switzer', sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.velvet-cta-link h3 em {
+  font-family: var(--vr-serif);
+  font-style: italic;
+  color: var(--vr-gold);
+  font-weight: 500;
+}
+
+.velvet-cta-link .arrow {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 300;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  flex-shrink: 0;
+}
+
+.velvet-cta-link:hover .arrow {
+  transform: translate(8px, -8px);
+}
+
+/* =========================================================
+   MICRO POLISH
+   ========================================================= */
+
+/* Slightly warm the cream backgrounds on the velvet page */
+body.p2-velvet .p2-device {
+  background: var(--vr-paper);
+}
+
+body.p2-velvet .p2-ds {
+  background: var(--vr-paper);
+}
+
+/* Velvet page nav stays light, but home/projects link colour stays default */

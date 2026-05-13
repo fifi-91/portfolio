@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Projects — Sophia Akrofi</title>
 
-    <!-- Google Analytics -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JWHDGBM765"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -13,13 +13,18 @@
     gtag('js', new Date());
     gtag('config', 'G-JWHDGBM765');
   </script>
-  
+
   <link rel="stylesheet" href="styles.css"/>
-      <!-- calendly -->
+  <link rel="stylesheet" href="project-v2.css"/>
+  <link rel="stylesheet" href="homepage-extras.css"/>
+  <link rel="stylesheet" href="projects-extras.css"/>
+  <!-- calendly -->
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 </head>
 
-<body>
+<body data-screen-label="Projects">
+
+<script src="placeholder-fallback.js"></script>
 
   <!-- NAV -->
   <nav class="nav">
@@ -30,205 +35,399 @@
         <a href="#" class="active">Projects</a>
         <a href="about.html">About</a>
         <a href="mailto:hello@sophiaakrofi.com">Contact</a>
-         <a href="#" class="nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">
-  Book a call
-</a>
-        
+        <a href="#" class="nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">Book a call</a>
       </div>
-    <!-- 👇 MOVE IT HERE -->
-    <div class="nav-mobile">
-      <div id="menuToggle">
-        <img src="./images/menu.svg" alt="Menu">
+      <div class="nav-mobile">
+        <div id="menuToggle"><img src="./images/menu.svg" alt="Menu"></div>
       </div>
-    </div>
-
     </div>
   </nav>
 
   <div class="mobile-menu" id="mobileMenu">
-
-  <div class="mobile-menu-inner">
-
-    <button class="menu-close" id="menuClose">
-      <img src="./images/close.svg" alt="Close">
-    </button>
-
-    <div class="mobile-links">
-      <a href="index.html">Home</a>
-      <a href="#" class="active">Projects</a>
-      <a href="about.html">About</a>
-      <a href="mailto:hello@sophiaakrofi.com">Contact</a>
-      <a href="#" class="mobile-nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">
-  Book a call
-</a>
+    <div class="mobile-menu-inner">
+      <button class="menu-close" id="menuClose"><img src="./images/close.svg" alt="Close"></button>
+      <div class="mobile-links">
+        <a href="index.html">Home</a>
+        <a href="#" class="active">Projects</a>
+        <a href="about.html">About</a>
+        <a href="mailto:hello@sophiaakrofi.com">Contact</a>
+        <a href="#" class="mobile-nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">Book a call</a>
+      </div>
     </div>
-
   </div>
-
-</div>
 
   <main>
 
-    <!-- HERO -->
-        <section class="hero section-pad">
-      <div class="hero-title">
-        <h1>Projects</h1>
+    <!-- ============ HERO ============ -->
+    <section class="projects-hero-v2 section-pad">
+      <div class="projects-hero-meta p2-rise">
+        <span class="meta-item"><span class="dot"></span>Index · 2019—2026</span>
+        <span class="slash">/</span>
+        <span class="meta-item">06 projects + sandbox</span>
+        <span class="slash">/</span>
+        <span class="meta-item">Selected works &amp; passion projects</span>
       </div>
-      <div class="hero-copy">
-        <p>A selection of professional projects and creative ventures</p>
+
+      <h1 class="projects-hero-title p2-rise">
+        Work that <em>shipped.</em><br/>
+        Work that <em>moved</em> people.
+      </h1>
+
+      <div class="projects-hero-lede">
+        <p class="p2-rise">A directory of professional projects and creative ventures &mdash; from $1B real-estate ecosystems and enterprise GenAI copilots to a hand-coded podcast salon and a TouchDesigner journal.</p>
       </div>
     </section>
 
-    <!-- SELECTED WORK -->
-<section class="selected-work section-pad">
-  <h3 class="section-label">Selected Works</h3>
-
-  <div class="project-cards">
-
-    <a href="#" onclick="openOverlay()" class="project-card-clean">
-      <div class="project-card-clean-image">
-        <img src="./images/Project-card_ME-property-desk.png" alt="$1B Property Development Digital Transformation">
+    <!-- MARQUEE -->
+    <div class="home-marquee" aria-hidden="true">
+      <div class="home-marquee-track" id="homeMarquee">
+        <span>◇ Selected works · 2023–2026</span><span class="dot"></span>
+        <span><strong>Enterprise · Fintech · AI · Media</strong></span><span class="dot"></span>
+        <span>◇ Freelance &amp; passion projects</span><span class="dot"></span>
+        <span><strong>D&amp;AD New Blood Judge</strong></span><span class="dot"></span>
+        <span>◇ Side studies in code, motion &amp; photography</span><span class="dot"></span>
+        <span><strong>$400M+ generated · 10+ MVPs</strong></span><span class="dot"></span>
       </div>
-      <div class="project-card-clean-text">
-        <p>Property Acquisition Platform (within $1B+ ecosystem)</p>
+    </div>
+
+    <!-- ============ PROJECT DIRECTORY ============ -->
+    <section class="project-directory section-pad">
+      <div class="project-directory-head">
+        <div class="p2-eyebrow p2-rise"><span class="num">01</span>Directory</div>
+        <h2 class="project-directory-title p2-rise">All works <em>at a glance.</em></h2>
       </div>
-    </a>
 
-<a href="#" onclick="openOverlay('luna')" class="project-card-clean">
-  <div class="project-card-clean-image">
-    <img src="./images/Project-card_GenAI-Pilot-desk.png" alt="GenAI-Powered Customer Experience Platform">
-  </div>
-  <div class="project-card-clean-text">
-    <p>AI-Powered Customer Experience Platform</p>
-  </div>
-</a>
+      <div class="directory-table">
+        <div class="dir-row dir-header">
+          <span class="dir-no">No.</span>
+          <span class="dir-name">Project</span>
+          <span class="dir-role">Role</span>
+          <span class="dir-year">Year</span>
+          <span class="dir-status">Status</span>
+        </div>
 
-<a href="#" onclick="openOverlay('accru')" class="project-card-clean">
-  <div class="project-card-clean-image">
-    <img src="./images/Project-card_accrupay.png" alt="Global Payment Orchestration Platform">
-  </div>
-  <div class="project-card-clean-text">
-    <p>Global Payment Orchestration Platform</p>
-  </div>
-</a>
+        <a href="#" onclick="openOverlay(); return false;" class="dir-row p2-rise" data-thumb="./images/Project-card_ME-property-desk.png">
+          <span class="dir-no">01</span>
+          <span class="dir-name">Property Acquisition Platform <em>— $1B+ ecosystem</em></span>
+          <span class="dir-role">Lead Product Designer</span>
+          <span class="dir-year">2023—25</span>
+          <span class="dir-status"><i class="dot success"></i>Live</span>
+        </a>
 
-  </div>
-</section>
+        <a href="#" onclick="openOverlay('luna'); return false;" class="dir-row p2-rise" data-thumb="./images/Project-card_GenAI-Pilot-desk.png">
+          <span class="dir-no">02</span>
+          <span class="dir-name">AI Copilot for Customer Experience <em>— 10+ MVPs</em></span>
+          <span class="dir-role">Lead Product Designer</span>
+          <span class="dir-year">2024—25</span>
+          <span class="dir-status"><i class="dot success"></i>Deployed</span>
+        </a>
 
-<!-- D&AD INDUSTRY IMPACT -->
-<section class="dad-impact section-pad">
-  <div class="dad-impact-heading">
-    <h2>Leadership &amp; Industry Impact</h2>
-    <div class="dad-impact-line"></div>
-  </div>
+        <a href="#" onclick="openOverlay('accru'); return false;" class="dir-row p2-rise" data-thumb="./images/Project-card_accrupay.png">
+          <span class="dir-no">03</span>
+          <span class="dir-name">Global Payment Orchestration <em>— AccruPay</em></span>
+          <span class="dir-role">Product &amp; Brand Designer</span>
+          <span class="dir-year">2025</span>
+          <span class="dir-status"><i class="dot success"></i>Live</span>
+        </a>
 
-  <div class="dad-impact-inner">
-    <div class="dad-impact-text">
-      <h2>D&amp;AD New Blood Judge</h2>
+        <a href="velvet.html" class="dir-row p2-rise" data-thumb="./images/The-velvet-room-cover.jpg">
+          <span class="dir-no">04</span>
+          <span class="dir-name">The Velvet Room <em>— cinematic podcast platform</em></span>
+          <span class="dir-role">Brand + Lead Designer</span>
+          <span class="dir-year">2024—26</span>
+          <span class="dir-status"><i class="dot success"></i>Live</span>
+        </a>
 
-      <h4>Returning judge for one of the world’s leading creative awards programmes</h4>
+        <a href="#td" class="dir-row p2-rise" data-thumb="./images/photo-2.png">
+          <span class="dir-no">05</span>
+          <span class="dir-name">TouchDesigner Journal <em>— generative motion</em></span>
+          <span class="dir-role">Solo · ongoing</span>
+          <span class="dir-year">2023—now</span>
+          <span class="dir-status"><i class="dot warn"></i>Ongoing</span>
+        </a>
 
-      <p>
-        Sophia Akrofi was selected as a judge for the D&amp;AD New Blood Awards — a globally recognised programme shaping the next generation of creative talent.
-      </p>
+        <a href="#photo" class="dir-row p2-rise" data-thumb="./images/photo-4.png">
+          <span class="dir-no">06</span>
+          <span class="dir-name">Film Photography <em>— Lisbon · Provence · Mexico</em></span>
+          <span class="dir-role">Solo · 35mm</span>
+          <span class="dir-year">2019—now</span>
+          <span class="dir-status"><i class="dot warn"></i>Ongoing</span>
+        </a>
 
-      <p>
-        As a former participant, Sophia now evaluates emerging designers and continues to contribute to defining the future of the industry.
-      </p>
+        <!-- floating thumbnail preview -->
+        <div class="dir-preview" id="dirPreview" aria-hidden="true">
+          <img id="dirPreviewImg" src="" alt="">
+        </div>
+      </div>
+    </section>
 
-      <a href="https://www.dandad.org/creative-community/directory/sophia-akrofi" target="_blank">View judging profile →</a>
-    </div>
+    <!-- ============ STATS RIBBON ============ -->
+    <section class="projects-stats">
+      <div class="projects-stats-grid">
 
-    <div class="dad-impact-images">
-      <img src="./images/D&AD-2025.png" alt="D&AD New Blood Judge 2025" loading="lazy" decoding="async">
-      <img src="./images/D&AD-2026.png" alt="D&AD New Blood Judge 2026" loading="lazy" decoding="async">
-    </div>
-  </div>
-</section>
+        <div class="ps-stat p2-rise">
+          <div class="ps-no">01</div>
+          <div class="ps-num"><span class="dur-count" data-to="400" data-prefix="$">$0</span><span class="ps-unit">M+</span></div>
+          <div class="ps-label">Revenue generated by platforms I&rsquo;ve led, in first 3 months of launch.</div>
+        </div>
 
-<!-- FREELANCE PROJECTS -->
-<section class="section-pad freelance-projects">
-  <h3 class="section-label">Freelance Projects</h3>
+        <div class="ps-stat p2-rise">
+          <div class="ps-no">02</div>
+          <div class="ps-num"><span class="dur-count" data-to="10">0</span><span class="ps-unit">+</span></div>
+          <div class="ps-label">Enterprise MVPs deployed from the same modular GenAI platform.</div>
+        </div>
 
-  <div class="side-project">
+        <div class="ps-stat p2-rise">
+          <div class="ps-no">03</div>
+          <div class="ps-num"><span class="dur-count" data-to="3000" data-format="comma">0</span><span class="ps-unit">+</span></div>
+          <div class="ps-label">Components shipped across bilingual systems, LTR + RTL parity.</div>
+        </div>
 
-    <!-- LEFT TEXT -->
-    <div class="side-text">
-      <h2>Digital Platform for Premium Storytelling Experience</h2>
+        <div class="ps-stat p2-rise">
+          <div class="ps-no">04</div>
+          <div class="ps-num"><span class="dur-count" data-to="15">0</span><span class="ps-unit">×</span></div>
+          <div class="ps-label">Conversion uplift vs baseline on the Saudi real-estate platform.</div>
+        </div>
 
-      <h4>Brand & Digital Experience for a Cinematic Storytelling Platform</h4>
+      </div>
+    </section>
 
-      <p>
-        Building an intimate podcast platform and digital brand that centres women’s narratives and private turning points.
-      </p>
+    <!-- ============ FEATURED SPOTLIGHT ============ -->
+    <section class="featured-spotlight">
+      <div class="spotlight-inner section-pad">
+        <div class="spotlight-meta p2-rise">
+          <span class="meta-item"><span class="dot"></span>Featured · 2023—2025</span>
+          <span class="slash">/</span>
+          <span class="meta-item">Real Estate · $1B ecosystem</span>
+        </div>
 
-      <a href="velvet.html">View project →</a>
-    </div>
+        <a href="#" onclick="openOverlay(); return false;" class="spotlight-link p2-rise">
+          <h2 class="spotlight-title">A property platform that generated <em>$400M</em> in the first quarter.</h2>
+          <span class="spotlight-arrow">→</span>
+        </a>
+      </div>
 
-    <!-- RIGHT IMAGE -->
-    <div class="side-images">
-      <img src="./images/The-velvet-room-cover.jpg" alt="The Velvet Room project">
-    </div>
+      <div class="spotlight-media p2-rise">
+        <video autoplay muted loop playsinline poster="./images/Project-card_ME-property-desk.png">
+          <source src="./images/saudi_property_acquisition_v1 (1440p).mp4" type="video/mp4">
+        </video>
+        <span class="spotlight-corner">▣ LIVE · property acquisition</span>
+        <span class="spotlight-corner right">01 / 06</span>
+      </div>
 
-  </div>
-</section>
+      <div class="section-pad spotlight-stats">
+        <div class="ss-grid">
+          <div class="ss-item p2-rise">
+            <div class="ss-num"><span class="dur-count" data-to="400" data-prefix="$">$0</span><span class="ss-unit">M</span></div>
+            <div class="ss-label">First-quarter revenue</div>
+          </div>
+          <div class="ss-item p2-rise">
+            <div class="ss-num"><span class="dur-count" data-to="15">0</span><span class="ss-unit">×</span></div>
+            <div class="ss-label">Conversion uplift</div>
+          </div>
+          <div class="ss-item p2-rise">
+            <div class="ss-num"><span class="dur-count" data-to="10000" data-format="comma">0</span></div>
+            <div class="ss-label">New users in Q1</div>
+          </div>
+          <div class="ss-item p2-rise">
+            <div class="ss-num"><span class="dur-count" data-to="3000" data-format="comma">0</span><span class="ss-unit">+</span></div>
+            <div class="ss-label">Bilingual components</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="section-divider"></div>
+    <!-- ============ MORE SELECTED WORK ============ -->
+    <section class="selected-work section-pad more-works">
+      <div class="more-works-head">
+        <div class="p2-eyebrow p2-rise"><span class="num">02</span>More selected work</div>
+        <h3 class="p2-rise">Two more shipped products.</h3>
+      </div>
 
-    <!-- SIDE PROJECTS -->
-    <section class="section-pad side-projects">
-      <h3 class="section-label">Side Projects</h3>
+      <div class="more-works-grid">
 
-      <!-- TOUCHDESIGNER -->
-      <div class="side-project">
-        <div class="side-text">
-          <h2>TouchDesigner</h2>
-          <h4>Visual Journal</h4>
-          <p>
-            A series of generative visual experiments exploring motion, energy and systems thinking through code.
+        <a href="#" onclick="openOverlay('luna')" class="project-card-clean p2-card p2-rise" data-num="02" data-tag="GenAI · 10+ MVPs">
+          <div class="project-card-clean-image">
+            <img src="./images/Project-card_GenAI-Pilot-desk.png" alt="GenAI-Powered Customer Experience Platform">
+            <video class="card-video" muted loop playsinline preload="none" poster="./images/Project-card_GenAI-Pilot-desk.png">
+              <source src="./images/genaicx_future-airline-journey-small (720p).mp4" type="video/mp4">
+            </video>
+            <span class="card-cta">View case <span class="arr">→</span></span>
+          </div>
+          <div class="project-card-clean-text">
+            <p>AI-Powered Customer Experience Platform</p>
+            <span class="card-sub">McKinsey · 2024—25 · Lead Product Designer</span>
+          </div>
+        </a>
+
+        <a href="#" onclick="openOverlay('accru')" class="project-card-clean p2-card p2-rise" data-num="03" data-tag="Fintech · Live">
+          <div class="project-card-clean-image">
+            <img src="./images/Project-card_accrupay.png" alt="Global Payment Orchestration Platform">
+            <span class="card-cta">View case <span class="arr">→</span></span>
+          </div>
+          <div class="project-card-clean-text">
+            <p>Global Payment Orchestration Platform</p>
+            <span class="card-sub">AccruPay · 2025 · Product + Brand Designer</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ============ D&AD LEADERSHIP ============ -->
+    <section class="dad-impact section-pad">
+      <div class="dad-impact-heading">
+        <div class="p2-eyebrow p2-rise"><span class="num">03</span>Leadership &amp; Industry Impact</div>
+        <div class="dad-impact-line"></div>
+      </div>
+
+      <div class="dad-impact-inner">
+        <div class="dad-impact-text">
+          <h2 class="p2-rise">D&amp;AD New Blood <em>Judge.</em></h2>
+
+          <p class="dad-impact-sub p2-rise">Returning judge for one of the world&rsquo;s leading creative awards programmes.</p>
+
+          <p class="p2-rise">
+            Sophia was selected as a judge for the D&amp;AD New Blood Awards &mdash; a globally recognised programme shaping the next generation of creative talent.
           </p>
+
+          <p class="p2-rise">
+            As a former participant, she now evaluates emerging designers and contributes to defining the future of the industry.
+          </p>
+
+          <a href="https://www.dandad.org/creative-community/directory/sophia-akrofi" target="_blank" class="dad-link p2-rise">
+            View judging profile <span class="arr">↗</span>
+          </a>
         </div>
 
-        <div class="side-images grid-3">
-            <video src="./images/td-1.mp4" autoplay muted loop playsinline preload="none"></video>
-            <video src="./images/td-2.mp4" autoplay muted loop playsinline preload="none"></video>
-            <video src="./images/td-3.mp4" autoplay muted loop playsinline preload="none"></video>
-            <video src="./images/td-4.mp4" autoplay muted loop playsinline preload="none"></video>
-            <video src="./images/td-5.mp4" autoplay muted loop playsinline preload="none"></video>
-            <video src="./images/td-6.mp4" autoplay muted loop playsinline preload="none"></video>
+        <div class="dad-impact-images">
+          <div class="dad-medal p2-rise">
+            <img src="./images/D&AD-2025.png" alt="D&AD New Blood Judge 2025" loading="lazy" decoding="async">
+            <span class="dad-year">2025</span>
+          </div>
+          <div class="dad-medal p2-rise">
+            <img src="./images/D&AD-2026.png" alt="D&AD New Blood Judge 2026" loading="lazy" decoding="async">
+            <span class="dad-year">2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- ============ FREELANCE / VELVET ============ -->
+    <section class="freelance-feature">
+
+      <div class="freelance-meta-strip">
+        <div class="section-pad">
+          <div class="p2-eyebrow p2-rise"><span class="num">04</span>Freelance · Brand &amp; Build</div>
         </div>
       </div>
 
-      <!-- PHOTOGRAPHY -->
-      <div class="side-project">
-        <div class="side-text">
-          <h2>Photography</h2>
-          <p>
-            As I travel the world, I take delight in film photography — capturing stillness, light and quiet beauty across Lisbon, Southern France and Mexico City.
-          </p>
+      <div class="freelance-velvet section-pad">
+
+        <div class="freelance-velvet-text">
+          <h2 class="p2-rise">A digital salon <em>for women&rsquo;s untold turning points.</em></h2>
+
+          <p class="velvet-feature-sub p2-rise">Brand strategy, custom logotype, identity system, hand-coded responsive site &mdash; 0→1 for Eugena Washington&rsquo;s Velvet Room.</p>
+
+          <ul class="velvet-feature-list p2-rise">
+            <li><span class="vf-no">01</span><span>Custom logotype from Eugena&rsquo;s handwriting</span></li>
+            <li><span class="vf-no">02</span><span>Cream / velvet / wine / gold palette &amp; serif type system</span></li>
+            <li><span class="vf-no">03</span><span>HTML / CSS / JS &mdash; hand-coded, fully responsive</span></li>
+          </ul>
+
+          <a href="velvet.html" class="velvet-feature-cta p2-rise">
+            Enter the case study <span class="arr">→</span>
+          </a>
         </div>
 
-        <div class="side-images grid-3">
-          <img src="./images/photo-1.png" loading="lazy" decoding="async">
-          <img src="./images/photo-2.png" loading="lazy" decoding="async">
-          <img src="./images/photo-3.png" loading="lazy" decoding="async">
-          <img src="./images/photo-4.png" loading="lazy" decoding="async">
-          <img src="./images/photo-5.png" loading="lazy" decoding="async">
-          <img src="./images/photo-6.png" loading="lazy" decoding="async">
+        <a href="velvet.html" class="freelance-velvet-media p2-rise">
+          <img src="./images/The-velvet-room-cover.jpg" alt="The Velvet Room">
+          <span class="vf-tag">▣ The Velvet Room · live site</span>
+        </a>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ============ SIDE PROJECTS · TOUCHDESIGNER ============ -->
+    <section id="td" class="td-section section-pad">
+
+      <div class="td-head">
+        <div class="p2-eyebrow p2-rise"><span class="num">05</span>Side · TouchDesigner</div>
+        <h2 class="p2-rise">A visual journal in <em>code &amp; motion.</em></h2>
+        <p class="td-blurb p2-rise">A series of generative experiments exploring energy, systems and rhythm. Built in TouchDesigner; recorded as loops.</p>
+      </div>
+
+      <div class="td-grid p2-rise">
+        <figure class="td-tile" data-cap="01 · Flow">
+          <video src="./images/td-1.mp4" autoplay muted loop playsinline preload="none"></video>
+        </figure>
+        <figure class="td-tile" data-cap="02 · Bloom">
+          <video src="./images/td-2.mp4" autoplay muted loop playsinline preload="none"></video>
+        </figure>
+        <figure class="td-tile" data-cap="03 · Drift">
+          <video src="./images/td-3.mp4" autoplay muted loop playsinline preload="none"></video>
+        </figure>
+        <figure class="td-tile" data-cap="04 · Pulse">
+          <video src="./images/td-4.mp4" autoplay muted loop playsinline preload="none"></video>
+        </figure>
+        <figure class="td-tile" data-cap="05 · Static">
+          <video src="./images/td-5.mp4" autoplay muted loop playsinline preload="none"></video>
+        </figure>
+        <figure class="td-tile" data-cap="06 · Echo">
+          <video src="./images/td-6.mp4" autoplay muted loop playsinline preload="none"></video>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ PHOTOGRAPHY · FILM STRIP ============ -->
+    <section id="photo" class="photo-section">
+
+      <div class="photo-head section-pad">
+        <div class="p2-eyebrow p2-rise"><span class="num">06</span>Side · Film photography</div>
+        <h2 class="p2-rise">Stillness, light, <em>and the way the world rests.</em></h2>
+        <p class="photo-blurb p2-rise">35mm film, taken between Lisbon, Southern France and Mexico City. Tap to scroll the contact sheet.</p>
+      </div>
+
+      <!-- horizontally-scrolling film strip -->
+      <div class="film-strip" id="filmStrip">
+        <div class="film-strip-track">
+          <figure><img src="./images/photo-1.png" alt=""><figcaption>01 / Lisbon</figcaption></figure>
+          <figure><img src="./images/photo-2.png" alt=""><figcaption>02 / Lisbon</figcaption></figure>
+          <figure><img src="./images/photo-3.png" alt=""><figcaption>03 / Provence</figcaption></figure>
+          <figure><img src="./images/photo-4.png" alt=""><figcaption>04 / Provence</figcaption></figure>
+          <figure><img src="./images/photo-5.png" alt=""><figcaption>05 / Mexico City</figcaption></figure>
+          <figure><img src="./images/photo-6.png" alt=""><figcaption>06 / Mexico City</figcaption></figure>
+          <!-- duplicate for seamless loop -->
+          <figure aria-hidden="true"><img src="./images/photo-1.png" alt=""><figcaption>01 / Lisbon</figcaption></figure>
+          <figure aria-hidden="true"><img src="./images/photo-2.png" alt=""><figcaption>02 / Lisbon</figcaption></figure>
+          <figure aria-hidden="true"><img src="./images/photo-3.png" alt=""><figcaption>03 / Provence</figcaption></figure>
         </div>
       </div>
 
     </section>
 
-    <!-- CTA -->
-    <section class="contact-banner">
-      <img src="./images/Contact-banner-dandelion.png" loading="lazy" decoding="async">
+    <!-- ============ CONTACT BANNER · PHOTO SLIDESHOW ============ -->
+    <section class="contact-banner photo-slideshow" id="photoSlideshow">
+      <div class="photo-stack" id="photoStack">
+        <img src="./images/photo-1.png" alt="Film photo" class="is-active" loading="lazy" decoding="async">
+        <img src="./images/photo-2.png" alt="Film photo" loading="lazy" decoding="async">
+        <img src="./images/photo-3.png" alt="Film photo" loading="lazy" decoding="async">
+        <img src="./images/photo-4.png" alt="Film photo" loading="lazy" decoding="async">
+        <img src="./images/photo-5.png" alt="Film photo" loading="lazy" decoding="async">
+        <img src="./images/photo-6.png" alt="Film photo" loading="lazy" decoding="async">
+      </div>
+
+      <div class="photo-stack-tag" aria-hidden="true">
+        <span class="ps-mono">▣ Film · 35mm</span>
+        <span class="ps-idx" id="photoIdx">01 / 06</span>
+      </div>
+
       <div class="contact-overlay section-pad">
         <p class="cta-big">Want to work together? Get in touch →</p>
 
         <div class="contact-details">
-       <a href="mailto:hello@sophiaakrofi.com">Let's work together</a>
+       <a href="/cdn-cgi/l/email-protection#bbd3ded7d7d4fbc8d4cbd3d2dadad0c9d4ddd295d8d4d6">Let's work together</a>
         </div>
       </div>
     </section>
@@ -245,7 +444,7 @@
 
     <div class="footer-right">
       <div class="footer-links">
-        <a href="mailto:hello@sophiaakrofi.com">Contact</a>
+        <a href="/cdn-cgi/l/email-protection#036b666f6f6c43706c736b6a626268716c656a2d606c6e">Contact</a>
         <a href="https://www.instagram.com/soph_akro/">Instagram</a>
         <a href="https://www.linkedin.com/in/sophia-akrofi">LinkedIn</a>
       </div>
@@ -263,9 +462,9 @@
     <h3>NDA-protected work</h3>
 
     <div class="password-row">
-      <input 
-        type="password" 
-        id="password-input" 
+      <input
+        type="password"
+        id="password-input"
         placeholder="Enter password"
       />
 
@@ -274,17 +473,16 @@
 
     <p id="error-message" class="error-message"></p>
 
-    <a href="mailto:hello@sophiaakrofi.com" class="password-link">
+    <a href="/cdn-cgi/l/email-protection#4c24292020230c3f233c24252d2d273e232a25622f2321" class="password-link">
       Request access by contacting me →
     </a>
 
   </div>
 </div>
-  
-<script>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 let currentProject = "";
 
-// OPEN OVERLAY + STORE PROJECT
 function openOverlay(project) {
   currentProject = project;
   document.getElementById('password-overlay').classList.remove('hidden');
@@ -300,12 +498,10 @@ const error = document.getElementById('error-message');
 
 const PASSWORD = "agileakrofi21";
 
-// enable button when typing
 input.addEventListener('input', () => {
   button.disabled = input.value.length === 0;
 });
 
-// check password
 function checkPassword() {
   if (input.value === PASSWORD) {
     if (currentProject === "luna") {
@@ -320,10 +516,8 @@ function checkPassword() {
   }
 }
 
-// click button
 button.addEventListener('click', checkPassword);
 
-// press ENTER
 input.addEventListener('keypress', function(e) {
   if (e.key === 'Enter') {
     checkPassword();
@@ -345,6 +539,159 @@ menuClose.addEventListener("click", () => {
 </script>
 
 <script src="https://assets.calendly.com/assets/external/widget.js"></script>
+
+<!-- Reveal + slideshow + marquee + hover videos + new directory hover -->
+<script>
+  /* Reveal on scroll */
+  (function(){
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -4% 0px' });
+    let i = 0;
+    document.querySelectorAll('.p2-rise').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) {
+        setTimeout(() => el.classList.add('is-in'), Math.min(i, 6) * 90);
+        i++;
+      } else io.observe(el);
+    });
+  })();
+
+  /* Marquee dupe */
+  (function(){
+    const t = document.getElementById('homeMarquee');
+    if (t) t.innerHTML = t.innerHTML + t.innerHTML;
+  })();
+
+  /* Photo slideshow CTA */
+  (function(){
+    const stack = document.getElementById('photoStack');
+    const idxLabel = document.getElementById('photoIdx');
+    if (!stack) return;
+    const imgs = Array.from(stack.querySelectorAll('img'));
+    if (imgs.length < 2) return;
+    let idx = 0;
+    const total = imgs.length;
+    const totalLabel = String(total).padStart(2, '0');
+    setInterval(() => {
+      imgs[idx].classList.remove('is-active');
+      idx = (idx + 1) % total;
+      imgs[idx].classList.add('is-active');
+      if (idxLabel) idxLabel.textContent = String(idx + 1).padStart(2, '0') + ' / ' + totalLabel;
+    }, 4200);
+  })();
+
+  /* Project card video on hover */
+  (function(){
+    document.querySelectorAll('.p2-card').forEach(card => {
+      const v = card.querySelector('video.card-video');
+      if (!v) return;
+      card.addEventListener('mouseenter', () => { v.play().catch(()=>{}); });
+      card.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
+    });
+  })();
+
+  /* Counter animation */
+  (function(){
+    function ease(t){ return 1 - Math.pow(1 - t, 3); }
+    function fmt(n, f){ return f === 'comma' ? Math.round(n).toLocaleString('en-US') : Math.round(n).toString(); }
+    function animate(el){
+      const to = parseFloat(el.dataset.to);
+      const prefix = el.dataset.prefix || '';
+      const f = el.dataset.format;
+      const dur = 1600;
+      const start = performance.now();
+      function tick(now){
+        const t = Math.min(1, (now - start) / dur);
+        const v = to * ease(t);
+        el.textContent = prefix + fmt(v, f);
+        if (t < 1) requestAnimationFrame(tick); else el.textContent = prefix + fmt(to, f);
+      }
+      requestAnimationFrame(tick);
+    }
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => {
+        if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.dur-count').forEach(el => io.observe(el));
+  })();
+
+  /* Directory hover thumbnail */
+  (function(){
+    const preview = document.getElementById('dirPreview');
+    const previewImg = document.getElementById('dirPreviewImg');
+    const rows = document.querySelectorAll('.directory-table .dir-row:not(.dir-header)');
+    if (!preview || !rows.length) return;
+
+    const table = document.querySelector('.directory-table');
+
+    rows.forEach(row => {
+      row.addEventListener('mouseenter', () => {
+        const src = row.dataset.thumb;
+        if (!src) return;
+        previewImg.src = src;
+        preview.classList.add('is-active');
+      });
+      row.addEventListener('mousemove', (e) => {
+        const rect = table.getBoundingClientRect();
+        preview.style.left = (e.clientX - rect.left + 24) + 'px';
+        preview.style.top  = (e.clientY - rect.top  - 80) + 'px';
+      });
+      row.addEventListener('mouseleave', () => {
+        preview.classList.remove('is-active');
+      });
+    });
+  })();
+
+  /* Film strip drag scroll + auto-pan */
+  (function(){
+    const strip = document.getElementById('filmStrip');
+    if (!strip) return;
+
+    // drag to scroll
+    let isDown = false, startX = 0, scrollLeft = 0, dragged = false;
+    strip.addEventListener('mousedown', (e) => {
+      isDown = true;
+      dragged = false;
+      strip.classList.add('is-dragging');
+      startX = e.pageX - strip.offsetLeft;
+      scrollLeft = strip.scrollLeft;
+    });
+    strip.addEventListener('mouseleave', () => { isDown = false; strip.classList.remove('is-dragging'); });
+    strip.addEventListener('mouseup', () => { isDown = false; strip.classList.remove('is-dragging'); });
+    strip.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      dragged = true;
+      const x = e.pageX - strip.offsetLeft;
+      strip.scrollLeft = scrollLeft - (x - startX);
+    });
+
+    // auto-pan slowly (pauses when user interacts)
+    let userInteract = false;
+    strip.addEventListener('mouseenter', () => userInteract = true);
+    strip.addEventListener('mouseleave', () => userInteract = false);
+    strip.addEventListener('touchstart', () => userInteract = true);
+    strip.addEventListener('touchend', () => userInteract = false);
+
+    function step(){
+      if (!userInteract) {
+        strip.scrollLeft += 0.4;
+        if (strip.scrollLeft >= strip.scrollWidth / 2) {
+          strip.scrollLeft = 0;
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  })();
+</script>
 
 </body>
 </html>

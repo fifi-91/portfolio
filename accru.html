@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AccruPay — Sophia Akrofi</title>
 
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JWHDGBM765"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -15,12 +14,12 @@
   </script>
 
   <link rel="stylesheet" href="styles.css"/>
-
-  <!-- calendly -->
+  <link rel="stylesheet" href="project-v2.css"/>
+  <link rel="stylesheet" href="project-v2-sandboxes.css"/>
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="p2-page" data-screen-label="AccruPay — Payments">
 
 <nav class="nav">
   <div class="nav-inner">
@@ -30,454 +29,417 @@
       <a href="projects.html" class="active">Projects</a>
       <a href="about.html">About</a>
       <a href="mailto:hello@sophiaakrofi.com">Contact</a>
-      <a href="#" class="nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">
-  Book a call
-</a>
+      <a href="#" class="nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">Book a call</a>
     </div>
-
-    <div class="nav-mobile">
-      <div id="menuToggle">
-        <img src="./images/menu.svg" alt="Menu">
-      </div>
-    </div>
+    <div class="nav-mobile"><div id="menuToggle"><img src="./images/menu.svg" alt="Menu"></div></div>
   </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-inner">
-    <button class="menu-close" id="menuClose">
-      <img src="./images/close.svg" alt="Close">
-    </button>
-
+    <button class="menu-close" id="menuClose"><img src="./images/close.svg" alt="Close"></button>
     <div class="mobile-links">
       <a href="index.html">Home</a>
       <a href="projects.html" class="active">Projects</a>
       <a href="about.html">About</a>
       <a href="mailto:hello@sophiaakrofi.com">Contact</a>
-      <a href="#" class="mobile-nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">
-  Book a call
-</a>
+      <a href="#" class="mobile-nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">Book a call</a>
     </div>
   </div>
 </div>
 
 <main>
 
-  <!-- PROJECT HERO -->
-  <section class="project-hero section-pad">
-    <div class="project-hero-inner">
-
-      <h1>Global Payment Orchestration Platform</h1>
-
-      <h2 class="project-sub">
-        Designing resilient payment infrastructure for global businesses
-      </h2>
-
-      <div class="project-meta">
-        <span>Recently launched</span>
+  <!-- ============ HERO ============ -->
+  <section class="p2-hero">
+    <div class="p2-wrap">
+      <div class="p2-hero-meta p2-rise">
+        <span class="meta-item"><span class="dot"></span>2025</span>
+        <span class="slash">/</span>
+        <span class="meta-item">Product strategy + Design direction</span>
+        <span class="slash">/</span>
+        <span class="meta-item">B2B SaaS · Fintech infrastructure</span>
+        <span class="slash">/</span>
+        <span class="meta-item">Recently launched</span>
       </div>
 
-      <p class="project-description">
-        Led product strategy, design direction, brand system, and developer experience for AccruPay, a recently launched developer-first payment orchestration platform helping businesses route transactions across multiple providers without being locked into one gateway.
-        <br><br>
-        <strong>Core POV:</strong> payment infrastructure should not collapse because one provider fails. AccruPay was designed to make routing, switching, and recovery feel simple enough for teams to trust, while keeping the technical logic credible enough for developers to adopt.
-        <br><br>
-        The platform gives merchants greater resilience, faster provider switching, clearer integration paths, and a stronger technical foundation for global payment independence.
-      </p>
+      <h1 class="p2-hero-title p2-rise">Payment infrastructure<br/><em>that doesn't collapse.</em></h1>
 
-      <div class="project-details">
-        <p><strong>Role</strong> Product Strategy, Design Direction, Brand System + Developer Experience</p>
-        <p><strong>Client type</strong> B2B SaaS / Fintech Infrastructure</p>
-        <p><strong>High-level impact</strong> Defined the product narrative, core journeys, brand system, developer onboarding, and launch-ready website experience from zero</p>
-        <p><strong>Status</strong> Recently launched, with the product foundation now supporting early customer conversations, demos, and continued platform development</p>
-        <p><strong>Context</strong> Payment routing, PSP switching, developer tools, and infrastructure resilience</p>
+      <div class="p2-hero-lede">
+        <p class="p2-hero-sub p2-rise">A developer-first payment orchestration platform that routes, switches and recovers across providers — so one failed gateway doesn't take down your revenue.</p>
+        <div class="p2-hero-detail p2-rise">
+          <p><strong>Scope.</strong> Product strategy, design direction, brand system, developer experience — zero to launch.</p>
+          <p><strong>Outcome.</strong> Recently launched · live site · investor + customer conversations · platform foundation for the next stage.</p>
+        </div>
       </div>
+    </div>
 
+    <div class="p2-hero-video p2-rise">
+      <span class="p2-corner">▣ Live product · accrupay.com</span>
+      <span class="p2-corner right">01 / 04</span>
+      <iframe loading="lazy" title="vimeo-player"
+        src="https://player.vimeo.com/video/1137943468?h=9440342f38&autoplay=1&loop=1&muted=1&background=1"
+        style="position:absolute; inset:0; width:100%; height:100%; border:0;"
+        frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      <div class="p2-video-fallback" id="heroFallback" style="display:none;">
+        <div class="fb-inner">
+          <div class="fb-play"></div>
+          <div>AccruPay · live walkthrough</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- HERO IMAGE -->
-<section class="project-media">
-  <div class="project-media-inner" style="display:flex; justify-content:center;">
-
-    <div style="width:100%; max-width:1100px; aspect-ratio:16/9; position:relative;">
-      <iframe loading="lazy" 
-        title="vimeo-player"
-        src="https://player.vimeo.com/video/1137943468?h=9440342f38"
-        style="position:absolute; inset:0; width:100%; height:100%;"
-        frameborder="0"
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-    </div>
-
-  </div>
-</section>
-
-  <section class="case-section section-pad">
-    <div class="case-grid">
-
-      <div class="case-text">
-        <p class="case-label">Challenge</p>
-
-        <p>
-          Payment infrastructure is often invisible until it fails. For businesses processing transactions at scale, reliance on a single payment provider creates operational risk, revenue loss, and limited negotiating power.
-        </p>
-
-        <p>
-          AccruPay needed to communicate a complex technical proposition in a way that felt credible to developers, clear to business leaders, and differentiated from heavier payment orchestration platforms.
-        </p>
-
-        <p>
-          The sharper problem: most payment products talk about flexibility, but the real business fear is interruption. If approvals drop, routes fail, or one gateway becomes unreliable, teams need control immediately, not after a rebuild.
-        </p>
-
-        <p>The product challenge was to:</p>
-
-        <ol>
-          <li><strong>Position payment routing as business resilience</strong> rather than a technical feature</li>
-          <li><strong>Translate complex infrastructure into simple product storytelling</strong> for developer and commercial audiences</li>
-          <li><strong>Create a visual system from scratch</strong> across brand, product, website, and marketing touchpoints</li>
-          <li><strong>Design for trust in a high-stakes category</strong> where reliability, compliance, and clarity are critical</li>
-          <li><strong>Support future product scale</strong> across documentation, pricing, onboarding, support, and dashboard experiences</li>
-          <li><strong>Clarify the payment flow</strong> across provider connection, routing logic, failover, retries, and transaction visibility</li>
-        </ol>
-
-        <p class="case-highlight">
-          The design challenge: How do you make payment infrastructure feel simple, resilient, and credible without reducing the technical depth of the product?
-        </p>
+  <!-- ============ STATS ============ -->
+  <section class="p2-stats">
+    <div class="p2-wrap">
+      <div class="p2-stats-grid">
+        <div class="p2-stat p2-rise" style="padding-left:0;">
+          <div class="stat-no">01 — Position</div>
+          <div class="stat-num">0&nbsp;→&nbsp;1</div>
+          <div class="stat-label">From early thinking to launched product, brand and developer experience.</div>
+        </div>
+        <div class="p2-stat p2-rise" style="padding-left:32px;">
+          <div class="stat-no">02 — Story</div>
+          <div class="stat-num">Infra-<br/>structure</div>
+          <div class="stat-label">Reframed from "smart payments toolkit" to lightweight orchestration layer.</div>
+        </div>
+        <div class="p2-stat p2-rise" style="padding-left:32px;">
+          <div class="stat-no">03 — Status</div>
+          <div class="stat-num">Live</div>
+          <div class="stat-label">Recently launched, supporting investor + customer conversations.</div>
+        </div>
+        <div class="p2-stat p2-rise" style="padding-left:32px;">
+          <div class="stat-no">04 — System</div>
+          <div class="stat-num">Built</div>
+          <div class="stat-label">Brand, marketing site, developer UX, product UI foundations.</div>
+        </div>
       </div>
-
-      <div class="case-image">
-        <img loading="lazy" decoding="async" src="./images/accrupay-challenge.png" alt="AccruPay challenge">
-      </div>
-
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
- <!-- DISCOVERY & INSIGHT -->
-<section class="case-section section-pad">
-  <div class="discovery-layout">
-
-    <div class="case-text">
-      <p class="case-label">Discovery & Insight</p>
-
-      <p class="case-title">Turning early product thinking into a clearer proposition</p>
-
-      <p>
-        Discovery focused on making the product legible. The early material positioned AccruPay around small business payment needs, but the stronger opportunity was to elevate the story from payment features to payment resilience.
-      </p>
-
-      <p>
-        I reviewed the early proposition, feature set, benefit framing, and visual direction to understand what the product was trying to communicate.
-      </p>
-
-      <ol>
-        <li><strong>Feature framing:</strong> identified recurring themes around pricing, payment plans, integrations, invoicing, reporting, and recurring payments</li>
-        <li><strong>Audience clarity:</strong> separated small business needs from the larger infrastructure story emerging underneath</li>
-        <li><strong>Product value:</strong> moved the narrative away from isolated payment tools and towards operational control</li>
-        <li><strong>Visual direction:</strong> assessed early illustrated and feature-led concepts to understand what felt credible, scalable, and ownable</li>
-        <li><strong>Strategic opportunity:</strong> identified resilience, routing, and provider independence as the stronger product territory</li>
-      </ol>
-
-      <p class="case-highlight">
-        Outcome: discovery reframed AccruPay from a smart payment toolkit into a sharper infrastructure proposition built around control, continuity, and independence.
-      </p>
+  <!-- ============ MARQUEE ============ -->
+  <div class="p2-marquee" aria-hidden="true">
+    <div class="p2-marquee-track" id="marqueeTrack">
+      <span>◇ Payment routing · switching · recovery</span><span class="dot"></span>
+      <span><strong>Provider independence</strong></span><span class="dot"></span>
+      <span>◇ E-commerce · Financial services · Healthcare · Travel · Marketplaces</span><span class="dot"></span>
+      <span><strong>SDK · sandbox · documentation</strong></span><span class="dot"></span>
+      <span>◇ PCI-aware patterns</span><span class="dot"></span>
+      <span><strong>Soft-failure design</strong></span><span class="dot"></span>
+      <span>◇ Built for developers, sold to operators</span><span class="dot"></span>
     </div>
-
-      <div class="discovery-image-grid">
-      <img loading="lazy" decoding="async" src="./images/accru-disco1.png" alt="AccruPay early discovery output 1">
-      <img loading="lazy" decoding="async" src="./images/accru-disco2.png" alt="AccruPay early discovery output 2">
-      <img loading="lazy" decoding="async" src="./images/accru-disco3.png" alt="AccruPay early discovery output 3">
-      <img loading="lazy" decoding="async" src="./images/accru-disco4.png" alt="AccruPay early discovery output 4">
-      <img loading="lazy" decoding="async" src="./images/accru-disco5.png" alt="AccruPay early discovery output 5">
-      <img loading="lazy" decoding="async" src="./images/accru-logos.png" alt="AccruPay early discovery output 6">
-    </div>
-
-  </div>
-</section>
-    
-  <div class="section-divider"></div>
-
-  <!-- STRATEGIC DIRECTION -->
-  <!-- STRATEGIC DIRECTION -->
-<section class="case-section section-pad">
-
-  <div class="case-text" style="max-width: 720px;">
-    <p class="case-label">Strategic Direction</p>
-
-    <p class="case-title">From generic payments to infrastructure resilience</p>
-
-    <p>
-      This insight reframed the product entirely.
-    </p>
-
-    <p>
-      Instead of competing as another payment platform, AccruPay was positioned as a <strong>lightweight orchestration layer</strong> enabling teams to route, switch, and recover without rebuilding their stack.
-    </p>
-
-    <p>This shift introduced three defining principles:</p>
-
-    <ul>
-      <li><strong>Independence over dependency:</strong> businesses should not be locked into a single provider</li>
-      <li><strong>Speed over configuration:</strong> teams need to act immediately when payments fail</li>
-      <li><strong>Clarity over complexity:</strong> infrastructure should feel understandable without losing technical depth</li>
-    </ul>
-
-    <p>
-      This became the foundation for every design decision across product, brand, and experience.
-    </p>
-
-    <p class="case-highlight">
-      Strategic stance: AccruPay should feel like a sharp infrastructure layer, not a bloated enterprise payments suite.
-    </p>
   </div>
 
-</section>
-
-<!-- FULL BLEED SYSTEM IMAGE -->
-<div class="strategic-full-bleed">
-  <img loading="lazy" decoding="async" src="./images/accrufigma.png" alt="AccruPay full system overview">
-</div>
-
-<div class="section-divider"></div>
-
- <!-- APPROACH -->
-<section class="case-section section-pad">
-  <div class="accru-approach-layout">
-
-    <div class="case-text">
-      <p class="case-label">Approach</p>
-
-      <p class="case-title">Translating strategy into a product, brand, and system</p>
-
-      <p>
-        With a clear strategic direction, the work focused on making the platform feel both technically credible and operationally simple.
-      </p>
-
-      <ol>
-        <li><strong>Product narrative:</strong> defined a clear story around routing, switching, and recovery as core product behaviours</li>
-        <li><strong>Experience architecture:</strong> structured the platform across onboarding, provider connection, routing logic, and fallback handling</li>
-        <li><strong>Brand system exploration:</strong> explored identity directions grounded in connection, flow, and infrastructure signals</li>
-        <li><strong>Interface foundations:</strong> built reusable UI patterns for pricing, documentation, support, and dashboard modules</li>
-        <li><strong>Scalable system design:</strong> ensured the product could extend across marketing, developer tooling, and future platform features</li>
-      </ol>
-
-      <p class="case-highlight">
-        The goal was not to simplify payments by hiding complexity. It was to structure complexity so teams could act quickly when revenue was at risk.
-      </p>
+  <!-- ============ CONTEXT ============ -->
+  <section class="p2-section">
+    <div class="p2-wrap">
+      <div class="p2-section-head">
+        <div>
+          <div class="p2-eyebrow p2-rise"><span class="num">01</span>Context</div>
+          <h2 class="p2-section-title p2-rise">Payment infrastructure is invisible — <em>until it fails.</em></h2>
+        </div>
+        <p class="p2-section-blurb p2-rise">For businesses at scale, dependence on a single payment provider creates real risk: dropped approvals, lost revenue, no leverage. AccruPay's job was to communicate a complex technical proposition in a way that felt credible to developers, clear to operators, and differentiated from heavier orchestration platforms.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="accru-approach-images">
-      <img loading="lazy" decoding="async" src="./images/accru-approach1.png" alt="AccruPay logo exploration board">
-      <img loading="lazy" decoding="async" src="./images/accru-approach2.png" alt="AccruPay logo refinement">
-      <img loading="lazy" decoding="async" src="./images/accru-approach3.png" alt="AccruPay system application">
+  <!-- ============ ACCRUPAY ROUTING DEMO ============ -->
+  <section class="p2-bili">
+    <div class="p2-wrap">
+      <div class="p2-section-head">
+        <div>
+          <div class="p2-eyebrow p2-rise"><span class="num">02</span>Sandbox · Route, fail, recover</div>
+          <h2 class="p2-section-title p2-rise">Watch a $249 charge route through three providers. <em>One fails. Recovery is automatic.</em></h2>
+        </div>
+        <p class="p2-section-blurb p2-rise">Most payment products talk about flexibility. The real business fear is interruption. AccruPay's design point of view: structure complexity so teams can act in seconds when revenue is on the line — not after a rebuild.</p>
+      </div>
+
+      <div class="accru-stage p2-rise">
+
+        <aside class="accru-spec">
+          <h3>connect → route → recover</h3>
+          <p>Developers configure PSPs in sandbox. Define routing rules by provider, geography, cost or availability. When a route fails, fallback fires automatically — without manual intervention.</p>
+          <ul class="accru-spec-list" id="accruSteps">
+            <li data-step="primary"><span class="step-no">01</span><span class="step-label">Primary route — Stripe Connect</span><span class="step-status">queued</span></li>
+            <li data-step="fail"><span class="step-no">02</span><span class="step-label">Provider 1 declined · network timeout</span><span class="step-status">queued</span></li>
+            <li data-step="retry"><span class="step-no">03</span><span class="step-label">Fallback — Adyen retry policy</span><span class="step-status">queued</span></li>
+            <li data-step="success"><span class="step-no">04</span><span class="step-label">Charge captured · 1,180 ms total</span><span class="step-status">queued</span></li>
+          </ul>
+          <div class="accru-controls">
+            <button class="accru-ctrl" id="accruReplay">↻ Replay</button>
+            <button class="accru-ctrl" id="accruFast">⏵ Fast</button>
+          </div>
+        </aside>
+
+        <div class="accru-canvas">
+          <div class="accru-canvas-head">
+            <span>▣ Live · sandbox transaction</span>
+            <span class="live"><span class="pulse"></span>Routing</span>
+          </div>
+
+          <div class="accru-merchant">
+            <div><small>txn_4f9</small> Order #SH-1024 · Customer Maya R.</div>
+            <div class="price">$249.00</div>
+          </div>
+
+          <div class="accru-routing" id="accruRouting">
+            <div class="accru-psp" id="psp1">
+              <div class="psp-name"><span class="bullet"></span>Stripe</div>
+              <div class="psp-meta">PRIMARY · US · CARD</div>
+              <div class="psp-status">Idle</div>
+            </div>
+            <div class="accru-arrow" id="arr1"><span class="arrow-line"></span></div>
+            <div class="accru-psp" id="psp2">
+              <div class="psp-name"><span class="bullet"></span>Adyen</div>
+              <div class="psp-meta">FALLBACK · EU · CARD</div>
+              <div class="psp-status">Idle</div>
+            </div>
+            <div class="accru-arrow" id="arr2"><span class="arrow-line"></span></div>
+            <div class="accru-psp" id="psp3">
+              <div class="psp-name"><span class="bullet"></span>Checkout.com</div>
+              <div class="psp-meta">RESERVE · GLOBAL</div>
+              <div class="psp-status">Idle</div>
+            </div>
+          </div>
+
+          <div class="accru-receipt" id="accruReceipt" data-state="pending">
+            <div>
+              <div style="font-weight:500;">Transaction status</div>
+              <div class="r-detail" id="receiptDetail">Awaiting first authorisation attempt…</div>
+            </div>
+            <div class="r-result" id="receiptResult">PENDING</div>
+          </div>
+        </div>
+
+      </div>
     </div>
+  </section>
 
-  </div>
-</section>
+  <!-- ============ PROCESS ============ -->
+  <section class="p2-process">
+    <div class="p2-wrap">
+      <div class="p2-section-head">
+        <div>
+          <div class="p2-eyebrow p2-rise"><span class="num">03</span>How we got there</div>
+          <h2 class="p2-section-title p2-rise">From smart toolkit to infrastructure layer.</h2>
+        </div>
+        <p class="p2-section-blurb p2-rise">The early proposition was a "smart payments toolkit" for SMBs. The stronger story sitting underneath was about resilience and provider independence. The product, brand and developer experience all flowed from that single reframe.</p>
+      </div>
 
-  <div class="section-divider"></div>
+      <div class="p2-process-tabs" role="tablist" id="processTabs">
+        <button class="p2-process-tab" role="tab" aria-selected="true" data-panel="p1">
+          <div class="tab-no">01 / Discovery</div>
+          <div class="tab-title">Reframe the product —<br/>from features to infrastructure.</div>
+        </button>
+        <button class="p2-process-tab" role="tab" aria-selected="false" data-panel="p2">
+          <div class="tab-no">02 / Direction</div>
+          <div class="tab-title">Independence, speed,<br/>clarity — three principles.</div>
+        </button>
+        <button class="p2-process-tab" role="tab" aria-selected="false" data-panel="p3">
+          <div class="tab-no">03 / System</div>
+          <div class="tab-title">Brand, product, devex,<br/>website — one system.</div>
+        </button>
+      </div>
 
-  <section class="case-section section-pad">
-    <div class="deliverables-grid">
-
-      <div class="deliverables-text">
-        <p class="case-label">Deliverables</p>
-
-        <p class="case-title">What I Designed</p>
-
-        <ul class="deliverables-list">
-          <li><strong>Full product positioning</strong> around payment resilience, provider independence, and lightweight orchestration</li>
-
-          <li><strong>Brand identity system</strong>
+      <div class="p2-process-panels">
+        <div class="p2-process-panel is-active" id="p1">
+          <div class="p2-process-text">
+            <h4>The clearer proposition was hiding inside the brief.</h4>
+            <p>Discovery focused on making the product legible. The early framing positioned AccruPay around small business payment needs — but the stronger opportunity was elevating from features to resilience.</p>
             <ul>
-              <li>Logo exploration and refinement</li>
-              <li>Sub-brand visual logic</li>
-              <li>Colour, typography, iconography, and motion direction</li>
-              <li>Developer-focused visual language</li>
+              <li>Reviewed feature framing, audience clarity, product value, visual direction</li>
+              <li>Separated SMB needs from the larger infrastructure story emerging underneath</li>
+              <li>Identified resilience, routing and provider independence as the stronger territory</li>
             </ul>
-          </li>
+          </div>
+          <div class="p2-process-media">
+            <img src="./images/accrupay-challenge.png" alt="AccruPay challenge">
+          </div>
+        </div>
 
-          <li><strong>Marketing website system</strong> covering homepage, why AccruPay, pricing, support, documentation, and demo pathways</li>
-          <li><strong>Developer onboarding flows</strong> including sandbox access, API key setup, mock PSPs, and routing rules</li>
-          <li><strong>Product UI foundations</strong> for cards, status modules, quick actions, and dashboard patterns</li>
-          <li><strong>Use-case architecture</strong> across e-commerce, financial services, healthcare, travel, marketplaces, and higher-risk categories</li>
-          <li><strong>Content strategy</strong> translating technical infrastructure into clear product and business value</li>
-          <li><strong>Launch-ready experience</strong> supporting the live site, investor conversations, customer demos, and next-stage product development</li>
-        </ul>
+        <div class="p2-process-panel" id="p2">
+          <div class="p2-process-text">
+            <h4>Independence · Speed · Clarity.</h4>
+            <p>Three principles that became the foundation for every design decision across product, brand and experience. Not a bloated enterprise suite — a sharp infrastructure layer.</p>
+            <ul>
+              <li><strong>Independence over dependency</strong> — businesses shouldn't be locked into a single provider</li>
+              <li><strong>Speed over configuration</strong> — teams need to act immediately when payments fail</li>
+              <li><strong>Clarity over complexity</strong> — infrastructure should feel understandable without losing technical depth</li>
+            </ul>
+          </div>
+          <div class="p2-process-media">
+            <img src="./images/accrufigma.png" alt="AccruPay system overview">
+          </div>
+        </div>
+
+        <div class="p2-process-panel" id="p3">
+          <div class="p2-process-text">
+            <h4>One system — brand, product, developer experience.</h4>
+            <p>From identity to documentation, every touchpoint was built from the same point of view. Technical credibility through restrained layouts, documentation cues and code-led content; reassurance through clear hierarchy and soft motion.</p>
+            <ul>
+              <li>Brand identity, logo, sub-brand logic, typography, motion direction</li>
+              <li>Marketing site, onboarding, pricing, support, documentation, demo paths</li>
+              <li>Product UI foundations: cards, status modules, dashboard patterns</li>
+            </ul>
+          </div>
+          <div class="p2-process-media">
+            <img src="./images/accru-approach3.png" alt="AccruPay system application">
+          </div>
+        </div>
       </div>
-
-      <div class="deliverables-media">
-        <div class="deliverables-card">
-          <img loading="lazy" decoding="async" src="./images/deliverables-1.png" alt="AccruPay deliverables">
-        </div>
-
-         <div class="deliverables-card">
-          <img loading="lazy" decoding="async" src="./images/deliverables-2.png" alt="AccruPay deliverables">
-        </div>
-
-         <div class="deliverables-card">
-          <img loading="lazy" decoding="async" src="./images/deliverables-3.png" alt="AccruPay deliverables">
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <div class="section-divider"></div>
+  <!-- ============ DESIGN SYSTEM ============ -->
+  <section class="p2-ds">
+    <div class="p2-wrap">
+      <div class="p2-ds-stage">
+        <div class="p2-ds-text">
+          <div class="p2-eyebrow p2-rise"><span class="num">04</span>Bilingual audience</div>
+          <h3 class="p2-rise">Designed for two readers at once — the developer who has to integrate it, and the operator who has to trust it.</h3>
+          <p class="p2-rise">The system holds clear hierarchy between commercial messaging and technical detail. Reusable card patterns flex across benefits, pricing, support and use cases. Soft gradients keep infrastructure approachable; restrained layouts and code-led content keep it credible.</p>
+          <div class="p2-ds-pills">
+            <span class="p2-ds-pill" aria-pressed="true">Commercial layer</span>
+            <span class="p2-ds-pill" aria-pressed="false">Technical layer</span>
+            <span class="p2-ds-pill" aria-pressed="false">Documentation</span>
+            <span class="p2-ds-pill" aria-pressed="false">Dashboard</span>
+          </div>
+        </div>
+        <div class="p2-ds-viz" style="aspect-ratio: 4/3;">
+          <img src="./images/product-system1.png" alt="AccruPay system" style="width:100%; height:100%; object-fit: cover; border-radius: 14px;">
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <section class="case-section section-pad">
-    <p class="case-label">Product System</p>
-
-    <div class="bilingual-grid">
-
-      <div class="bilingual-intro">
-        <p>
-          The AccruPay system was designed to support multiple user needs without fragmenting the experience. Business users needed proof, simplicity, and reassurance. Developers needed clarity, speed, and technical confidence.
-        </p>
+  <!-- ============ IMAGE STRIP ============ -->
+  <section class="p2-strip">
+    <div class="p2-wrap">
+      <div class="p2-section-head">
+        <div>
+          <div class="p2-eyebrow p2-rise"><span class="num">05</span>Build</div>
+          <h2 class="p2-section-title p2-rise">Developer experience — connect, route, recover.</h2>
+        </div>
+        <p class="p2-section-blurb p2-rise">The developer journey was structured around the operational model: PSP credentials, sandbox validation, routing rules, retries and fallback. The interface mirrors how engineers think — not how marketers wish engineers thought.</p>
       </div>
 
-      <div class="bilingual-images-top">
-        <img loading="lazy" decoding="async" src="./images/product-system1.png" alt="AccruPay product system">
-        <img loading="lazy" decoding="async" src="./images/product-system2.png" alt="AccruPay support system">
-        <img loading="lazy" decoding="async" src="./images/product-system3.png" alt="AccruPay pricing system">
+      <div class="p2-strip-grid">
+        <a href="#" data-cap="01 · Documentation" class="p2-rise"><img src="./images/dev-experience1.png" alt=""></a>
+        <a href="#" data-cap="02 · Sandbox access" class="p2-rise"><img src="./images/dev-experience4.png" alt=""></a>
+        <a href="#" data-cap="03 · SDK setup" class="p2-rise"><img src="./images/dev-experience2.png" alt=""></a>
+        <a href="#" data-cap="04 · Routing rules" class="p2-rise"><img src="./images/dev-experience3.png" alt=""></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OUTCOMES ============ -->
+  <section class="p2-outcomes">
+    <div class="p2-wrap">
+      <div class="p2-outcomes-head">
+        <div>
+          <div class="p2-eyebrow p2-rise"><span class="num">06</span>What it shipped</div>
+          <h2 class="p2-section-title p2-rise">A launch-ready foundation.</h2>
+        </div>
+        <p class="p2-section-blurb p2-rise">The product foundation now supports early customer conversations, investor demos and continued platform development — built to scale across documentation, pricing, onboarding, support and dashboard surfaces.</p>
       </div>
 
-      <div class="bilingual-body">
-        <p><strong>Key system considerations:</strong></p>
+      <div class="p2-outcomes-grid">
+        <div class="p2-outcomes-item p2-rise">
+          <div class="o-num">01</div>
+          <div class="o-big">Live</div>
+          <div class="o-label">Launched product presence — full brand, site and product story.</div>
+        </div>
+        <div class="p2-outcomes-item p2-rise">
+          <div class="o-num">02</div>
+          <div class="o-big">0 → 1</div>
+          <div class="o-label">Full visual + brand foundation created from scratch.</div>
+        </div>
+        <div class="p2-outcomes-item p2-rise">
+          <div class="o-num">03</div>
+          <div class="o-big">Modular</div>
+          <div class="o-label">Reusable marketing system across home, pricing, docs, demo.</div>
+        </div>
+        <div class="p2-outcomes-item p2-rise">
+          <div class="o-num">04</div>
+          <div class="o-big">Devex</div>
+          <div class="o-label">SDK, sandbox, API references, mock PSPs and routing rules.</div>
+        </div>
+        <div class="p2-outcomes-item p2-rise">
+          <div class="o-num">05</div>
+          <div class="o-big">6+</div>
+          <div class="o-label">Use cases — e-commerce, financial services, healthcare, travel, marketplaces.</div>
+        </div>
+        <div class="p2-outcomes-item p2-rise">
+          <div class="o-num">06</div>
+          <div class="o-big">Scale</div>
+          <div class="o-label">UI patterns ready to extend into dashboards and future product features.</div>
+        </div>
+      </div>
 
+      <div class="p2-outcomes-summary p2-rise">
+        <p>Established AccruPay as a credible, resilient, developer-focused payment orchestration platform — with a stronger foundation for launch, fundraising, client conversations and the next stage of product build-out.</p>
+        <span class="o-source">Recently launched</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REFLECTION ============ -->
+  <section class="p2-reflect">
+    <div class="p2-wrap">
+      <div class="p2-reflect-grid">
+        <div>
+          <div class="p2-eyebrow p2-rise"><span class="num">07</span>Reflection</div>
+          <h3 class="p2-rise">What this taught me.</h3>
+        </div>
         <ul>
-          <li>Clear hierarchy between commercial messaging and technical detail</li>
-          <li>Reusable card systems for benefits, resources, pricing, support, and industry use cases</li>
-          <li>Consistent CTA patterns across demo, documentation, sandbox, and support flows</li>
-          <li>Soft visual gradients to make infrastructure feel more approachable</li>
-          <li>Technical credibility through restrained layouts, documentation cues, and code-led content</li>
-          <li>Flexible content patterns that could explain product value before the full platform UI matured</li>
+          <li class="p2-rise"><span class="num">01</span><span>How to translate complex fintech infrastructure into a clear product and brand story.</span></li>
+          <li class="p2-rise"><span class="num">02</span><span>How to design for both developer confidence and executive-level business value.</span></li>
+          <li class="p2-rise"><span class="num">03</span><span>How to create early-stage product systems that can scale across marketing, documentation and interface design.</span></li>
+          <li class="p2-rise"><span class="num">04</span><span>How to shape a product from zero to credible launch through strategy, structure and craft.</span></li>
+          <li class="p2-rise"><span class="num">05</span><span>How to balance technical honesty with a sharper commercial point of view.</span></li>
         </ul>
-
-        <p class="case-highlight">
-          Result: A flexible visual and content system that can scale across product marketing, developer documentation, and platform UI.
-        </p>
       </div>
-
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
-  <section class="case-section section-pad">
-
-    <div class="case-label">Developer Experience</div>
-
-    <div class="case-text" style="max-width: 720px; margin-bottom: 32px;">
-      <p class="case-title">Core flow: connect, route, recover</p>
-
-      <p>
-        The developer experience was structured around a simple operational model: connect payment providers, define routing rules, process transactions, and recover quickly when a provider fails.
-      </p>
-
-      <ul>
-        <li><strong>Connect:</strong> add PSP credentials, configure API keys, and validate setup in sandbox</li>
-        <li><strong>Route:</strong> define logic by provider, geography, transaction type, cost, or availability</li>
-        <li><strong>Recover:</strong> support retries, fallback routing, and clearer visibility when payments fail</li>
-      </ul>
-
-      <p class="case-highlight">
-        The goal was not to make payments look simple by hiding complexity. The goal was to structure complexity so teams could act quickly when money was on the line.
-      </p>
-    </div>
-
-   <div class="fe-accru-grid">
-  <div class="fe-accru-card">
-    <img loading="lazy" decoding="async" src="./images/dev-experience1.png" alt="Developer docs">
-  </div>
-
-  <div class="fe-accru-card">
-    <img loading="lazy" decoding="async" src="./images/dev-experience4.png" alt="Sandbox access">
-  </div>
-
-  <div class="fe-accru-card">
-    <img loading="lazy" decoding="async" src="./images/dev-experience2.png" alt="SDK setup">
-  </div>
-
-  <div class="fe-accru-card">
-    <img loading="lazy" decoding="async" src="./images/dev-experience3.png" alt="Routing rules">
-  </div>
-</div>
-
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section class="outcomes section-pad">
-    <div class="outcomes-grid">
-
-      <div class="outcomes-text">
-        <p class="section-label">OUTCOMES</p>
-
-        <h3>What This Enabled</h3>
-
-        <ul class="outcomes-list">
-          <li><strong>Recently launched product presence</strong> with a full brand, website, and product story live for early market conversations</li>
-          <li><strong>Clear product positioning</strong> for a complex payment infrastructure proposition</li>
-          <li><strong>Full visual and brand foundation</strong> created from scratch for a new fintech product</li>
-          <li><strong>Reusable product marketing system</strong> across homepage, support, pricing, documentation, and demo flows</li>
-          <li><strong>Developer-first onboarding structure</strong> supporting API references, SDK setup, mock PSPs, sandbox access, and routing rules</li>
-          <li><strong>Sharper technical storytelling</strong> across provider connection, payment routing, fallback behaviour, and transaction visibility</li>
-          <li><strong>Clearer commercial story</strong> connecting uptime, provider switching, approval rates, and market expansion</li>
-          <li><strong>Scalable UI patterns</strong> for future product features, resource cards, dashboard modules, and industry use cases</li>
-        </ul>
-
-        <p class="outcomes-summary">
-          The work established AccruPay as a credible, resilient, and developer-focused payment orchestration platform with a stronger foundation for launch, fundraising, client conversations, and future product build-out.
-        </p>
-      </div>
-
-      <div class="outcomes-image">
-        <img src="./images/accru-enablement.png" alt="AccruPay outcomes">
-      </div>
-
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section class="reflection section-pad">
-    <div class="reflection-inner">
-
-      <p class="section-label">REFLECTION</p>
-
-      <h3>What This Taught Me</h3>
-
-      <div class="reflection-body">
-        <ul>
-          <li>How to translate complex fintech infrastructure into a clear product and brand story</li>
-          <li>How to design for both developer confidence and executive-level business value</li>
-          <li>How to create early-stage product systems that can scale across marketing, documentation, and interface design</li>
-          <li>How to shape a product from zero to a credible launch foundation through strategy, structure, and craft</li>
-          <li>How to balance technical honesty with a sharper commercial point of view</li>
-        </ul>
-      </div>
-
+  <!-- ============ NEXT ============ -->
+  <section class="p2-next">
+    <div class="p2-wrap">
+      <div class="p2-next-eyebrow">▶ Next project</div>
+      <a href="velvet.html" class="p2-next-link">
+        <h3>The Velvet Room<br/><em>— cinematic storytelling.</em></h3>
+        <span class="arrow">→</span>
+      </a>
     </div>
   </section>
 
   <section class="contact-banner">
-    <img loading="lazy" decoding="async" src="./images/Contact-banner-dandelion.png" alt="Dandelion field">
+    <img src="./images/Contact-banner-dandelion.png" alt="Dandelion field">
     <div class="contact-overlay section-pad">
       <div class="contact-details">
         <p>Contact</p>
-        <a href="mailto:hello@sophiaakrofi.com">hello@sophiaakrofi.com</a>
+        <a href="/cdn-cgi/l/email-protection#1e767b7272715e6d716e76777f7f756c717877307d7173"><span class="__cf_email__" data-cfemail="e28a878e8e8da2918d928a8b838389908d848bcc818d8f">[email&#160;protected]</span></a>
       </div>
-
-      <a href="projects.html" class="passion-link">View passion projects →</a>
+      <a href="projects.html" class="passion-link">View all projects →</a>
     </div>
   </section>
 
 </main>
+
+<!-- PASSWORD OVERLAY -->
+<div id="password-overlay" class="password-overlay hidden">
+  <button class="password-close" onclick="closeOverlay()">✕</button>
+  <div class="password-container">
+    <h3>NDA-protected work</h3>
+    <div class="password-row">
+      <input type="password" id="password-input" placeholder="Enter password"/>
+      <button id="submit-btn" disabled>Submit</button>
+    </div>
+    <p id="error-message" class="error-message"></p>
+    <a href="/cdn-cgi/l/email-protection#264e434a4a49665549564e4f47474d5449404f0845494b" class="password-link">Request access by contacting me →</a>
+  </div>
+</div>
 
 <footer class="footer">
   <div class="footer-inner">
@@ -485,10 +447,9 @@
       <p class="footer-madeby">This website was designed and built by</p>
       <h2>Sophia Akrofi</h2>
     </div>
-
     <div class="footer-right">
       <div class="footer-links">
-        <a href="mailto:hello@sophiaakrofi.com">Contact</a>
+        <a href="/cdn-cgi/l/email-protection#0b636e6767644b78647b63626a6a6079646d6225686466">Contact</a>
         <a href="https://www.instagram.com/soph_akro/">Instagram</a>
         <a href="https://www.linkedin.com/in/sophia-akrofi">LinkedIn</a>
       </div>
@@ -497,18 +458,157 @@
   </div>
 </footer>
 
-<script>
-const menuToggle = document.getElementById("menuToggle");
-const mobileMenu = document.getElementById("mobileMenu");
-const menuClose = document.getElementById("menuClose");
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+  const t=document.getElementById('menuToggle'), m=document.getElementById('mobileMenu'), c=document.getElementById('menuClose');
+  if(t&&m)t.addEventListener('click',()=>m.classList.add('active'));
+  if(c&&m)c.addEventListener('click',()=>m.classList.remove('active'));
+  document.querySelectorAll('.mobile-links a').forEach(a=>a.addEventListener('click',()=>m&&m.classList.remove('active')));
+})();
 
-menuToggle.addEventListener("click", () => {
-  mobileMenu.classList.add("active");
-});
+let currentProject="";
+function openOverlay(p){currentProject=p; document.getElementById('password-overlay').classList.remove('hidden');}
+function closeOverlay(){document.getElementById('password-overlay').classList.add('hidden');}
+(function(){
+  const input=document.getElementById('password-input'), button=document.getElementById('submit-btn'), error=document.getElementById('error-message');
+  const PASSWORD="agileakrofi21";
+  if(!input)return;
+  input.addEventListener('input',()=>{button.disabled=input.value.length===0;});
+  function check(){
+    if(input.value===PASSWORD){
+      if(currentProject==="luna")location.href="luna.html";
+      else if(currentProject==="accru")location.href="accru.html";
+      else location.href="saudi.html";
+    } else error.textContent="Incorrect password";
+  }
+  button.addEventListener('click',check);
+  input.addEventListener('keypress',e=>{if(e.key==='Enter')check();});
+})();
 
-menuClose.addEventListener("click", () => {
-  mobileMenu.classList.remove("active");
-});
+(function(){
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});},{threshold:0.06, rootMargin:'0px 0px -4% 0px'});
+  const all=[...document.querySelectorAll('.p2-rise')]; let i=0;
+  all.forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top<window.innerHeight && r.bottom>0){setTimeout(()=>el.classList.add('is-in'), Math.min(i,8)*80); i++;}
+    else io.observe(el);
+  });
+})();
+
+(function(){
+  function ease(t){return 1-Math.pow(1-t,3);}
+  function fmt(n,f){return f==='comma'?Math.round(n).toLocaleString('en-US'):Math.round(n).toString();}
+  function animate(el){
+    const to=parseFloat(el.dataset.to), prefix=el.dataset.prefix||'', f=el.dataset.format, dur=1600, start=performance.now();
+    function tick(now){
+      const t=Math.min(1,(now-start)/dur), v=to*ease(t);
+      el.textContent=prefix+fmt(v,f);
+      if(t<1) requestAnimationFrame(tick); else el.textContent=prefix+fmt(to,f);
+    }
+    requestAnimationFrame(tick);
+  }
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){animate(e.target);io.unobserve(e.target);}});},{threshold:0.6});
+  document.querySelectorAll('.p2-count').forEach(el=>io.observe(el));
+})();
+
+(function(){const t=document.getElementById('marqueeTrack');if(t)t.innerHTML=t.innerHTML+t.innerHTML;})();
+
+(function(){
+  const tabs=document.querySelectorAll('#processTabs .p2-process-tab'), panels=document.querySelectorAll('.p2-process-panel');
+  tabs.forEach(t=>t.addEventListener('click',()=>{
+    tabs.forEach(x=>x.setAttribute('aria-selected', x===t));
+    panels.forEach(p=>p.classList.toggle('is-active', p.id===t.dataset.panel));
+  }));
+})();
+
+/* ==== ACCRUPAY ROUTING DEMO ==== */
+(function(){
+  const psp1=document.getElementById('psp1'), psp2=document.getElementById('psp2'), psp3=document.getElementById('psp3');
+  const arr1=document.getElementById('arr1'), arr2=document.getElementById('arr2');
+  const receipt=document.getElementById('accruReceipt'), receiptResult=document.getElementById('receiptResult'), receiptDetail=document.getElementById('receiptDetail');
+  const steps=document.querySelectorAll('#accruSteps li');
+  const replay=document.getElementById('accruReplay'), fast=document.getElementById('accruFast');
+  let timers=[]; let speed=1;
+
+  function clear(){ timers.forEach(t=>clearTimeout(t)); timers=[]; }
+  function at(ms, fn){ timers.push(setTimeout(fn, ms/speed)); }
+
+  function reset(){
+    clear();
+    [psp1,psp2,psp3].forEach(p=>{p.className='accru-psp'; p.querySelector('.psp-status').textContent='Idle';});
+    [arr1,arr2].forEach(a=>a.className='accru-arrow');
+    steps.forEach(s=>{s.classList.remove('is-active','is-done','is-fail'); s.querySelector('.step-status').textContent='queued';});
+    receipt.setAttribute('data-state','pending');
+    receiptResult.textContent='PENDING';
+    receiptDetail.textContent='Awaiting first authorisation attempt…';
+  }
+
+  function setStep(idx, state){
+    steps.forEach((s,i)=>{
+      if(i===idx) s.classList.add('is-active');
+      if(i<idx) s.classList.remove('is-active');
+    });
+    const s=steps[idx];
+    if(state==='active') s.querySelector('.step-status').textContent='running';
+    if(state==='done'){ s.classList.add('is-done'); s.classList.remove('is-active'); s.querySelector('.step-status').textContent='ok'; }
+    if(state==='fail'){ s.classList.add('is-fail'); s.classList.remove('is-active'); s.querySelector('.step-status').textContent='failed'; }
+  }
+
+  function run(){
+    reset();
+    // 01 — try Stripe
+    at(300, ()=>{
+      setStep(0,'active');
+      psp1.classList.add('is-trying'); psp1.querySelector('.psp-status').textContent='Trying';
+      arr1.classList.add('is-active');
+      receiptDetail.textContent='Routing to primary · Stripe Connect';
+    });
+    // 02 — Stripe fails
+    at(1500, ()=>{
+      setStep(0,'done'); setStep(1,'fail');
+      psp1.classList.remove('is-trying'); psp1.classList.add('is-fail');
+      psp1.querySelector('.psp-status').textContent='Declined · timeout';
+      arr1.classList.remove('is-active'); arr1.classList.add('is-fail');
+      receiptDetail.textContent='Stripe declined · network timeout · firing fallback';
+    });
+    // 03 — try Adyen
+    at(2400, ()=>{
+      setStep(2,'active');
+      psp2.classList.add('is-trying'); psp2.querySelector('.psp-status').textContent='Trying';
+      arr2.classList.remove('is-active');
+      receiptDetail.textContent='Routing to fallback · Adyen retry policy';
+    });
+    // 04 — Adyen succeeds
+    at(3600, ()=>{
+      setStep(2,'done'); setStep(3,'done');
+      psp2.classList.remove('is-trying'); psp2.classList.add('is-success');
+      psp2.querySelector('.psp-status').textContent='Authorised · 642 ms';
+      arr2.classList.add('is-success');
+      psp3.querySelector('.psp-status').textContent='Reserve · standby';
+      receipt.setAttribute('data-state','success');
+      receiptResult.textContent='✓ CAPTURED';
+      receiptDetail.textContent='Charge captured via Adyen · 1,180 ms total · zero customer disruption';
+    });
+    // Loop
+    at(7500, run);
+  }
+
+  if (replay) replay.addEventListener('click', () => { speed=1; fast.textContent='⏵ Fast'; run(); });
+  if (fast) fast.addEventListener('click', () => {
+    speed = speed === 1 ? 2.2 : 1;
+    fast.textContent = speed === 1 ? '⏵ Fast' : '⏵⏵ Real-time';
+    run();
+  });
+
+  // Auto-run when scrolled into view
+  const stage = document.querySelector('.accru-stage');
+  if (stage) {
+    const io = new IntersectionObserver(es=>{
+      es.forEach(e=>{ if(e.isIntersecting){ run(); io.disconnect(); } });
+    }, { threshold: 0.3 });
+    io.observe(stage);
+  }
+})();
 </script>
 
 <script src="https://assets.calendly.com/assets/external/widget.js"></script>

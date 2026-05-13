@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Saudi Project — Sophia Akrofi</title>
+  <title>Real Estate Platform — Sophia Akrofi</title>
 
-    <!-- Google Analytics -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JWHDGBM765"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -13,471 +13,494 @@
     gtag('js', new Date());
     gtag('config', 'G-JWHDGBM765');
   </script>
-  
+
   <link rel="stylesheet" href="styles.css"/>
-    <!-- calendly -->
+  <link rel="stylesheet" href="project-v2.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- calendly -->
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="p2-page" data-screen-label="Saudi — Real Estate">
 
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <div class="logo">Sophia Akrofi</div>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="projects.html" class="active">Projects</a>
-        <a href="about.html">About</a>
-        <a href="mailto:hello@sophiaakrofi.com">Contact</a>
-        <a href="#" class="nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">
-  Book a call
-</a>
-        
-      </div>
-
-          <!-- 👇 MOVE IT HERE -->
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">Sophia Akrofi</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="about.html">About</a>
+      <a href="mailto:hello@sophiaakrofi.com">Contact</a>
+      <a href="#" class="nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">Book a call</a>
+    </div>
     <div class="nav-mobile">
-      <div id="menuToggle">
-        <img src="./images/menu.svg" alt="Menu">
-      </div>
+      <div id="menuToggle"><img src="./images/menu.svg" alt="Menu"></div>
     </div>
+  </div>
+</nav>
 
-    </div>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-
+<div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-inner">
-
-    <button class="menu-close" id="menuClose">
-      <img src="./images/close.svg" alt="Close">
-    </button>
-
+    <button class="menu-close" id="menuClose"><img src="./images/close.svg" alt="Close"></button>
     <div class="mobile-links">
       <a href="index.html">Home</a>
       <a href="projects.html" class="active">Projects</a>
       <a href="about.html">About</a>
       <a href="mailto:hello@sophiaakrofi.com">Contact</a>
-      <a href="#" class="mobile-nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">
-  Book a call
-</a>
+      <a href="#" class="mobile-nav-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/hello-sophiaakrofi/30min'}); return false;">Book a call</a>
     </div>
-
   </div>
-
 </div>
 
-  <main>
+<main>
 
-    <!-- PROJECT HERO -->
-    <section class="project-hero section-pad">
+  <!-- ============ HERO ============ -->
+  <section class="p2-hero">
+    <div class="p2-wrap">
+      <div class="p2-hero-meta p2-rise">
+        <span class="meta-item"><span class="dot"></span>2023 — 2025</span>
+        <span class="slash">/</span>
+        <span class="meta-item">Lead Product Designer + Design Systems Strategist</span>
+        <span class="slash">/</span>
+        <span class="meta-item">Government-backed enterprise</span>
+        <span class="slash">/</span>
+        <span class="meta-item">$1B+ ecosystem</span>
+      </div>
 
-      <div class="project-hero-inner">
+      <h1 class="p2-hero-title p2-rise">Real estate platform<br/><em>within a $1B+ ecosystem.</em></h1>
 
-        <h1>Real Estate Platform within $1B+ Ecosystem</h1>
+      <div class="p2-hero-lede">
+        <p class="p2-hero-sub p2-rise">A unified property acquisition platform that turned three disconnected products into one bilingual super-app — and generated $400M in the first three months.</p>
+        <div class="p2-hero-detail p2-rise">
+          <p><strong>Scope.</strong> Product strategy, IA, 3,000+ component design system, bilingual front-end parity, end-to-end consumer journey.</p>
+          <p><strong>Outcome.</strong> $400M generated · 15× lift in conversion · 10K users in Q1 · brand valued $1B+ (Brand Finance, 2025).</p>
+        </div>
+      </div>
+    </div>
 
-        <h2 class="project-sub">
-          Designing Data-Driven Systems for Real Estate Decision-Making
-        </h2>
+    <!-- Hero video, full-bleed -->
+    <div class="p2-hero-video p2-rise">
+      <span class="p2-corner">▣ Live product · property acquisition</span>
+      <span class="p2-corner right">01 / 04</span>
+      <video autoplay muted loop playsinline poster="./images/device-saudi.png">
+        <source src="./images/saudi_property_acquisition_v1 (1440p).mp4" type="video/mp4">
+      </video>
+      <!-- Fallback shown if video fails -->
+      <div class="p2-video-fallback" style="display:none;" id="heroFallback">
+        <div class="fb-inner">
+          <div class="fb-play"></div>
+          <div>Property acquisition · live walkthrough</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="project-meta">
-          <span>MCKINSEY & COMPANY</span>
+  <!-- ============ STAT TICKER ============ -->
+  <section class="p2-stats">
+    <div class="p2-wrap">
+      <div class="p2-stats-grid">
+
+        <div class="p2-stat p2-rise" style="padding-left: 0;">
+          <div class="stat-no">01 — Revenue</div>
+          <div class="stat-num"><span class="p2-count" data-to="400" data-prefix="$">$0</span><span class="unit">M</span></div>
+          <div class="stat-label">Generated within first 3 months post-launch.</div>
         </div>
 
-        <p class="project-description">
-          Led product strategy and design for a government-backed real estate platform within a $1B+ ecosystem, bringing property discovery, financing, and key user journeys into a single scalable platform.
-<br><br>
-The product enabled data-driven property acquisition decisions at scale and generated $400M within the first 3 months post-launch, with a 15x increase in conversion.
-        </p>
+        <div class="p2-stat p2-rise" style="padding-left: 32px;">
+          <div class="stat-no">02 — Conversion</div>
+          <div class="stat-num"><span class="p2-count" data-to="15">0</span><span class="unit">×</span></div>
+          <div class="stat-label">Increase in lead conversion vs. baseline.</div>
+        </div>
 
-        <div class="project-details">
-          <p><strong>Role</strong> Lead Product Designer + Design Systems Strategist</p>
-          <p><strong>Client type</strong> Government-Backed Enterprise</p>
-          <p><strong>High-level impact</strong> $400M generated within first 3 months post-launch; 15× lift</p>
-          <p><strong>Context</strong> $1B real estate ecosystem</p>
+        <div class="p2-stat p2-rise" style="padding-left: 32px;">
+          <div class="stat-no">03 — Users</div>
+          <div class="stat-num"><span class="p2-count" data-to="10000" data-format="comma">0</span></div>
+          <div class="stat-label">Registered new users across Saudi Arabia in Q1.</div>
+        </div>
+
+        <div class="p2-stat p2-rise" style="padding-left: 32px;">
+          <div class="stat-no">04 — System</div>
+          <div class="stat-num"><span class="p2-count" data-to="3000" data-format="comma">0</span><span class="unit">+</span></div>
+          <div class="stat-label">Components, fully bilingual, LTR + RTL parity.</div>
         </div>
 
       </div>
+    </div>
+  </section>
 
-    </section>
-    
-<section class="project-media">
-
-  <div class="project-media-inner">
-    <video autoplay muted loop playsinline>
-      <source src="./images/saudi_property_acquisition_v1 (1440p).mp4" type="video/mp4">
-    </video>
+  <!-- ============ MARQUEE ============ -->
+  <div class="p2-marquee" aria-hidden="true">
+    <div class="p2-marquee-track" id="marqueeTrack">
+      <!-- duplicated in JS for seamless loop -->
+      <span>▦ Vision 2030</span><span class="dot"></span>
+      <span><strong>Government-backed enterprise</strong></span><span class="dot"></span>
+      <span>▦ Property discovery × financing × community</span><span class="dot"></span>
+      <span><strong>Bilingual at scale — Arabic ⇄ English</strong></span><span class="dot"></span>
+      <span>▦ Atomic design system · 3,000+ components</span><span class="dot"></span>
+      <span><strong>WCAG 2.1 AA</strong></span><span class="dot"></span>
+      <span>▦ Super-app architecture · 3 products unified</span><span class="dot"></span>
+    </div>
   </div>
 
-</section>
-
-<section class="case-section section-pad">
-
-  <div class="case-grid">
-
-    <!-- LEFT: TEXT -->
-    <div class="case-text">
-
-      <p class="case-label">Challenge</p>
-
-      <p>
-        Saudi Arabia's homeownership rate lagged behind Vision 2030 targets. The barrier wasn't aspiration—it was <strong>friction</strong>.
-        The digital experience for discovering, financing, and managing properties was fragmented across three disconnected product lines.
-      </p>
-
-      <p>Our client needed to:</p>
-
-      <ol>
-        <li><strong>Unify three separate real estate products</strong> into a single Super App (property discovery, financing, community management)</li>
-        <li><strong>Build bilingual at scale</strong> (Arabic–English) respecting RTL/LTR complexity without design rework</li>
-        <li><strong>Establish trust in a high-stakes category</strong> where service quality and transparency drive decisions</li>
-        <li><strong>Launch rapidly</strong> without sacrificing design rigor or research</li>
-        <li><strong>Support complex customer journeys</strong> from search → financing → move-in → community management</li>
-      </ol>
-
-      <p class="case-highlight">
-        The design challenge: How do you remove friction from the homeownership journey while respecting cultural context,
-        language complexity, and regulatory constraints — and do it fast?
-      </p>
-
-    </div>
-
-    <!-- RIGHT: IMAGE -->
-    <div class="case-image">
-      <img src="./images/device-saudi.png" alt="Saudi product screens">
-    </div>
-
-  </div>
-
-</section>
-
-<div class="section-divider"></div>
-
-<section class="case-section section-pad">
-
-  <div class="case-grid">
-
-    <!-- LEFT -->
-    <div class="case-text">
-
-      <p class="case-label">Discovery & Insights</p>
-
-      <p class="case-title">
-        Understanding the Homeowner's Journey
-      </p>
-
-      <p>
-        I led a focused discovery phase to understand how Saudis manage and aspire to own homes:
-      </p>
-
-      <ul>
-        <li><strong>Behavioral research</strong> revealed that home maintenance is the most in-demand but least trusted service category</li>
-        <li><strong>User interviews</strong> showed that buyers want clearer pricing, reliable service quality, and transparent communication</li>
-        <li><strong>Competitive benchmarking</strong> demonstrated that trust, convenience, and seamless post-service support are critical value drivers</li>
-      </ul>
-
-      <p>
-        Key insight: <strong>Homeownership isn't just a transaction—it's a relationship.</strong>
-        Users need support <em>before</em> purchase, <em>during</em> the transaction, and <em>after</em> move-in.
-      </p>
-
-      <p>
-        This insight reshaped the entire information architecture from
-        “search → buy” to “discover → finance → manage → community.”
-      </p>
-
-    </div>
-
-    <!-- RIGHT -->
-    <div class="case-image">
-      <img src="./images/user-research-saudi.png" alt="User research and personas">
-    </div>
-
-  </div>
-
-</section>
-
-<div class="section-divider"></div>
-
-<section class="case-section section-pad">
-
-  <div class="approach-top">
-
-    <div class="case-text">
-      <p class="case-label">Approach</p>
-
-      <p>
-        Rather than designing three separate products, I pursued a <strong>unified platform strategy</strong> that treated property acquisition as a continuous customer journey:
-      </p>
-
-      <ol>
-        <li><strong>Research-Driven IA:</strong> Mapped user flows across onboarding, property setup, service discovery, scheduling, and aftercare. Identified friction points and streamlined decision paths to reduce complexity.</li>
-
-        <li><strong>Atomic Design System at Scale:</strong> Built a 3,000+ component design system from the ground up. Structure included atoms (typography, color, spacing), molecules (buttons, inputs, cards), organisms (property cards, dashboards), templates, and pages—all optimized for both LTR and RTL.</li>
-
-        <li><strong>Bilingual-First Thinking:</strong> Each component was designed in both English and Arabic with proper RTL support, dynamic text-scaling, and culturally appropriate iconography and tone.</li>
-
-        <li><strong>Design-to-Development Parity:</strong> Worked closely with front-end engineers to translate Figma components into a live Storybook environment, ensuring no drift between design and code.</li>
-      </ol>
-
-      <p>
-        This systematic approach enabled rapid deployment while maintaining visual consistency across the entire ecosystem.
-      </p>
-    </div>
-
-    <div class="approach-top-images">
-      <div class="approach-small-image">
-        <img src="./images/InfoArch-1.png" alt="Information architecture map">
-      </div>
-
-      <div class="approach-small-image">
-        <img src="./images/InfoArch-2.png" alt="System architecture and flows">
+  <!-- ============ CONTEXT / WHY ============ -->
+  <section class="p2-section">
+    <div class="p2-wrap">
+      <div class="p2-section-head">
+        <div>
+          <div class="p2-eyebrow p2-rise"><span class="num">01</span>Context</div>
+          <h2 class="p2-section-title p2-rise">Saudi Arabia's homeownership rate lagged Vision 2030 targets. The barrier wasn't aspiration — it was <em>friction</em>.</h2>
+        </div>
+        <p class="p2-section-blurb p2-rise">Property discovery, financing and management lived across three disconnected product lines. The brief: collapse them into one bilingual platform, fast, without sacrificing rigour — and launch into a category where trust is everything.</p>
       </div>
     </div>
 
-  </div>
+    <!-- Device showcase -->
+    <div class="p2-device">
+      <div class="p2-wrap">
+        <div class="p2-device-grid">
+          <div class="p2-device-tile left p2-rise">
+            <span class="p2-device-tag">Discover</span>
+            <img src="./images/ENG-ARB-Home.png" alt="Saudi home screen — bilingual">
+          </div>
+          <div class="p2-device-tile center p2-rise">
+            <span class="p2-device-tag">Finance</span>
+            <img src="./images/ENG-ARB-Property_Pages.png" alt="Saudi property page — bilingual">
+          </div>
+          <div class="p2-device-tile right p2-rise">
+            <span class="p2-device-tag">Manage</span>
+            <img src="./images/ENG-ARB-Community_Pages.png" alt="Saudi community page — bilingual">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="approach-bottom-image">
-    <img src="./images/journey-map1.png" alt="Bilingual booking journey and product screens">
-  </div>
+  <!-- ============ BILINGUAL SANDBOX ============ -->
+  <section class="p2-bili">
+    <div class="p2-wrap">
+      <div class="p2-section-head">
+        <div>
+          <div class="p2-eyebrow p2-rise"><span class="num">02</span>Sandbox · Bilingual parity</div>
+          <h2 class="p2-section-title p2-rise">Every component, mirrored. <em>Try it.</em></h2>
+        </div>
+        <p class="p2-section-blurb p2-rise">Arabic expands 20–30% vs English. Reading direction flips. Directional icons mirror. We built every atom, molecule and organism in both languages from day one — not as a translation pass.</p>
+      </div>
 
-</section>
+      <div class="p2-bili-toolbar p2-rise">
+        <span class="p2-bili-hint">▣ Tap to flip · live component</span>
+        <div class="p2-toggle" id="biliToggle" data-dir="ltr">
+          <span class="p2-toggle-pill"></span>
+          <button data-dir="ltr" aria-pressed="true">EN · LTR</button>
+          <button data-dir="rtl" aria-pressed="false">عربي · RTL</button>
+        </div>
+      </div>
 
-    <div class="section-divider"></div>
+      <div class="p2-bili-stage p2-rise">
 
-
-<section class="case-section section-pad">
-
-
-  <div class="deliverables-grid">
-
-    <!-- LEFT -->
-    <div class="deliverables-text">
-
-      <p class="case-label">Deliverables</p>
-
-      <p class="case-title">What I Designed</p>
-
-      <ul class="deliverables-list">
-        <li><strong>Unified bilingual platform</strong> (Arabic–English) connecting property search, community living, and home management</li>
-
-        <li><strong>3,000+ component atomic design system</strong>
-          <ul>
-            <li>Atoms: typography, color, spacing, tokens</li>
-            <li>Molecules: buttons, inputs, cards</li>
-            <li>Organisms: dashboards, property cards</li>
-            <li>Templates & pages (LTR/RTL ready)</li>
+        <aside class="p2-bili-spec">
+          <h3>Property card · sample component</h3>
+          <p>One source of truth. Direction, typography, icon orientation, expansion behaviour and number formatting all swap from a single language attribute.</p>
+          <ul class="p2-spec-list">
+            <li><span class="k">Direction</span><span class="v" id="specDir">ltr</span></li>
+            <li><span class="k">Type stack</span><span class="v" id="specType">Switzer</span></li>
+            <li><span class="k">Expansion</span><span class="v" id="specExp">+ 0%</span></li>
+            <li><span class="k">Numerals</span><span class="v" id="specNum">Western</span></li>
+            <li><span class="k">Icons</span><span class="v" id="specIco">→</span></li>
           </ul>
-        </li>
+        </aside>
 
-        <li><strong>Accessibility compliance</strong> (WCAG 2.1 AA, light/dark, scaling)</li>
-        <li><strong>Component documentation</strong> with code + props</li>
-        <li><strong>Visual regression testing</strong> to prevent UI drift</li>
-        <li><strong>Design–dev workflow</strong> for collaboration</li>
-        <li><strong>Super app architecture</strong> unifying 3 products</li>
-      </ul>
-
-    </div>
-
-    <!-- RIGHT -->
-    <div class="deliverables-media">
-
-      <div class="deliverables-card">
-        <img src="./images/Design system methodology.png" alt="Design system methodology">
-      </div>
-
-      <div class="deliverables-card">
-  <video
-    class="deliverables-video"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="none"
-    loading="lazy"
-    aria-label="Atomic design system"
-  >
-    <source src="./images/Atomic-design-system.mp4" type="video/mp4">
-  </video>
-</div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<div class="section-divider"></div>
-
-<section class="case-section section-pad">
-    
-<p class="case-label">Bilingual Design Strategy</p>
-
-  <div class="bilingual-grid">
-
-    <!-- TOP TEXT -->
-    <div class="bilingual-intro">
-      <p>
-        Designing for dual language contexts required systematic planning beyond translation. Arabic and English have fundamentally different typographic needs, reading patterns, and spatial requirements.
-      </p>
-    </div>
-
-    <!-- TOP IMAGES -->
-    <div class="bilingual-images-top">
-      <img src="./images/ENG-ARB-Home.png" alt="Home bilingual">
-      <img src="./images/ENG-ARB-Community_Pages.png" alt="Community pages bilingual">
-      <img src="./images/ENG-ARB-Property_Pages.png" alt="Property pages bilingual">
-    </div>
-
-    <!-- BOTTOM TEXT -->
-    <div class="bilingual-body">
-      <p><strong>Key bilingual considerations:</strong></p>
-
-      <ul>
-        <li>Directional flexibility: LTR (English) and RTL (Arabic) layouts mirrored within the component library</li>
-        <li>Typography parity: Separate font stacks optimized for each language</li>
-        <li>Content expansion: Arabic expands 20–30% vs English</li>
-        <li>Icon localization: Directional icons flipped + culturally reviewed</li>
-        <li>Seamless language toggling without layout shifts</li>
-      </ul>
-
-      <p class="case-highlight">
-        Result: A design system treating bilingualism as a core architecture principle — not an afterthought.
-      </p>
-    </div>
-
-    <!-- BOTTOM IMAGES -->
-    <div class="bilingual-images-bottom">
-      <img src="./images/ENG-ARB-Booking-sm.png" alt="Booking bilingual">
-      <img src="./images/ENG-ARB-Favourites.png" alt="Favourites bilingual">
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =========================
-     SECTION DIVIDER
-========================= -->
-<div class="section-divider"></div>
-
-<!-- =========================
-     FRONT-END IMPLEMENTATION
-========================= -->
-<section class="case-section section-pad">
-
-  <!-- LABEL -->
-  <div class="case-label">Front-End Implementation</div>
-
-  <!-- IMAGE ROW -->
-  <div class="fe-grid">
-
-    <div class="fe-card">
-      <img src="./images/fe-1.png" alt="Front-end implementation 1">
-    </div>
-
-    <div class="fe-card">
-      <img src="./images/fe-2.png" alt="Front-end implementation 2">
-    </div>
-
-    <div class="fe-card">
-      <img src="./images/fe-3.png" alt="Front-end implementation 3">
-    </div>
-
-    <div class="fe-card">
-      <img src="./images/fe-4.png" alt="Front-end implementation 4">
-    </div>
-
-  </div>
-
-</section>
-
-<div class="section-divider"></div>
-
-<section class="outcomes section-pad">
-
-  <div class="outcomes-grid">
-
-    <!-- LEFT TEXT -->
-    <div class="outcomes-text">
-      <p class="section-label">OUTCOMES</p>
-
-      <h3>What I Designed</h3>
-
-      <ul class="outcomes-list">
-        <li><strong>$1B in online sales</strong> generated within 12 months of launch</li>
-        <li><strong>15× increase in lead conversion</strong> (from baseline to post-launch)</li>
-        <li><strong>20% increase in inquiry rates</strong> within 3 months</li>
-        <li><strong>10,000 registered new users</strong> across Saudi Arabia in first quarter</li>
-        <li><strong>35% reduction in design-to-development turnaround</strong> (enabled by design system)</li>
-        <li><strong>Multiple autonomous squads</strong> able to design and ship independently</li>
-        <li><strong>Brand valuation:</strong> Platform recognized as Saudi Arabia's most valuable real estate brand, exceeding $1B (Brand Finance, 2025)</li>
-      </ul>
-
-      <p class="outcomes-summary">
-        What began as a design-led transformation has evolved into a national benchmark for innovation and customer experience in real estate.
-      </p>
-    </div>
-
-    <!-- RIGHT IMAGE -->
-    <div class="outcomes-image">
-      <img src="./images/case-study-saudi.png" alt="Saudi case study outcome">
-    </div>
-
-  </div>
-
-</section>
-
-<div class="section-divider"></div>
-
-<section class="reflection section-pad">
-
-  <div class="reflection-inner">
-
-    <p class="section-label">REFLECTION</p>
-
-    <h3>What This Taught Me</h3>
-
-<div class="reflection-body">
-  <ul>
-    <li>Designing data-driven systems that enable high-value decision-making at scale</li>
-    <li>Leading end-to-end product design across complex, multi-journey platforms</li>
-    <li>Building scalable design patterns that drive consistency across teams and product streams</li>
-    <li>Aligning stakeholders while accelerating execution to deliver commercial impact</li>
-  </ul>
-</div>
-
-  </div>
-
-</section>
-
-    <section class="contact-banner">
-      <img src="./images/Contact-banner-dandelion.png" alt="Dandelion field">
-      <div class="contact-overlay section-pad">
-        <div class="contact-details">
-          <p>Contact</p>
-          <a href="mailto:hello@sophiaakrofi.com">hello@sophiaakrofi.com</a>
+        <div class="p2-bili-card-wrap">
+          <article class="p2-bili-card" id="biliCard" data-dir="ltr">
+            <div class="card-media">
+              <span class="card-tag" id="cardTag">For sale</span>
+              <button class="card-fav" aria-label="Save">
+                <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9C0.5 8 3 4 6.5 4c2 0 3.5 1 5.5 3 2-2 3.5-3 5.5-3 3.5 0 6 4 4 8-2.5 4.5-9.5 9-9.5 9z"/></svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="card-row1">
+                <span class="card-title" id="cardTitle">Riyadh Hills Villa</span>
+                <span class="card-price" id="cardPrice">2,450,000 SAR</span>
+              </div>
+              <div class="card-loc" id="cardLoc">An-Narjis · North Riyadh</div>
+              <div class="card-feats" id="cardFeats">
+                <span><svg viewBox="0 0 24 24"><path d="M3 12h18M3 12v6m18-6v6M5 12V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4"/></svg><span data-en="4 beds" data-ar="٤ غرف">4 beds</span></span>
+                <span><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3zm2-2V6a2 2 0 0 1 2-2h2v3"/></svg><span data-en="3 baths" data-ar="٣ حمامات">3 baths</span></span>
+                <span><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/></svg><span data-en="340 m²" data-ar="٣٤٠ م²">340 m²</span></span>
+              </div>
+              <a href="#" class="card-cta">
+                <span class="card-arabic" id="cardCtaLabel">View property</span>
+                <span class="arr">
+                  <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
+              </a>
+            </div>
+          </article>
         </div>
 
-        <a href="#" class="passion-link">View passion projects →</a>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  </main>
+  <!-- ============ PROCESS STEPPER ============ -->
+  <section class="p2-process">
+    <div class="p2-wrap">
+      <div class="p2-section-head">
+        <div>
+          <div class="p2-eyebrow p2-rise"><span class="num">03</span>How we got there</div>
+          <h2 class="p2-section-title p2-rise">Three moves, one platform.</h2>
+        </div>
+        <p class="p2-section-blurb p2-rise">Behavioural research reshaped the IA from <em>search → buy</em> to <em>discover → finance → manage → community</em>. The design system enforced parity across LTR and RTL from atoms up.</p>
+      </div>
 
-  <!-- FOOTER -->
+      <div class="p2-process-tabs" role="tablist" id="processTabs">
+        <button class="p2-process-tab" role="tab" aria-selected="true" data-panel="p1">
+          <div class="tab-no">01 / Discovery</div>
+          <div class="tab-title">Reframe the journey<br/>from transaction to relationship.</div>
+        </button>
+        <button class="p2-process-tab" role="tab" aria-selected="false" data-panel="p2">
+          <div class="tab-no">02 / Approach</div>
+          <div class="tab-title">Unify three products into<br/>one bilingual super-app.</div>
+        </button>
+        <button class="p2-process-tab" role="tab" aria-selected="false" data-panel="p3">
+          <div class="tab-no">03 / System</div>
+          <div class="tab-title">Atomic design system<br/>at 3,000+ components.</div>
+        </button>
+      </div>
+
+      <div class="p2-process-panels">
+        <div class="p2-process-panel is-active" id="p1">
+          <div class="p2-process-text">
+            <h4>Homeownership is a relationship, not a transaction.</h4>
+            <p>Behavioural research surfaced the real friction: not interest, but trust. Maintenance was the most-needed, least-trusted service category. Buyers wanted clearer pricing and transparent communication before, during and after.</p>
+            <ul>
+              <li>Qual + quant studies with prospective buyers and existing residents</li>
+              <li>Service-quality benchmarking across the regional category</li>
+              <li>Insight reshaped IA from <strong>search → buy</strong> to <strong>discover → finance → manage → community</strong></li>
+            </ul>
+          </div>
+          <div class="p2-process-media">
+            <img src="./images/user-research-saudi.png" alt="User research & personas">
+          </div>
+        </div>
+
+        <div class="p2-process-panel" id="p2">
+          <div class="p2-process-text">
+            <h4>One platform strategy. Three product surfaces.</h4>
+            <p>Rather than ship three apps, we treated property acquisition as a continuous journey and structured a single super-app — designed to flex per surface, while sharing a system underneath.</p>
+            <ul>
+              <li>End-to-end IA across onboarding, search, financing, scheduling, aftercare</li>
+              <li>Bilingual-first thinking — RTL parity, dynamic text scaling, cultural icon review</li>
+              <li>Design-to-dev parity via live Storybook, zero drift between Figma and code</li>
+            </ul>
+          </div>
+          <div class="p2-process-media">
+            <img src="./images/journey-map1.png" alt="Bilingual booking journey">
+          </div>
+        </div>
+
+        <div class="p2-process-panel" id="p3">
+          <div class="p2-process-text">
+            <h4>Atoms to organisms — both languages, from day one.</h4>
+            <p>A 3,000+ component system built atomically: tokens, components, organisms, templates, pages. Every level shipped with LTR <em>and</em> RTL specs, accessibility specs, code props and visual regression tests.</p>
+            <ul>
+              <li>WCAG 2.1 AA, light/dark, dynamic type, scaling</li>
+              <li>Component docs with code, props, do/don't, RTL behaviours</li>
+              <li>35% reduction in design-to-dev turnaround across the org</li>
+            </ul>
+          </div>
+          <div class="p2-process-media">
+            <img src="./images/Design system methodology.png" alt="Design system methodology">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DESIGN SYSTEM REVEAL ============ -->
+  <section class="p2-ds">
+    <div class="p2-wrap">
+      <div class="p2-ds-stage">
+
+        <div class="p2-ds-text">
+          <div class="p2-eyebrow p2-rise"><span class="num">04</span>Atomic system</div>
+          <h3 class="p2-rise">3,000+ components, governed by a system that any squad could ship from.</h3>
+          <p class="p2-rise">Tokens at the base — colour, type, spacing, motion. Composed up into molecules (buttons, inputs, badges), organisms (cards, dashboards, sheets), and finally templates and pages. Step through the layers.</p>
+
+          <div class="p2-ds-pills" role="tablist" id="dsPills">
+            <button class="p2-ds-pill" aria-pressed="true" data-mode="atoms">Atoms</button>
+            <button class="p2-ds-pill" aria-pressed="false" data-mode="molecules">Molecules</button>
+            <button class="p2-ds-pill" aria-pressed="false" data-mode="organisms">Organisms</button>
+          </div>
+        </div>
+
+        <div class="p2-ds-viz" id="dsViz" data-mode="atoms">
+          <div class="p2-ds-viz-stage">
+            <!-- atoms -->
+            <div class="p2-ds-atom color1"><div class="swatch"></div><span>ink/900</span></div>
+            <div class="p2-ds-atom color2"><div class="swatch"></div><span>gold/500</span></div>
+            <div class="p2-ds-atom color3"><div class="swatch"></div><span>cream/100</span></div>
+            <div class="p2-ds-atom type1"><div class="swatch"></div><span>display</span></div>
+            <div class="p2-ds-atom space1"><div class="swatch"></div><span>space-4</span></div>
+
+            <!-- molecules -->
+            <div class="p2-ds-mol btn">Apply now</div>
+            <div class="p2-ds-mol input"></div>
+
+            <!-- organism (full card preview) -->
+            <div class="p2-ds-org">
+              <div class="org-img"></div>
+              <div class="org-body">
+                <div class="org-title">Riyadh Hills Villa</div>
+                <div class="org-meta">An-Narjis · 340 m² · 2,450,000 SAR</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IMAGE STRIP (FRONT-END) ============ -->
+  <section class="p2-strip">
+    <div class="p2-wrap">
+      <div class="p2-section-head">
+        <div>
+          <div class="p2-eyebrow p2-rise"><span class="num">05</span>Build</div>
+          <h2 class="p2-section-title p2-rise">Design to code, no drift.</h2>
+        </div>
+        <p class="p2-section-blurb p2-rise">Components shipped to a live Storybook in parity with Figma. Engineers worked from the same source of truth as design — visual regression catching drift before it shipped.</p>
+      </div>
+
+      <div class="p2-strip-grid">
+        <a href="#" data-cap="01 · Property card" class="p2-rise"><img src="./images/fe-1.png" alt=""></a>
+        <a href="#" data-cap="02 · Search filters" class="p2-rise"><img src="./images/fe-2.png" alt=""></a>
+        <a href="#" data-cap="03 · Finance flow" class="p2-rise"><img src="./images/fe-3.png" alt=""></a>
+        <a href="#" data-cap="04 · Booking sheet" class="p2-rise"><img src="./images/fe-4.png" alt=""></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OUTCOMES ============ -->
+  <section class="p2-outcomes">
+    <div class="p2-wrap">
+      <div class="p2-outcomes-head">
+        <div>
+          <div class="p2-eyebrow p2-rise"><span class="num">06</span>What it shipped</div>
+          <h2 class="p2-section-title p2-rise">Numbers that landed.</h2>
+        </div>
+        <p class="p2-section-blurb p2-rise">Twelve months on, what began as a design-led transformation is now a national benchmark for innovation and customer experience in real estate.</p>
+      </div>
+
+      <div class="p2-outcomes-grid">
+        <div class="p2-outcomes-item p2-rise">
+          <div class="o-num">01</div>
+          <div class="o-big"><span class="p2-count" data-to="1" data-prefix="$">$0</span><span class="unit">B</span></div>
+          <div class="o-label">Online sales generated within 12 months of launch.</div>
+        </div>
+        <div class="p2-outcomes-item p2-rise">
+          <div class="o-num">02</div>
+          <div class="o-big"><span class="p2-count" data-to="15">0</span><span class="unit">×</span></div>
+          <div class="o-label">Increase in lead conversion from baseline to post-launch.</div>
+        </div>
+        <div class="p2-outcomes-item p2-rise">
+          <div class="o-num">03</div>
+          <div class="o-big"><span class="p2-count" data-to="20">0</span><span class="unit">%</span></div>
+          <div class="o-label">Increase in inquiry rates within the first three months.</div>
+        </div>
+        <div class="p2-outcomes-item p2-rise">
+          <div class="o-num">04</div>
+          <div class="o-big"><span class="p2-count" data-to="10000" data-format="comma">0</span></div>
+          <div class="o-label">New users registered across Saudi Arabia in Q1.</div>
+        </div>
+        <div class="p2-outcomes-item p2-rise">
+          <div class="o-num">05</div>
+          <div class="o-big"><span class="p2-count" data-to="35">0</span><span class="unit">%</span></div>
+          <div class="o-label">Reduction in design-to-development turnaround.</div>
+        </div>
+        <div class="p2-outcomes-item p2-rise">
+          <div class="o-num">06</div>
+          <div class="o-big"><span class="p2-count" data-to="3000" data-format="comma">0</span><span class="unit">+</span></div>
+          <div class="o-label">Components shipped, fully bilingual, LTR + RTL.</div>
+        </div>
+      </div>
+
+      <div class="p2-outcomes-summary p2-rise">
+        <p>Platform recognised as Saudi Arabia's most valuable real estate brand, exceeding $1B in 2025 — a design-led transformation now serving as the national benchmark.</p>
+        <span class="o-source">Source — Brand Finance · 2025</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REFLECTION ============ -->
+  <section class="p2-reflect">
+    <div class="p2-wrap">
+      <div class="p2-reflect-grid">
+        <div>
+          <div class="p2-eyebrow p2-rise"><span class="num">07</span>Reflection</div>
+          <h3 class="p2-rise">What this taught me.</h3>
+        </div>
+        <ul>
+          <li class="p2-rise"><span class="num">01</span><span>Designing data-driven systems that enable high-value decision-making at scale.</span></li>
+          <li class="p2-rise"><span class="num">02</span><span>Leading end-to-end product design across complex, multi-journey platforms.</span></li>
+          <li class="p2-rise"><span class="num">03</span><span>Building scalable design patterns that drive consistency across teams and product streams.</span></li>
+          <li class="p2-rise"><span class="num">04</span><span>Aligning stakeholders while accelerating execution to deliver commercial impact.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEXT PROJECT ============ -->
+  <section class="p2-next">
+    <div class="p2-wrap">
+      <div class="p2-next-eyebrow">▶ Next project</div>
+      <a href="#" onclick="openOverlay('luna'); return false;" class="p2-next-link">
+        <h3>AI copilot for customer experience at scale<br/><em>— McKinsey & Company.</em></h3>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT BANNER ============ -->
+  <section class="contact-banner">
+    <img src="./images/Contact-banner-dandelion.png" alt="Dandelion field">
+    <div class="contact-overlay section-pad">
+      <div class="contact-details">
+        <p>Contact</p>
+        <a href="/cdn-cgi/l/email-protection#2149444d4d4e61524e51494840404a534e47480f424e4c"><span class="__cf_email__" data-cfemail="224a474e4e4d62514d524a4b434349504d444b0c414d4f">[email&#160;protected]</span></a>
+      </div>
+      <a href="projects.html" class="passion-link">View all projects →</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- PASSWORD OVERLAY -->
+<div id="password-overlay" class="password-overlay hidden">
+  <button class="password-close" onclick="closeOverlay()">✕</button>
+  <div class="password-container">
+    <h3>NDA-protected work</h3>
+    <div class="password-row">
+      <input type="password" id="password-input" placeholder="Enter password"/>
+      <button id="submit-btn" disabled>Submit</button>
+    </div>
+    <p id="error-message" class="error-message"></p>
+    <a href="/cdn-cgi/l/email-protection#f69e939a9a99b68599869e9f97979d8499909fd895999b" class="password-link">Request access by contacting me →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-left">
       <p class="footer-madeby">This website was designed and built by</p>
       <h2>Sophia Akrofi</h2>
     </div>
-
     <div class="footer-right">
       <div class="footer-links">
-        <a href="mailto:hello@sophiaakrofi.com">Contact</a>
+        <a href="/cdn-cgi/l/email-protection#ea828f868685aa99859a82838b8b8198858c83c4898587">Contact</a>
         <a href="https://www.instagram.com/soph_akro/">Instagram</a>
         <a href="https://www.linkedin.com/in/sophia-akrofi">LinkedIn</a>
       </div>
@@ -486,18 +509,222 @@ The product enabled data-driven property acquisition decisions at scale and gene
   </div>
 </footer>
 
-  <script>
-  const menuToggle = document.getElementById("menuToggle");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const menuClose = document.getElementById("menuClose");
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ==== Mobile menu ==== */
+(function(){
+  const t = document.getElementById('menuToggle');
+  const m = document.getElementById('mobileMenu');
+  const c = document.getElementById('menuClose');
+  if (t && m) t.addEventListener('click', () => m.classList.add('active'));
+  if (c && m) c.addEventListener('click', () => m.classList.remove('active'));
+  document.querySelectorAll('.mobile-links a').forEach(a => a.addEventListener('click', () => m && m.classList.remove('active')));
+})();
 
-  menuToggle.addEventListener("click", () => {
-    mobileMenu.classList.add("active");
-  });
+/* ==== Password overlay ==== */
+let currentProject = "";
+function openOverlay(project) {
+  currentProject = project;
+  document.getElementById('password-overlay').classList.remove('hidden');
+}
+function closeOverlay() {
+  document.getElementById('password-overlay').classList.add('hidden');
+}
+(function(){
+  const input = document.getElementById('password-input');
+  const button = document.getElementById('submit-btn');
+  const error = document.getElementById('error-message');
+  const PASSWORD = "agileakrofi21";
+  if (!input) return;
+  input.addEventListener('input', () => { button.disabled = input.value.length === 0; });
+  function check() {
+    if (input.value === PASSWORD) {
+      if (currentProject === "luna") window.location.href = "luna.html";
+      else if (currentProject === "accru") window.location.href = "accru.html";
+      else window.location.href = "saudi.html";
+    } else { error.textContent = "Incorrect password"; }
+  }
+  button.addEventListener('click', check);
+  input.addEventListener('keypress', e => { if (e.key === 'Enter') check(); });
+})();
 
-  menuClose.addEventListener("click", () => {
-    mobileMenu.classList.remove("active");
+/* ==== Reveal on scroll ==== */
+(function(){
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -4% 0px' });
+  const all = [...document.querySelectorAll('.p2-rise')];
+  // Reveal above-fold items immediately on load with a soft stagger
+  let staggerIdx = 0;
+  all.forEach(el => {
+    const r = el.getBoundingClientRect();
+    const visible = r.top < window.innerHeight && r.bottom > 0;
+    if (visible) {
+      const delay = Math.min(staggerIdx, 8) * 80;
+      setTimeout(() => el.classList.add('is-in'), delay);
+      staggerIdx++;
+    } else {
+      io.observe(el);
+    }
   });
+})();
+
+/* ==== Stat counters ==== */
+(function(){
+  function easeOutCubic(t){ return 1 - Math.pow(1-t, 3); }
+  function format(n, opts){
+    if (opts.format === 'comma') return Math.round(n).toLocaleString('en-US');
+    return Math.round(n).toString();
+  }
+  function animate(el){
+    const to = parseFloat(el.dataset.to);
+    const prefix = el.dataset.prefix || '';
+    const opts = { format: el.dataset.format };
+    const dur = 1600;
+    const start = performance.now();
+    function tick(now){
+      const t = Math.min(1, (now - start) / dur);
+      const v = to * easeOutCubic(t);
+      el.textContent = prefix + format(v, opts);
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = prefix + format(to, opts);
+    }
+    requestAnimationFrame(tick);
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animate(e.target);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('.p2-count').forEach(el => io.observe(el));
+})();
+
+/* ==== Marquee duplication for seamless loop ==== */
+(function(){
+  const t = document.getElementById('marqueeTrack');
+  if (!t) return;
+  t.innerHTML = t.innerHTML + t.innerHTML;
+})();
+
+/* ==== Bilingual toggle ==== */
+(function(){
+  const toggle = document.getElementById('biliToggle');
+  const card = document.getElementById('biliCard');
+  if (!toggle || !card) return;
+
+  const specs = {
+    ltr: { dir: 'ltr', type: 'Switzer', exp: '+ 0%', num: 'Western (1, 2, 3)', ico: '→' },
+    rtl: { dir: 'rtl', type: 'Noto Naskh Arabic', exp: '+ 24%', num: 'Eastern (١, ٢, ٣)', ico: '←' }
+  };
+
+  const en = {
+    title: 'Riyadh Hills Villa',
+    price: '2,450,000 SAR',
+    loc: 'An-Narjis · North Riyadh',
+    tag: 'For sale',
+    cta: 'View property',
+    feats: { beds: '4 beds', baths: '3 baths', area: '340 m²' }
+  };
+  const ar = {
+    title: 'فيلا تلال الرياض',
+    price: '٢٬٤٥٠٬٠٠٠ ر.س',
+    loc: 'النرجس · شمال الرياض',
+    tag: 'للبيع',
+    cta: 'عرض العقار',
+    feats: { beds: '٤ غرف', baths: '٣ حمامات', area: '٣٤٠ م²' }
+  };
+
+  function apply(dir){
+    toggle.setAttribute('data-dir', dir);
+    card.setAttribute('data-dir', dir);
+    toggle.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.dir === dir));
+
+    const data = dir === 'rtl' ? ar : en;
+    document.getElementById('cardTitle').textContent = data.title;
+    document.getElementById('cardPrice').textContent = data.price;
+    document.getElementById('cardLoc').textContent = data.loc;
+    document.getElementById('cardTag').textContent = data.tag;
+    document.getElementById('cardCtaLabel').textContent = data.cta;
+    const feats = document.querySelectorAll('#cardFeats .card-feats span span, #cardFeats > span > span');
+    // simpler: iterate
+    const featSpans = document.querySelectorAll('#cardFeats > span > span');
+    if (featSpans.length === 3) {
+      featSpans[0].textContent = data.feats.beds;
+      featSpans[1].textContent = data.feats.baths;
+      featSpans[2].textContent = data.feats.area;
+    }
+
+    const s = specs[dir];
+    document.getElementById('specDir').textContent = s.dir;
+    document.getElementById('specType').textContent = s.type;
+    document.getElementById('specExp').textContent = s.exp;
+    document.getElementById('specNum').textContent = s.num;
+    document.getElementById('specIco').textContent = s.ico;
+  }
+
+  toggle.querySelectorAll('button').forEach(b => {
+    b.addEventListener('click', () => apply(b.dataset.dir));
+  });
+})();
+
+/* ==== Process tabs ==== */
+(function(){
+  const tabs = document.querySelectorAll('#processTabs .p2-process-tab');
+  const panels = document.querySelectorAll('.p2-process-panel');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.setAttribute('aria-selected', x === t));
+    const target = t.dataset.panel;
+    panels.forEach(p => p.classList.toggle('is-active', p.id === target));
+  }));
+})();
+
+/* ==== Design system pills ==== */
+(function(){
+  const pills = document.querySelectorAll('#dsPills .p2-ds-pill');
+  const viz = document.getElementById('dsViz');
+  pills.forEach(p => p.addEventListener('click', () => {
+    pills.forEach(x => x.setAttribute('aria-pressed', x === p));
+    viz.setAttribute('data-mode', p.dataset.mode);
+  }));
+  // auto-cycle on first scroll into view
+  let cycled = false;
+  if (!viz) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !cycled) {
+        cycled = true;
+        let i = 0;
+        const seq = ['atoms','molecules','organisms','atoms'];
+        const iv = setInterval(() => {
+          const mode = seq[i++];
+          if (!mode) { clearInterval(iv); return; }
+          viz.setAttribute('data-mode', mode);
+          pills.forEach(p => p.setAttribute('aria-pressed', p.dataset.mode === mode));
+        }, 1100);
+      }
+    });
+  }, { threshold: 0.4 });
+  io.observe(viz);
+})();
+
+/* ==== Hero video fallback if file is missing ==== */
+(function(){
+  const v = document.querySelector('.p2-hero-video video');
+  const fb = document.getElementById('heroFallback');
+  if (!v || !fb) return;
+  v.addEventListener('error', () => { v.style.display = 'none'; fb.style.display = 'flex'; });
+  // also: if no source loads after 2.5s, show fallback
+  setTimeout(() => {
+    if (v.readyState === 0) { v.style.display = 'none'; fb.style.display = 'flex'; }
+  }, 2500);
+})();
 </script>
 
 <script src="https://assets.calendly.com/assets/external/widget.js"></script>
