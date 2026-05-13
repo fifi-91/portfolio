@@ -3,43 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Protected — Sophia Akrofi</title>
+  <title>Password Protected Project — Sophia Akrofi</title>
+
   <link rel="stylesheet" href="styles.css"/>
 </head>
 
-<body>
+<body data-screen-label="Password Protected Project">
 
-  <nav class="nav">
+<nav class="nav">
   <div class="nav-inner">
     <div class="logo">Sophia Akrofi</div>
+
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="projects.html">Projects</a>
       <a href="about.html">About</a>
       <a href="mailto:hello@sophiaakrofi.com">Contact</a>
     </div>
+
+    <div class="nav-mobile">
+      <div id="menuToggle">
+        <img src="./images/menu.svg" alt="Menu">
+      </div>
+    </div>
   </div>
 </nav>
 
-<div class="password-overlay">
-  <div class="password-box">
-    <h3>NDA-protected work</h3>
+<main class="password-page">
+  <section class="password-overlay">
+    <div class="password-container">
 
-    <input 
-      type="password" 
-      id="password-input" 
-      placeholder="Enter password"
-    />
+      <div class="password-kicker">
+        <span class="password-dot"></span>
+        Selected work
+      </div>
 
-    <button id="submit-btn" disabled>Submit</button>
+      <h1>Password protected project</h1>
 
-    <p id="error-message" class="error-message"></p>
+      <p class="password-intro">
+        This case study is private. Enter the password to continue.
+      </p>
 
-    <a href="mailto:hello@sophiaakrofi.com">
-      Request access by contacting me →
-    </a>
-  </div>
-</div>
+      <div class="password-row">
+        <input 
+          type="password" 
+          id="password-input" 
+          placeholder="Enter password"
+          autocomplete="current-password"
+        />
+
+        <button id="submit-btn" disabled>Enter</button>
+      </div>
+
+      <p id="error-message" class="error-message"></p>
+
+      <a class="password-link" href="mailto:hello@sophiaakrofi.com">
+        Request access →
+      </a>
+
+    </div>
+  </section>
+</main>
 
 <script>
   const correctPassword = "agileakrofi21";
@@ -53,19 +77,26 @@
 
   input.addEventListener("input", () => {
     button.disabled = input.value.length === 0;
+    error.textContent = "";
   });
 
   button.addEventListener("click", () => {
     if (input.value === correctPassword) {
-      if (currentProject === "luna") {
-  window.location.href = "luna.html";
-} else if (currentProject === "accru") {
-  window.location.href = "accru.html";
-} else {
-  window.location.href = "saudi.html";
-}
+      if (project === "luna") {
+        window.location.href = "luna.html";
+      } else if (project === "accru") {
+        window.location.href = "accru.html";
+      } else {
+        window.location.href = "saudi.html";
+      }
     } else {
       error.textContent = "Incorrect password";
+    }
+  });
+
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && input.value.length > 0) {
+      button.click();
     }
   });
 </script>
