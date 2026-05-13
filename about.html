@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About — Sophia Akrofi</title>
 
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JWHDGBM765"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -17,8 +16,7 @@
   <link rel="stylesheet" href="styles.css"/>
   <link rel="stylesheet" href="project-v2.css"/>
   <link rel="stylesheet" href="homepage-extras.css"/>
-
-  <!-- calendly -->
+  <link rel="stylesheet" href="projects-extras.css"/>
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 </head>
 
@@ -64,10 +62,9 @@
 
 <main>
 
-  <!-- HERO -->
   <section class="projects-hero-v2 section-pad">
     <div class="projects-hero-meta p2-rise">
-      <span class="meta-item"><span class="dot"></span>About · Sophia Akrofi</span>
+      <span class="meta-item"><span class="dot"></span>About</span>
       <span class="slash">/</span>
       <span class="meta-item">Product design</span>
       <span class="slash">/</span>
@@ -88,7 +85,6 @@
     </div>
   </section>
 
-  <!-- MARQUEE -->
   <div class="home-marquee" aria-hidden="true">
     <div class="home-marquee-track" id="homeMarquee">
       <span>◇ Product strategy</span><span class="dot"></span>
@@ -101,20 +97,34 @@
     </div>
   </div>
 
-  <!-- PROFILE -->
-  <section class="expertise section-pad">
-    <h3 class="section-label p2-rise">Profile</h3>
+  <section class="about-hero section-pad">
+    <div class="about-image p2-rise">
+      <img src="./images/sophia-about.png" alt="Sophia Akrofi">
+    </div>
 
-    <div class="expertise-copy p2-rise">
-      <p>
-        Sophia designs <strong>innovative, high-impact digital platforms and products</strong>, shaping product vision and direction through to execution.
-        <br><br>
-        Her work spans <strong>GenAI copilots, agent-based systems, payment infrastructure, consumer experiences and large-scale enterprise platforms</strong>, combining behavioural insight, systems thinking and close collaboration with engineering to deliver products that are clear, commercially effective and built to scale.
+    <div class="about-content p2-rise">
+      <h1>Sophia Akrofi</h1>
+
+      <p class="about-sub">
+        Product designer working across AI, systems and high-impact digital products
       </p>
+
+      <div class="about-body">
+        <p>
+          Sophia designs <strong>innovative, high-impact digital platforms and products</strong>, shaping product vision and direction through to execution.
+        </p>
+
+        <p>
+          Her work spans <strong>GenAI copilots, agent-based systems, payment infrastructure, consumer experiences and large-scale enterprise platforms</strong>, combining behavioural insight, systems thinking and close collaboration with engineering.
+        </p>
+
+        <p>
+          She has worked across <strong>The Telegraph</strong>, <strong>Apple News</strong>, <strong>Dailymotion</strong> and <strong>McKinsey &amp; Company</strong>, leading products from early strategy through to shipped, scalable systems.
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- STATS -->
   <section class="projects-stats">
     <div class="projects-stats-grid">
 
@@ -145,7 +155,6 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section class="experience section-pad">
     <h3 class="section-label p2-rise">Experience</h3>
 
@@ -190,11 +199,11 @@
     </div>
   </section>
 
-  <!-- APPROACH -->
   <section class="process-section section-pad">
     <h3 class="section-label p2-rise">Approach</h3>
 
     <div class="process-list">
+
       <div class="process-row p2-rise">
         <div class="process-number">1</div>
         <div class="process-title">Product strategy & behavioural insight</div>
@@ -227,10 +236,10 @@
           <p>Delivery of large-scale, revenue-generating platforms</p>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- PHILOSOPHY -->
   <section class="now-shipping section-pad">
     <div class="now-shipping-inner">
       <span class="ns-eyebrow"><span class="ns-dot"></span>Design practice</span>
@@ -248,7 +257,6 @@
     </div>
   </section>
 
-  <!-- CONTACT BANNER -->
   <section class="contact-banner photo-slideshow" id="photoSlideshow">
     <div class="photo-stack" id="photoStack">
       <img src="./images/photo-1.png" alt="Film photo" class="is-active" loading="lazy" decoding="async">
@@ -316,7 +324,6 @@ document.querySelectorAll('.mobile-links a').forEach(link => {
 <script src="https://assets.calendly.com/assets/external/widget.js"></script>
 
 <script>
-  // Reveal on scroll
   (function(){
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
@@ -339,17 +346,16 @@ document.querySelectorAll('.mobile-links a').forEach(link => {
     });
   })();
 
-  // Marquee duplicate for seamless loop
   (function(){
     const t = document.getElementById('homeMarquee');
     if (t) t.innerHTML = t.innerHTML + t.innerHTML;
   })();
 
-  // Film photo slideshow
   (function(){
     const stack = document.getElementById('photoStack');
     const idxLabel = document.getElementById('photoIdx');
     if (!stack) return;
+
     const imgs = Array.from(stack.querySelectorAll('img'));
     if (imgs.length < 2) return;
 
@@ -367,7 +373,6 @@ document.querySelectorAll('.mobile-links a').forEach(link => {
     setInterval(tick, 4200);
   })();
 
-  // Now-shipping word cycler
   (function(){
     const list = document.getElementById('nsWords');
     const counter = document.getElementById('nsCounter');
