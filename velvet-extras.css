@@ -179,13 +179,26 @@ body.p2-velvet .p2-hero-meta .dot { background: var(--vr-wine); }
   border: 1px solid var(--vr-line);
 }
 
-.vp-curtain {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse at top, rgba(122, 59, 63, 0.10), transparent 60%),
-    repeating-linear-gradient(180deg, rgba(26, 20, 22, 0.02) 0 6px, transparent 6px 12px);
-  pointer-events: none;
-  transition: opacity 0.6s ease;
+.vp-bg{
+  position:absolute;
+  inset:0;
+  border-radius:24px;
+  background-size:cover;
+  background-position:center;
+  transition:background-image .4s ease;
+  opacity:1;
+}
+
+.vp-frame[data-mode="intimacy"] .vp-bg{
+  background-image:url('./images/tvr-section-bg1.jpg');
+}
+
+.vp-frame[data-mode="narrative"] .vp-bg{
+  background-image:url('./images/tvr-section-bg2.jpg');
+}
+
+.vp-frame[data-mode="specificity"] .vp-bg{
+  background-image:url('./images/tvr-section-bg3.jpg');
 }
 
 .vp-preview {
