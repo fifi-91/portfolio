@@ -540,7 +540,7 @@
 .dad-impact-text p {
   font-size: 15px;
   line-height: 1.55;
-  color: #555252;
+  color: #ffffff;
   margin-bottom: 16px;
 }
 
@@ -597,6 +597,8 @@
   border-radius: 999px;
   backdrop-filter: blur(6px);
 }
+
+
 
 @media (max-width: 900px) {
   .dad-impact-inner { grid-template-columns: 1fr; gap: 32px; }
