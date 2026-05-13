@@ -55,8 +55,8 @@
 .p2-card .project-card-clean-image {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
-  background: #f4f1ec;
+  border-radius: 0;
+  background: transparent;
   isolation: isolate;
 }
 
