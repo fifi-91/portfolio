@@ -352,37 +352,97 @@
     </div>
   </section>
 
-  <!-- ============ DESIGN SYSTEM ============ -->
-  <section class="p2-ds">
-    <div class="p2-wrap">
-      <div class="p2-ds-stage">
-        <div class="p2-ds-text">
-          <div class="p2-eyebrow p2-rise"><span class="num">04</span>Identity in detail</div>
-          <h3 class="p2-rise">A wordmark in Eugena&rsquo;s own hand &mdash; the room is hers.</h3>
-          <p class="p2-rise">The logotype carries the most personal cue in the system. Drawn by Eugena, vectorised and refined into a usable mark, it sits against cream paper and deep velvet, paired with a measured serif and a quiet sans. The system stays small on purpose &mdash; specificity over breadth.</p>
-          <p class="p2-rise">Imagery is portrait-first &mdash; low-key light, soft grain, framed close. Buttons borrow from print: a thin underline, a slow hover, a sense that you&rsquo;re turning a page rather than clicking a UI.</p>
-          <div class="p2-ds-pills">
-            <span class="p2-ds-pill" aria-pressed="true">Custom logotype</span>
-            <span class="p2-ds-pill" aria-pressed="false">Type pairing</span>
-            <span class="p2-ds-pill" aria-pressed="false">Cream / velvet / gold</span>
-            <span class="p2-ds-pill" aria-pressed="false">Portrait imagery</span>
-            <span class="p2-ds-pill" aria-pressed="false">Texture &amp; grain</span>
-          </div>
+<!-- ============ DESIGN SYSTEM ============ -->
+<section class="p2-ds">
+  <div class="p2-wrap">
+    <div class="p2-ds-stage">
+
+      <div class="p2-ds-text">
+        <div class="p2-eyebrow p2-rise">
+          <span class="num">04</span>Identity in detail
         </div>
-        <div class="p2-ds-viz">
-          <img src="./images/interface-design.png" alt="Velvet Room interface details" style="width:100%; height:100%; object-fit:cover; border-radius:14px;">
-        </div>
+
+        <h3 class="p2-rise">
+          A wordmark in Eugena&rsquo;s own hand &mdash; the room is hers.
+        </h3>
+
+        <p class="p2-rise">
+          The logotype carries the most personal cue in the system. Drawn by Eugena, vectorised and refined into a usable mark, it sits against cream paper and deep velvet, paired with a measured serif and a quiet sans. The system stays small on purpose &mdash; specificity over breadth.
+        </p>
+
+        <p class="p2-rise">
+          Imagery is portrait-first &mdash; low-key light, soft grain, framed close. Buttons borrow from print: a thin underline, a slow hover, a sense that you&rsquo;re turning a page rather than clicking a UI.
+        </p>
+
+       <div class="p2-ds-pills">
+
+  <button 
+    type="button"
+    class="p2-ds-pill active"
+    aria-pressed="true"
+    data-image="./images/Logo explorations.jpg">
+    Custom logotype
+  </button>
+
+  <button 
+    type="button"
+    class="p2-ds-pill"
+    aria-pressed="false"
+    data-image="./images/Logo explorations.jpg">
+    Type pairing
+  </button>
+
+  <button 
+    type="button"
+    class="p2-ds-pill"
+    aria-pressed="false"
+    data-image="./images/Logo explorations.jpg">
+    Cream / velvet / gold
+  </button>
+
+  <button 
+    type="button"
+    class="p2-ds-pill"
+    aria-pressed="false"
+    data-image="./images/Logo explorations.jpg">
+    Portrait imagery
+  </button>
+
+  <button 
+    type="button"
+    class="p2-ds-pill"
+    aria-pressed="false"
+    data-image="./images/Logo explorations.jpg">
+    Texture &amp; grain
+  </button>
+
+</div>
       </div>
+
+      <div class="p2-ds-viz">
+        <img 
+          id="dsPreview"
+          src="./images/Logo explorations.jpg"
+          alt="Velvet Room design system"
+          style="width:100%; height:100%; object-fit:cover; border-radius:14px;"
+        >
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ============ FOUNDER NARRATIVE ============ -->
   <section class="p2-section velvet-founder">
     <div class="p2-wrap">
       <div class="velvet-founder-grid">
-        <div class="velvet-founder-image p2-rise">
-          <img src="./images/eugena-timeline.png" alt="Eugena Washington">
-        </div>
+        <div class="velvet-founder-image p2-rise founder-overlay-card">
+          <img 
+            src="./images/sovereign-storytelling.png" 
+            alt="Sovereign storytelling visual"
+            class="founder-overlay-image"
+          >
+        </div>  
         <div class="velvet-founder-text">
           <div class="p2-eyebrow p2-rise"><span class="num">05</span>Founder narrative</div>
           <h3 class="p2-rise"><em>Sovereign storytelling</em> &mdash; a visual map of the path that shaped her.</h3>
@@ -631,15 +691,31 @@
     io.observe(frame);
   })();
 
-  /* Design system pills (visual only — picks one) */
-  (function(){
-    document.querySelectorAll('.p2-ds-pill').forEach(pill => {
-      pill.addEventListener('click', () => {
-        document.querySelectorAll('.p2-ds-pill').forEach(p => p.setAttribute('aria-pressed', 'false'));
-        pill.setAttribute('aria-pressed', 'true');
+/* Design system pills */
+(function(){
+
+  const pills = document.querySelectorAll('.p2-ds-pill');
+  const preview = document.getElementById('dsPreview');
+
+  if (!pills.length || !preview) return;
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', function () {
+
+      pills.forEach(p => {
+        p.classList.remove('active');
+        p.setAttribute('aria-pressed', 'false');
       });
+
+      this.classList.add('active');
+      this.setAttribute('aria-pressed', 'true');
+
+      preview.src = this.dataset.image;
+
     });
-  })();
+  });
+
+})();
 
   /* Hero video fallback */
   (function(){
