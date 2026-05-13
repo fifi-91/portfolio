@@ -353,7 +353,12 @@
           </div>
         </div>
         <div class="p2-ds-viz" style="aspect-ratio: 4/3;">
-          <img src="./images/luna-6.png" alt="Luna orchestration" style="width:100%; height:100%; object-fit: cover; border-radius: 14px;">
+          <img 
+            id="uncertaintyImage"
+            src="./images/designing-uncertainty1.png"
+            alt="Reasoning cards"
+            style="width:100%; height:100%; object-fit: cover; border-radius: 14px;"
+          >
         </div>
       </div>
     </div>
@@ -694,6 +699,37 @@ function closeOverlay(){ document.getElementById('password-overlay').classList.a
     });
   }, { threshold: 0.3 });
   io.observe(document.querySelector('.luna-stage'));
+})();
+</script>
+
+<script>
+(function () {
+  const pills = document.querySelectorAll('.p2-ds-pill');
+  const image = document.getElementById('uncertaintyImage');
+
+  if (!pills.length || !image) return;
+
+  const images = {
+    "Reasoning cards": "./images/designing-uncertainty1.png",
+    "Fallback states": "./images/designing-uncertainty2.png",
+    "Confidence signals": "./images/designing-uncertainty3.png",
+    "Handoff to human": "./images/designing-uncertainty4.png"
+  };
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+
+      pills.forEach(p => p.setAttribute('aria-pressed', 'false'));
+      pill.setAttribute('aria-pressed', 'true');
+
+      const label = pill.textContent.trim();
+
+      if (images[label]) {
+        image.src = images[label];
+        image.alt = label;
+      }
+    });
+  });
 })();
 </script>
 
