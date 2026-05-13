@@ -509,3 +509,33 @@
   display: none !important;
 }
 
+@media (max-width: 700px) {
+  .now-shipping-inner {
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+  }
+
+    .now-shipping {
+    border-bottom: none;
+    padding-top: 40px;
+  padding-bottom: 12px;
+  }
+
+  .ns-stage {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    text-align: center;
+    overflow: visible;
+  }
+
+  .ns-words li {
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+
+
