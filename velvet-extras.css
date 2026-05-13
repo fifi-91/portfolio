@@ -527,3 +527,11 @@ body.p2-velvet .p2-ds {
 }
 
 /* Velvet page nav stays light, but home/projects link colour stays default */
+
+.p2-device-tile video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 32px;
+  display: block;
+}
