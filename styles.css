@@ -967,141 +967,183 @@ body {
   margin-bottom: 24px;
 }
 
-/* OVERLAY */
+/* =========================
+   PASSWORD OVERLAY
+========================= */
+
 .password-overlay {
   position: fixed;
-  top: 80px; /* keeps nav visible */
-  left: 0;
-  width: 100%;
-  height: calc(100% - 80px);
+  inset: 0;
 
-  background: rgba(244, 242, 237, 0.89);
-  backdrop-filter: blur(14px);
+  background: rgba(246, 244, 239, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  z-index: 999;
+  z-index: 99999;
 }
 
-/* CONTAINER */
+.password-overlay.hidden {
+  display: none !important;
+}
+
 .password-container {
   width: 100%;
-  max-width: 762px;
+  max-width: 520px;
+  padding: 0 24px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0px;
-  margin-bottom: 20px;
-
 
   text-align: center;
 }
 
-/* TITLE */
 .password-container h3 {
-  font-size: 32px;
-  font-weight: 600;
-  margin-bottom: 32px;
+  font-size: 34px;
+  line-height: 1.12;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+
+  margin-bottom: 28px;
 }
 
-/* INPUT + BUTTON ROW */
 .password-row {
-  display: flex;
-  gap: 12px;
   width: 100%;
-  align-items: flex-start; /* 👈 important */
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
 }
 
-/* INPUT */
 .password-row input {
-  flex: 1;
-  height: 53px;
-  padding: 16px 20px;
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
 
-  border: 1px solid #A0A0A0;
-  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-radius: 8px;
 
-  font-size: 16px;
-  
+  background: rgba(255, 255, 255, 0.64);
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: #111111;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 
+.password-row input::placeholder {
+  color: rgba(0, 0, 0, 0.45);
+}
 
-/* BUTTON */
+.password-row input:focus {
+  border-color: rgba(0, 0, 0, 0.55);
+  background: rgba(255, 255, 255, 0.86);
+}
+
 .password-row button {
-  height: 53px;
-  padding: 0 40px;
+  height: 48px;
+  padding: 0 22px;
 
-  background: #000;
-  color: #fff;
+  border: 1px solid #111111;
+  border-radius: 8px;
 
-  border: none;
-  border-radius: 12px;
+  background: #111111;
+  color: #ffffff;
 
-  font-weight: 600;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+
   cursor: pointer;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
-/* DISABLED BUTTON */
+.password-row button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
 .password-row button:disabled {
-  background: #BBBBBB;
+  opacity: 0.28;
   cursor: not-allowed;
 }
 
-/* LINK */
-.password-link {
-  font-size: 24px;
-  color: #555252;
-  margin-top: 16px;
-}
-
 .error-message {
-  color: #E15555;
+  width: 100%;
+
+  min-height: 12px;
+  margin-top: 10px;
+
+  text-align: left;
+
+  color: #D14B4B;
   font-size: 12px;
-  margin-top: 4px; /* tighter like Figma */
-  align-self: flex-start; /* 👈 THIS is the fix */
 }
 
-/* CLOSE BUTTON */
+.password-link {
+  margin-top: 12px;
+
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 500;
+
+  color: #555252;
+
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  transition: opacity 0.2s ease;
+}
+
+.password-link:hover {
+  opacity: 0.6;
+}
+
 .password-close {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 28px;
+  right: 32px;
+
   background: none;
   border: none;
-  font-size: 18px;
+
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 300;
+
   cursor: pointer;
 }
 
-/* MOBILE */
 @media (max-width: 700px) {
-
   .password-container {
+    max-width: 100%;
     padding: 0 24px;
   }
 
+  .password-container h3 {
+    font-size: 30px;
+    margin-bottom: 24px;
+  }
+
   .password-row {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
-    .password-row input {
-    width: 100%;
-    min-width: 100%;
-  }
-
+  .password-row input,
   .password-row button {
     width: 100%;
-  }
-
-  .password-container h3 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-
-  .password-link {
-    font-size: 16px;
   }
 }
 
