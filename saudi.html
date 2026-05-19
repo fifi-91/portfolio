@@ -16,6 +16,7 @@
 
   <link rel="stylesheet" href="styles.css"/>
   <link rel="stylesheet" href="project-v2.css"/>
+  <link rel="stylesheet" href="project-v2-atomic.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
   <!-- calendly -->
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
@@ -316,47 +317,531 @@
     </div>
   </section>
 
-  <!-- ============ DESIGN SYSTEM REVEAL ============ -->
-  <section class="p2-ds">
+<!-- ============ 04 · ATOMIC SYSTEM (EXPANDED) ============ -->
+  <section class="p2-atomic">
     <div class="p2-wrap">
-      <div class="p2-ds-stage">
-
-        <div class="p2-ds-text">
+      <div class="p2-section-head">
+        <div>
           <div class="p2-eyebrow p2-rise"><span class="num">04</span>Atomic system</div>
-          <h3 class="p2-rise">3,000+ components, governed by a system that any squad could ship from.</h3>
-          <p class="p2-rise">Tokens at the base — colour, type, spacing, motion. Composed up into molecules (buttons, inputs, badges), organisms (cards, dashboards, sheets), and finally templates and pages. Step through the layers.</p>
+          <h2 class="p2-section-title p2-rise">3,000+ components, <em>composed across one atomic system.</em></h2>
+        </div>
+        <p class="p2-section-blurb p2-rise">Tokens at the base — colour, type, spacing, motion. Composed up into atoms, molecules, organisms, and finally templates and pages. Step through the layers — every level here is built from the one before it.</p>
+      </div>
 
-          <div class="p2-ds-pills" role="tablist" id="dsPills">
-            <button class="p2-ds-pill" aria-pressed="true" data-mode="atoms">Atoms</button>
-            <button class="p2-ds-pill" aria-pressed="false" data-mode="molecules">Molecules</button>
-            <button class="p2-ds-pill" aria-pressed="false" data-mode="organisms">Organisms</button>
+      <div class="p2-atomic-bar p2-rise" role="tablist" id="atomicTabs">
+        <button class="p2-atomic-step" role="tab" aria-selected="true" data-stage="tokens">
+          <div class="step-no">01 / Foundation</div>
+          <div class="step-name">Tokens</div>
+        </button>
+        <button class="p2-atomic-step" role="tab" aria-selected="false" data-stage="atoms">
+          <div class="step-no">02 / Primitives</div>
+          <div class="step-name">Atoms</div>
+        </button>
+        <button class="p2-atomic-step" role="tab" aria-selected="false" data-stage="molecules">
+          <div class="step-no">03 / Compositions</div>
+          <div class="step-name">Molecules</div>
+        </button>
+        <button class="p2-atomic-step" role="tab" aria-selected="false" data-stage="organisms">
+          <div class="step-no">04 / Patterns</div>
+          <div class="step-name">Organisms</div>
+        </button>
+      </div>
+
+      <div class="p2-atomic-stage p2-rise">
+
+        <aside class="p2-atomic-side">
+          <h3 id="atomSideTitle">Decisions, not pixels.</h3>
+          <p id="atomSideBody">Every visual decision — colour, type ramp, spacing, radii, elevation, motion — lives once, as a token. Themes are dictionaries; everything above this layer reads from them.</p>
+          <ul class="p2-atomic-build" id="atomSideBuild">
+            <li><span class="k">Source</span><span class="v">Design variables</span></li>
+            <li><span class="k">Outputs</span><span class="v">CSS · JSON · iOS · Android</span></li>
+            <li><span class="k">Used by</span><span class="v">All layers above</span></li>
+          </ul>
+        </aside>
+
+        <div class="p2-atomic-canvas">
+          <span class="p2-atomic-corner tl" id="atomCornerStage">▣ Stage 01 / 04</span>
+          <span class="p2-atomic-corner tr">LTR · RTL · Light · Dark</span>
+
+          <!-- ====== Pane: Tokens ====== -->
+          <div class="p2-atomic-pane" data-stage="tokens" data-active="true">
+            <div class="p2-token-grid">
+              <div class="p2-token">
+                <div>
+                  <div class="t-preview" style="background:#0a0a0a"></div>
+                  <div class="t-key">color · ink/900</div>
+                </div>
+                <div class="t-val">#0A0A0A</div>
+              </div>
+              <div class="p2-token">
+                <div>
+                  <div class="t-preview" style="background:#d4a548"></div>
+                  <div class="t-key">color · gold/500</div>
+                </div>
+                <div class="t-val">#D4A548</div>
+              </div>
+              <div class="p2-token">
+                <div>
+                  <div class="t-preview" style="background:#efe9e1; border: 1px solid #e0d8cc"></div>
+                  <div class="t-key">color · cream/100</div>
+                </div>
+                <div class="t-val">#EFE9E1</div>
+              </div>
+              <div class="p2-token">
+                <div>
+                  <div class="t-preview" style="background: linear-gradient(90deg, #0a0a0a 0%, #0a0a0a 25%, #d4a548 25%, #d4a548 50%, #efe9e1 50%, #efe9e1 75%, #f6f4ef 75%)"></div>
+                  <div class="t-key">scale · 12 steps</div>
+                </div>
+                <div class="t-val">050 → 950</div>
+              </div>
+
+              <div class="p2-token">
+                <div>
+                  <div class="t-type" style="font-family:'Switzer'">Aa</div>
+                  <div class="t-key">type · display</div>
+                </div>
+                <div class="t-val">Switzer · 56 / 1.05</div>
+              </div>
+              <div class="p2-token">
+                <div>
+                  <div class="t-type" style="font-family:'Switzer'; font-weight: 400; font-size: 28px;">Aa</div>
+                  <div class="t-key">type · body</div>
+                </div>
+                <div class="t-val">Switzer · 16 / 1.55</div>
+              </div>
+              <div class="p2-token">
+                <div>
+                  <div class="t-space">
+                    <span style="height:6px"></span><span style="height:12px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:38px"></span><span style="height:50px"></span>
+                  </div>
+                  <div class="t-key">space · 4pt grid</div>
+                </div>
+                <div class="t-val">4 · 8 · 12 · 16 · 24 · 32</div>
+              </div>
+              <div class="p2-token">
+                <div>
+                  <div class="t-radius">
+                    <span style="border-radius:0"></span>
+                    <span style="border-radius:4px"></span>
+                    <span style="border-radius:8px"></span>
+                    <span style="border-radius:50%"></span>
+                  </div>
+                  <div class="t-key">radius · ramp</div>
+                </div>
+                <div class="t-val">0 · 4 · 8 · ∞</div>
+              </div>
+
+              <div class="p2-token">
+                <div>
+                  <div class="t-shadow" style="box-shadow: 0 2px 6px rgba(0,0,0,0.06)"></div>
+                  <div class="t-key">elevation · 01</div>
+                </div>
+                <div class="t-val">rest state</div>
+              </div>
+              <div class="p2-token">
+                <div>
+                  <div class="t-shadow" style="box-shadow: 0 30px 60px -30px rgba(0,0,0,0.25)"></div>
+                  <div class="t-key">elevation · 03</div>
+                </div>
+                <div class="t-val">overlay</div>
+              </div>
+              <div class="p2-token">
+                <div>
+                  <div class="t-motion"></div>
+                  <div class="t-key">motion · ease-out</div>
+                </div>
+                <div class="t-val">cubic-bezier(.22,1,.36,1)</div>
+              </div>
+              <div class="p2-token">
+                <div>
+                  <div class="t-preview" style="background: linear-gradient(90deg, #c94235 0%, #c94235 25%, #d4a548 25%, #d4a548 50%, #6c7a5a 50%, #6c7a5a 75%, #3f5277 75%)"></div>
+                  <div class="t-key">semantic · status</div>
+                </div>
+                <div class="t-val">error · warn · ok · info</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== Pane: Atoms ====== -->
+          <div class="p2-atomic-pane" data-stage="atoms">
+            <div class="p2-atom-grid">
+              <div class="p2-atom">
+                <div class="a-demo"><span class="a-button">Apply now <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+                <div class="a-label">A · button · primary</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo"><span class="a-button ghost">Save search</span></div>
+                <div class="a-label">A · button · ghost</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo"><span class="a-button gold">Book viewing</span></div>
+                <div class="a-label">A · button · accent</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo" style="width:100%"><span class="a-input-el">Search community…</span></div>
+                <div class="a-label">A · input</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo"><span class="a-checkbox"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></div>
+                <div class="a-label">A · checkbox</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo"><span class="a-radio"></span></div>
+                <div class="a-label">A · radio</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo"><span class="a-switch-el"></span></div>
+                <div class="a-label">A · switch</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo"><span class="a-tag">For sale</span></div>
+                <div class="a-label">A · tag · gold</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo" style="width:100%"><span class="a-slider-el"></span></div>
+                <div class="a-label">A · slider</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo" style="width:100%"><span class="a-progress-el"></span></div>
+                <div class="a-label">A · progress</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo"><span class="a-avatars">
+                  <span style="background:#d4a548"></span>
+                  <span style="background:#3f5277"></span>
+                  <span style="background:#6c7a5a"></span>
+                  <span style="background:#c94235"></span>
+                </span></div>
+                <div class="a-label">A · avatar stack</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo"><span class="a-breadcrumb">Discover <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg> Riyadh</span></div>
+                <div class="a-label">A · breadcrumb</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo"><span class="a-dots"><span></span><span class="on"></span><span></span><span></span></span></div>
+                <div class="a-label">A · pagination</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo"><span class="a-spinner"></span></div>
+                <div class="a-label">A · spinner</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo"><span class="a-stars-el">★★★★☆</span></div>
+                <div class="a-label">A · stars</div>
+              </div>
+              <div class="p2-atom">
+                <div class="a-demo" style="display:flex;gap:6px;flex-wrap:wrap">
+                  <span class="a-tag sage">● Active</span>
+                  <span class="a-tag rust">● Overdue</span>
+                </div>
+                <div class="a-label">A · indicator</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ====== Pane: Molecules ====== -->
+          <div class="p2-atomic-pane" data-stage="molecules">
+            <div class="p2-mol-grid">
+
+              <div class="p2-mol">
+                <div class="m-label"><span>M · Input field</span><span class="m-of">A · label + input + helper</span></div>
+                <div class="m-input-field">
+                  <div class="lbl">Property location</div>
+                  <div class="field">
+                    <span>An-Narjis, North Riyadh</span>
+                    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  </div>
+                  <div class="help"><span class="dot"></span>Detected from your location</div>
+                </div>
+              </div>
+
+              <div class="p2-mol">
+                <div class="m-label"><span>M · Segmented control</span><span class="m-of">A · button × 3</span></div>
+                <div style="display:flex; flex-direction:column; gap:10px">
+                  <div class="m-segmented"><span class="on">Buy</span><span>Rent</span><span>Off-plan</span></div>
+                  <div class="m-segmented"><span>Map</span><span class="on">List</span></div>
+                </div>
+              </div>
+
+              <div class="p2-mol">
+                <div class="m-label"><span>M · Search</span><span class="m-of">A · input + icon + kbd</span></div>
+                <div class="m-search">
+                  <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                  <input type="text" value="Riyadh Hills"/>
+                  <span class="kbd">⌘ K</span>
+                </div>
+              </div>
+
+              <div class="p2-mol">
+                <div class="m-label"><span>M · Quantity selector</span><span class="m-of">A · button × 2 + value</span></div>
+                <div class="m-quantity">
+                  <span class="label-q">Bedrooms</span>
+                  <div class="controls">
+                    <span class="btn">–</span>
+                    <span class="val">4</span>
+                    <span class="btn">+</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p2-mol">
+                <div class="m-label"><span>M · List item</span><span class="m-of">A · icon + text + meta</span></div>
+                <div class="m-list-item">
+                  <span class="ico" style="background:rgba(212,165,72,0.18); color:#8a6512">⌂</span>
+                  <div>
+                    <div class="t">Documents ready</div>
+                    <div class="s">Title deed, ID, salary letter</div>
+                  </div>
+                  <span class="right">3 / 3</span>
+                </div>
+                <div class="m-list-item">
+                  <span class="ico" style="background:rgba(108,122,90,0.18); color:#3c4a2a">✓</span>
+                  <div>
+                    <div class="t">Mortgage pre-approval</div>
+                    <div class="s">Issued by partner bank</div>
+                  </div>
+                  <span class="right">14 Apr</span>
+                </div>
+                <div class="m-list-item">
+                  <span class="ico" style="background:rgba(201,66,53,0.16); color:#8a2418">!</span>
+                  <div>
+                    <div class="t">Site visit pending</div>
+                    <div class="s">Awaiting agent assignment</div>
+                  </div>
+                  <span class="right">—</span>
+                </div>
+              </div>
+
+              <div class="p2-mol">
+                <div class="m-label"><span>M · Progress stepper</span><span class="m-of">A · indicator × 5</span></div>
+                <div class="m-stepper">
+                  <div class="bar">
+                    <span class="num">01</span><span class="seg done"></span>
+                    <span class="num">02</span><span class="seg done"></span>
+                    <span class="num">03</span><span class="seg cur"></span>
+                    <span class="num">04</span><span class="seg"></span>
+                    <span class="num">05</span>
+                  </div>
+                  <div class="labels">
+                    <span>Discover</span><span>Reserve</span><span class="on">Finance</span><span>Sign</span><span>Move-in</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ====== Pane: Organisms ====== -->
+          <div class="p2-atomic-pane" data-stage="organisms">
+            <div class="p2-org-grid">
+
+              <article class="p2-org-card">
+                <div class="p2-org-media">
+                  <span class="o-tag">Off-plan</span>
+                  <span class="o-fav"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9C0.5 8 3 4 6.5 4c2 0 3.5 1 5.5 3 2-2 3.5-3 5.5-3 3.5 0 6 4 4 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+                </div>
+                <div class="p2-org-body">
+                  <div class="p2-org-row">
+                    <span class="p2-org-name">Riyadh Hills Villa</span>
+                    <span class="p2-org-price">2,450,000 SAR</span>
+                  </div>
+                  <div class="p2-org-loc">An-Narjis · North Riyadh</div>
+                  <div class="p2-org-feats">
+                    <span><svg viewBox="0 0 24 24"><path d="M3 12h18M3 12v6m18-6v6M5 12V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4"/></svg> 4 beds</span>
+                    <span><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3z"/><path d="M6 12V6a2 2 0 0 1 2-2h2v3"/></svg> 3 baths</span>
+                    <span><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/></svg> 340 m²</span>
+                  </div>
+                </div>
+              </article>
+
+              <div class="p2-org-filter">
+                <div class="f-head"><span>Filters · 3 active</span><span class="reset">Reset all</span></div>
+                <div class="f-group">
+                  <div class="g-head"><span>Price range</span><span class="val">1.2M – 4.5M SAR</span></div>
+                  <span class="a-slider-el" style="display:block"></span>
+                </div>
+                <div class="f-group">
+                  <div class="g-head"><span>Bedrooms</span><span class="val">2 selected</span></div>
+                  <div class="chips">
+                    <span class="chip">Any</span>
+                    <span class="chip">1</span>
+                    <span class="chip">2</span>
+                    <span class="chip on">3</span>
+                    <span class="chip on">4+</span>
+                  </div>
+                </div>
+                <div class="f-group">
+                  <div class="g-head"><span>Status</span><span class="val">Off-plan</span></div>
+                  <div class="chips">
+                    <span class="chip">Ready</span>
+                    <span class="chip on">Off-plan</span>
+                    <span class="chip">Resale</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p2-org-summary">
+                <div>
+                  <div class="s-h">Reservation summary</div>
+                  <div class="s-sub">M · list-item × 3 + M · input × 2 + A · button × 2</div>
+                </div>
+                <div class="stat">
+                  <div class="k">Reserve fee</div>
+                  <div class="v">25,000<span class="u">SAR</span></div>
+                </div>
+                <div class="stat">
+                  <div class="k">Closing in</div>
+                  <div class="v">14<span class="u">days</span></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 · LIGHT / DARK PROGRESSION ============ -->
+  <section class="p2-modes">
+    <div class="p2-wrap">
+      <div class="p2-section-head">
+        <div>
+          <div class="p2-eyebrow p2-rise"><span class="num">05</span>Light · Dark</div>
+          <h2 class="p2-section-title p2-rise">One system, <em>two modes.</em></h2>
+        </div>
+        <p class="p2-section-blurb p2-rise">Mode isn't a re-skin — it's a remap. Every surface, ink, accent and elevation pulls from semantic tokens that switch together. <strong>Drag the handle</strong> to scrub between modes, or watch the auto-loop.</p>
+      </div>
+
+      <div class="p2-modes-toolbar p2-rise">
+        <span class="p2-modes-hint" id="modesHint">▣ Drag the handle to reveal dark mode</span>
+        <div class="p2-toggle" id="modesToggle" data-dir="ltr">
+          <span class="p2-toggle-pill"></span>
+          <button data-mode="light" aria-pressed="true">Light</button>
+          <button data-mode="dark" aria-pressed="false">Dark</button>
+        </div>
+      </div>
+
+      <div class="p2-modes-stage p2-rise" id="modesStage">
+        <span class="p2-modes-meta tl">▣ Bilingual property card · live theme</span>
+        <span class="p2-modes-meta tr">Token-driven</span>
+
+        <!-- Light side (full width, base layer) -->
+        <div class="p2-mode-side light">
+          <div class="p2-mode-stack">
+            <div class="p2-mode-card">
+              <div class="media"></div>
+              <div class="body">
+                <div class="row1">
+                  <span class="name">Riyadh Hills Villa</span>
+                  <span class="price">2,450,000 SAR</span>
+                </div>
+                <div class="loc">An-Narjis · North Riyadh</div>
+                <div class="tags">
+                  <span class="tag">Off-plan</span>
+                  <span class="tag sage">Mortgage ready</span>
+                </div>
+                <div class="cta-row">
+                  <div class="feats">
+                    <span>4 beds</span><span>3 baths</span><span>340 m²</span>
+                  </div>
+                  <span class="cta">View →</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p2-mode-input">
+              <div class="col">
+                <div class="lbl">Property location</div>
+                <div>An-Narjis, North Riyadh</div>
+              </div>
+              <span style="font-size:16px">⌕</span>
+            </div>
+
+            <div class="p2-mode-stat">
+              <div class="top"><span class="k">Reservation funnel</span><span class="v">64%</span></div>
+              <div class="bar"><i></i></div>
+            </div>
           </div>
         </div>
 
-        <div class="p2-ds-viz" id="dsViz" data-mode="atoms">
-          <div class="p2-ds-viz-stage">
-            <!-- atoms -->
-            <div class="p2-ds-atom color1"><div class="swatch"></div><span>ink/900</span></div>
-            <div class="p2-ds-atom color2"><div class="swatch"></div><span>gold/500</span></div>
-            <div class="p2-ds-atom color3"><div class="swatch"></div><span>cream/100</span></div>
-            <div class="p2-ds-atom type1"><div class="swatch"></div><span>display</span></div>
-            <div class="p2-ds-atom space1"><div class="swatch"></div><span>space-4</span></div>
+        <!-- Dark side (clipped to right of handle) -->
+        <div class="p2-mode-mask" id="modesMask">
+          <div class="p2-mode-side dark">
+            <div class="p2-mode-stack">
+              <div class="p2-mode-card">
+                <div class="media"></div>
+                <div class="body">
+                  <div class="row1">
+                    <span class="name">Riyadh Hills Villa</span>
+                    <span class="price">2,450,000 SAR</span>
+                  </div>
+                  <div class="loc">An-Narjis · North Riyadh</div>
+                  <div class="tags">
+                    <span class="tag">Off-plan</span>
+                    <span class="tag sage">Mortgage ready</span>
+                  </div>
+                  <div class="cta-row">
+                    <div class="feats">
+                      <span>4 beds</span><span>3 baths</span><span>340 m²</span>
+                    </div>
+                    <span class="cta">View →</span>
+                  </div>
+                </div>
+              </div>
 
-            <!-- molecules -->
-            <div class="p2-ds-mol btn">Apply now</div>
-            <div class="p2-ds-mol input"></div>
+              <div class="p2-mode-input">
+                <div class="col">
+                  <div class="lbl">Property location</div>
+                  <div>An-Narjis, North Riyadh</div>
+                </div>
+                <span style="font-size:16px">⌕</span>
+              </div>
 
-            <!-- organism (full card preview) -->
-            <div class="p2-ds-org">
-              <div class="org-img"></div>
-              <div class="org-body">
-                <div class="org-title">Riyadh Hills Villa</div>
-                <div class="org-meta">An-Narjis · 340 m² · 2,450,000 SAR</div>
+              <div class="p2-mode-stat">
+                <div class="top"><span class="k">Reservation funnel</span><span class="v">64%</span></div>
+                <div class="bar"><i></i></div>
               </div>
             </div>
           </div>
         </div>
 
+        <div class="p2-mode-handle" id="modesHandle" role="slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" tabindex="0"></div>
+      </div>
+
+      <div class="p2-mode-tokens p2-rise">
+        <div class="p2-mode-token">
+          <div class="name">surface · base</div>
+          <div class="pair"><span class="sw" style="background:#f6f4ef"></span><span class="arr">→</span><span class="sw" style="background:#0a0a0a"></span></div>
+          <div class="ref">cream/050 → ink/950</div>
+        </div>
+        <div class="p2-mode-token">
+          <div class="name">surface · card</div>
+          <div class="pair"><span class="sw" style="background:#ffffff"></span><span class="arr">→</span><span class="sw" style="background:#1a1813"></span></div>
+          <div class="ref">white → ink/900</div>
+        </div>
+        <div class="p2-mode-token">
+          <div class="name">content · primary</div>
+          <div class="pair"><span class="sw" style="background:#0a0a0a"></span><span class="arr">→</span><span class="sw" style="background:#f5ecd9"></span></div>
+          <div class="ref">ink/900 → cream/100</div>
+        </div>
+        <div class="p2-mode-token">
+          <div class="name">content · secondary</div>
+          <div class="pair"><span class="sw" style="background:#555252"></span><span class="arr">→</span><span class="sw" style="background:#a59882"></span></div>
+          <div class="ref">ink/500 → sand/400</div>
+        </div>
+        <div class="p2-mode-token">
+          <div class="name">action · accent</div>
+          <div class="pair"><span class="sw" style="background:#d4a548"></span><span class="arr">→</span><span class="sw" style="background:#e6c879"></span></div>
+          <div class="ref">gold/500 → gold/300</div>
+        </div>
+        <div class="p2-mode-token">
+          <div class="name">border · hairline</div>
+          <div class="pair"><span class="sw" style="background:#ededed"></span><span class="arr">→</span><span class="sw" style="background:#2a2620"></span></div>
+          <div class="ref">cream/300 → ink/800</div>
+        </div>
       </div>
     </div>
   </section>
@@ -366,7 +851,7 @@
     <div class="p2-wrap">
       <div class="p2-section-head">
         <div>
-          <div class="p2-eyebrow p2-rise"><span class="num">05</span>Build</div>
+          <div class="p2-eyebrow p2-rise"><span class="num">06</span>Build</div>
           <h2 class="p2-section-title p2-rise">Design to code, no drift.</h2>
         </div>
         <p class="p2-section-blurb p2-rise">Components shipped to a live Storybook in parity with Figma. Engineers worked from the same source of truth as design — visual regression catching drift before it shipped.</p>
@@ -381,12 +866,14 @@
     </div>
   </section>
 
+  
+
   <!-- ============ OUTCOMES ============ -->
   <section class="p2-outcomes">
     <div class="p2-wrap">
       <div class="p2-outcomes-head">
         <div>
-          <div class="p2-eyebrow p2-rise"><span class="num">06</span>What it shipped</div>
+          <div class="p2-eyebrow p2-rise"><span class="num">07</span>What it shipped</div>
           <h2 class="p2-section-title p2-rise">Numbers that landed.</h2>
         </div>
         <p class="p2-section-blurb p2-rise">Twelve months on, what began as a design-led transformation is now a national benchmark for innovation and customer experience in real estate.</p>
@@ -437,7 +924,7 @@
     <div class="p2-wrap">
       <div class="p2-reflect-grid">
         <div>
-          <div class="p2-eyebrow p2-rise"><span class="num">07</span>Reflection</div>
+          <div class="p2-eyebrow p2-rise"><span class="num">08</span>Reflection</div>
           <h3 class="p2-rise">What this taught me.</h3>
         </div>
         <ul>
@@ -509,7 +996,8 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
 /* ==== Mobile menu ==== */
 (function(){
   const t = document.getElementById('menuToggle');
@@ -558,7 +1046,6 @@ function closeOverlay() {
     });
   }, { threshold: 0.06, rootMargin: '0px 0px -4% 0px' });
   const all = [...document.querySelectorAll('.p2-rise')];
-  // Reveal above-fold items immediately on load with a soft stagger
   let staggerIdx = 0;
   all.forEach(el => {
     const r = el.getBoundingClientRect();
@@ -652,8 +1139,6 @@ function closeOverlay() {
     document.getElementById('cardLoc').textContent = data.loc;
     document.getElementById('cardTag').textContent = data.tag;
     document.getElementById('cardCtaLabel').textContent = data.cta;
-    const feats = document.querySelectorAll('#cardFeats .card-feats span span, #cardFeats > span > span');
-    // simpler: iterate
     const featSpans = document.querySelectorAll('#cardFeats > span > span');
     if (featSpans.length === 3) {
       featSpans[0].textContent = data.feats.beds;
@@ -685,33 +1170,142 @@ function closeOverlay() {
   }));
 })();
 
-/* ==== Design system pills ==== */
+/* ==== Atomic system stage stepper ==== */
 (function(){
-  const pills = document.querySelectorAll('#dsPills .p2-ds-pill');
-  const viz = document.getElementById('dsViz');
-  pills.forEach(p => p.addEventListener('click', () => {
-    pills.forEach(x => x.setAttribute('aria-pressed', x === p));
-    viz.setAttribute('data-mode', p.dataset.mode);
-  }));
-  // auto-cycle on first scroll into view
+  const tabs = document.querySelectorAll('#atomicTabs .p2-atomic-step');
+  const panes = document.querySelectorAll('.p2-atomic-pane');
+  const sideTitle = document.getElementById('atomSideTitle');
+  const sideBody = document.getElementById('atomSideBody');
+  const sideBuild = document.getElementById('atomSideBuild');
+  const corner = document.getElementById('atomCornerStage');
+  if (!tabs.length) return;
+
+  const meta = {
+    tokens:   { n:'01', title:'Decisions, not pixels.',
+      body:'Every visual decision — colour, type ramp, spacing, radii, elevation, motion — lives once, as a token. Themes are dictionaries; everything above this layer reads from them.',
+      build: [['Source','Design variables',false],['Outputs','CSS · JSON · iOS · Android',false],['Used by','All layers above',false]] },
+    atoms:    { n:'02', title:'The smallest useful pieces.',
+      body:'Buttons, inputs, tags, checkboxes, switches, stars. Each atom binds to tokens — so a theme swap flows up automatically, in either language.',
+      build: [['Variants','State · Size · Mode · Language',false],['Used by','Molecules → Pages',false]] },
+    molecules:{ n:'03', title:'Atoms that do a job together.',
+      body:'A label + an input + a helper line becomes a field. A button + a value + a button becomes a stepper. Molecules carry the smallest unit of intent.',
+      build: [['Variants','Bilingual · density',false],['Used by','Organisms → Pages',false]] },
+    organisms:{ n:'04', title:'Real product surfaces.',
+      body:'Property cards, filter panels, reservation summaries. Where the system meets the product — and where governance pays off: spacing, ratio, motion curve already decided.',
+      build: [['Variants','Surface · Mode · Language',false],['Used by','Every live surface',false]] }
+  };
+
+  function setStage(stage){
+    tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.stage === stage));
+    panes.forEach(p => p.setAttribute('data-active', p.dataset.stage === stage));
+    const m = meta[stage]; if (!m) return;
+    sideTitle.textContent = m.title;
+    sideBody.textContent = m.body;
+    corner.textContent = '▣ Stage ' + m.n + ' / 04';
+    sideBuild.innerHTML = m.build.map(r =>
+      '<li' + (r[2] ? ' class="muted"' : '') + '><span class="k">' + r[0] + '</span><span class="v">' + r[1] + '</span></li>'
+    ).join('');
+  }
+
+  tabs.forEach(t => t.addEventListener('click', () => setStage(t.dataset.stage)));
+
+  // gentle auto-advance once on scroll-in
   let cycled = false;
-  if (!viz) return;
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !cycled) {
+  const ioA = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting && !cycled){
         cycled = true;
+        const seq = ['atoms','molecules','organisms','tokens'];
         let i = 0;
-        const seq = ['atoms','molecules','organisms','atoms'];
         const iv = setInterval(() => {
-          const mode = seq[i++];
-          if (!mode) { clearInterval(iv); return; }
-          viz.setAttribute('data-mode', mode);
-          pills.forEach(p => p.setAttribute('aria-pressed', p.dataset.mode === mode));
-        }, 1100);
+          if (i >= seq.length){ clearInterval(iv); return; }
+          setStage(seq[i++]);
+        }, 1700);
       }
     });
-  }, { threshold: 0.4 });
-  io.observe(viz);
+  }, { threshold: 0.25 });
+  ioA.observe(document.querySelector('.p2-atomic-stage'));
+})();
+
+/* ==== Light / Dark scrubber ==== */
+(function(){
+  const stage = document.getElementById('modesStage');
+  const mask = document.getElementById('modesMask');
+  const handle = document.getElementById('modesHandle');
+  const toggle = document.getElementById('modesToggle');
+  const hint = document.getElementById('modesHint');
+  if (!stage || !mask || !handle) return;
+
+  let pct = 50;
+  let dragging = false;
+  let userInteracted = false;
+  let autoTimer = null;
+
+  function apply(p){
+    pct = Math.max(0, Math.min(100, p));
+    mask.style.clipPath = `inset(0 0 0 ${pct}%)`;
+    handle.style.left = pct + '%';
+    handle.setAttribute('aria-valuenow', Math.round(pct));
+    // update toggle pill position
+    const mode = pct < 50 ? 'light' : 'dark';
+    toggle.setAttribute('data-dir', mode === 'light' ? 'ltr' : 'rtl');
+    toggle.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === mode));
+  }
+
+  function pctFromEvent(e){
+    const r = stage.getBoundingClientRect();
+    const x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+    return (x / r.width) * 100;
+  }
+
+  function stopAuto(){
+    if (autoTimer){ clearInterval(autoTimer); autoTimer = null; }
+    userInteracted = true;
+    if (hint) hint.textContent = '▣ You\u2019re in control';
+  }
+
+  handle.addEventListener('mousedown', e => { dragging = true; stopAuto(); e.preventDefault(); });
+  handle.addEventListener('touchstart', e => { dragging = true; stopAuto(); }, {passive:true});
+  window.addEventListener('mousemove', e => { if (dragging) apply(pctFromEvent(e)); });
+  window.addEventListener('touchmove', e => { if (dragging) apply(pctFromEvent(e)); }, {passive:true});
+  window.addEventListener('mouseup', () => dragging = false);
+  window.addEventListener('touchend', () => dragging = false);
+
+  stage.addEventListener('click', e => {
+    if (e.target === handle) return;
+    stopAuto();
+    apply(pctFromEvent(e));
+  });
+
+  handle.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft'){ stopAuto(); apply(pct - 5); }
+    if (e.key === 'ArrowRight'){ stopAuto(); apply(pct + 5); }
+  });
+
+  toggle.querySelectorAll('button').forEach(b => {
+    b.addEventListener('click', () => { stopAuto(); apply(b.dataset.mode === 'light' ? 0 : 100); });
+  });
+
+  function startAuto(){
+    let t = 0;
+    autoTimer = setInterval(() => {
+      if (userInteracted) return;
+      t += 0.025;
+      const v = 50 + Math.sin(t) * 35;
+      apply(v);
+    }, 40);
+  }
+
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting && !autoTimer && !userInteracted){
+        setTimeout(startAuto, 700);
+      }
+    });
+  }, { threshold: 0.3 });
+  io.observe(stage);
+
+  apply(50);
 })();
 
 /* ==== Hero video fallback if file is missing ==== */
@@ -720,7 +1314,6 @@ function closeOverlay() {
   const fb = document.getElementById('heroFallback');
   if (!v || !fb) return;
   v.addEventListener('error', () => { v.style.display = 'none'; fb.style.display = 'flex'; });
-  // also: if no source loads after 2.5s, show fallback
   setTimeout(() => {
     if (v.readyState === 0) { v.style.display = 'none'; fb.style.display = 'flex'; }
   }, 2500);
