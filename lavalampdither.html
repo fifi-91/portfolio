@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lava Lamp Dither</title>
+
+<style>
+  html,body{
+    margin:0;
+    padding:0;
+    background:#000;
+    font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  .stage{
+    position:relative;
+    width:min(100vw, 80vh);
+    aspect-ratio: 4 / 5;
+    margin:0 auto;
+    overflow:hidden;
+    background:#000;
+  }
+
+  canvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    display:block;
+  }
+
+  .headline{
+    position:absolute;
+    left:7%;
+    right:7%;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:0;
+    color:#fff;
+    font-weight:300;
+    font-size:clamp(30px, 7.4vw, 56px);
+    line-height:1.08;
+    letter-spacing:-0.04em;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="headline">Your taste will<br>always outrun<br>a prompt.</div>
+  <canvas id="lava"></canvas>
+</div>
+
+<script>
+(function(){
+  const canvas = document.getElementById('lava');
+  const ctx = canvas.getContext('2d');
+  const stage = document.querySelector('.stage');
+
+  const CELL = 14;
+  const YELLOW = '#FFD400';
+  const SPARKLE_TICK = 0.5;   // seconds between ambient sparkle flips
+  const SPARKLE_DENSITY = 0.028;
+
+  let W, H, cols, rows;
+  let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  // blobs drift on independent sine waves so they wander, merge and
+  // split like a lava lamp without any collision code
+  const blobs = [
+    { baseX:0.18, baseY:0.10, ax:0.10, ay:0.08, fx:0.10, fy:0.08, phx:0.0, phy:1.2, r:0.085 },
+    { baseX:0.78, baseY:0.07, ax:0.14, ay:0.10, fx:0.07, fy:0.11, phx:2.0, phy:0.4, r:0.10 },
+    { baseX:0.45, baseY:0.28, ax:0.16, ay:0.14, fx:0.06, fy:0.09, phx:1.0, phy:3.0, r:0.13 },
+    { baseX:0.85, baseY:0.45, ax:0.10, ay:0.12, fx:0.08, fy:0.06, phx:3.5, phy:1.5, r:0.09 },
+    { baseX:0.15, baseY:0.55, ax:0.12, ay:0.10, fx:0.09, fy:0.07, phx:4.2, phy:2.2, r:0.095 },
+    { baseX:0.55, baseY:0.72, ax:0.18, ay:0.16, fx:0.05, fy:0.08, phx:0.8, phy:4.0, r:0.14 },
+    { baseX:0.30, baseY:0.92, ax:0.12, ay:0.08, fx:0.07, fy:0.10, phx:2.6, phy:0.9, r:0.10 },
+  ];
+
+  function resize(){
+    const rect = stage.getBoundingClientRect();
+    W = Math.round(rect.width);
+    H = Math.round(rect.height);
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cols = Math.ceil(W / CELL);
+    rows = Math.ceil(H / CELL);
+  }
+
+  function field(x, y, positions){
+    // fourth-power falloff keeps the dithered halo a thin fringe around
+    // each blob's edge instead of bleeding across most of the canvas
+    let sum = 0;
+    for (let i = 0; i < positions.length; i++){
+      const b = positions[i];
+      const dx = x - b.x;
+      const dy = y - b.y;
+      const d2 = dx*dx + dy*dy + 0.0001;
+      const r2 = b.r * b.r;
+      sum += (r2 * r2) / (d2 * d2);
+    }
+    return sum;
+  }
+
+  function hash(x, y, seed){
+    const n = Math.sin(x * 127.1 + y * 311.7 + seed * 74.7) * 43758.5453;
+    return n - Math.floor(n);
+  }
+
+  function drawDot(px, py){
+    const cx = px + CELL / 2, cy = py + CELL / 2;
+    ctx.beginPath();
+    ctx.arc(cx, cy, CELL * 0.13, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function drawPlus(px, py){
+    const cx = px + CELL / 2, cy = py + CELL / 2;
+    const arm = CELL * 0.34, thick = CELL * 0.16;
+    ctx.fillRect(cx - thick / 2, cy - arm, thick, arm * 2);
+    ctx.fillRect(cx - arm, cy - thick / 2, arm * 2, thick);
+  }
+
+  function drawChecker(px, py){
+    const half = CELL / 2;
+    ctx.fillRect(px, py, half, half);
+    ctx.fillRect(px + half, py + half, half, half);
+  }
+
+  function drawSolid(px, py){
+    ctx.fillRect(px, py, CELL, CELL);
+    ctx.strokeStyle = 'rgba(0,0,0,0.45)';
+    ctx.strokeRect(px + 0.5, py + 0.5, CELL - 1, CELL - 1);
+  }
+
+  function draw(t){
+    const time = t * 0.001;
+    const shorter = Math.min(W, H);
+    const sparkleTick = Math.floor(time / SPARKLE_TICK);
+
+    const positions = blobs.map(b => ({
+      x: (b.baseX + Math.sin(time * b.fx + b.phx) * b.ax) * (W / shorter),
+      y: (b.baseY + Math.cos(time * b.fy + b.phy) * b.ay) * (H / shorter),
+      r: b.r
+    }));
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = YELLOW;
+
+    for (let cy = 0; cy < rows; cy++){
+      const ny = ((cy + 0.5) * CELL) / shorter;
+      for (let cx = 0; cx < cols; cx++){
+        const nx = ((cx + 0.5) * CELL) / shorter;
+        const v = field(nx, ny, positions);
+        const px = cx * CELL, py = cy * CELL;
+
+        if (v >= 1.0){
+          drawSolid(px, py);
+        } else if (v >= 0.6){
+          drawChecker(px, py);
+        } else if (v >= 0.3){
+          drawPlus(px, py);
+        } else if (v >= 0.12){
+          drawDot(px, py);
+        } else if (hash(cx, cy, 0) < SPARKLE_DENSITY){
+          // ambient sparkle, unrelated to the blobs, flips between a dot and a plus
+          if (hash(cx, cy, sparkleTick) < 0.5){
+            drawDot(px, py);
+          } else {
+            drawPlus(px, py);
+          }
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(draw);
+})();
+</script>
+
+</body>
+</html>

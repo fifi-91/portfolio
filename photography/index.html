@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sophia Akrofi — Photography</title>
+<script>
+  try {
+    if (localStorage.getItem('sophia-photography-theme') === 'darkroom') {
+      document.documentElement.classList.add('darkroom');
+    }
+  } catch (e) {}
+</script>
+<style>
+  @font-face {
+    font-family: 'Fakt Pro';
+    src: url('assets/fonts/FaktPro-Normal.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Fakt Pro';
+    src: url('assets/fonts/FaktPro-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Reckless Neue';
+    src: url('assets/fonts/RecklessNeue-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Reckless Neue';
+    src: url('assets/fonts/RecklessNeue-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  :root {
+    --bg: #f7f7f4;
+    --ink: #111;
+    --muted: #b7b7b2;
+    --line: #e7e7e2;
+    --nav-w: 250px;
+    --header-bg: rgba(247,247,244,.94);
+    --secondary: #777;
+    --section-muted: #9d9d98;
+    --caption: #aaa;
+    --image-bg: #ecece7;
+    --broken-bg: #efefeb;
+    --broken-line: #ddd;
+    --lightbox-bg: rgba(247,247,244,.97);
+  }
+
+  html.darkroom body,
+  body.darkroom {
+    --bg: #222222;
+    --ink: #f3f1ea;
+    --muted: #777773;
+    --line: #383838;
+    --header-bg: rgba(34,34,34,.94);
+    --secondary: #aaa9a3;
+    --section-muted: #8f8e88;
+    --caption: #9d9c96;
+    --image-bg: #2b2b2b;
+    --broken-bg: #292929;
+    --broken-line: #444;
+    --lightbox-bg: rgba(34,34,34,.98);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Fakt Pro', Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  button, a { font: inherit; }
+  img { display: block; max-width: 100%; }
+
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 48px;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: var(--nav-w) 1fr auto;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    background: var(--header-bg);
+    backdrop-filter: blur(8px);
+  }
+
+  .brand {
+    padding-left: 18px;
+    font-weight: 500;
+    letter-spacing: -.035em;
+  }
+
+  .mode-label {
+    color: var(--secondary);
+    letter-spacing: .02em;
+  }
+
+  .counter {
+    padding-right: 18px;
+    color: var(--secondary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .darkroom-toggle {
+    appearance: none;
+    border: 0;
+    background: none;
+    color: var(--secondary);
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    transition: color 180ms ease;
+  }
+
+  .darkroom-toggle:hover,
+  .darkroom-toggle[aria-pressed="true"] {
+    color: var(--ink);
+  }
+
+  .index {
+    position: fixed;
+    left: 0;
+    top: 48px;
+    bottom: 0;
+    width: var(--nav-w);
+    z-index: 90;
+    border-right: 1px solid var(--line);
+    background: var(--bg);
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .index::-webkit-scrollbar { display: none; }
+
+  .index-inner {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 28px 18px;
+  }
+
+  .place-link {
+    appearance: none;
+    border: 0;
+    width: 100%;
+    background: none;
+    color: var(--muted);
+    padding: 15px 0;
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    gap: 10px;
+    text-align: left;
+    cursor: pointer;
+    transition: color 180ms ease;
+  }
+
+  .place-link:hover { color: #666; }
+  .place-link.active { color: var(--ink); }
+
+  .place-number,
+  .place-count {
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .place-name {
+    text-transform: uppercase;
+    letter-spacing: -.01em;
+  }
+
+  .main {
+    margin-left: var(--nav-w);
+    padding-top: 48px;
+  }
+
+.place-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 90px 32px 40px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+}
+
+  .section-label {
+    position: absolute;
+    top: 24px;
+    left: 32px;
+    display: flex;
+    gap: 12px;
+    color: var(--section-muted);
+    text-transform: uppercase;
+    letter-spacing: .01em;
+    font-size: 10px;
+  }
+
+.photo-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.photo-field::-webkit-scrollbar {
+  display: none;
+}
+
+.photo {
+  margin: 0;
+  position: relative;
+  flex: 0 0 auto;
+  width: auto;
+}
+
+  .photo button {
+    appearance: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background: none;
+    width: 100%;
+    cursor: zoom-in;
+    text-align: left;
+  }
+
+.photo img {
+  width: auto;
+  height: 42vh;
+  object-fit: contain;
+  background: var(--image-bg);
+  transition: transform 400ms cubic-bezier(.2,.7,.2,1), filter 250ms ease;
+}
+
+.layout-0 img { height: 52vh; }
+.layout-1 img { height: 34vh; }
+.layout-2 img { height: 44vh; }
+.layout-3 img { height: 28vh; }
+.layout-4 img { height: 48vh; }
+.layout-5 img { height: 38vh; }
+.layout-6 img { height: 55vh; }
+.layout-7 img { height: 31vh; }
+.layout-8 img { height: 46vh; }
+.layout-9 img { height: 36vh; }
+
+  .photo button:hover img { transform: scale(1.012); }
+
+  .photo figcaption {
+    margin-top: 7px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--caption);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+  }
+
+  .broken {
+    aspect-ratio: 4/3;
+    display: grid !important;
+    place-items: center;
+    padding: 18px;
+    color: var(--caption);
+    background:
+      linear-gradient(135deg, transparent 49.7%, var(--broken-line) 50%, transparent 50.3%),
+      var(--broken-bg) !important;
+    font-size: 10px;
+    text-align: center;
+  }
+
+
+  /* =======================================================
+     INTRO SEQUENCE
+     Inspired by the reference:
+     diagonal micro-thumbnails → dot → horizontal line →
+     diagonal → resolve into the real photography page.
+     ======================================================= */
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .intro-sequence {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    pointer-events: none;
+    background: var(--bg);
+    overflow: hidden;
+    animation: introBackground 2700ms cubic-bezier(.65,0,.35,1) forwards;
+  }
+
+  .intro-stage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(72vw, 980px);
+    height: min(48vh, 520px);
+    transform: translate(-50%, -50%);
+  }
+
+  .intro-thumb {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 64px;
+    height: 46px;
+    object-fit: cover;
+    transform-origin: center;
+    box-shadow: none;
+    animation-duration: 2700ms;
+    animation-timing-function: cubic-bezier(.65,0,.35,1);
+    animation-fill-mode: forwards;
+  }
+
+  /* Individual offsets make the micro-chain feel photographic rather than UI-like */
+  .intro-thumb:nth-child(1) { --dx:-150px; --dy: 105px; --r:-28deg; --line:-180px; animation-name:introThumb1; }
+  .intro-thumb:nth-child(2) { --dx:-100px; --dy: 70px;  --r:-20deg; --line:-120px; animation-name:introThumb2; }
+  .intro-thumb:nth-child(3) { --dx:-50px;  --dy: 35px;  --r:-12deg; --line:-60px;  animation-name:introThumb3; }
+  .intro-thumb:nth-child(4) { --dx:0px;    --dy: 0px;   --r:0deg;   --line:0px;    animation-name:introThumb4; }
+  .intro-thumb:nth-child(5) { --dx:50px;   --dy:-35px;  --r:12deg;  --line:60px;   animation-name:introThumb5; }
+  .intro-thumb:nth-child(6) { --dx:100px;  --dy:-70px;  --r:20deg;  --line:120px;  animation-name:introThumb6; }
+  .intro-thumb:nth-child(7) { --dx:150px;  --dy:-105px; --r:28deg;  --line:180px;  animation-name:introThumb7; }
+
+  @keyframes introThumb1 {
+    0% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
+        rotate(var(--r))
+        scale(.72);
+    }
+    27% {
+      opacity: 1;
+      transform:
+        translate(-50%, -50%)
+        rotate(0deg)
+        scale(.08);
+    }
+    48% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--line)), -50%)
+        rotate(0deg)
+        scale(.19);
+    }
+    72% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--line)), -50%)
+        rotate(0deg)
+        scale(.19);
+    }
+    100% {
+      opacity: 0;
+      transform:
+        translate(calc(-50% + var(--line) * 2.35), -50%)
+        rotate(0deg)
+        scale(.78);
+    }
+  }
+  @keyframes introThumb2 {
+    0% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
+        rotate(var(--r))
+        scale(.72);
+    }
+    27% {
+      opacity: 1;
+      transform:
+        translate(-50%, -50%)
+        rotate(0deg)
+        scale(.08);
+    }
+    48% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--line)), -50%)
+        rotate(0deg)
+        scale(.19);
+    }
+    72% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--line)), -50%)
+        rotate(0deg)
+        scale(.19);
+    }
+    100% {
+      opacity: 0;
+      transform:
+        translate(calc(-50% + var(--line) * 2.35), -50%)
+        rotate(0deg)
+        scale(.78);
+    }
+  }
+  @keyframes introThumb3 {
+    0% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
+        rotate(var(--r))
+        scale(.72);
+    }
+    27% {
+      opacity: 1;
+      transform:
+        translate(-50%, -50%)
+        rotate(0deg)
+        scale(.08);
+    }
+    48% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--line)), -50%)
+        rotate(0deg)
+        scale(.19);
+    }
+    72% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--line)), -50%)
+        rotate(0deg)
+        scale(.19);
+    }
+    100% {
+      opacity: 0;
+      transform:
+        translate(calc(-50% + var(--line) * 2.35), -50%)
+        rotate(0deg)
+        scale(.78);
+    }
+  }
+  @keyframes introThumb4 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(0deg) scale(.72);
+    }
+    27% {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(0deg) scale(.08);
+    }
+    48% {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(0deg) scale(.19);
+    }
+    72% {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(0deg) scale(.19);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) rotate(0deg) scale(.78);
+    }
+  }
+  @keyframes introThumb5 {
+    0% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
+        rotate(var(--r))
+        scale(.72);
+    }
+    27% {
+      opacity: 1;
+      transform:
+        translate(-50%, -50%)
+        rotate(0deg)
+        scale(.08);
+    }
+    48% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--line)), -50%)
+        rotate(0deg)
+        scale(.19);
+    }
+    72% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--line)), -50%)
+        rotate(0deg)
+        scale(.19);
+    }
+    100% {
+      opacity: 0;
+      transform:
+        translate(calc(-50% + var(--line) * 2.35), -50%)
+        rotate(0deg)
+        scale(.78);
+    }
+  }
+  @keyframes introThumb6 {
+    0% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
+        rotate(var(--r))
+        scale(.72);
+    }
+    27% {
+      opacity: 1;
+      transform:
+        translate(-50%, -50%)
+        rotate(0deg)
+        scale(.08);
+    }
+    48% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--line)), -50%)
+        rotate(0deg)
+        scale(.19);
+    }
+    72% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--line)), -50%)
+        rotate(0deg)
+        scale(.19);
+    }
+    100% {
+      opacity: 0;
+      transform:
+        translate(calc(-50% + var(--line) * 2.35), -50%)
+        rotate(0deg)
+        scale(.78);
+    }
+  }
+  @keyframes introThumb7 {
+    0% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
+        rotate(var(--r))
+        scale(.72);
+    }
+    27% {
+      opacity: 1;
+      transform:
+        translate(-50%, -50%)
+        rotate(0deg)
+        scale(.08);
+    }
+    48% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--line)), -50%)
+        rotate(0deg)
+        scale(.19);
+    }
+    72% {
+      opacity: 1;
+      transform:
+        translate(calc(-50% + var(--line)), -50%)
+        rotate(0deg)
+        scale(.19);
+    }
+    100% {
+      opacity: 0;
+      transform:
+        translate(calc(-50% + var(--line) * 2.35), -50%)
+        rotate(0deg)
+        scale(.78);
+    }
+  }
+
+  @keyframes introBackground {
+    0%, 72% {
+      background: var(--bg);
+    }
+    100% {
+      background: transparent;
+      visibility: hidden;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .intro-sequence { display:none; }
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: var(--lightbox-bg);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 62px 64px 48px;
+  }
+  .lightbox.open { display: flex; }
+
+  .lightbox img {
+    max-width: min(84vw, 1500px);
+    max-height: calc(100vh - 130px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .lightbox-top {
+    position: absolute;
+    top: 16px;
+    left: 18px;
+    right: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .lightbox-close,
+  .lightbox-nav {
+    border: 0;
+    background: none;
+    cursor: pointer;
+    padding: 8px 0;
+    color: var(--ink);
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    font-weight: 300;
+  }
+  .lightbox-prev { left: 20px; }
+  .lightbox-next { right: 20px; }
+
+  .lightbox-meta {
+    position: absolute;
+    left: 18px;
+    bottom: 14px;
+    color: var(--secondary);
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    :root { --nav-w: 0px; }
+
+    .site-header {
+      grid-template-columns: 1fr auto;
+      height: 46px;
+    }
+    .mode-label {
+      display: block;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .brand { padding-left: 14px; }
+    .counter { padding-right: 14px; }
+
+    .index {
+      top: auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 62px;
+      border-right: 0;
+      border-top: 1px solid var(--line);
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    .index-inner {
+      min-height: 0;
+      height: 100%;
+      padding: 0 14px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 24px;
+      width: max-content;
+    }
+
+    .place-link {
+      width: auto;
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+      padding: 18px 0;
+      white-space: nowrap;
+    }
+    .place-count { display: none; }
+
+    .main { margin-left: 0; padding-top: 46px; padding-bottom: 62px; }
+    .place-section { padding: 60px 16px 84px; }
+    .section-label { top: 18px; left: 16px; }
+    .photo-field { gap: 14px; }
+
+    /* Slightly smaller photography scale on mobile.
+       Keeps the same irregular rhythm, just gives the images more breathing room. */
+    .photo img { height: 36vh; }
+
+    .layout-0 img { height: 44vh; }
+    .layout-1 img { height: 29vh; }
+    .layout-2 img { height: 37vh; }
+    .layout-3 img { height: 24vh; }
+    .layout-4 img { height: 41vh; }
+    .layout-5 img { height: 32vh; }
+    .layout-6 img { height: 47vh; }
+    .layout-7 img { height: 26vh; }
+    .layout-8 img { height: 39vh; }
+    .layout-9 img { height: 31vh; }
+
+    .lightbox { padding: 58px 16px 58px; }
+    .lightbox-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="intro-sequence" id="introSequence" aria-hidden="true">
+  <div class="intro-stage">
+    <img class="intro-thumb" src="assets/images/sophiaakrofi-arles.jpg" alt="">
+    <img class="intro-thumb" src="assets/images/filmphoto-2.jpg" alt="">
+    <img class="intro-thumb" src="assets/images/filmphoto-3.jpg" alt="">
+    <img class="intro-thumb" src="assets/images/filmphoto-9.jpg" alt="">
+    <img class="intro-thumb" src="assets/images/filmphoto-14.jpg" alt="">
+    <img class="intro-thumb" src="assets/images/filmphoto-15.jpg" alt="">
+    <img class="intro-thumb" src="assets/images/filmphoto-16.jpg" alt="">
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="brand">SOPHIA AKROFI</div>
+  <button class="mode-label darkroom-toggle" id="darkroomToggle" type="button" aria-pressed="false">DARKROOM</button>
+  <div class="counter" id="counter">01 / 07</div>
+</header>
+
+<aside class="index" aria-label="Photography locations">
+  <div class="index-inner" id="index"></div>
+</aside>
+
+<main class="main" id="main"></main>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-top">
+    <div>SOPHIA AKROFI / PHOTOGRAPHY</div>
+    <button class="lightbox-close" id="closeLightbox" type="button">CLOSE ×</button>
+  </div>
+  <button class="lightbox-nav lightbox-prev" id="prevPhoto" type="button" aria-label="Previous photo">←</button>
+  <img id="lightboxImage" alt="" />
+  <button class="lightbox-nav lightbox-next" id="nextPhoto" type="button" aria-label="Next photo">→</button>
+  <div class="lightbox-meta" id="lightboxMeta"></div>
+</div>
+
+<script>
+const photos = [
+  { src: 'assets/images/sophiaakrofi-arles.jpg', city: 'Arles, France' },
+  { src: 'assets/images/filmphoto-2.jpg', city: 'Arles, France' },
+  { src: 'assets/images/filmphoto-3.jpg', city: 'Arles, France' },
+  { src: 'assets/images/filmphoto-4.jpg', city: 'Paris, France' },
+  { src: 'assets/images/filmphoto-5.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/filmphoto-6.jpg', city: 'Mexico City, Mexico' },
+  { src: 'assets/images/filmphoto-7.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/filmphoto-8.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/filmphoto-9.jpg', city: 'Arles, France' },
+  { src: 'assets/images/filmphoto-10.jpg', city: 'Copper Canyon, Mexico' },
+  { src: 'assets/images/filmphoto-11.jpg', city: 'Arles, France' },
+  { src: 'assets/images/filmphoto-12.jpg', city: 'Mexico City, Mexico' },
+  { src: 'assets/images/A006693-R1-04-5.jpg', city: 'Accra, Ghana' },
+  { src: 'assets/images/filmphoto-14.jpg', city: 'Arles, France' },
+  { src: 'assets/images/filmphoto-15.jpg', city: 'Arles, France' },
+  { src: 'assets/images/filmphoto-16.jpg', city: 'Arles, France' },
+  { src: 'assets/images/filmphoto-17.jpg', city: 'Arles, France' },
+  { src: 'assets/images/000051910038.jpg', city: 'Accra, Ghana' },
+  { src: 'assets/images/000075270030.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/000099020027.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/A006005-R1-02-3.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/A006005-R1-03-4.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/A006005-R1-06-7.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/A006005-R1-07-8.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/A006005-R1-11-12.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/A006005-R1-12-13.jpg', city: 'Paris, France' },
+  { src: 'assets/images/A006005-R1-15-16.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/A006005-R1-16-17.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/A006005-R1-17-18.jpg', city: 'Paris, France' },
+  { src: 'assets/images/A006005-R1-20-21.jpg', city: 'Paris, France' },
+  { src: 'assets/images/A006049-R1-03-9A.jpg', city: 'Paris, France' },
+  { src: 'assets/images/A006049-R1-08-14A.jpg', city: 'Paris, France' },
+  { src: 'assets/images/A006049-R1-20-26A.jpg', city: 'Paris, France' },
+  { src: 'assets/images/A006051-R1-05-19A.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/A006051-R1-06-18A.jpg', city: 'London, England' },
+  { src: 'assets/images/A006051-R1-08-16A.jpg', city: 'Paris, France' },
+  { src: 'assets/images/A006051-R1-09-15A.jpg', city: 'Paris, France' },
+  { src: 'assets/images/A006051-R1-20-2A.jpg', city: 'Paris, France' },
+  { src: 'assets/images/A006052-R1-00-1 (1).jpg', city: 'London, England' },
+  { src: 'assets/images/A006052-R1-00-1.jpg', city: 'London, England' },
+  { src: 'assets/images/A006052-R1-09-10.jpg', city: 'Paris, France' },
+  { src: 'assets/images/A006052-R1-14-15.jpg', city: 'Paris, France' },
+  { src: 'assets/images/A006052-R1-16-17.jpg', city: 'Accra, Ghana' },
+  { src: 'assets/images/A006053-R1-01-35A.jpg', city: 'Accra, Ghana' },
+  { src: 'assets/images/A006053-R1-02-34A.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/A006053-R1-27-9A.jpg', city: 'Accra, Ghana' },
+  { src: 'assets/images/A006054-R1-05-20.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/A006054-R1-06-19.jpg', city: 'London, England' },
+  { src: 'assets/images/A006054-R1-07-18.jpg', city: 'London, England' },
+  { src: 'assets/images/A006054-R1-15-8.jpg', city: 'Accra, Ghana' },
+  { src: 'assets/images/A006054-R1-16-7.jpg', city: 'Accra, Ghana' },
+  { src: 'assets/images/A006054-R1-18-5.jpg', city: 'Lisbon, Portugal' },
+  { src: 'assets/images/A006684-R1-01-5 (1).jpg', city: 'Arles, France' },
+  { src: 'assets/images/A006684-R1-01-5.jpg', city: 'Mexico City, Mexico' },
+  { src: 'assets/images/A006684-R1-05-9 (1).jpg', city: 'Arles, France' },
+  { src: 'assets/images/A006684-R1-05-9.jpg', city: 'Copper Canyon, Mexico' },
+  { src: 'assets/images/A006684-R1-14-19.jpg', city: 'Accra, Ghana' },
+  { src: 'assets/images/A006684-R1-16-21.jpg', city: 'Arles, France' },
+  { src: 'assets/images/A006684-R1-10-14.jpg', city: 'Accra, Ghana' },
+  { src: 'assets/images/A006684-R1-16-21.jpg', city: 'Accra, Ghana' },
+  { src: 'assets/images/A006684-R1-20-25.jpg', city: 'Accra, Ghana' },
+  { src: 'assets/images/A006684-R1-21-26.jpg', city: 'Accra, Ghana' },
+  { src: 'assets/images/A006684-R1-22-27.jpg', city: 'Accra, Ghana' },
+  { src: 'assets/images/A006684-R1-26-31.jpg', city: 'Arles, France' },
+  { src: 'assets/images/A006684-R1-28-33.jpg', city: 'Accra, Ghana' },
+  { src: 'assets/images/A006684-R1-30-35.jpg', city: 'Paris, France' },
+  { src: 'assets/images/A006693-R1-07-8.jpg', city: 'Arles, France' }
+];
+
+const preferredOrder = [
+  'Arles, France',
+  'Accra, Ghana',
+  'Paris, France',
+  'London, England',
+  'Lisbon, Portugal',
+  'Mexico City, Mexico',
+  'Copper Canyon, Mexico'
+];
+
+const displayName = city => city.split(',')[0].toUpperCase();
+const slug = city => city.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+const groups = preferredOrder
+  .map(city => ({ city, photos: photos.filter(p => p.city === city) }))
+  .filter(group => group.photos.length);
+
+const indexEl = document.getElementById('index');
+const mainEl = document.getElementById('main');
+const counterEl = document.getElementById('counter');
+
+let activeGroup = 0;
+let openPhotoIndex = 0;
+
+function renderIndex() {
+  indexEl.innerHTML = groups.map((group, i) => `
+    <button class="place-link ${i === 0 ? 'active' : ''}" data-group="${i}" type="button">
+      <span class="place-number">${String(i + 1).padStart(2,'0')}</span>
+      <span class="place-name">${displayName(group.city)}</span>
+      <span class="place-count">${String(group.photos.length).padStart(2,'0')}</span>
+    </button>
+  `).join('');
+
+  indexEl.querySelectorAll('.place-link').forEach(button => {
+    button.addEventListener('click', () => {
+      const i = Number(button.dataset.group);
+      document.getElementById(slug(groups[i].city)).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+function renderMain() {
+  let globalIndex = 0;
+  mainEl.innerHTML = groups.map((group, groupIndex) => {
+    const sectionPhotos = group.photos.map((photo, localIndex) => {
+      const thisGlobalIndex = photos.indexOf(photo);
+      const layout = localIndex % 10;
+      const html = `
+        <figure class="photo layout-${layout}">
+          <button type="button" class="open-photo" data-photo-index="${thisGlobalIndex}" aria-label="Open photograph ${thisGlobalIndex + 1}">
+            <img src="${photo.src}" alt="${group.city}, photograph ${localIndex + 1}" loading="lazy" data-filename="${photo.src.split('/').pop()}">
+          </button>
+          <figcaption>
+            <span>${String(localIndex + 1).padStart(2,'0')}</span>
+            <span>${displayName(group.city)}</span>
+          </figcaption>
+        </figure>`;
+      globalIndex++;
+      return html;
+    }).join('');
+
+    return `
+      <section class="place-section" id="${slug(group.city)}" data-group="${groupIndex}">
+        <div class="section-label">
+          <span>${String(groupIndex + 1).padStart(2,'0')}</span>
+          <span>${displayName(group.city)}</span>
+        </div>
+        <div class="photo-field">${sectionPhotos}</div>
+      </section>`;
+  }).join('');
+
+  mainEl.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', () => {
+      const filename = img.dataset.filename || 'image';
+      const replacement = document.createElement('div');
+      replacement.className = 'broken';
+      replacement.textContent = `IMAGE NOT FOUND\n${filename}`;
+      img.replaceWith(replacement);
+    }, { once: true });
+  });
+
+  mainEl.querySelectorAll('.open-photo').forEach(button => {
+    button.addEventListener('click', () => openLightbox(Number(button.dataset.photoIndex)));
+  });
+}
+
+function setActiveGroup(i) {
+  if (i === activeGroup) return;
+  activeGroup = i;
+  indexEl.querySelectorAll('.place-link').forEach((el, idx) => el.classList.toggle('active', idx === i));
+  counterEl.textContent = `${String(i + 1).padStart(2,'0')} / ${String(groups.length).padStart(2,'0')}`;
+
+  const activeButton = indexEl.querySelector(`[data-group="${i}"]`);
+  if (window.innerWidth <= 900 && activeButton) {
+    activeButton.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }
+}
+
+function setupSectionObserver() {
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (visible) setActiveGroup(Number(visible.target.dataset.group));
+  }, {
+    threshold: [0.15, 0.3, 0.5, 0.7],
+    rootMargin: '-12% 0px -55% 0px'
+  });
+
+  document.querySelectorAll('.place-section').forEach(section => observer.observe(section));
+}
+
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxMeta = document.getElementById('lightboxMeta');
+
+function openLightbox(index) {
+  openPhotoIndex = index;
+  const photo = photos[index];
+  if (!photo) return;
+  lightboxImage.src = photo.src;
+  lightboxImage.alt = photo.city;
+  lightboxMeta.textContent = `${displayName(photo.city)} / ${String(index + 1).padStart(2,'0')} OF ${String(photos.length).padStart(2,'0')}`;
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+function stepLightbox(direction) {
+  openPhotoIndex = (openPhotoIndex + direction + photos.length) % photos.length;
+  openLightbox(openPhotoIndex);
+}
+
+document.getElementById('closeLightbox').addEventListener('click', closeLightbox);
+document.getElementById('prevPhoto').addEventListener('click', () => stepLightbox(-1));
+document.getElementById('nextPhoto').addEventListener('click', () => stepLightbox(1));
+lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
+
+document.addEventListener('keydown', event => {
+  if (!lightbox.classList.contains('open')) return;
+  if (event.key === 'Escape') closeLightbox();
+  if (event.key === 'ArrowLeft') stepLightbox(-1);
+  if (event.key === 'ArrowRight') stepLightbox(1);
+});
+
+
+const darkroomToggle = document.getElementById('darkroomToggle');
+
+function setDarkroom(isDark, persist = true) {
+  document.documentElement.classList.toggle('darkroom', isDark);
+  document.body.classList.toggle('darkroom', isDark);
+
+  darkroomToggle.setAttribute('aria-pressed', String(isDark));
+  darkroomToggle.textContent = isDark ? 'LIGHTROOM' : 'DARKROOM';
+
+  if (persist) {
+    try {
+      localStorage.setItem(
+        'sophia-photography-theme',
+        isDark ? 'darkroom' : 'light'
+      );
+    } catch (e) {}
+  }
+}
+
+/* Sync the toggle with the theme that was applied before first paint. */
+setDarkroom(
+  document.documentElement.classList.contains('darkroom'),
+  false
+);
+
+darkroomToggle.addEventListener('click', () => {
+  setDarkroom(!document.documentElement.classList.contains('darkroom'));
+});
+
+const introSequence = document.getElementById('introSequence');
+if (introSequence) {
+  introSequence.addEventListener('animationend', event => {
+    if (event.animationName === 'introBackground') {
+      introSequence.remove();
+    }
+  });
+}
+
+renderIndex();
+renderMain();
+setupSectionObserver();
+</script>
+</body>
+</html>

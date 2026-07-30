@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Lava Lamp Dither</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      background: #111111;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+
+      font-family:
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+    }
+
+    /*
+      The artwork is always 4:5.
+
+      It scales down for browser preview,
+      while the canvas itself still renders
+      internally at exactly 1080 × 1350.
+    */
+    .stage {
+      position: relative;
+
+      width: min(
+        100vw,
+        calc(100vh * 0.8)
+      );
+
+      aspect-ratio: 4 / 5;
+
+      overflow: hidden;
+      background: #000000;
+    }
+
+    canvas {
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      display: block;
+    }
+
+    .headline {
+      position: absolute;
+      z-index: 0;
+
+      left: 7%;
+      right: 7%;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: #ffffff;
+
+      font-size: clamp(
+        52px,
+        7.2vw,
+        98px
+      );
+
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: -0.055em;
+
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="stage">
+
+    <div class="headline">
+      Your taste will<br />
+      always outrun<br />
+      a prompt.
+    </div>
+
+    <canvas
+      id="lava"
+      width="1080"
+      height="1350"
+    ></canvas>
+
+  </main>
+
+  <script>
+    (() => {
+      const canvas =
+        document.getElementById("lava");
+
+      const ctx =
+        canvas.getContext("2d");
+
+      /*
+        Fixed Instagram portrait dimensions.
+      */
+      const W = 1080;
+      const H = 1350;
+
+      /*
+        Larger value = chunkier grid.
+        Smaller value = finer grid.
+
+        18 works well at 1080 × 1350.
+      */
+      const CELL = 18;
+
+      const YELLOW = "#FFD400";
+
+      /*
+        Seconds between ambient sparkle changes.
+      */
+      const SPARKLE_TICK = 0.5;
+
+      /*
+        Percentage of empty cells containing
+        ambient dots or plus symbols.
+      */
+      const SPARKLE_DENSITY = 0.028;
+
+      const COLS =
+        Math.ceil(W / CELL);
+
+      const ROWS =
+        Math.ceil(H / CELL);
+
+      const SHORTER_SIDE =
+        Math.min(W, H);
+
+      /*
+        Each blob follows independent sine waves.
+
+        This makes the forms wander, merge and split
+        without needing collision calculations.
+      */
+      const blobs = [
+        {
+          baseX: 0.18,
+          baseY: 0.10,
+          ax: 0.10,
+          ay: 0.08,
+          fx: 0.10,
+          fy: 0.08,
+          phx: 0.0,
+          phy: 1.2,
+          r: 0.085
+        },
+
+        {
+          baseX: 0.78,
+          baseY: 0.07,
+          ax: 0.14,
+          ay: 0.10,
+          fx: 0.07,
+          fy: 0.11,
+          phx: 2.0,
+          phy: 0.4,
+          r: 0.10
+        },
+
+        {
+          baseX: 0.45,
+          baseY: 0.28,
+          ax: 0.16,
+          ay: 0.14,
+          fx: 0.06,
+          fy: 0.09,
+          phx: 1.0,
+          phy: 3.0,
+          r: 0.13
+        },
+
+        {
+          baseX: 0.85,
+          baseY: 0.45,
+          ax: 0.10,
+          ay: 0.12,
+          fx: 0.08,
+          fy: 0.06,
+          phx: 3.5,
+          phy: 1.5,
+          r: 0.09
+        },
+
+        {
+          baseX: 0.15,
+          baseY: 0.55,
+          ax: 0.12,
+          ay: 0.10,
+          fx: 0.09,
+          fy: 0.07,
+          phx: 4.2,
+          phy: 2.2,
+          r: 0.095
+        },
+
+        {
+          baseX: 0.55,
+          baseY: 0.72,
+          ax: 0.18,
+          ay: 0.16,
+          fx: 0.05,
+          fy: 0.08,
+          phx: 0.8,
+          phy: 4.0,
+          r: 0.14
+        },
+
+        {
+          baseX: 0.30,
+          baseY: 0.92,
+          ax: 0.12,
+          ay: 0.08,
+          fx: 0.07,
+          fy: 0.10,
+          phx: 2.6,
+          phy: 0.9,
+          r: 0.10
+        }
+      ];
+
+      /*
+        Fourth-power falloff creates the narrow
+        checkerboard and dotted fringe around
+        the solid yellow blobs.
+      */
+      function field(
+        x,
+        y,
+        positions
+      ) {
+        let sum = 0;
+
+        for (
+          let index = 0;
+          index < positions.length;
+          index++
+        ) {
+          const blob =
+            positions[index];
+
+          const dx =
+            x - blob.x;
+
+          const dy =
+            y - blob.y;
+
+          const distanceSquared =
+            dx * dx +
+            dy * dy +
+            0.0001;
+
+          const radiusSquared =
+            blob.r * blob.r;
+
+          sum +=
+            (
+              radiusSquared *
+              radiusSquared
+            ) /
+            (
+              distanceSquared *
+              distanceSquared
+            );
+        }
+
+        return sum;
+      }
+
+      /*
+        Stable pseudo-random value for each cell.
+      */
+      function hash(
+        x,
+        y,
+        seed
+      ) {
+        const number =
+          Math.sin(
+            x * 127.1 +
+            y * 311.7 +
+            seed * 74.7
+          ) * 43758.5453;
+
+        return (
+          number -
+          Math.floor(number)
+        );
+      }
+
+      function drawDot(
+        pixelX,
+        pixelY
+      ) {
+        const centreX =
+          pixelX + CELL / 2;
+
+        const centreY =
+          pixelY + CELL / 2;
+
+        ctx.beginPath();
+
+        ctx.arc(
+          centreX,
+          centreY,
+          CELL * 0.13,
+          0,
+          Math.PI * 2
+        );
+
+        ctx.fill();
+      }
+
+      function drawPlus(
+        pixelX,
+        pixelY
+      ) {
+        const centreX =
+          pixelX + CELL / 2;
+
+        const centreY =
+          pixelY + CELL / 2;
+
+        const arm =
+          CELL * 0.34;
+
+        const thickness =
+          CELL * 0.16;
+
+        ctx.fillRect(
+          centreX - thickness / 2,
+          centreY - arm,
+          thickness,
+          arm * 2
+        );
+
+        ctx.fillRect(
+          centreX - arm,
+          centreY - thickness / 2,
+          arm * 2,
+          thickness
+        );
+      }
+
+      function drawChecker(
+        pixelX,
+        pixelY
+      ) {
+        const half =
+          CELL / 2;
+
+        ctx.fillRect(
+          pixelX,
+          pixelY,
+          half,
+          half
+        );
+
+        ctx.fillRect(
+          pixelX + half,
+          pixelY + half,
+          half,
+          half
+        );
+      }
+
+      function drawSolid(
+        pixelX,
+        pixelY
+      ) {
+        ctx.fillRect(
+          pixelX,
+          pixelY,
+          CELL,
+          CELL
+        );
+
+        /*
+          Dark internal grid line.
+        */
+        ctx.strokeStyle =
+          "rgba(0, 0, 0, 0.45)";
+
+        ctx.lineWidth = 1;
+
+        ctx.strokeRect(
+          pixelX + 0.5,
+          pixelY + 0.5,
+          CELL - 1,
+          CELL - 1
+        );
+      }
+
+      function draw(timestamp) {
+        const time =
+          timestamp * 0.001;
+
+        const sparkleTick =
+          Math.floor(
+            time / SPARKLE_TICK
+          );
+
+        const positions =
+          blobs.map((blob) => ({
+            x:
+              (
+                blob.baseX +
+                Math.sin(
+                  time * blob.fx +
+                  blob.phx
+                ) *
+                blob.ax
+              ) *
+              (
+                W /
+                SHORTER_SIDE
+              ),
+
+            y:
+              (
+                blob.baseY +
+                Math.cos(
+                  time * blob.fy +
+                  blob.phy
+                ) *
+                blob.ay
+              ) *
+              (
+                H /
+                SHORTER_SIDE
+              ),
+
+            r: blob.r
+          }));
+
+        /*
+          Black background.
+        */
+        ctx.fillStyle = "#000000";
+
+        ctx.fillRect(
+          0,
+          0,
+          W,
+          H
+        );
+
+        ctx.fillStyle = YELLOW;
+
+        for (
+          let row = 0;
+          row < ROWS;
+          row++
+        ) {
+          const normalizedY =
+            (
+              (
+                row + 0.5
+              ) *
+              CELL
+            ) /
+            SHORTER_SIDE;
+
+          for (
+            let column = 0;
+            column < COLS;
+            column++
+          ) {
+            const normalizedX =
+              (
+                (
+                  column + 0.5
+                ) *
+                CELL
+              ) /
+              SHORTER_SIDE;
+
+            const value =
+              field(
+                normalizedX,
+                normalizedY,
+                positions
+              );
+
+            const pixelX =
+              column * CELL;
+
+            const pixelY =
+              row * CELL;
+
+            /*
+              Solid yellow grid interior.
+            */
+            if (value >= 1.0) {
+              drawSolid(
+                pixelX,
+                pixelY
+              );
+            }
+
+            /*
+              Checkerboard boundary.
+            */
+            else if (value >= 0.6) {
+              drawChecker(
+                pixelX,
+                pixelY
+              );
+            }
+
+            /*
+              Plus-symbol outer boundary.
+            */
+            else if (value >= 0.3) {
+              drawPlus(
+                pixelX,
+                pixelY
+              );
+            }
+
+            /*
+              Small dotted outer fringe.
+            */
+            else if (value >= 0.12) {
+              drawDot(
+                pixelX,
+                pixelY
+              );
+            }
+
+            /*
+              Ambient sparkles in empty space.
+            */
+            else if (
+              hash(
+                column,
+                row,
+                0
+              ) <
+              SPARKLE_DENSITY
+            ) {
+              if (
+                hash(
+                  column,
+                  row,
+                  sparkleTick
+                ) <
+                0.5
+              ) {
+                drawDot(
+                  pixelX,
+                  pixelY
+                );
+              } else {
+                drawPlus(
+                  pixelX,
+                  pixelY
+                );
+              }
+            }
+          }
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      requestAnimationFrame(draw);
+    })();
+  </script>
+
+</body>
+</html>
