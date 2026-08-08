@@ -1129,8 +1129,8 @@
   .wwm-hero-shell {
     position: relative;
     height: 100%;
-    padding-top: 72px;
-    padding-bottom: 48px;
+    padding-top: 48px;
+    padding-bottom: 60px;
     display: flex;
     flex-direction: column;
   }
