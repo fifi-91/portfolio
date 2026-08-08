@@ -83,20 +83,20 @@
               exploring how AI can create value for your business, I bring together product
               strategy, UX and engineering thinking to move ideas into reality.
             </p>
+
             <p class="wwm-mobile-interaction-hint" aria-hidden="true">
               Swipe your finger around this interactive area to reveal my skillsets.
             </p>
 
-           <div class="wwm-hero-actions">
+            <div class="wwm-hero-actions">
               <a href="#project-enquiry" class="wwm-button wwm-button-hero">
                 Discuss a project
               </a>
 
               <a href="#mentorship" class="wwm-button wwm-button-hero-secondary">
-  Explore mentorship
-</a>
+                Explore mentorship
+              </a>
             </div>
-
 
           <div class="wwm-trail-layer" id="wwmTrailLayer" aria-hidden="true"></div>
         </div>
@@ -274,12 +274,15 @@
       </div>
 
       <form class="wwm-form p2-rise"
-            id="projectForm"
-            action="https://formsubmit.co/hello@sophiaakrofi.com"
-            method="POST">
-        <input type="hidden" name="_subject" value="New project enquiry from sophiaakrofi.com">
-        <input type="hidden" name="_template" value="table">
+        id="projectForm"
+        action="https://api.web3forms.com/submit"
+        method="POST">
+
+        <input type="hidden" name="access_key" value="b331bf5a-4a4c-4996-b82c-7a97f7656568">
+        <input type="hidden" name="subject" value="New project enquiry — Sophia Akrofi">
+        <input type="hidden" name="from_name" value="Sophia Akrofi Portfolio">
         <input type="hidden" name="form_type" value="Project enquiry">
+
         <fieldset class="wwm-form-group">
           <legend>What would you like to discuss?</legend>
           <div class="wwm-choice-grid">
@@ -359,12 +362,15 @@
       </div>
 
       <form class="wwm-form wwm-mentor-form p2-rise"
-            id="mentorForm"
-            action="https://formsubmit.co/hello@sophiaakrofi.com"
-            method="POST">
-        <input type="hidden" name="_subject" value="New mentorship request from sophiaakrofi.com">
-        <input type="hidden" name="_template" value="table">
+        id="mentorForm"
+        action="https://api.web3forms.com/submit"
+        method="POST">
+
+        <input type="hidden" name="access_key" value="b331bf5a-4a4c-4996-b82c-7a97f7656568">
+        <input type="hidden" name="subject" value="New mentorship request — Sophia Akrofi">
+        <input type="hidden" name="from_name" value="Sophia Akrofi Portfolio">
         <input type="hidden" name="form_type" value="Mentorship request">
+
         <fieldset class="wwm-form-group">
           <legend>Select mentorship format</legend>
           <div class="wwm-segmented" role="radiogroup" aria-label="Mentorship format">
@@ -445,7 +451,7 @@
   </footer>
 
   <script>
-// Mobile navigation
+    // Mobile navigation
     (function () {
       const menuToggle = document.getElementById('menuToggle');
       const mobileMenu = document.getElementById('mobileMenu');
@@ -557,7 +563,6 @@
       let activeCards = 0;
       const MAX_CARDS = 14;
 
-      // Shuffle without creating a visible categorisation.
       const pool = [...words].sort(() => Math.random() - 0.5);
 
       function nextWord() {
@@ -611,11 +616,9 @@
           ? 999
           : Math.hypot(x - lastX, y - lastY);
 
-        // One card at a time for normal movement.
         if (moved >= 18 && now - lastSpawn >= 32) {
           spawnCard(x, y, nextWord());
 
-          // Occasionally create a tiny 2–3-card burst, as requested.
           const roll = Math.random();
           if (roll > 0.84) {
             spawnCard(x + 16, y - 10, nextWord(), 18);
@@ -632,7 +635,6 @@
 
       stage.addEventListener('pointermove', pointerMove, { passive: true });
 
-      // Small initial cue: three cards only, then they disappear.
       requestAnimationFrame(() => {
         const r = stage.getBoundingClientRect();
         const startX = r.width * 0.71;
@@ -643,7 +645,6 @@
         spawnCard(startX + 78, startY + 12, 'Competitive analysis', 220);
       });
     })();
-
 
     // Work With Me: one global nav that inherits the surface under it
     (function () {
@@ -703,7 +704,6 @@
       window.addEventListener('resize', updateNav);
     })();
 
-
     // Ways to work together: equal selectable territories
     (function () {
       const territories = Array.from(document.querySelectorAll('.wwm-territory'));
@@ -742,8 +742,6 @@
         textarea.addEventListener('input', () => resize(textarea));
       });
     })();
-
-
   </script>
 </body>
 </html>
