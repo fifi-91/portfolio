@@ -32,7 +32,7 @@
         <a href="projects.html">Projects</a>
         <a href="about.html">About</a>
         <a href="work-with-me.html" class="active">Work with me</a>
-        <a href="#" class="nav-cta" onclick="openCalendly(); return false;">Book a call</a>
+        <a href="#project-enquiry" class="nav-cta">Discuss a project</a>
       </div>
 
       <div class="nav-mobile">
@@ -54,34 +54,53 @@
         <a href="projects.html">Projects</a>
         <a href="about.html">About</a>
         <a href="work-with-me.html" class="active">Work with me</a>
-        <a href="#" class="mobile-nav-cta" onclick="openCalendly(); return false;">Book a call</a>
+        <a href="#project-enquiry" class="mobile-nav-cta">Discuss a project</a>
       </div>
     </div>
   </div>
 
   <main>
     <!-- HERO -->
-    <section class="wwm-hero section-pad">
-      <div class="wwm-availability p2-rise">
-        <span class="wwm-status-dot"></span>
-        Currently accepting a limited number of consulting projects alongside my full-time role.
-      </div>
+    <section class="wwm-hero wwm-hero-interactive" id="wwmHero" data-nav-surface="#202020">
+      <div class="wwm-hero-shell section-pad">
 
-      <div class="wwm-hero-grid">
-        <div class="wwm-hero-heading p2-rise">
-          <p class="wwm-kicker">Work With Me</p>
-          <h1>Strategy.<br />Design. <em>AI.</em></h1>
+        <div class="wwm-availability p2-rise">
+          <span class="wwm-status-dot" aria-hidden="true"></span>
+          Currently accepting consulting &amp; design projects.
         </div>
 
-        <div class="wwm-hero-copy p2-rise">
-          <p class="wwm-lede">I help ambitious companies define, design and build digital products that solve real business problems.</p>
-          <p>Whether you are launching something new, improving an existing product or exploring how AI can create value for your business, I bring together product strategy, UX and engineering thinking to move ideas into reality.</p>
+        <div class="wwm-hero-stage" id="wwmHeroStage">
+          <div class="wwm-hero-copy p2-rise">
+            <h1>Work with me</h1>
 
-          <div class="wwm-hero-actions">
-            <a href="#clarity-call" class="wwm-button wwm-button-dark">Book a Product Clarity Session <span>→</span></a>
-            <a href="#services" class="wwm-text-link">Explore ways to work together ↓</a>
-          </div>
+            <p class="wwm-lede">
+              I help ambitious companies define, design and build
+              digital products that solve real business problems.
+            </p>
+
+            <p class="wwm-hero-description">
+              Whether you are launching something new, improving an existing product or
+              exploring how AI can create value for your business, I bring together product
+              strategy, UX and engineering thinking to move ideas into reality.
+            </p>
+            <p class="wwm-mobile-interaction-hint" aria-hidden="true">
+              Swipe your finger around this interactive area to reveal my skillsets.
+            </p>
+
+           <div class="wwm-hero-actions">
+              <a href="#project-enquiry" class="wwm-button wwm-button-hero">
+                Discuss a project
+              </a>
+
+              <a href="#mentorship" class="wwm-button wwm-button-hero-secondary">
+  Explore mentorship
+</a>
+            </div>
+
+
+          <div class="wwm-trail-layer" id="wwmTrailLayer" aria-hidden="true"></div>
         </div>
+
       </div>
     </section>
 
@@ -98,7 +117,7 @@
     </div>
 
     <!-- WHO I WORK WITH -->
-    <section class="wwm-audience section-pad">
+    <section class="wwm-audience section-pad" data-nav-surface="#ffffff">
       <div class="wwm-section-intro">
         <div class="wwm-eyebrow p2-rise"><span>01</span>Who I work with</div>
         <h2 class="p2-rise">Senior product thinking, brought into the room <em>when it matters.</em></h2>
@@ -114,117 +133,297 @@
       </div>
     </section>
 
-    <!-- SERVICES -->
-    <section class="wwm-services section-pad" id="services">
+    <!-- WAYS TO WORK TOGETHER -->
+    <section class="wwm-services section-pad" id="services" data-nav-surface="#f2f1ed">
       <div class="wwm-section-intro wwm-section-intro-light">
         <div class="wwm-eyebrow p2-rise"><span>02</span>Ways we can work together</div>
-        <h2 class="p2-rise">From an unclear opportunity to a product your team can <em>confidently build.</em></h2>
+        <div>
+          <h2 class="p2-rise">From unclear opportunity to clear direction — and something tangible enough to <em>test, fund or build.</em></h2>
+          <p class="wwm-section-support p2-rise">
+            I work across product strategy, design and leadership. The engagement depends on where the problem is — defining the opportunity, designing the experience or helping a team get there.
+          </p>
+        </div>
       </div>
 
-      <div class="wwm-service-list">
-        <article class="wwm-service p2-rise">
-          <div class="wwm-service-number">01</div>
-          <h3>Product Strategy</h3>
-          <p>Clarify your product vision, roadmap and priorities before investing in design or development.</p>
-        </article>
-
-        <article class="wwm-service p2-rise">
-          <div class="wwm-service-number">02</div>
-          <h3>UX &amp; Product Design</h3>
-          <p>Research, user journeys, wireframes, high-fidelity design and interactive prototypes.</p>
-        </article>
-
-        <article class="wwm-service wwm-service-featured p2-rise">
-          <div class="wwm-service-number">03</div>
-          <div class="wwm-service-tag">Core offer</div>
-          <h3>AI Product Design</h3>
-          <p>Design AI-native experiences that are intuitive, commercially valuable and technically feasible.</p>
-        </article>
-
-        <article class="wwm-service p2-rise">
-          <div class="wwm-service-number">04</div>
-          <h3>Product Audits</h3>
-          <p>An expert review of your product with clear, prioritised recommendations for improving usability, conversion and customer experience.</p>
-          <p class="wwm-service-note">Perfect for founders who want honest feedback.</p>
-        </article>
-
-        <article class="wwm-service p2-rise">
-          <div class="wwm-service-number">05</div>
-          <h3>Design Systems</h3>
-          <p>Create scalable design systems that improve consistency and speed across teams.</p>
-        </article>
-
-        <article class="wwm-service p2-rise">
-          <div class="wwm-service-number">06</div>
-          <h3>Workshops</h3>
-          <p>Facilitated sessions covering discovery, prioritisation, AI opportunities, design thinking and UX strategy.</p>
-        </article>
-
-        <article class="wwm-service wwm-service-wide p2-rise">
-          <div class="wwm-service-number">07</div>
-          <div>
-            <h3>Fractional Design Leadership</h3>
-            <p class="wwm-service-question">Need senior product design leadership without hiring full time?</p>
+      <div class="wwm-territories">
+        <article class="wwm-territory p2-rise" tabindex="0" role="button" aria-pressed="false">
+          <div class="wwm-territory-top">
+            <span class="wwm-territory-number">01</span>
+            <span class="wwm-territory-label">DEFINE</span>
           </div>
-          <p>I work alongside founders and teams to improve design quality, product thinking and delivery.</p>
+          <h3>What should we build?</h3>
+          <p>Turn ambiguity into a product direction your team can make decisions around.</p>
+          <div class="wwm-capabilities" aria-label="Define capabilities">
+            <span>Product strategy</span>
+            <span>Opportunity definition</span>
+            <span>AI opportunity exploration</span>
+            <span>Product audits</span>
+            <span>Workshops</span>
+            <span>Roadmaps &amp; prioritisation</span>
+          </div>
+        </article>
+
+        <article class="wwm-territory p2-rise" tabindex="0" role="button" aria-pressed="false">
+          <div class="wwm-territory-top">
+            <span class="wwm-territory-number">02</span>
+            <span class="wwm-territory-label">DESIGN</span>
+          </div>
+          <h3>What should it become?</h3>
+          <p>Make the direction tangible through product design, prototypes and scalable systems.</p>
+          <div class="wwm-capabilities" aria-label="Design capabilities">
+            <span>UX &amp; product design</span>
+            <span>Interactive prototyping</span>
+            <span>AI-native experiences</span>
+            <span>Design systems</span>
+            <span>User journeys</span>
+            <span>High-fidelity product design</span>
+          </div>
+        </article>
+
+        <article class="wwm-territory p2-rise" tabindex="0" role="button" aria-pressed="false">
+          <div class="wwm-territory-top">
+            <span class="wwm-territory-number">03</span>
+            <span class="wwm-territory-label">LEAD</span>
+          </div>
+          <h3>How do we get there?</h3>
+          <p>Bring senior design leadership into the room when the team needs direction, alignment or momentum.</p>
+          <div class="wwm-capabilities" aria-label="Lead capabilities">
+            <span>Fractional design leadership</span>
+            <span>Team direction</span>
+            <span>Product / design alignment</span>
+            <span>Stakeholder communication</span>
+            <span>Design critique</span>
+            <span>Cross-functional leadership</span>
+          </div>
         </article>
       </div>
     </section>
 
-    <!-- EXPERIENCE -->
-    <section class="wwm-experience section-pad">
+    <!-- EVIDENCE -->
+    <section class="wwm-evidence section-pad" data-nav-surface="#ffffff">
       <div class="wwm-section-intro">
-        <div class="wwm-eyebrow p2-rise"><span>03</span>Recent experience</div>
-        <h2 class="p2-rise">Enterprise rigour. Founder-level pace. <em>Products that ship.</em></h2>
+        <div class="wwm-eyebrow p2-rise"><span>03</span>Evidence</div>
+        <h2 class="p2-rise">Senior product work across complex organisations, global platforms and products expected to <em>perform.</em></h2>
       </div>
 
-      <div class="wwm-experience-grid p2-rise">
-        <div><span>01</span><strong>McKinsey &amp; Company</strong></div>
-        <div><span>02</span><strong>Google</strong></div>
-        <div><span>03</span><strong>Apple News</strong></div>
-        <div><span>04</span><strong>The Telegraph</strong></div>
-        <div><span>05</span><strong>Global AI products</strong></div>
-        <div><span>06</span><strong>Enterprise platforms</strong></div>
-      </div>
-    </section>
+      <div class="wwm-evidence-grid">
+        <article class="wwm-evidence-card wwm-evidence-stat p2-rise">
+          <span class="wwm-evidence-kicker">Commercial impact</span>
+          <strong>$400M+</strong>
+          <p>Generated within the first three months of launch on a large-scale property platform.</p>
+        </article>
 
-    <!-- WHY -->
-    <section class="wwm-why">
-      <div class="section-pad wwm-why-inner">
-        <div class="wwm-eyebrow wwm-eyebrow-inverse p2-rise"><span>04</span>Why work with me?</div>
+        <article class="wwm-evidence-card wwm-evidence-stat p2-rise">
+          <span class="wwm-evidence-kicker">Global product delivery</span>
+          <strong>10+</strong>
+          <p>Enterprise AI MVPs deployed across global markets.</p>
+        </article>
 
-        <div class="wwm-why-copy">
-          <p class="p2-rise">I combine <strong>strategy, design and technical understanding.</strong></p>
-          <p class="p2-rise">I do not just make interfaces look better.</p>
-          <p class="p2-rise"><em>I help businesses make better product decisions.</em></p>
-        </div>
-      </div>
-    </section>
+        <article class="wwm-evidence-card wwm-evidence-stat p2-rise">
+          <span class="wwm-evidence-kicker">Performance</span>
+          <strong>30–40%</strong>
+          <p>Increase in cross-sell performance across AI-powered customer experience work.</p>
+        </article>
 
-    <!-- CLARITY CALL -->
-    <section class="wwm-clarity section-pad" id="clarity-call">
-      <div class="wwm-clarity-meta p2-rise">
-        <span class="wwm-status-dot"></span>
-        30 minutes · focused · practical
-      </div>
-
-      <div class="wwm-clarity-grid">
-        <div class="p2-rise">
-          <p class="wwm-kicker">Product Clarity Session</p>
-          <h2>Bring your product, startup or <em>AI idea.</em></h2>
-        </div>
-
-        <div class="wwm-clarity-copy p2-rise">
-          <p>We will spend 30 minutes identifying your biggest UX or product opportunity.</p>
-          <p>You will leave with actionable next steps, whether we work together or not.</p>
-
-          <div class="wwm-clarity-actions">
-            <a href="#" class="wwm-button wwm-button-light" onclick="openCalendly(); return false;">Book your session <span>→</span></a>
-            <!-- Replace this address with your preferred business email if needed. -->
-            <a href="mailto:hello@sophiaakrofi.com" class="wwm-email-link">Email me directly</a>
+        <article class="wwm-evidence-card wwm-evidence-names p2-rise">
+          <span class="wwm-evidence-kicker">Experience includes</span>
+          <div class="wwm-evidence-name-list">
+            <span>McKinsey &amp; Company</span>
+            <span>Apple News</span>
+            <span>The Telegraph</span>
           </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW I THINK -->
+    <section class="wwm-why" data-nav-surface="#111111">
+      <div class="section-pad wwm-why-inner">
+        <div class="wwm-eyebrow wwm-eyebrow-inverse p2-rise"><span>04</span>How I think</div>
+
+        <div class="wwm-thinking">
+          <p class="wwm-thinking-formula p2-rise">
+            <span>Business goal</span>
+            <span class="wwm-thinking-symbol">×</span>
+            <span>User need</span>
+            <span class="wwm-thinking-symbol">×</span>
+            <span>Design</span>
+          </p>
+
+          <div class="wwm-thinking-grid">
+            <p class="p2-rise"><strong>Strategy before screens.</strong><br />Start with the decision the business actually needs to make.</p>
+            <p class="p2-rise"><strong>Hypothesis → test → iterate → implement.</strong><br />Make ideas tangible early enough to learn before over-investing.</p>
+            <p class="p2-rise"><strong>Rationale over decoration.</strong><br />Design decisions should connect user behaviour, technical reality and commercial value.</p>
+          </div>
+
+          <p class="wwm-thinking-close p2-rise"><em>The goal is not more design. It is better product decisions.</em></p>
         </div>
       </div>
+    </section>
+
+    <!-- PROJECT ENQUIRY -->
+    <section class="wwm-enquiry section-pad" id="project-enquiry" data-nav-surface="#0B286B">
+      <div class="wwm-section-intro">
+        <div class="wwm-eyebrow p2-rise"><span>05</span>Discuss a project</div>
+        <div>
+          <h2 class="p2-rise">Have an important product problem? <em>Start here.</em></h2>
+          <p class="wwm-section-support p2-rise">
+            Tell me enough to understand the context. If it feels like a strong fit, the next step is a focused conversation about the problem, the team and what moving it forward could look like.
+          </p>
+        </div>
+      </div>
+
+      <form class="wwm-form p2-rise"
+            id="projectForm"
+            action="https://formsubmit.co/hello@sophiaakrofi.com"
+            method="POST">
+        <input type="hidden" name="_subject" value="New project enquiry from sophiaakrofi.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="form_type" value="Project enquiry">
+        <fieldset class="wwm-form-group">
+          <legend>What would you like to discuss?</legend>
+          <div class="wwm-choice-grid">
+            <label><input type="radio" name="project_type" value="A project / product challenge" required><span>A project / product challenge</span></label>
+            <label><input type="radio" name="project_type" value="Fractional design leadership"><span>Fractional design leadership</span></label>
+            <label><input type="radio" name="project_type" value="Workshop / speaking / collaboration"><span>Workshop / speaking / collaboration</span></label>
+          </div>
+        </fieldset>
+
+        <div class="wwm-form-grid">
+          <label class="wwm-float-field">
+            <input type="text" name="name" autocomplete="name" placeholder=" " required>
+            <span>Name</span>
+          </label>
+
+          <label class="wwm-float-field">
+            <input type="email" name="email" autocomplete="email" placeholder=" " required>
+            <span>Work email</span>
+          </label>
+
+          <label class="wwm-float-field">
+            <input type="text" name="company" autocomplete="organization" placeholder=" ">
+            <span>Company / organisation</span>
+          </label>
+
+          <label class="wwm-float-field">
+            <input type="text" name="role" autocomplete="organization-title" placeholder=" ">
+            <span>Your role</span>
+          </label>
+
+          <label class="wwm-select-field">
+            <span>Desired timeframe</span>
+            <select name="timeframe">
+              <option value="">Select</option>
+              <option>As soon as possible</option>
+              <option>Within 1–2 months</option>
+              <option>Within 3–6 months</option>
+              <option>Exploring for later</option>
+            </select>
+          </label>
+
+          <label class="wwm-select-field">
+            <span>Product / company stage</span>
+            <select name="stage">
+              <option value="">Select</option>
+              <option>Idea / pre-product</option>
+              <option>Early product / startup</option>
+              <option>Scale-up</option>
+              <option>Established organisation</option>
+              <option>Not applicable</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="wwm-float-field wwm-float-field-textarea wwm-field-large">
+          <textarea name="challenge" rows="1" placeholder=" " required></textarea>
+          <span>Tell me a little about the challenge</span>
+        </label>
+
+        <div class="wwm-form-submit">
+          <button type="submit" class="wwm-button wwm-button-dark">Start a conversation <span>→</span></button>
+          <p>Prefer email? <a href="mailto:hello@sophiaakrofi.com">hello@sophiaakrofi.com</a></p>
+        </div>
+      </form>
+    </section>
+
+    <!-- MENTORSHIP -->
+    <section class="wwm-mentorship section-pad" id="mentorship" data-nav-surface="#f4b6d7">
+      <div class="wwm-section-intro">
+        <div class="wwm-eyebrow p2-rise"><span>06</span>Mentorship</div>
+        <div>
+          <h2 class="p2-rise">Building your design career? <em>I can help with that too.</em></h2>
+          <p class="wwm-section-support p2-rise">
+            I occasionally work with designers who want focused, practical guidance on their careers, portfolios and progression. Mentorship is shaped around where you are and where you are trying to go.
+          </p>
+        </div>
+      </div>
+
+      <form class="wwm-form wwm-mentor-form p2-rise"
+            id="mentorForm"
+            action="https://formsubmit.co/hello@sophiaakrofi.com"
+            method="POST">
+        <input type="hidden" name="_subject" value="New mentorship request from sophiaakrofi.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="form_type" value="Mentorship request">
+        <fieldset class="wwm-form-group">
+          <legend>Select mentorship format</legend>
+          <div class="wwm-segmented" role="radiogroup" aria-label="Mentorship format">
+            <label><input type="radio" name="format" value="1:1 mentorship" checked><span>1:1 mentorship</span></label>
+            <label><input type="radio" name="format" value="Group session"><span>Group session</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="wwm-form-group">
+          <legend>What would you like to work on?</legend>
+          <div class="wwm-chip-grid">
+            <label><input type="checkbox" name="topic" value="Portfolio"><span>Portfolio</span></label>
+            <label><input type="checkbox" name="topic" value="Career direction"><span>Career direction</span></label>
+            <label><input type="checkbox" name="topic" value="Breaking into product"><span>Breaking into product</span></label>
+            <label><input type="checkbox" name="topic" value="Moving into leadership"><span>Moving into leadership</span></label>
+            <label><input type="checkbox" name="topic" value="Interview preparation"><span>Interview preparation</span></label>
+            <label><input type="checkbox" name="topic" value="Product thinking"><span>Product thinking</span></label>
+            <label><input type="checkbox" name="topic" value="Design systems"><span>Design systems</span></label>
+            <label><input type="checkbox" name="topic" value="Something else"><span>Something else</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="wwm-form-group">
+          <legend>Where are you right now?</legend>
+          <div class="wwm-choice-grid wwm-career-grid">
+            <label><input type="radio" name="career_stage" value="Student" required><span>Student</span></label>
+            <label><input type="radio" name="career_stage" value="Early career"><span>Early career</span></label>
+            <label><input type="radio" name="career_stage" value="Mid-level"><span>Mid-level</span></label>
+            <label><input type="radio" name="career_stage" value="Senior"><span>Senior</span></label>
+            <label><input type="radio" name="career_stage" value="Leadership"><span>Leadership</span></label>
+          </div>
+        </fieldset>
+
+        <label class="wwm-float-field wwm-float-field-textarea wwm-field-large">
+          <textarea name="support" rows="1" placeholder=" " required></textarea>
+          <span>What would you like to work through?</span>
+        </label>
+
+        <div class="wwm-form-grid">
+          <label class="wwm-float-field">
+            <input type="text" name="name" autocomplete="name" placeholder=" " required>
+            <span>Name</span>
+          </label>
+
+          <label class="wwm-float-field">
+            <input type="email" name="email" autocomplete="email" placeholder=" " required>
+            <span>Email</span>
+          </label>
+
+          <label class="wwm-float-field wwm-field-wide">
+            <input type="url" name="portfolio" placeholder=" ">
+            <span>Portfolio / LinkedIn · optional</span>
+          </label>
+        </div>
+
+        <div class="wwm-form-submit">
+          <button type="submit" class="wwm-button wwm-button-dark">Request a session <span>→</span></button>
+        </div>
+      </form>
     </section>
   </main>
 
@@ -245,15 +444,8 @@
     </div>
   </footer>
 
-  <script src="https://assets.calendly.com/assets/external/widget.js"></script>
   <script>
-    function openCalendly() {
-      Calendly.initPopupWidget({
-        url: 'https://calendly.com/hello-sophiaakrofi/30min'
-      });
-    }
-
-    // Mobile navigation
+// Mobile navigation
     (function () {
       const menuToggle = document.getElementById('menuToggle');
       const mobileMenu = document.getElementById('mobileMenu');
@@ -305,6 +497,253 @@
       const track = document.getElementById('wwmMarquee');
       if (track) track.innerHTML += track.innerHTML;
     })();
+
+    // Work With Me: cursor word trail
+    (function () {
+      const hero = document.getElementById('wwmHero');
+      const stage = document.getElementById('wwmHeroStage');
+      const layer = document.getElementById('wwmTrailLayer');
+
+      if (!hero || !stage || !layer) return;
+
+      const words = [
+        'Product strategy','Product vision','Business strategy','Product thinking',
+        'Opportunity mapping','Problem framing','Prioritisation','Roadmaps',
+        'Product direction','Strategic clarity','Decision making','Hypothesis development',
+        'Concept development','Product definition','Value proposition','Market opportunity',
+        'Product-market fit','Innovation strategy','Future thinking','Transformation',
+        'User research','Customer insight','Market research','Stakeholder interviews',
+        'Discovery','User needs','Business needs','Behavioural insight','Journey mapping',
+        'Experience mapping','Competitive analysis','Synthesis','Validation','User testing',
+        'Experimentation','Product design','UX design','Interaction design','Experience design',
+        'Prototyping','Wireframing','Information architecture','Interface design','Design systems',
+        'Component libraries','Design principles','Accessibility','Responsive design','Service design',
+        'Rapid prototyping','AI strategy','AI product design','AI-native experiences','AI opportunities',
+        'Human-AI interaction','Intelligent products','Conversational experiences','AI prototyping',
+        'Emerging technology','Automation','AI feature evaluation','Responsible AI',
+        'Design leadership','Fractional leadership','Design direction','Creative direction',
+        'Team alignment','Stakeholder alignment','Facilitation','Workshops','Design critique',
+        'Design maturity','Design operations','Cross-functional collaboration','Team enablement',
+        'Mentorship','Commercial value','Business impact','Growth','Revenue','Conversion',
+        'Retention','Adoption','Engagement','Efficiency','Scalability','Speed to market',
+        'Reduced complexity','Reduced risk','Customer value','Competitive advantage',
+        'Operational efficiency','Consistency','Confidence','Alignment','Clarity','Momentum',
+        'Measurable outcomes','Better decisions','Faster decisions','Investment confidence',
+        'Implementation readiness',
+        'STRATEGY','DESIGN','AI','BUSINESS VALUE','USER NEEDS',
+        'PRODUCT THINKING','GROWTH','CLARITY','IMPACT'
+      ];
+
+      const anchorWords = new Set([
+        'STRATEGY','DESIGN','AI','BUSINESS VALUE','USER NEEDS',
+        'PRODUCT THINKING','GROWTH','CLARITY','IMPACT'
+      ]);
+
+      const pastels = [
+        '#F2A8DB',
+        '#FFD75A',
+        '#BDF38D',
+        '#B9DFF7',
+        '#D9C0F5',
+        '#FFC7A4',
+        '#F5E487',
+        '#BEE7D6'
+      ];
+
+      let lastX = null;
+      let lastY = null;
+      let lastSpawn = 0;
+      let wordIndex = Math.floor(Math.random() * words.length);
+      let activeCards = 0;
+      const MAX_CARDS = 14;
+
+      // Shuffle without creating a visible categorisation.
+      const pool = [...words].sort(() => Math.random() - 0.5);
+
+      function nextWord() {
+        const word = pool[wordIndex % pool.length];
+        wordIndex += 1;
+        return word;
+      }
+
+      function spawnCard(x, y, word, delay = 0) {
+        if (activeCards >= MAX_CARDS) return;
+
+        const card = document.createElement('span');
+        card.className = 'wwm-trail-card' + (anchorWords.has(word) ? ' is-anchor' : '');
+        card.textContent = word;
+        card.style.background = pastels[Math.floor(Math.random() * pastels.length)];
+
+        const jitterX = (Math.random() - 0.5) * 28;
+        const jitterY = (Math.random() - 0.5) * 22;
+
+        const driftX = (-14 - Math.random() * 30) + 'px';
+        const driftY = ((Math.random() - 0.5) * 26) + 'px';
+
+        card.style.setProperty('--x', `${x + jitterX}px`);
+        card.style.setProperty('--y', `${y + jitterY}px`);
+        card.style.setProperty('--enter-x', `${(Math.random() - 0.5) * 10}px`);
+        card.style.setProperty('--enter-y', `${(Math.random() - 0.5) * 8}px`);
+        card.style.setProperty('--drift-x', driftX);
+        card.style.setProperty('--drift-y', driftY);
+        card.style.setProperty('--rot-start', `${(Math.random() - 0.5) * 5}deg`);
+        card.style.setProperty('--rot-mid', `${(Math.random() - 0.5) * 2}deg`);
+        card.style.setProperty('--rot-end', `${(Math.random() - 0.5) * 5}deg`);
+        card.style.setProperty('--life', `${880 + Math.random() * 420}ms`);
+        card.style.animationDelay = `${delay}ms`;
+
+        layer.appendChild(card);
+        activeCards += 1;
+
+        card.addEventListener('animationend', () => {
+          activeCards = Math.max(0, activeCards - 1);
+          card.remove();
+        }, { once: true });
+      }
+
+      function pointerMove(event) {
+        const rect = stage.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        const now = performance.now();
+        const moved = lastX === null
+          ? 999
+          : Math.hypot(x - lastX, y - lastY);
+
+        // One card at a time for normal movement.
+        if (moved >= 18 && now - lastSpawn >= 32) {
+          spawnCard(x, y, nextWord());
+
+          // Occasionally create a tiny 2–3-card burst, as requested.
+          const roll = Math.random();
+          if (roll > 0.84) {
+            spawnCard(x + 16, y - 10, nextWord(), 18);
+          }
+          if (roll > 0.965) {
+            spawnCard(x - 11, y + 14, nextWord(), 36);
+          }
+
+          lastSpawn = now;
+          lastX = x;
+          lastY = y;
+        }
+      }
+
+      stage.addEventListener('pointermove', pointerMove, { passive: true });
+
+      // Small initial cue: three cards only, then they disappear.
+      requestAnimationFrame(() => {
+        const r = stage.getBoundingClientRect();
+        const startX = r.width * 0.71;
+        const startY = r.height * 0.46;
+
+        spawnCard(startX - 48, startY + 10, 'Product strategy', 80);
+        spawnCard(startX + 10, startY - 18, 'Business strategy', 150);
+        spawnCard(startX + 78, startY + 12, 'Competitive analysis', 220);
+      });
+    })();
+
+
+    // Work With Me: one global nav that inherits the surface under it
+    (function () {
+      const nav = document.querySelector('.nav');
+      if (!nav) return;
+
+      const surfaces = Array.from(document.querySelectorAll('[data-nav-surface]'));
+
+      function hexToRgb(hex) {
+        const clean = hex.replace('#', '').trim();
+        if (clean.length === 3) {
+          return {
+            r: parseInt(clean[0] + clean[0], 16),
+            g: parseInt(clean[1] + clean[1], 16),
+            b: parseInt(clean[2] + clean[2], 16)
+          };
+        }
+        return {
+          r: parseInt(clean.slice(0,2), 16),
+          g: parseInt(clean.slice(2,4), 16),
+          b: parseInt(clean.slice(4,6), 16)
+        };
+      }
+
+      function toneFor(hex) {
+        const {r,g,b} = hexToRgb(hex);
+        const luminance = (0.2126*r + 0.7152*g + 0.0722*b) / 255;
+        return luminance < 0.53 ? 'dark' : 'light';
+      }
+
+      function updateNav() {
+        const navRect = nav.getBoundingClientRect();
+        const sampleY = navRect.bottom + 2;
+
+        let active = surfaces[0];
+
+        for (const surface of surfaces) {
+          const rect = surface.getBoundingClientRect();
+          if (rect.top <= sampleY && rect.bottom > sampleY) {
+            active = surface;
+            break;
+          }
+        }
+
+        if (!active) return;
+
+        const bg = active.dataset.navSurface || '#ffffff';
+        const tone = toneFor(bg);
+
+        nav.style.setProperty('--wwm-nav-bg', bg);
+        nav.style.setProperty('--wwm-nav-fg', tone === 'dark' ? '#ffffff' : '#000000');
+        nav.dataset.navTone = tone;
+      }
+
+      updateNav();
+      window.addEventListener('scroll', updateNav, { passive: true });
+      window.addEventListener('resize', updateNav);
+    })();
+
+
+    // Ways to work together: equal selectable territories
+    (function () {
+      const territories = Array.from(document.querySelectorAll('.wwm-territory'));
+      if (!territories.length) return;
+
+      function selectTerritory(selected) {
+        territories.forEach(item => {
+          const active = item === selected && !item.classList.contains('is-selected');
+          item.classList.toggle('is-selected', active);
+          item.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+      }
+
+      territories.forEach(item => {
+        item.addEventListener('click', () => selectTerritory(item));
+        item.addEventListener('keydown', event => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            selectTerritory(item);
+          }
+        });
+      });
+    })();
+
+    // Auto-grow large text inputs without turning them into oversized boxes.
+    (function () {
+      const textareas = document.querySelectorAll('.wwm-float-field-textarea textarea');
+
+      function resize(textarea) {
+        textarea.style.height = 'auto';
+        textarea.style.height = `${Math.max(58, textarea.scrollHeight)}px`;
+      }
+
+      textareas.forEach(textarea => {
+        resize(textarea);
+        textarea.addEventListener('input', () => resize(textarea));
+      });
+    })();
+
+
   </script>
 </body>
 </html>
