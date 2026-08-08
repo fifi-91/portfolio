@@ -608,17 +608,24 @@
         const y = event.clientY - rect.top;
 
         const now = performance.now();
+        const isTouch = event.pointerType === 'touch';
+
+        const minMovement = isTouch ? 7 : 18;
+        const minDelay = isTouch ? 14 : 32;
+
         const moved = lastX === null
           ? 999
           : Math.hypot(x - lastX, y - lastY);
 
-        if (moved >= 18 && now - lastSpawn >= 32) {
+        if (moved >= minMovement && now - lastSpawn >= minDelay) {
           spawnCard(x, y, nextWord());
 
           const roll = Math.random();
+
           if (roll > 0.84) {
             spawnCard(x + 16, y - 10, nextWord(), 18);
           }
+
           if (roll > 0.965) {
             spawnCard(x - 11, y + 14, nextWord(), 36);
           }
@@ -629,6 +636,21 @@
         }
       }
 
+      function pointerDown(event) {
+        if (event.pointerType !== 'touch') return;
+
+        const rect = stage.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        spawnCard(x, y, nextWord());
+
+        lastX = x;
+        lastY = y;
+        lastSpawn = performance.now();
+      }
+
+      stage.addEventListener('pointerdown', pointerDown, { passive: true });
       stage.addEventListener('pointermove', pointerMove, { passive: true });
 
       requestAnimationFrame(() => {
