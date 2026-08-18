@@ -237,7 +237,7 @@ body {
 
 .hero-proof {
   margin-top: 16px;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.4;
   font-weight: 400;
   color: rgb(22, 22, 22);
@@ -647,7 +647,7 @@ body {
 }
 
   .hero-title h1 {
-    font-size: 44px;
+    font-size: 60px;
   }
 
   .hero-copy p,
