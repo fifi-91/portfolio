@@ -1,0 +1,94 @@
+/* Final portfolio polish — 12 October 2026. Shared across all eight pages. */
+:root { --portfolio-neue: 'Neue Haas Grotesk Display Pro', 'Neue Haas Grotesk', 'Helvetica Neue', Arial, sans-serif; }
+
+/* A consistent editorial sans-serif; no display-font overrides. */
+body, button, input, select, textarea, .p2-page, .p2-page *, .portfolio-nav, .portfolio-footer,
+.hero, .section, .wwm-page, .wwm-page *, .ac-two, .ac-two * {
+  font-family: var(--portfolio-neue) !important;
+}
+.small-label, .hero-kicker, .category, .p2-eyebrow, .p2-hero-meta,
+.p2-next-eyebrow, .cp-lab, .sp-note, .sp-lab span, .sp-hl,
+.portfolio-footer-eyebrow, .wwm-eyebrow {
+  font-family: var(--portfolio-neue) !important;
+  text-transform: uppercase;
+  letter-spacing: .065em;
+  font-weight: 500;
+}
+
+/* SVG arrows: dark on light backgrounds, white on dark backgrounds. */
+.cta-icon { display: inline-block !important; width: 1em; height: 1em; background-position: center; background-repeat: no-repeat; background-size: contain; }
+.cta-icon-up { background-image: url('assets/24-arrow-up-right-dark.svg'); }
+.cta-icon-down { background-image: url('assets/24-arrow-down-dark.svg'); }
+.portfolio-footer .cta-icon-up, .portfolio-footer .cta-icon-down,
+a[style*="background:#111"] .cta-icon-up { background-image: url('assets/24-arrow-up-right.svg'); }
+.portfolio-footer .cta-icon-down { background-image: url('assets/24-arrow-down.svg'); }
+
+/* Navigation overlay: menu does not change the document height. */
+.portfolio-nav { position: relative !important; isolation: isolate; }
+.portfolio-nav-inner { position: relative; }
+.portfolio-nav-toggle, .menu-toggle { width: 38px; height: 38px; align-items: center; justify-content: center; }
+.menu-bars { display: block; width: 21px; height: 2px; background: currentColor; position: relative; transition: background .18s; }
+.menu-bars::before, .menu-bars::after { content: ''; position: absolute; left: 0; width: 21px; height: 2px; background: currentColor; transition: transform .18s, top .18s; }
+.menu-bars::before { top: -7px; }
+.menu-bars::after { top: 7px; }
+[aria-expanded="true"] > .menu-bars { background: transparent; }
+[aria-expanded="true"] > .menu-bars::before { top: 0; transform: rotate(45deg); }
+[aria-expanded="true"] > .menu-bars::after { top: 0; transform: rotate(-45deg); }
+
+/* Avoid clipped equation panels and oversized headings. */
+.p2-page .sp-out, .p2-page .sp-out .sp-eq, .p2-page .sp-out .sp-col,
+.p2-page .cp-out, .p2-page .p2-section-head { min-width: 0; max-width: 100%; }
+.p2-page .sp-out .sp-eq { grid-template-columns: minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1.25fr); }
+.p2-page .p2-section-title { font-size: clamp(30px, 3.7vw, 56px) !important; line-height: 1.12 !important; overflow-wrap: anywhere; }
+.p2-page .sp-out .sp-col { padding: clamp(14px,2vw,28px) !important; }
+.p2-page .sp-out .sp-col * { max-width: 100%; overflow-wrap: anywhere; }
+.p2-page .sp-out .sp-eq, .p2-page .sp-out .sp-col { box-sizing: border-box; }
+
+/* Stream labels must sit above the phone visuals. */
+.sp-hero-art .sp-hl { z-index: 25 !important; position: absolute !important; color: #111 !important; background: rgba(255,255,255,.94); padding: 5px 7px; border-radius: 3px; }
+
+@media (max-width: 900px) {
+  body > .portfolio-nav .portfolio-nav-inner { flex-wrap: nowrap !important; }
+  body > .portfolio-nav .portfolio-nav-toggle { display: flex !important; }
+  body > .portfolio-nav .portfolio-nav-links,
+  body > .portfolio-nav .portfolio-nav-links.is-open {
+    position: absolute !important; top: calc(100% - 1px) !important; left: 0 !important; right: 0 !important;
+    width: 100% !important; flex-basis: auto !important; margin: 0 !important;
+    padding: 20px 5% 28px !important; background: #fafafa !important;
+    box-shadow: 0 18px 30px rgba(0,0,0,.12); z-index: 9999 !important;
+  }
+  body > .portfolio-nav .portfolio-nav-links:not(.is-open) { display: none !important; }
+  body > .portfolio-nav .portfolio-nav-links.is-open { display: flex !important; }
+  /* Private pages have a separate menu implementation. */
+  .site-header, header:has(.menu-toggle) { position: relative; z-index: 1000; }
+  .site-header .links.open, header:has(.menu-toggle) .links.open { position: absolute !important; top: 100% !important; left: 0; right: 0; z-index: 1001; }
+}
+@media (max-width: 700px) {
+  .p2-page .p2-section-title { font-size: clamp(25px, 6.5vw, 34px) !important; line-height: 1.16 !important; }
+  .p2-page .p2-hero-title { font-size: clamp(32px, 8vw, 45px) !important; }
+  .p2-page .p2-hero-meta, .p2-page .p2-eyebrow { font-size: 10px !important; }
+  /* Place the artwork immediately after the heading, before lengthy explanations. */
+  .p2-page .p2-hero { display: flex !important; flex-direction: column !important; }
+  .p2-page .p2-hero > .p2-wrap { display: contents !important; }
+  .p2-page .p2-hero-meta { order: 0; margin: 10px 5% 8px !important; }
+  .p2-page .p2-hero-title { order: 1; margin: 0 5% 10px !important; }
+  .p2-page .p2-hero-video { order: 2; width: 100% !important; margin: 4px 0 16px !important; }
+  .p2-page .portfolio-public-note, .p2-page .pt-public-note { order: 3; margin: 0 5% 12px !important; }
+  .p2-page .cp-headline, .p2-page .sp-positioning-line { order: 4; margin: 0 5% 12px !important; }
+  .p2-page .p2-hero-lede { order: 5; margin: 0 5% 22px !important; }
+  .p2-page .sp-hero-art .sp-hl { z-index: 30 !important; font-size: 9px !important; max-width: 31%; white-space: normal !important; }
+  .p2-page .sp-out .sp-eq { grid-template-columns: 1fr !important; }
+  .p2-page .sp-out .sp-op { justify-self: center !important; }
+  .p2-page .sp-out .sp-col { width: 100%; }
+  .p2-page .p2-section-head, .p2-page .p2-section-head > * { min-width: 0; }
+  .p2-page .p2-hero-lede { display: block !important; }
+  .p2-page .p2-hero-detail { margin-top: 12px; }
+  .p2-page .sp-hero-art .sp-hl { top: 6px !important; }
+  .p2-page .p2-section { overflow-x: clip; }
+  .ac-two .p2-section:last-of-type, .ac-two .p2-section:has(.sp-out) { padding-bottom: 32px !important; }
+  .p2-page .portfolio-footer { margin-top: 24px !important; }
+}
+
+/* AccruPay outcome cards and following full-case-study panel */
+.ac-two .sp-out, .ac-two .cp-out, .ac-two .p2-outcomes, .ac-two .ac-outcomes { margin-bottom: 28px !important; }
+.ac-two .p2-next, .ac-two .p2-next-link, .ac-two .case-state-switch { margin-top: 24px !important; }

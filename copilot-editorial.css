@@ -1,12 +1,43 @@
 /* Shared editorial alignment with the property-tech case study */
-.p2-page{background:#fafafa;color:#101010}
-.p2-page .p2-section{border-top:1px solid #e5e5e5}
-.p2-page .p2-hero-title{letter-spacing:-.045em}
-.p2-page .p2-section-title{letter-spacing:-.035em}
-.p2-page .p2-section-blurb{line-height:1.65}
-.p2-page .p2-hero-meta{flex-wrap:wrap}
-.p2-page .p2-next + .contact-banner{display:none!important}
-.case-back{max-width:1240px;margin:18px auto 0;padding:0 24px}
-.case-back a{color:#555;text-decoration:none;font-size:13px;border-bottom:1px solid #bbb;padding-bottom:4px}
-.case-back a:hover{color:#111}
-@media(max-width:700px){.p2-page .p2-hero-title{letter-spacing:-.025em}}
+.p2-page {
+  background:#fafafa;
+  color:#101010
+}
+.p2-page .p2-section {
+  border-top:1px solid #e5e5e5
+}
+.p2-page .p2-hero-title {
+  letter-spacing:-.045em
+}
+.p2-page .p2-section-title {
+  letter-spacing:-.035em
+}
+.p2-page .p2-section-blurb {
+  line-height:1.65
+}
+.p2-page .p2-hero-meta {
+  flex-wrap:wrap
+}
+.p2-page .p2-next + .contact-banner {
+  display:none!important
+}
+.case-back {
+  max-width:1240px;
+  margin:18px auto 0;
+  padding:0 24px
+}
+.case-back a {
+  color:#555;
+  text-decoration:none;
+  font-size:13px;
+  border-bottom:1px solid #bbb;
+  padding-bottom:4px
+}
+.case-back a:hover {
+  color:#111
+}
+@media(max-width:700px) {
+  .p2-page .p2-hero-title {
+    letter-spacing:-.025em
+  }
+}

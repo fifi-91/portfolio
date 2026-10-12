@@ -1,0 +1,156 @@
+/* copilot-private.html — original style block 1; order preserved */
+.sp-unlocked {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  white-space:nowrap;
+  font-family:var(--p2-mono);
+  font-size:11px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  padding:7px 12px;
+  border-radius:999px;
+  background:var(--cp-navy);
+  color:#fff
+}
+.sp-unlocked svg {
+  width:12px;
+  height:12px
+}
+.sp-toc-sec {
+  padding:0 0 40px
+}
+.sp-toc {
+  list-style:none;
+  margin:16px 0 0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0 32px;
+  border-top:1px solid rgba(0,0,0,.14)
+}
+.sp-toc a {
+  display:grid;
+  grid-template-columns:36px minmax(0,1fr) auto;
+  gap:12px;
+  align-items:start;
+  padding:20px 0;
+  border-bottom:1px solid rgba(0,0,0,.14);
+  text-decoration:none;
+  color:var(--p2-ink)
+}
+.sp-toc .n {
+  font-family:var(--p2-mono);
+  font-size:11px;
+  letter-spacing:.06em;
+  color:var(--p2-mute);
+  padding-top:4px
+}
+.sp-toc .t {
+  font-size:17px;
+  font-weight:500
+}
+.sp-toc .t small {
+  display:block;
+  font-size:13px;
+  font-weight:400;
+  color:var(--p2-mute);
+  margin-top:4px;
+  line-height:1.4
+}
+.sp-toc svg {
+  width:14px;
+  height:14px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.6;
+  margin-top:5px
+}
+@media(max-width:900px) {
+  .sp-toc {
+    grid-template-columns:1fr
+  }
+}
+[id^="ch"] {
+  scroll-margin-top:100px
+}
+.lu-fig {
+  margin:0;
+  border-radius:18px;
+  overflow:hidden;
+  background:var(--sp-sand)
+}
+.lu-fig img,.lu-fig video {
+  display:block;
+  width:100%;
+  height:auto
+}
+.lu-fig.dk {
+  background:#0b1a2e
+}
+.lu-cap {
+  display:block;
+  margin-top:12px;
+  font-family:var(--p2-mono);
+  font-size:11px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--p2-mute)
+}
+.lu-2 {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:16px
+}
+.lu-sub {
+  margin-top:72px
+}
+.lu-sub h3 {
+  font-size:clamp(24px,2.4vw,32px);
+  font-weight:400;
+  letter-spacing:-.02em;
+  line-height:1.2;
+  margin:0 0 8px
+}
+.lu-sub>p {
+  max-width:640px;
+  font-size:15px;
+  line-height:1.55;
+  color:var(--p2-ink-soft);
+  margin:0 0 24px
+}
+@media(max-width:800px) {
+  .lu-2 {
+    grid-template-columns:1fr
+  }
+}
+/* Chapter links: text and description must share the same column, not become separate grid cells. */
+.sp-toc li {
+  min-width:0
+}
+.sp-toc a {
+  display:block;
+  min-width:0;
+  overflow-wrap:normal;
+  word-break:normal;
+  line-height:1.35;
+  font-size:16px
+}
+.sp-toc a small {
+  display:block;
+  margin-top:7px;
+  font-size:12px;
+  line-height:1.45;
+  color:var(--p2-mute);
+  font-weight:400
+}
+@media(max-width:1100px) {
+  .sp-toc {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+}
+@media(max-width:680px) {
+  .sp-toc {
+    grid-template-columns:1fr
+  }
+}

@@ -1,26 +1,205 @@
 /* Homepage visual refinements — AccruPay-inspired design language */
-@font-face{font-family:HeroKid;src:url('assets/Herokid-ExtraLightExpanded.otf') format('opentype');font-weight:200;font-display:swap}
-@font-face{font-family:HeroKid;src:url('assets/Herokid-ThinExpanded.otf') format('opentype');font-weight:100;font-display:swap}
-@font-face{font-family:HeroKid;src:url('assets/Herokid-SemiBoldExpanded.otf') format('opentype');font-weight:600;font-display:swap}
-@font-face{font-family:HeroKid;src:url('assets/Herokid-BoldExpanded.otf') format('opentype');font-weight:700;font-display:swap}
-@font-face{font-family:HeroKid;src:url('assets/Herokid-ExtraBoldExpanded.otf') format('opentype');font-weight:800;font-display:swap}
-/* HeroKid is an expressive display face; keep long body text in the existing legible typeface. */
-.hero h1,#beyond h2,#leadership .stat strong{font-family:HeroKid,Arial,sans-serif!important;font-weight:600!important;letter-spacing:-.045em!important}
-#testimonials .testimonial,#leadership .stat,#leadership .highlight{background:#f6f5f2!important;border:1px solid #e8e5df!important;border-radius:12px!important;box-shadow:none!important;overflow:hidden}
-#testimonials .testimonial{padding:clamp(22px,2.5vw,36px)!important;transition:transform .25s ease,border-color .25s ease}
-#testimonials .testimonial:hover{transform:translateY(-4px);border-color:#c6c1b8!important}
-#leadership .stat{padding:clamp(22px,2.5vw,34px)!important;min-width:0}
-#leadership .highlight{padding:22px!important;transition:background .2s ease}
-#leadership .highlight:hover{background:#eeebe5!important}
-#experience .logos>div{position:relative;min-height:135px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;transition:background .2s ease,transform .2s ease;border-radius:10px;overflow:hidden}
-#experience .logos>div:hover{background:#f6f5f2;transform:translateY(-3px)}
-#experience .logos img{width:72%;height:65px;object-fit:contain;transition:transform .25s ease}
-#experience .logos>div:hover img{transform:translateY(-4px)}
-.logo-hover-title{font-size:12px;opacity:0;transform:translateY(6px);transition:opacity .2s ease,transform .2s ease;color:#555}
-#experience .logos>div:hover .logo-hover-title,#experience .logos>div:focus-within .logo-hover-title{opacity:1;transform:translateY(0)}
-#beyond{background:#f8f7f4!important;padding-top:clamp(60px,8vw,112px)!important;padding-bottom:clamp(60px,8vw,112px)!important;overflow:hidden}
-.beyond-inner{max-width:1440px;margin:auto}.beyond-heading{display:flex;justify-content:space-between;gap:30px;align-items:end;flex-wrap:wrap;margin-bottom:30px}.beyond-heading h2{margin:0}.beyond-heading p{max-width:440px}
-.creative-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 24px}.creative-pill{appearance:none;border:1px solid #d4d0c8;background:#fff;color:#282824;border-radius:999px;padding:11px 18px;font:inherit;font-size:13px;cursor:pointer;transition:background .2s,color .2s}.creative-pill:hover{border-color:#333}.creative-pill.is-active{background:#1b1c19;color:white;border-color:#1b1c19}
-.creative-panel{display:none}.creative-panel.is-active{display:block}.creative-rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 16px}.creative-rail::-webkit-scrollbar{display:none}.creative-card{flex:0 0 clamp(245px,31vw,410px);scroll-snap-align:start;background:#eeeae4;border-radius:12px;overflow:hidden}.creative-card img,.creative-card video{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#e6e3dd}.creative-card-label{padding:15px 18px;font-size:13px;color:#514e49}.creative-controls{display:flex;justify-content:flex-end;gap:9px;margin-top:12px}.creative-arrow{width:43px;height:43px;border:1px solid #cbc6bd;background:white;border-radius:50%;cursor:pointer;font-size:20px}.creative-arrow:hover{background:#1b1c19;color:#fff}
-@media(max-width:700px){.beyond-heading{display:block}.creative-card{flex-basis:78vw}#experience .logos>div{min-height:100px}.logo-hover-title{opacity:1;transform:none}#experience .logos img{height:44px}}
-@media(prefers-reduced-motion:reduce){#experience .logos>div,#testimonials .testimonial,.creative-pill{transition:none}.creative-rail{scroll-behavior:auto}}
+
+
+
+
+
+/* 'Neue Haas Grotesk Display Pro', 'Neue Haas Grotesk', 'Helvetica Neue', Arial, sans-serif is an expressive display face; keep long body text in the existing legible typeface. */
+.hero h1,#beyond h2,#leadership .stat strong {
+  font-family:'Neue Haas Grotesk Display Pro', 'Neue Haas Grotesk', 'Helvetica Neue', Arial, sans-serif,Arial,sans-serif!important;
+  font-weight:600!important;
+  letter-spacing:-.045em!important
+}
+#testimonials .testimonial,#leadership .stat,#leadership .highlight {
+  background:#f6f5f2!important;
+  border:1px solid #e8e5df!important;
+  border-radius:12px!important;
+  box-shadow:none!important;
+  overflow:hidden
+}
+#testimonials .testimonial {
+  padding:clamp(22px,2.5vw,36px)!important;
+  transition:transform .25s ease,border-color .25s ease
+}
+#testimonials .testimonial:hover {
+  transform:translateY(-4px);
+  border-color:#c6c1b8!important
+}
+#leadership .stat {
+  padding:clamp(22px,2.5vw,34px)!important;
+  min-width:0
+}
+#leadership .highlight {
+  padding:22px!important;
+  transition:background .2s ease
+}
+#leadership .highlight:hover {
+  background:#eeebe5!important
+}
+#experience .logos>div {
+  position:relative;
+  min-height:135px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:12px;
+  transition:background .2s ease,transform .2s ease;
+  border-radius:10px;
+  overflow:hidden
+}
+#experience .logos>div:hover {
+  background:#f6f5f2;
+  transform:translateY(-3px)
+}
+#experience .logos img {
+  width:72%;
+  height:65px;
+  object-fit:contain;
+  transition:transform .25s ease
+}
+#experience .logos>div:hover img {
+  transform:translateY(-4px)
+}
+.logo-hover-title {
+  font-size:12px;
+  opacity:0;
+  transform:translateY(6px);
+  transition:opacity .2s ease,transform .2s ease;
+  color:#555
+}
+#experience .logos>div:hover .logo-hover-title,#experience .logos>div:focus-within .logo-hover-title {
+  opacity:1;
+  transform:translateY(0)
+}
+#beyond {
+  background:#f8f7f4!important;
+  padding-top:clamp(60px,8vw,112px)!important;
+  padding-bottom:clamp(60px,8vw,112px)!important;
+  overflow:hidden
+}
+.beyond-inner {
+  max-width:1440px;
+  margin:auto
+}
+.beyond-heading {
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  align-items:end;
+  flex-wrap:wrap;
+  margin-bottom:30px
+}
+.beyond-heading h2 {
+  margin:0
+}
+.beyond-heading p {
+  max-width:440px
+}
+.creative-tabs {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:26px 0 24px
+}
+.creative-pill {
+  appearance:none;
+  border:1px solid #d4d0c8;
+  background:#fff;
+  color:#282824;
+  border-radius:999px;
+  padding:11px 18px;
+  font:inherit;
+  font-size:13px;
+  cursor:pointer;
+  transition:background .2s,color .2s
+}
+.creative-pill:hover {
+  border-color:#333
+}
+.creative-pill.is-active {
+  background:#1b1c19;
+  color:white;
+  border-color:#1b1c19
+}
+.creative-panel {
+  display:none
+}
+.creative-panel.is-active {
+  display:block
+}
+.creative-rail {
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+  padding:4px 2px 16px
+}
+.creative-rail::-webkit-scrollbar {
+  display:none
+}
+.creative-card {
+  flex:0 0 clamp(245px,31vw,410px);
+  scroll-snap-align:start;
+  background:#eeeae4;
+  border-radius:12px;
+  overflow:hidden
+}
+.creative-card img,.creative-card video {
+  display:block;
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  background:#e6e3dd
+}
+.creative-card-label {
+  padding:15px 18px;
+  font-size:13px;
+  color:#514e49
+}
+.creative-controls {
+  display:flex;
+  justify-content:flex-end;
+  gap:9px;
+  margin-top:12px
+}
+.creative-arrow {
+  width:43px;
+  height:43px;
+  border:1px solid #cbc6bd;
+  background:white;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:20px
+}
+.creative-arrow:hover {
+  background:#1b1c19;
+  color:#fff
+}
+@media(max-width:700px) {
+  .beyond-heading {
+    display:block
+  }
+  .creative-card {
+    flex-basis:78vw
+  }
+  #experience .logos>div {
+    min-height:100px
+  }
+  .logo-hover-title {
+    opacity:1;
+    transform:none
+  }
+  #experience .logos img {
+    height:44px
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  #experience .logos>div,#testimonials .testimonial,.creative-pill {
+    transition:none
+  }
+  .creative-rail {
+    scroll-behavior:auto
+  }
+}

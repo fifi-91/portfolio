@@ -1,0 +1,54 @@
+/* property-tech-public.html — original style block 10; order preserved */
+/* Final shared page chrome */
+html,body {
+  scroll-padding-top:72px
+}
+body.p2-page {
+  padding-top:0!important
+}
+body > nav.portfolio-nav {
+  position:sticky!important;
+  inset:0 auto auto 0!important;
+  top:0!important;
+  bottom:auto!important;
+  display:block!important;
+  transform:none!important;
+  translate:none!important;
+  float:none!important;
+  margin:0!important;
+  padding:0!important;
+  min-height:0!important;
+  z-index:2147483000!important;
+  isolation:isolate!important
+}
+body > nav.portfolio-nav .portfolio-nav-inner {
+  position:relative!important;
+  top:auto!important;
+  margin:0 auto!important
+}
+body > footer.portfolio-footer {
+  display:block!important;
+  position:relative!important;
+  inset:auto!important;
+  transform:none!important;
+  min-height:0!important;
+  max-width:none!important;
+  border-radius:0!important
+}
+body > footer.portfolio-footer .portfolio-footer-inner {
+  display:grid!important;
+  grid-template-columns:minmax(0,2fr) minmax(180px,1fr)!important;
+  gap:50px!important;
+  align-items:end!important
+}
+body > footer.portfolio-footer h2 {
+  font-size:clamp(44px,5vw,80px)!important;
+  line-height:1.08!important;
+  font-weight:400!important;
+  max-width:740px!important
+}
+@media(max-width:900px) {
+  body > footer.portfolio-footer .portfolio-footer-inner {
+    grid-template-columns:1fr!important
+  }
+}

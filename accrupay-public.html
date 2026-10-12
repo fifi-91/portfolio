@@ -1,144 +1,450 @@
 <!DOCTYPE html>
-
 <html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>AccruPay | Sophia Akrofi</title>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JWHDGBM765"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JWHDGBM765');</script>
-<link href="styles.css" rel="stylesheet"/>
-<link href="project-v2.css" rel="stylesheet"/>
-<link href="property-tech-preview.css" rel="stylesheet"/>
-<link href="copilot-kit.css" rel="stylesheet"/>
-<link href="accru-kit.css" rel="stylesheet"/>
-<link href="accru-feedback.css" rel="stylesheet"/><link href="portfolio-shared.css" rel="stylesheet"/><style>
-/* Final shared page chrome */
-html,body{scroll-padding-top:72px}
-body.p2-page{padding-top:0!important}
-body > nav.portfolio-nav{position:sticky!important;inset:0 auto auto 0!important;top:0!important;bottom:auto!important;display:block!important;transform:none!important;translate:none!important;float:none!important;margin:0!important;padding:0!important;min-height:0!important;z-index:2147483000!important;isolation:isolate!important}
-body > nav.portfolio-nav .portfolio-nav-inner{position:relative!important;top:auto!important;margin:0 auto!important}
-body > footer.portfolio-footer{display:block!important;position:relative!important;inset:auto!important;transform:none!important;min-height:0!important;max-width:none!important;border-radius:0!important}
-body > footer.portfolio-footer .portfolio-footer-inner{display:grid!important;grid-template-columns:minmax(0,2fr) minmax(180px,1fr)!important;gap:50px!important;align-items:end!important}
-body > footer.portfolio-footer h2{font-size:clamp(44px,5vw,80px)!important;line-height:1.08!important;font-weight:400!important;max-width:740px!important}
-@media(max-width:900px){body > footer.portfolio-footer .portfolio-footer-inner{grid-template-columns:1fr!important}}
-</style><link href="case-study-unified.css" rel="stylesheet"/></head>
-<body class="p2-page" data-screen-label="AccruPay public preview">
-<nav aria-label="Main navigation" class="portfolio-nav"><div class="portfolio-nav-inner"><a class="portfolio-nav-logo" href="index.html">Sophia Akrofi</a><button aria-controls="portfolio-nav-links" aria-expanded="false" aria-label="Toggle navigation" class="portfolio-nav-toggle" type="button">☰</button><div class="portfolio-nav-links" id="portfolio-nav-links"><a class="" href="index.html#work">Work</a><a class="" href="index.html#experience">Experience</a><a class="" href="index.html#testimonials">Testimonials</a><a class="" href="index.html#leadership">Leadership</a><a class="" href="index.html#about">About</a><a class="" href="index.html#thinking">Thinking</a><a class="" href="work-with-me.html">Work with me ↗</a></div></div></nav>
-<div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-inner"><button class="menu-close" id="menuClose"><img alt="Close" src="./images/close.svg"/></button><div class="mobile-links"><a class="active" href="index.html#work">Work</a><a href="index.html#experience">Experience</a><a href="index.html#testimonials">Testimonials</a><a href="index.html#leadership">Leadership</a><a href="index.html#about">About</a><a href="index.html#thinking">Thinking</a><a href="work-with-me.html">Work with me ↗</a></div></div></div>
-<main>
-<section class="p2-hero">
-<div class="p2-wrap">
-<div class="p2-hero-meta"><span class="meta-item"><span class="dot"></span>2026</span><span class="slash">/</span><span class="meta-item">Design leadership · positioning, brand, website + developer experience</span><span class="slash">/</span><span class="meta-item">Early-stage fintech</span><span class="slash">/</span><span class="meta-item">B2B SaaS · payments infrastructure</span></div>
-<h1 class="p2-hero-title">AccruPay · Payments orchestration</h1><div class="portfolio-public-note">Public case study. Selected work is illustrative; proprietary screens, research and implementation details remain confidential.</div><p class="ac-case-subheading">Leading a payments startup from first brief to launch.</p>
-<div class="p2-hero-lede">
-<div><p class="p2-hero-sub">I led the repositioning of AccruPay, then directed its brand, website, design system and developer-facing experience from first brief to launch.</p><p class="p2-hero-sub" style="margin-top:12px">The result: a developer-first payment router that keeps revenue flowing when a provider fails.</p></div>
-<div class="p2-hero-detail">
-<p><strong>I led.</strong> Positioning and product story · brand identity · website and product UI direction · design system · developer experience.</p>
-<p><strong>Outcome.</strong> 0 → launch · live with Wondercare, a cross-border insurer.</p>
-</div></div>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>AccruPay | Sophia Akrofi</title>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JWHDGBM765"></script>
+    <script src="accrupay-public-script-01.js"></script>
+    <link href="styles.css" rel="stylesheet">
+    <link href="project-v2.css" rel="stylesheet">
+    <link href="property-tech-preview.css" rel="stylesheet">
+    <link href="copilot-kit.css" rel="stylesheet">
+    <link href="accru-kit.css" rel="stylesheet">
+    <link href="accru-feedback.css" rel="stylesheet">
+    <link href="portfolio-shared.css" rel="stylesheet">
+    <link rel="stylesheet" href="accrupay-public-page-01.css">
+    <link href="case-study-unified.css" rel="stylesheet">
+    <link rel="stylesheet" href="portfolio-mobile-refinements.css">
+    <link rel="stylesheet" href="portfolio-final-polish.css">
+  </head>
+  <body class="p2-page" data-screen-label="AccruPay public preview">
+    <nav aria-label="Main navigation" class="portfolio-nav">
+      <div class="portfolio-nav-inner">
+        <a class="portfolio-nav-logo" href="index.html">Sophia Akrofi</a>
+        <button aria-controls="portfolio-nav-links" aria-expanded="false" aria-label="Toggle navigation" class="portfolio-nav-toggle" type="button"><span class="menu-bars" aria-hidden="true"></span></button>
+        <div class="portfolio-nav-links" id="portfolio-nav-links">
+          <a class="" href="index.html#work">Work</a>
+          <a class="" href="index.html#experience">Experience</a>
+          <a class="" href="index.html#testimonials">Testimonials</a>
+          <a class="" href="index.html#leadership">Leadership</a>
+          <a class="" href="index.html#about">About</a>
+          <a class="" href="index.html#thinking">Thinking</a>
+          <a class="" href="work-with-me.html">Work with me <span class="cta-icon cta-icon-up" aria-hidden="true"></span></a>
+        </div>
+      </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-inner">
+        <button class="menu-close" id="menuClose"><img alt="Close" src="./images/close.svg"></button>
+        <div class="mobile-links">
+          <a class="active" href="index.html#work">Work</a>
+          <a href="index.html#experience">Experience</a>
+          <a href="index.html#testimonials">Testimonials</a>
+          <a href="index.html#leadership">Leadership</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#thinking">Thinking</a>
+          <a href="work-with-me.html">Work with me <span class="cta-icon cta-icon-up" aria-hidden="true"></span></a>
+        </div>
+      </div>
+    </div>
+    <main>
+      <section class="p2-hero">
+        <div class="p2-wrap">
+          <div class="p2-hero-meta">
+            <span class="meta-item"><span class="dot"></span>2026</span>
+            <span class="slash">/</span>
+            <span class="meta-item">Design leadership · positioning, brand, website + developer experience</span>
+            <span class="slash">/</span>
+            <span class="meta-item">Early-stage fintech</span>
+            <span class="slash">/</span>
+            <span class="meta-item">B2B SaaS · payments infrastructure</span>
+          </div>
+          <h1 class="p2-hero-title">AccruPay · Payments orchestration</h1>
+          <div class="portfolio-public-note">Public case study. Selected work is illustrative; proprietary screens, research and implementation details remain confidential.</div>
+          <p class="ac-case-subheading">Leading a payments startup from first brief to launch.</p>
+          <div class="p2-hero-lede">
+            <div>
+              <p class="p2-hero-sub">I led the repositioning of AccruPay, then directed its brand, website, design system and developer-facing experience from first brief to launch.</p>
+              <p class="p2-hero-sub" style="margin-top:12px">The result: a developer-first payment router that keeps revenue flowing when a provider fails.</p>
+            </div>
+            <div class="p2-hero-detail">
+              <p><strong>I led.</strong> Positioning and product story · brand identity · website and product UI direction · design system · developer experience.</p>
+              <p><strong>Outcome.</strong> 0 → launch · live with Wondercare, a cross-border insurer.</p>
+            </div>
+          </div>
+        </div>
+        <div class="p2-hero-video ac-hero-art ac-hero-motion">
+          <span aria-hidden="true" class="ac-glow ac-glow-one"></span>
+          <span aria-hidden="true" class="ac-glow ac-glow-two"></span>
+          <span aria-hidden="true" class="ac-glow ac-glow-three"></span>
+          <img alt="AccruPay project card — developer-first payments website" class="ac-hero-image" src="./images/Project-card_accrupay.png">
+        </div>
+      </section>
+      <div class="p2-wrap ac-conf-wrap">
 </div>
-<div class="p2-hero-video ac-hero-art ac-hero-motion"><span aria-hidden="true" class="ac-glow ac-glow-one"></span><span aria-hidden="true" class="ac-glow ac-glow-two"></span><span aria-hidden="true" class="ac-glow ac-glow-three"></span><img alt="AccruPay project card — developer-first payments website" class="ac-hero-image" src="./images/Project-card_accrupay.png"/></div>
-</section><div class="p2-wrap ac-conf-wrap"></div>
-<section class="p2-section">
-<div class="p2-wrap">
-<div class="p2-section-head">
-<div><div class="p2-eyebrow"><span class="num">01</span>The mandate</div><h2 class="p2-section-title">A payments product <em>with the wrong story.</em></h2></div>
-<p class="p2-section-blurb">AccruPay began as a smart payments toolkit for small businesses. Underneath the feature list was a sharper idea: resilience and provider independence for teams who can't afford to go down. My first job was to find it and make it the product.</p>
+      <section class="p2-section">
+        <div class="p2-wrap">
+          <div class="p2-section-head">
+            <div>
+              <div class="p2-eyebrow"><span class="num">01</span>The mandate</div>
+              <h2 class="p2-section-title">A payments product <em>with the wrong story.</em></h2>
+            </div>
+            <p class="p2-section-blurb">AccruPay began as a smart payments toolkit for small businesses. Underneath the feature list was a sharper idea: resilience and provider independence for teams who can't afford to go down. My first job was to find it and make it the product.</p>
+          </div>
+          <div class="cp-story">
+            <div>
+              <span class="cp-lab">01 · The original assumption</span>
+              <h4>Sell a smart toolkit to small businesses</h4>
+              <p>The brief was to market a list of payment features, such as dual pricing, surcharging and invoicing, to small retailers.</p>
+            </div>
+            <div>
+              <span class="cp-lab">02 · The problem I identified</span>
+              <h4>Features any processor could claim</h4>
+              <p>The list blended in with every competitor. The product's real strength, routing across providers, was buried at the bottom and aimed at the wrong buyer.</p>
+            </div>
+            <div>
+              <span class="cp-lab">03 · What I recommended</span>
+              <h4>Reposition as infrastructure for developers</h4>
+              <p>Lead with resilience and provider independence, sell to technical teams, and rebuild the brand, site and product around one idea: when a provider fails, your revenue doesn't.</p>
+            </div>
+          </div>
+          <div class="ac-pos">
+            <div class="c old">
+              <span class="cp-lab">Where it started</span>
+              <h4>Empowering small businesses with smart payment solutions</h4>
+              <div class="ac-chips">
+                <span>Dual pricing</span>
+                <span>Payment plans</span>
+                <span>Surcharging</span>
+                <span>Accounting integrations</span>
+                <span>Invoicing</span>
+                <span>Payment requests</span>
+                <span>Real-time reporting</span>
+                <span>Recurring payments</span>
+                <span>Multi-MID</span>
+              </div>
+              <p>A list of features for small businesses, with an illustrated, friendly brand. Hard to tell apart from every other payments toolkit.</p>
+            </div>
+            <div class="arr"><i data-i="spark"></i></div>
+            <div class="c new">
+              <span class="cp-lab">What we built</span>
+              <h4>A lightweight payment router for developers</h4>
+              <div class="ac-pr">
+                <div>
+                  <i data-i="share"></i>
+                  <div>
+                    <b>Independence over dependency</b>
+                    <small>No lock-in to a single provider</small>
+                  </div>
+                </div>
+                <div>
+                  <i data-i="clock"></i>
+                  <div>
+                    <b>Speed over configuration</b>
+                    <small>Act immediately when payments fail</small>
+                  </div>
+                </div>
+                <div>
+                  <i data-i="eye"></i>
+                  <div>
+                    <b>Clarity over complexity</b>
+                    <small>Understandable without losing technical depth</small>
+                  </div>
+                </div>
+              </div>
+              <p>One sharp idea: when a provider fails, your revenue doesn't.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="p2-section">
+        <div class="p2-wrap">
+          <div class="p2-section-head">
+            <div>
+              <div class="p2-eyebrow"><span class="num">02</span>Leadership</div>
+              <h2 class="p2-section-title">I directed every surface <em>a customer would touch.</em></h2>
+            </div>
+            <p class="p2-section-blurb">I led the positioning, brand and experience direction, working with founders, agency collaborators and engineering from first brief to launch.</p>
+          </div>
+          <div class="cp-flow">
+            <div class="cp-node">
+              <span class="who"><i data-i="users"></i>Founders</span>
+              <b>Vision &amp; funding</b>
+              <p>Product vision, commercial model and investor relationships.</p>
+            </div>
+            <div class="cp-node me">
+              <span class="who"><i data-i="spark"></i>My role · Design lead</span>
+              <b>Story, brand &amp; experience</b>
+              <ul>
+                <li><i data-i="eye"></i>Positioning and product story</li>
+                <li><i data-i="palette"></i>Brand identity</li>
+                <li><i data-i="grid"></i>Website and product UI</li>
+                <li><i data-i="layers"></i>Design system and devex</li>
+              </ul>
+            </div>
+            <div class="cp-node">
+              <span class="who"><i data-i="bot"></i>Engineering</span>
+              <b>SDK &amp; sandbox</b>
+              <p>Routing engine, SDK, sandbox and API, built to the journeys we defined.</p>
+            </div>
+            <div class="cp-node">
+              <span class="who"><i data-i="globe"></i>Go-to-market</span>
+              <b>Sales &amp; investors</b>
+              <p>Demos, early customers and fundraising, all using the new story.</p>
+            </div>
+          </div>
+          <div class="sp-own">
+            <div>
+              <span>01</span>
+              <h4>Reframing the product</h4>
+              <p>Found the stronger story in the brief: resilience and provider independence, not more features.</p>
+            </div>
+            <div>
+              <span>02</span>
+              <h4>Building the brand</h4>
+              <p>Led identity from exploration to an approved mark, type and colour system.</p>
+            </div>
+            <div>
+              <span>03</span>
+              <h4>Directing web and product</h4>
+              <p>Defined the sitemap, journeys and page system from homepage to sandbox.</p>
+            </div>
+            <div>
+              <span>04</span>
+              <h4>Designing for developers</h4>
+              <p>Shaped the SDK, sandbox and docs experience with engineering.</p>
+            </div>
+          </div>
+          <div class="ac-leadership-decision">
+            <span class="cp-lab">The leadership decision</span>
+            <h3>Choose a sharper buyer, not a longer feature list.</h3>
+            <p><strong>The trade-off.</strong> Leading with a lightweight router for developers meant stepping away from broad small-business marketing and giving less prominence to invoicing, surcharging and payment-plan features.</p>
+            <p><strong>Building alignment.</strong> I made the case through a before-and-after proposition and connected it to the website, SDK story and sandbox journey so the founders could evaluate one coherent direction. The resulting positioning gave design and engineering a shared narrative.</p>
+          </div>
+        </div>
+      </section>
+      <section class="p2-section">
+        <div class="p2-wrap">
+          <div class="p2-section-head">
+            <div>
+              <div class="p2-eyebrow"><span class="num">03</span>The work</div>
+              <h2 class="p2-section-title">From brand to sandbox, <em>one system.</em></h2>
+            </div>
+            <p class="p2-section-blurb">Each decision traced back to the three principles: independence, speed and clarity.</p>
+          </div>
+          <div class="lu-sub" style="margin-top:72px">
+            <h3 style="font-size:clamp(22px,2vw,28px);font-weight:400;letter-spacing:-.01em;margin:0 0 8px">Sandbox · route, fail, recover</h3>
+            <p style="max-width:640px;font-size:15px;line-height:1.55;color:var(--p2-ink-soft);margin:0 0 24px">Payment products talk about flexibility. The real fear is interruption. Toggle a provider outage and send a payment to see the routing logic the site had to explain.</p>
+            <div class="ar">
+              <div class="ar-flow">
+                <div class="ar-tx">
+                  <small>Order #4821 · Customer checkout</small>
+                  <b>$249.00</b>
+                  <span class="st">Ready</span>
+                </div>
+                <div class="ar-ln">
 </div>
-<div class="cp-story">
-<div><span class="cp-lab">01 · The original assumption</span><h4>Sell a smart toolkit to small businesses</h4><p>The brief was to market a list of payment features, such as dual pricing, surcharging and invoicing, to small retailers.</p></div>
-<div><span class="cp-lab">02 · The problem I identified</span><h4>Features any processor could claim</h4><p>The list blended in with every competitor. The product's real strength, routing across providers, was buried at the bottom and aimed at the wrong buyer.</p></div>
-<div><span class="cp-lab">03 · What I recommended</span><h4>Reposition as infrastructure for developers</h4><p>Lead with resilience and provider independence, sell to technical teams, and rebuild the brand, site and product around one idea: when a provider fails, your revenue doesn't.</p></div>
+                <div class="ar-ps">
+                  <div class="ar-p down" data-role="Primary · US cards">
+                    <span class="dot"></span>
+                    <div>
+                      <b>Provider A</b>
+                      <small>Not responding</small>
+                    </div>
+                    <button type="button">Outage</button>
+                  </div>
+                  <div class="ar-p" data-role="Fallback · global">
+                    <span class="dot"></span>
+                    <div>
+                      <b>Provider B</b>
+                      <small>Fallback · global</small>
+                    </div>
+                    <button type="button">Healthy</button>
+                  </div>
+                  <div class="ar-p" data-role="Regional · EU">
+                    <span class="dot"></span>
+                    <div>
+                      <b>Provider C</b>
+                      <small>Regional · EU</small>
+                    </div>
+                    <button type="button">Healthy</button>
+                  </div>
+                </div>
+              </div>
+              <div class="ar-side">
+                <button class="ar-go" type="button">Send payment</button>
+                <div class="ar-log">
+                  <div class="m">Toggle a provider, then send the payment.</div>
+                </div>
+                <div class="ar-sum">
 </div>
-<div class="ac-pos">
-<div class="c old"><span class="cp-lab">Where it started</span><h4>Empowering small businesses with smart payment solutions</h4><div class="ac-chips"><span>Dual pricing</span><span>Payment plans</span><span>Surcharging</span><span>Accounting integrations</span><span>Invoicing</span><span>Payment requests</span><span>Real-time reporting</span><span>Recurring payments</span><span>Multi-MID</span></div><p>A list of features for small businesses, with an illustrated, friendly brand. Hard to tell apart from every other payments toolkit.</p></div>
-<div class="arr"><i data-i="spark"></i></div>
-<div class="c new"><span class="cp-lab">What we built</span><h4>A lightweight payment router for developers</h4><div class="ac-pr"><div><i data-i="share"></i><div><b>Independence over dependency</b><small>No lock-in to a single provider</small></div></div><div><i data-i="clock"></i><div><b>Speed over configuration</b><small>Act immediately when payments fail</small></div></div><div><i data-i="eye"></i><div><b>Clarity over complexity</b><small>Understandable without losing technical depth</small></div></div></div><p>One sharp idea: when a provider fails, your revenue doesn't.</p></div>
-</div>
-</div>
-</section>
-<section class="p2-section">
-<div class="p2-wrap">
-<div class="p2-section-head">
-<div><div class="p2-eyebrow"><span class="num">02</span>Leadership</div><h2 class="p2-section-title">I directed every surface <em>a customer would touch.</em></h2></div>
-<p class="p2-section-blurb">I led the positioning, brand and experience direction, working with founders, agency collaborators and engineering from first brief to launch.</p>
-</div>
-<div class="cp-flow">
-<div class="cp-node"><span class="who"><i data-i="users"></i>Founders</span><b>Vision &amp; funding</b><p>Product vision, commercial model and investor relationships.</p></div>
-<div class="cp-node me"><span class="who"><i data-i="spark"></i>My role · Design lead</span><b>Story, brand &amp; experience</b><ul><li><i data-i="eye"></i>Positioning and product story</li><li><i data-i="palette"></i>Brand identity</li><li><i data-i="grid"></i>Website and product UI</li><li><i data-i="layers"></i>Design system and devex</li></ul></div>
-<div class="cp-node"><span class="who"><i data-i="bot"></i>Engineering</span><b>SDK &amp; sandbox</b><p>Routing engine, SDK, sandbox and API, built to the journeys we defined.</p></div>
-<div class="cp-node"><span class="who"><i data-i="globe"></i>Go-to-market</span><b>Sales &amp; investors</b><p>Demos, early customers and fundraising, all using the new story.</p></div>
-</div>
-<div class="sp-own">
-<div><span>01</span><h4>Reframing the product</h4><p>Found the stronger story in the brief: resilience and provider independence, not more features.</p></div>
-<div><span>02</span><h4>Building the brand</h4><p>Led identity from exploration to an approved mark, type and colour system.</p></div>
-<div><span>03</span><h4>Directing web and product</h4><p>Defined the sitemap, journeys and page system from homepage to sandbox.</p></div>
-<div><span>04</span><h4>Designing for developers</h4><p>Shaped the SDK, sandbox and docs experience with engineering.</p></div>
-</div><div class="ac-leadership-decision"><span class="cp-lab">The leadership decision</span><h3>Choose a sharper buyer, not a longer feature list.</h3><p><strong>The trade-off.</strong> Leading with a lightweight router for developers meant stepping away from broad small-business marketing and giving less prominence to invoicing, surcharging and payment-plan features.</p><p><strong>Building alignment.</strong> I made the case through a before-and-after proposition and connected it to the website, SDK story and sandbox journey so the founders could evaluate one coherent direction. The resulting positioning gave design and engineering a shared narrative.</p></div>
-</div>
-</section>
-<section class="p2-section">
-<div class="p2-wrap">
-<div class="p2-section-head">
-<div><div class="p2-eyebrow"><span class="num">03</span>The work</div><h2 class="p2-section-title">From brand to sandbox, <em>one system.</em></h2></div>
-<p class="p2-section-blurb">Each decision traced back to the three principles: independence, speed and clarity.</p>
-</div>
-<div class="lu-sub" style="margin-top:72px"><h3 style="font-size:clamp(22px,2vw,28px);font-weight:400;letter-spacing:-.01em;margin:0 0 8px">Sandbox · route, fail, recover</h3><p style="max-width:640px;font-size:15px;line-height:1.55;color:var(--p2-ink-soft);margin:0 0 24px">Payment products talk about flexibility. The real fear is interruption. Toggle a provider outage and send a payment to see the routing logic the site had to explain.</p><div class="ar">
-<div class="ar-flow"><div class="ar-tx"><small>Order #4821 · Customer checkout</small><b>$249.00</b><span class="st">Ready</span></div><div class="ar-ln"></div>
-<div class="ar-ps">
-<div class="ar-p down" data-role="Primary · US cards"><span class="dot"></span><div><b>Provider A</b><small>Not responding</small></div><button type="button">Outage</button></div>
-<div class="ar-p" data-role="Fallback · global"><span class="dot"></span><div><b>Provider B</b><small>Fallback · global</small></div><button type="button">Healthy</button></div>
-<div class="ar-p" data-role="Regional · EU"><span class="dot"></span><div><b>Provider C</b><small>Regional · EU</small></div><button type="button">Healthy</button></div>
-</div></div>
-<div class="ar-side"><button class="ar-go" type="button">Send payment</button><div class="ar-log"><div class="m">Toggle a provider, then send the payment.</div></div><div class="ar-sum"></div></div>
-</div></div><div class="lu-sub" style="margin-top:72px"><h3 style="font-size:clamp(22px,2vw,28px);font-weight:400;letter-spacing:-.01em;margin:0 0 8px">Two readers, one page</h3><div class="ac-two" data-v="dev"><div><h4>Designed for two readers at once</h4><p>The developer who has to integrate it, and the operator who has to trust it. Each section carries a commercial layer and a technical layer, so both find their answer without a second page.</p><div class="seg"><button aria-pressed="true" data-v="dev" type="button"><i data-i="grid"></i>Developer</button><button aria-pressed="false" data-v="ops" type="button"><i data-i="chart"></i>Operator</button></div></div>
-<div class="am-b"><div class="am-bar"><i></i><i></i><i></i><b>AccruPay</b></div>
-<div class="am-hero" data-r="dev"><h3>One SDK, all the power.</h3><p>Add AccruPay once. Swap providers, add payment methods or load balance in minutes.</p></div>
-<div class="am-code" data-r="dev"><span class="k">accru</span>.routing.setRules([<br/>  { match: { region: <span class="s">'EU'</span> }, route: <span class="s">'provider-c'</span> },<br/>  { fallback: <span class="s">'provider-b'</span> }<br/>]);</div>
-<div class="am-hero" data-r="ops"><h3>One outage shouldn't cost you your business.</h3><p>Route traffic to another provider within minutes. No redeploys, no code changes.</p></div>
-<div class="ops" data-r="ops"><div><b>Uptime</b><small>Multi-provider routing</small></div><div><b>Approvals</b><small>Smart load balancing</small></div><div><b>Speed</b><small>Switch in minutes</small></div></div>
-</div></div></div>
-</div>
-</section>
-<section class="p2-section">
-<div class="p2-wrap">
-<div class="p2-section-head">
-<div><div class="p2-eyebrow"><span class="num">04</span>The outcomes</div><h2 class="p2-section-title">My role, plus the team, <em>equals the outcome.</em></h2></div>
-<p class="p2-section-blurb">The product was built by a small team. My contribution was the story, the brand and the experience system that made it credible at launch.</p>
-</div>
-<div class="sp-eq">
-<div class="sp-col me"><span>My role</span><ul><li>Positioning and product story</li><li>Brand identity</li><li>Website and product UI direction</li><li>Design system and developer experience</li></ul></div>
-<div class="sp-op">+</div>
-<div class="sp-col tm"><span>The team</span><ul><li>Founders: vision and funding</li><li>Engineering: SDK, sandbox, APIs</li><li>Content and documentation</li><li>Sales and early customers</li><li>Agency collaborators: creative delivery</li></ul></div>
-<div class="sp-op">=</div>
-<div class="sp-col res"><span>Outcome</span><div class="sp-res"><div><b>0 → launch</b><small>brand, website and product positioning launched</small></div><div><b>10</b><small>website templates in a modular system</small></div></div><p>Live with Wondercare, a cross-border insurer. The outcome reflects work by founders, engineering, agency collaborators and design; it is not attributable to design alone.</p></div>
-</div>
-</div>
-</section>
-<section class="sp-lock" id="full-case">
-<div class="p2-wrap">
-<div class="p2-section-head">
-<div><div class="p2-eyebrow"><span class="num">05</span>Full case study</div><h2 class="p2-section-title">The full case study is <em>protected.</em></h2></div>
-<p class="p2-section-blurb">Early discovery, brand rounds, the full desktop journey, website system and design tokens are reserved for the private version. The interactive routing demo and dual-audience design are shown above.</p>
-</div>
-<div class="sp-lock-grid">
-<ul class="sp-chapters"><li><span class="n">01</span><span class="t">Discovery &amp; reframe<small>The original brand and how the story changed</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li><li><span class="n">02</span><span class="t">Brand identity<small>Logo rounds, testing in context and approval</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li><li><span class="n">03</span><span class="t">Website &amp; journeys<small>The full desktop end-to-end journey</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li><li><span class="n">04</span><span class="t">Page design<small>Homepage, solutions, why Accru and features</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li><li><span class="n">05</span><span class="t">Design system<small>Colour styles, type and components</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li></ul>
-<div class="sp-gate"><span class="sp-note">Protected</span><h3>Unlock the full case study.</h3><p>Password shared with recruiters and hiring teams on request.</p><div class="password-row"><input id="password-input" placeholder="Enter password" type="password"/><button disabled="" id="submit-btn">Unlock</button></div><p class="error-message" id="error-message"></p><p class="alt"><a href="mailto:hello@sophiaakrofi.com?subject=Password%20request%3A%20AccruPay%20case%20study">Request access</a></p></div>
-</div></div></section>
-<section class="p2-next"><div class="p2-wrap"><div class="p2-next-eyebrow">Next project</div><a class="p2-next-link" href="property-tech-public.html"><h3>Property Technology Ecosystem<br/><em>One system. Three product streams.</em></h3><span class="arrow">→</span></a></div></section>
-<section class="ac-contact-cta"><div class="p2-wrap ac-contact-inner"><div><span class="p2-eyebrow">Work with me</span><h2>Design that means business.</h2><p>From positioning to product, I help teams turn complex ideas into clear digital experiences.</p></div><a class="ac-contact-button" href="work-with-me.html">Work with me ↗</a></div></section>
-</main>
-<footer class="portfolio-footer" id="contact"><div class="portfolio-footer-inner"><div><p class="portfolio-footer-eyebrow">Get in touch</p><h2>Let's make something meaningful.</h2><a class="portfolio-footer-cta" href="work-with-me.html">Work with me ↗</a></div><div class="portfolio-footer-links"><a href="https://www.linkedin.com/in/sophia-akrofi/">LinkedIn ↗</a><a href="https://www.youtube.com/@sophia_akrofi">YouTube ↗</a><a href="https://sophiaakrofi.substack.com/">Substack ↗</a><a href="https://www.instagram.com/sophia_akrofi/">Instagram ↗</a><a href="#top">Back to top ↑</a><small>Website built by Sophia Akrofi · © 2026</small></div></div></footer>
-<script src="copilot-kit.js"></script>
-<script src="accru-kit.js"></script>
-<script>
-(function(){const t=document.getElementById('menuToggle'),m=document.getElementById('mobileMenu'),c=document.getElementById('menuClose');t&&t.addEventListener('click',()=>m.classList.add('active'));c&&c.addEventListener('click',()=>m.classList.remove('active'));})();
-(function(){const i=document.getElementById('password-input'),b=document.getElementById('submit-btn'),e=document.getElementById('error-message');
-i.addEventListener('input',()=>{b.disabled=!i.value;e.textContent='';});
-function go(){if(i.value==="agileakrofi21")location.href="accrupay-private.html";else e.textContent="Incorrect password";}
-b.addEventListener('click',go);i.addEventListener('keypress',x=>{if(x.key==='Enter')go();});})();
-
-</script>
-</body>
+              </div>
+            </div>
+          </div>
+          <div class="lu-sub" style="margin-top:72px">
+            <h3 style="font-size:clamp(22px,2vw,28px);font-weight:400;letter-spacing:-.01em;margin:0 0 8px">Two readers, one page</h3>
+            <div class="ac-two" data-v="dev">
+              <div>
+                <h4>Designed for two readers at once</h4>
+                <p>The developer who has to integrate it, and the operator who has to trust it. Each section carries a commercial layer and a technical layer, so both find their answer without a second page.</p>
+                <div class="seg">
+                  <button aria-pressed="true" data-v="dev" type="button"><i data-i="grid"></i>Developer</button>
+                  <button aria-pressed="false" data-v="ops" type="button"><i data-i="chart"></i>Operator</button>
+                </div>
+              </div>
+              <div class="am-b">
+                <div class="am-bar">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                  <b>AccruPay</b>
+                </div>
+                <div class="am-hero" data-r="dev">
+                  <h3>One SDK, all the power.</h3>
+                  <p>Add AccruPay once. Swap providers, add payment methods or load balance in minutes.</p>
+                </div>
+                <div class="am-code" data-r="dev"><span class="k">accru</span>.routing.setRules([<br>&nbsp;&nbsp;{ match: { region: <span class="s">'EU'</span> }, route: <span class="s">'provider-c'</span> },<br>&nbsp;&nbsp;{ fallback: <span class="s">'provider-b'</span> }<br>]);</div>
+                <div class="am-hero" data-r="ops">
+                  <h3>One outage shouldn't cost you your business.</h3>
+                  <p>Route traffic to another provider within minutes. No redeploys, no code changes.</p>
+                </div>
+                <div class="ops" data-r="ops">
+                  <div>
+                    <b>Uptime</b>
+                    <small>Multi-provider routing</small>
+                  </div>
+                  <div>
+                    <b>Approvals</b>
+                    <small>Smart load balancing</small>
+                  </div>
+                  <div>
+                    <b>Speed</b>
+                    <small>Switch in minutes</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="p2-section">
+        <div class="p2-wrap">
+          <div class="p2-section-head">
+            <div>
+              <div class="p2-eyebrow"><span class="num">04</span>The outcomes</div>
+              <h2 class="p2-section-title">My role, plus the team, <em>equals the outcome.</em></h2>
+            </div>
+            <p class="p2-section-blurb">The product was built by a small team. My contribution was the story, the brand and the experience system that made it credible at launch.</p>
+          </div>
+          <div class="sp-eq">
+            <div class="sp-col me">
+              <span>My role</span>
+              <ul>
+                <li>Positioning and product story</li>
+                <li>Brand identity</li>
+                <li>Website and product UI direction</li>
+                <li>Design system and developer experience</li>
+              </ul>
+            </div>
+            <div class="sp-op">+</div>
+            <div class="sp-col tm">
+              <span>The team</span>
+              <ul>
+                <li>Founders: vision and funding</li>
+                <li>Engineering: SDK, sandbox, APIs</li>
+                <li>Content and documentation</li>
+                <li>Sales and early customers</li>
+                <li>Agency collaborators: creative delivery</li>
+              </ul>
+            </div>
+            <div class="sp-op">=</div>
+            <div class="sp-col res">
+              <span>Outcome</span>
+              <div class="sp-res">
+                <div>
+                  <b>0 → launch</b>
+                  <small>brand, website and product positioning launched</small>
+                </div>
+                <div>
+                  <b>10</b>
+                  <small>website templates in a modular system</small>
+                </div>
+              </div>
+              <p>Live with Wondercare, a cross-border insurer. The outcome reflects work by founders, engineering, agency collaborators and design; it is not attributable to design alone.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="sp-lock" id="full-case">
+        <div class="p2-wrap">
+          <div class="p2-section-head">
+            <div>
+              <div class="p2-eyebrow"><span class="num">05</span>Full case study</div>
+              <h2 class="p2-section-title">The full case study is <em>protected.</em></h2>
+            </div>
+            <p class="p2-section-blurb">Early discovery, brand rounds, the full desktop journey, website system and design tokens are reserved for the private version. The interactive routing demo and dual-audience design are shown above.</p>
+          </div>
+          <div class="sp-lock-grid">
+            <ul class="sp-chapters">
+              <li><span class="n">01</span><span class="t">Discovery &amp; reframe<small>The original brand and how the story changed</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
+              <li><span class="n">02</span><span class="t">Brand identity<small>Logo rounds, testing in context and approval</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
+              <li><span class="n">03</span><span class="t">Website &amp; journeys<small>The full desktop end-to-end journey</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
+              <li><span class="n">04</span><span class="t">Page design<small>Homepage, solutions, why Accru and features</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
+              <li><span class="n">05</span><span class="t">Design system<small>Colour styles, type and components</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
+            </ul>
+            <div class="sp-gate">
+              <span class="sp-note">Protected</span>
+              <h3>Unlock the full case study.</h3>
+              <p>Password shared with recruiters and hiring teams on request.</p>
+              <div class="password-row">
+                <input id="password-input" placeholder="Enter password" type="password">
+                <button disabled="" id="submit-btn">Unlock</button>
+              </div>
+              <p class="error-message" id="error-message"></p>
+              <p class="alt"><a href="mailto:hello@sophiaakrofi.com?subject=Password%20request%3A%20AccruPay%20case%20study">Request access</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="p2-next">
+        <div class="p2-wrap">
+          <div class="p2-next-eyebrow">Next project</div>
+          <a class="p2-next-link" href="property-tech-public.html">
+            <h3>Property Technology Ecosystem<br><em>One system. Three product streams.</em></h3><span class="arrow">→</span>
+          </a>
+        </div>
+      </section>
+      <section class="ac-contact-cta">
+        <div class="p2-wrap ac-contact-inner">
+          <div>
+            <span class="p2-eyebrow">Work with me</span>
+            <h2>Design that means business.</h2>
+            <p>From positioning to product, I help teams turn complex ideas into clear digital experiences.</p>
+          </div>
+          <a class="ac-contact-button" href="work-with-me.html">Work with me <span class="cta-icon cta-icon-up" aria-hidden="true"></span></a>
+        </div>
+      </section>
+    </main>
+    <footer class="portfolio-footer" id="contact">
+      <div class="portfolio-footer-inner">
+        <div>
+          <p class="portfolio-footer-eyebrow">Get in touch</p>
+          <h2>Let's make something meaningful.</h2>
+          <a class="portfolio-footer-cta" href="work-with-me.html">Work with me <span class="cta-icon cta-icon-up" aria-hidden="true"></span></a>
+        </div>
+        <div class="portfolio-footer-links">
+          <a href="https://www.linkedin.com/in/sophia-akrofi/">LinkedIn <span class="cta-icon cta-icon-up" aria-hidden="true"></span></a>
+          <a href="https://www.youtube.com/@sophia_akrofi">YouTube <span class="cta-icon cta-icon-up" aria-hidden="true"></span></a>
+          <a href="https://sophiaakrofi.substack.com/">Substack <span class="cta-icon cta-icon-up" aria-hidden="true"></span></a>
+          <a href="https://www.instagram.com/sophia_akrofi/">Instagram <span class="cta-icon cta-icon-up" aria-hidden="true"></span></a>
+          <a href="#top">Back to top ↑</a>
+          <small>Website built by Sophia Akrofi · © 2026</small>
+        </div>
+      </div>
+    </footer>
+    <script src="copilot-kit.js"></script>
+    <script src="accru-kit.js"></script>
+    <script src="accrupay-public-script-02.js"></script>
+  </body>
 </html>
