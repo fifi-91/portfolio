@@ -1,0 +1,29 @@
+
+/* AccruPay refinements: preserve original Claude component styling and interactions. */
+.p2-page .ac-case-subheading{font-family:inherit;font-size:clamp(22px,2.6vw,35px);line-height:1.2;letter-spacing:-.035em;margin:12px 0 28px;color:var(--p2-ink);font-weight:400}
+.p2-page .ac-conf-wrap{padding-top:14px;padding-bottom:22px}
+.p2-page .ac-conf{font-size:12px;line-height:1.6;letter-spacing:.005em;color:var(--p2-ink-soft);margin:0}
+.p2-page .ac-hero-art{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#f4f3f1;min-height:390px}
+.p2-page .ac-hero-image{position:relative;z-index:2;width:min(78%,900px);height:auto;max-height:92%;object-fit:contain;border-radius:12px;box-shadow:0 28px 55px -30px #0005}
+.p2-page .ac-glow{position:absolute;z-index:0;width:48%;aspect-ratio:1;border-radius:50%;filter:blur(75px);opacity:.55;pointer-events:none;will-change:transform}
+.p2-page .ac-glow-one{background:#bbedd6;left:5%;top:-30%;animation:acDriftA 13s ease-in-out infinite alternate}
+.p2-page .ac-glow-two{background:#d6bbff;right:0;bottom:-40%;animation:acDriftB 17s ease-in-out infinite alternate}
+.p2-page .ac-glow-three{background:#f5d9c4;left:38%;bottom:-40%;animation:acDriftC 15s ease-in-out infinite alternate}
+@keyframes acDriftA{to{transform:translate(55%,35%) scale(1.2)}}
+@keyframes acDriftB{to{transform:translate(-50%,-32%) scale(1.18)}}
+@keyframes acDriftC{to{transform:translate(-20%,-55%) scale(.86)}}
+@media(prefers-reduced-motion:reduce){.p2-page .ac-glow{animation:none}}
+.p2-page .ac-leadership-decision{margin-top:44px;padding:32px 36px;border:1px solid #dddcd8;background:#f6f5f2;border-radius:8px;max-width:950px}
+.p2-page .ac-leadership-decision h3{font:inherit;font-size:clamp(22px,2.1vw,30px);font-weight:500;letter-spacing:-.03em;margin:14px 0}
+.p2-page .ac-leadership-decision p{max-width:760px;font-size:15px;line-height:1.65;margin:12px 0;color:var(--p2-ink-soft)}
+.p2-page .ac-contact-cta{background:#171a16;color:#fff;padding:80px 0}
+.p2-page .ac-contact-inner{display:flex;align-items:center;justify-content:space-between;gap:40px}
+.p2-page .ac-contact-inner h2{font-size:clamp(30px,3.6vw,52px);font-weight:400;letter-spacing:-.045em;margin:18px 0}
+.p2-page .ac-contact-inner p{color:#bfc5be;max-width:550px;line-height:1.5}
+.p2-page .ac-contact-button{display:inline-flex;border:1px solid #fff;color:#171a16;background:#fff;border-radius:999px;padding:16px 24px;text-decoration:none;white-space:nowrap}
+@media(max-width:700px){.p2-page .ac-hero-art{min-height:270px}.p2-page .ac-hero-image{width:90%}.p2-page .ac-contact-inner{display:block}.p2-page .ac-contact-button{margin-top:24px}}
+
+/* Full homepage navigation, AccruPay public + private */
+.p2-page .nav-links { gap: clamp(12px, 1.4vw, 24px); }
+.p2-page .nav-links a { font-size: clamp(12px, 1.04vw, 16px); white-space: nowrap; }
+@media(max-width: 1190px) { .p2-page .nav-links { display:none; } .p2-page .nav-mobile { display:flex; } }
