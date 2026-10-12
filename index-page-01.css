@@ -1470,3 +1470,10 @@ html,body {
     letter-spacing:-.055em!important
   }
 }
+
+/* Reserved third project slot: intentionally empty until the next project is ready. */
+.project-placeholder-media {
+  width: 100%;
+  aspect-ratio: 1.12 / 1;
+  background: #eeece8;
+}
