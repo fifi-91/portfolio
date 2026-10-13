@@ -1,0 +1,12 @@
+/* Partner case study integration — Neue Haas, responsive layout, existing navigation */
+.partner-project-card .partner-card-visual{aspect-ratio:1.4;background:#e9eceb;display:grid;place-items:center;overflow:hidden;padding:9%;box-sizing:border-box}
+.partner-card-window{width:100%;height:100%;background:#fff;border:1px solid #d8dedb;border-radius:7px;box-shadow:0 14px 35px #19372b16;overflow:hidden}
+.partner-card-bar{height:14%;border-bottom:1px solid #e8ecea;display:flex;gap:5px;align-items:center;padding:0 12px}
+.partner-card-bar span{width:5px;height:5px;background:#d1d8d4;border-radius:50%}
+.partner-card-app{display:flex;height:86%}.partner-card-sidebar{width:16%;background:#f1f5f2;display:flex;flex-direction:column;align-items:center;gap:12px;padding-top:15px}.partner-card-sidebar i{width:12px;height:12px;border-radius:3px;background:#b6cbc0}
+.partner-card-content{padding:8%;flex:1}.partner-card-greeting{height:13px;width:60%;background:#263f36;border-radius:3px}.partner-card-line{height:6px;width:38%;background:#d3ddd7;margin-top:9px;border-radius:3px}.partner-card-panels{display:flex;gap:10px;margin:18px 0}.partner-card-panels i{height:55px;flex:1;background:#e6efe9;border-radius:4px}.partner-card-panels i+ i{background:#edf0e9}.partner-card-row{height:10px;background:#edf0ed;margin:9px 0;border-radius:2px}.partner-card-row.short{width:65%}
+.p2-page,.p2-page button,.p2-page input,.p2-page select,.p2-page textarea,.p2-page h1,.p2-page h2,.p2-page h3,.p2-page h4,.p2-page h5,.p2-page h6,.p2-page p,.p2-page span,.p2-page a{font-family:'Neue Haas Grotesk Display Pro','Neue Haas Grotesk Text Pro','Neue Haas Grotesk',Arial,sans-serif}
+.p2-page .p2-eyebrow,.p2-page .pe-lab,.p2-page .p2-next-eyebrow,.p2-page .p2-hero-meta{font-size:10px;letter-spacing:.09em;text-transform:uppercase}
+.p2-page .p2-section-title{font-size:clamp(29px,4vw,56px);line-height:1.09}.p2-page .p2-hero-title{font-size:clamp(39px,6vw,78px);line-height:1.04}
+.p2-page .p2-hero-video{max-width:100%}.p2-page .p2-wrap{max-width:min(100% - 40px,1200px)}
+@media(max-width:767px){.p2-page .p2-wrap{max-width:calc(100% - 32px)}.p2-page .p2-hero-title{font-size:clamp(34px,9vw,48px);line-height:1.05}.p2-page .p2-section-title{font-size:clamp(27px,7vw,36px);line-height:1.12}.p2-page .p2-hero-meta{display:flex;flex-wrap:wrap;gap:6px 10px}.p2-page .p2-hero-meta .slash{display:none}.p2-page .p2-hero-lede{margin-bottom:24px}.p2-page .p2-hero-video{overflow:hidden}.p2-page .sp-eq{max-width:100%;overflow:hidden}.p2-page .sp-col{min-width:0}}
