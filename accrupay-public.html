@@ -1,28 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-portfolio-page="accrupay-public" lang="en">
   <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>AccruPay | Sophia Akrofi</title>
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JWHDGBM765"></script>
-    <script src="accrupay-public-script-01.js"></script>
-    <link href="styles.css" rel="stylesheet">
-    <link href="project-v2.css" rel="stylesheet">
-    <link href="property-tech-preview.css" rel="stylesheet">
-    <link href="copilot-kit.css" rel="stylesheet">
-    <link href="accru-kit.css" rel="stylesheet">
-    <link href="accru-feedback.css" rel="stylesheet">
-    <link href="portfolio-shared.css" rel="stylesheet">
-    <link rel="stylesheet" href="accrupay-public-page-01.css">
-    <link href="case-study-unified.css" rel="stylesheet">
-    <link rel="stylesheet" href="portfolio-mobile-refinements.css">
-    <link rel="stylesheet" href="portfolio-final-polish.css">
-  </head>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="styles.css" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JWHDGBM765"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-JWHDGBM765');
+  </script>
+  <script src="scripts.js" data-phase="head"></script>
+</head>
   <body class="p2-page" data-screen-label="AccruPay public preview">
     <nav aria-label="Main navigation" class="portfolio-nav">
       <div class="portfolio-nav-inner">
         <a class="portfolio-nav-logo" href="index.html">Sophia Akrofi</a>
-        <button aria-controls="portfolio-nav-links" aria-expanded="false" aria-label="Toggle navigation" class="portfolio-nav-toggle" type="button"><span class="menu-bars" aria-hidden="true"></span></button>
+        <button aria-controls="portfolio-nav-links" aria-expanded="false" aria-label="Toggle navigation" class="portfolio-nav-toggle" type="button">
+<span class="menu-bars" aria-hidden="true"></span></button>
         <div class="portfolio-nav-links" id="portfolio-nav-links">
           <a class="" href="index.html#work">Work</a>
           <a class="" href="index.html#experience">Experience</a>
@@ -36,7 +47,8 @@
     </nav>
     <div class="mobile-menu" id="mobileMenu">
       <div class="mobile-menu-inner">
-        <button class="menu-close" id="menuClose"><img alt="Close" src="./images/close.svg"></button>
+        <button class="menu-close" id="menuClose">
+<img alt="Close" src="./assets/images/close.svg"></button>
         <div class="mobile-links">
           <a class="active" href="index.html#work">Work</a>
           <a href="index.html#experience">Experience</a>
@@ -52,7 +64,8 @@
       <section class="p2-hero">
         <div class="p2-wrap">
           <div class="p2-hero-meta">
-            <span class="meta-item"><span class="dot"></span>2026</span>
+            <span class="meta-item">
+<span class="dot"></span>2026</span>
             <span class="slash">/</span>
             <span class="meta-item">Design leadership · positioning, brand, website + developer experience</span>
             <span class="slash">/</span>
@@ -78,7 +91,7 @@
           <span aria-hidden="true" class="ac-glow ac-glow-one"></span>
           <span aria-hidden="true" class="ac-glow ac-glow-two"></span>
           <span aria-hidden="true" class="ac-glow ac-glow-three"></span>
-          <img alt="AccruPay project card — developer-first payments website" class="ac-hero-image" src="./images/Project-card_accrupay.png">
+          <img alt="AccruPay project card — developer-first payments website" class="ac-hero-image" src="./assets/images/Project-card_accrupay.png">
         </div>
       </section>
       <div class="p2-wrap ac-conf-wrap">
@@ -87,7 +100,8 @@
         <div class="p2-wrap">
           <div class="p2-section-head">
             <div>
-              <div class="p2-eyebrow"><span class="num">01</span>The mandate</div>
+              <div class="p2-eyebrow">
+<span class="num">01</span>The mandate</div>
               <h2 class="p2-section-title">A payments product <em>with the wrong story.</em></h2>
             </div>
             <p class="p2-section-blurb">AccruPay began as a smart payments toolkit for small businesses. Underneath the feature list was a sharper idea: resilience and provider independence for teams who can't afford to go down. My first job was to find it and make it the product.</p>
@@ -162,7 +176,8 @@
         <div class="p2-wrap">
           <div class="p2-section-head">
             <div>
-              <div class="p2-eyebrow"><span class="num">02</span>Leadership</div>
+              <div class="p2-eyebrow">
+<span class="num">02</span>Leadership</div>
               <h2 class="p2-section-title">I directed every surface <em>a customer would touch.</em></h2>
             </div>
             <p class="p2-section-blurb">I led the positioning, brand and experience direction, working with founders, agency collaborators and engineering from first brief to launch.</p>
@@ -228,7 +243,8 @@
         <div class="p2-wrap">
           <div class="p2-section-head">
             <div>
-              <div class="p2-eyebrow"><span class="num">03</span>The work</div>
+              <div class="p2-eyebrow">
+<span class="num">03</span>The work</div>
               <h2 class="p2-section-title">From brand to sandbox, <em>one system.</em></h2>
             </div>
             <p class="p2-section-blurb">Each decision traced back to the three principles: independence, speed and clarity.</p>
@@ -304,7 +320,8 @@
                   <h3>One SDK, all the power.</h3>
                   <p>Add AccruPay once. Swap providers, add payment methods or load balance in minutes.</p>
                 </div>
-                <div class="am-code" data-r="dev"><span class="k">accru</span>.routing.setRules([<br>&nbsp;&nbsp;{ match: { region: <span class="s">'EU'</span> }, route: <span class="s">'provider-c'</span> },<br>&nbsp;&nbsp;{ fallback: <span class="s">'provider-b'</span> }<br>]);</div>
+                <div class="am-code" data-r="dev">
+<span class="k">accru</span>.routing.setRules([<br>&nbsp;&nbsp;{ match: { region: <span class="s">'EU'</span> }, route: <span class="s">'provider-c'</span> },<br>&nbsp;&nbsp;{ fallback: <span class="s">'provider-b'</span> }<br>]);</div>
                 <div class="am-hero" data-r="ops">
                   <h3>One outage shouldn't cost you your business.</h3>
                   <p>Route traffic to another provider within minutes. No redeploys, no code changes.</p>
@@ -332,7 +349,8 @@
         <div class="p2-wrap">
           <div class="p2-section-head">
             <div>
-              <div class="p2-eyebrow"><span class="num">04</span>The outcomes</div>
+              <div class="p2-eyebrow">
+<span class="num">04</span>The outcomes</div>
               <h2 class="p2-section-title">My role, plus the team, <em>equals the outcome.</em></h2>
             </div>
             <p class="p2-section-blurb">The product was built by a small team. My contribution was the story, the brand and the experience system that made it credible at launch.</p>
@@ -380,29 +398,45 @@
         <div class="p2-wrap">
           <div class="p2-section-head">
             <div>
-              <div class="p2-eyebrow"><span class="num">05</span>Full case study</div>
+              <div class="p2-eyebrow">
+<span class="num">05</span>Full case study</div>
               <h2 class="p2-section-title">The full case study is <em>protected.</em></h2>
             </div>
             <p class="p2-section-blurb">Early discovery, brand rounds, the full desktop journey, website system and design tokens are reserved for the private version. The interactive routing demo and dual-audience design are shown above.</p>
           </div>
           <div class="sp-lock-grid">
             <ul class="sp-chapters">
-              <li><span class="n">01</span><span class="t">Discovery &amp; reframe<small>The original brand and how the story changed</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
-              <li><span class="n">02</span><span class="t">Brand identity<small>Logo rounds, testing in context and approval</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
-              <li><span class="n">03</span><span class="t">Website &amp; journeys<small>The full desktop end-to-end journey</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
-              <li><span class="n">04</span><span class="t">Page design<small>Homepage, solutions, why Accru and features</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
-              <li><span class="n">05</span><span class="t">Design system<small>Colour styles, type and components</small></span><svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
+              <li>
+<span class="n">01</span>
+<span class="t">Discovery &amp; reframe<small>The original brand and how the story changed</small></span>
+<svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
+              <li>
+<span class="n">02</span>
+<span class="t">Brand identity<small>Logo rounds, testing in context and approval</small></span>
+<svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
+              <li>
+<span class="n">03</span>
+<span class="t">Website &amp; journeys<small>The full desktop end-to-end journey</small></span>
+<svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
+              <li>
+<span class="n">04</span>
+<span class="t">Page design<small>Homepage, solutions, why Accru and features</small></span>
+<svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
+              <li>
+<span class="n">05</span>
+<span class="t">Design system<small>Colour styles, type and components</small></span>
+<svg viewbox="0 0 24 24"><rect height="10" rx="2" width="14" x="5" y="11"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></li>
             </ul>
             <div class="sp-gate">
               <span class="sp-note">Protected</span>
               <h3>Unlock the full case study.</h3>
-              <p>Password shared with recruiters and hiring teams on request.</p>
+              <p>Password provided directly to authorised reviewers.</p>
               <div class="password-row">
                 <input id="password-input" placeholder="Enter password" type="password">
                 <button disabled="" id="submit-btn">Unlock</button>
               </div>
               <p class="error-message" id="error-message"></p>
-              <p class="alt"><a href="mailto:hello@sophiaakrofi.com?subject=Password%20request%3A%20AccruPay%20case%20study">Request access</a></p>
+              
             </div>
           </div>
         </div>
@@ -411,7 +445,8 @@
         <div class="p2-wrap">
           <div class="p2-next-eyebrow">Next project</div>
           <a class="p2-next-link" href="property-tech-public.html">
-            <h3>Property Technology Ecosystem<br><em>One system. Three product streams.</em></h3><span class="arrow">→</span>
+            <h3>Property Technology Ecosystem<br><em>One system. Three product streams.</em></h3>
+<span class="arrow">→</span>
           </a>
         </div>
       </section>
@@ -443,8 +478,9 @@
         </div>
       </div>
     </footer>
-    <script src="copilot-kit.js"></script>
-    <script src="accru-kit.js"></script>
-    <script src="accrupay-public-script-02.js"></script>
-  </body>
+    
+    
+    
+    <script src="scripts.js" data-phase="body"></script>
+</body>
 </html>

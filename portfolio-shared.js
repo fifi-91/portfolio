@@ -1,1 +1,0 @@
-document.addEventListener('DOMContentLoaded',()=>{const b=document.querySelector('.portfolio-nav-toggle'),l=document.querySelector('.portfolio-nav-links');if(!b||!l)return;b.addEventListener('click',()=>{const opened=l.classList.toggle('is-open');b.setAttribute('aria-expanded',String(opened))});});
