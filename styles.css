@@ -76589,3 +76589,77 @@ html * { letter-spacing: 0 !important; }
 .sp-out .sp-col.res .sp-res b { font-size: clamp(22px, 2.2vw, 36px) !important; line-height: 1.12 !important; }
 .sp-gate, .sp-gate h3, .sp-gate p, .sp-gate span, .sp-gate label { color: #171717 !important; }
 .sp-gate button:disabled { outline: none !important; border: 0 !important; box-shadow: none !important; }
+
+/* Property case study: desktop comparison and mobile specification-first stack. */
+@media (min-width: 901px) {
+  .p2-page .p2-bili-stage {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, .85fr) !important;
+    gap: clamp(24px, 4vw, 56px) !important;
+    align-items: start;
+  }
+  .p2-page .p2-bili-card-wrap { order: 0; }
+  .p2-page .p2-bili-spec { order: 1; }
+}
+@media (max-width: 900px) {
+  .p2-page .p2-bili-stage { grid-template-columns: minmax(0, 1fr) !important; }
+  .p2-page .p2-bili-spec { order: 0; }
+  .p2-page .p2-bili-card-wrap { order: 1; }
+}
+
+/* Property story: visible desktop comparison and illustrated leadership progression. */
+body.p2-page .p2-bili-stage { display: grid !important; }
+@media (min-width: 901px) {
+  body.p2-page .p2-bili-stage {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    align-items: start !important;
+    gap: clamp(28px, 4vw, 64px) !important;
+  }
+  body.p2-page .p2-bili-card-wrap,
+  body.p2-page .p2-bili-spec { min-width: 0 !important; width: 100% !important; max-width: none !important; }
+  body.p2-page .p2-bili-card-wrap { grid-column: 1 !important; grid-row: 1 !important; }
+  body.p2-page .p2-bili-spec { grid-column: 2 !important; grid-row: 1 !important; }
+}
+@media (max-width: 900px) {
+  body.p2-page .p2-bili-stage { grid-template-columns: minmax(0, 1fr) !important; gap: 24px !important; }
+  body.p2-page .p2-bili-spec, body.p2-page .p2-bili-card-wrap { grid-column: 1 !important; min-width: 0 !important; }
+  body.p2-page .p2-bili-spec { grid-row: 1 !important; }
+  body.p2-page .p2-bili-card-wrap { grid-row: 2 !important; }
+}
+body.p2-page .p2-story-arc { display:grid; grid-template-columns: minmax(0,1fr) 22px minmax(0,1fr) 22px minmax(0,1fr); gap: 14px; align-items: stretch; margin: 32px 0; }
+body.p2-page .p2-story-step { display:flex; flex-direction:column; gap: 14px; padding: clamp(18px,2.5vw,32px); background:#f3f1ed; border:1px solid rgba(20,20,20,.13); border-radius: 12px; }
+body.p2-page .p2-story-index { font-size: 11px; font-weight:600; opacity:.6; }
+body.p2-page .p2-story-step strong { font-size: clamp(19px,2vw,28px); line-height:1.15; font-weight:500; }
+body.p2-page .p2-story-step > span:last-child { font-size: 14px; line-height:1.5; }
+body.p2-page .p2-story-arrow { display:grid; place-items:center; font-size:24px; }
+@media(max-width:700px) { body.p2-page .p2-story-arc { grid-template-columns:1fr; gap: 10px; } body.p2-page .p2-story-arrow { transform:rotate(90deg); } }
+
+
+
+/* Property case study: hero typography hierarchy */
+body.p2-page .p2-hero-sub {
+  letter-spacing: 0 !important;
+}
+
+body.p2-page .p2-hero-sub .p2-hero-lead {
+  display: block;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+
+body.p2-page .p2-hero-sub .p2-hero-support {
+  display: block;
+  margin-top: 18px;
+  font-size: clamp(16px, 1.35vw, 19px);
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0 !important;
+}
+
+@media (max-width: 900px) {
+  body.p2-page .p2-hero-sub .p2-hero-support {
+    font-size: 16px;
+    margin-top: 14px;
+  }
+}
