@@ -76663,3 +76663,44 @@ body.p2-page .p2-hero-sub .p2-hero-support {
     margin-top: 14px;
   }
 }
+
+/* Thinking aloud — two video thumbnails */
+#thinking .youtube-feature {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  align-items: start !important;
+  gap: 20px !important;
+}
+
+
+#thinking .youtube-play {
+  display: grid !important;
+  place-items: center !important;
+  width: 48px !important;
+  height: 48px !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  overflow: visible !important;
+  pointer-events: none;
+}
+
+#thinking .youtube-play img {
+  width: 48px !important;
+  height: 48px !important;
+  object-fit: contain !important;
+}
+
+@media (max-width: 680px) {
+  #thinking .youtube-feature {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  #thinking .youtube-play,
+  #thinking .youtube-play img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
