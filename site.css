@@ -289,14 +289,3 @@ a.card:hover .go{transform:rotate(-45deg)}
 @media (max-width:600px){.form{grid-template-columns:1fr;padding:20px}}
 
 
-/* Force monochrome arrows on iPhone */
-.arrow,
-.go {
-  font-family: Arial, sans-serif !important;
-  font-variant-emoji: text;
-}
-
-.arrow::after,
-.go::after {
-  content: "\FE0E";
-}
