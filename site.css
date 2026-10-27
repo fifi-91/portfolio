@@ -287,3 +287,11 @@ a.card:hover .go{transform:rotate(-45deg)}
 .btn:disabled{opacity:.6;cursor:progress}
 @media (max-width:860px){.form-split{grid-template-columns:1fr}.form-copy{position:static}}
 @media (max-width:600px){.form{grid-template-columns:1fr;padding:20px}}
+
+
+/* Keep external-link arrows monochrome on mobile */
+.arrow,
+.go {
+  font-family: Arial, sans-serif !important;
+  font-variant-emoji: text;
+}
