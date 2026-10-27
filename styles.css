@@ -14268,6 +14268,13 @@ a[style*="background:#111"] .cta-icon-up { background-image: url("assets/24-arro
 .ac-two .sp-out, .ac-two .cp-out, .ac-two .p2-outcomes, .ac-two .ac-outcomes { margin-bottom: 28px !important; }
 .ac-two .p2-next, .ac-two .p2-next-link, .ac-two .case-state-switch { margin-top: 24px !important; }
 
+/* homeownership chart */
+.chartcard{display:grid;gap:18px;grid-template-columns:1fr;background:var(--sand);border-radius:16px;padding:clamp(18px,3.4vw,32px)}
+@media (min-width:860px){.chartcard{grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);align-items:center;gap:28px}}
+.chartcard svg{width:100%;height:auto;display:block;overflow:visible}
+.chartbig{font-weight:400;font-size:clamp(40px,4.6vw,60px);letter-spacing:-.05em;line-height:.95}
+.chartbig span{color:var(--ink-3)}
+.chartcard p{font-size:14.5px;color:var(--ink-2)}
 }
 
 
