@@ -38,7 +38,27 @@
 /* Keep the case-study heading clear of the floating homepage navigation. */
 body.p2-page .p2-hero{padding-top:max(105px, 8vw)}
 
-</style></head>
+</style><style>
+/* Homepage footer, scoped to the two case studies. */
+footer.foot{--text:#0b0b12;--text-subtle:#5d5d63;--stroke:#ececee;--bg:#fff;--bg-inverse:#111113;--text-on-inverse:#fff;--sec:112px;--block:64px;box-sizing:border-box;background:var(--bg);color:var(--text);padding:var(--sec) 0 40px;font-family:"Neue Haas Grotesk Display Pro","NeueHaas","Switzer","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:22px;letter-spacing:.02em}
+footer.foot *,footer.foot *::before,footer.foot *::after{box-sizing:border-box}
+footer.foot .wrap{width:100%;max-width:1176px;margin:0 auto;padding:0 16px}
+footer.foot p,footer.foot h2,footer.foot h4{margin:0}
+footer.foot a{color:inherit;text-decoration:none}
+footer.foot .label,footer.foot .subtle{color:var(--text-subtle)}
+footer.foot .foot-cta{display:flex;flex-direction:column;align-items:flex-start;gap:24px;padding-bottom:var(--block);border-bottom:1px solid var(--stroke)}
+footer.foot .foot-cta h2{font-size:clamp(40px,6vw,80px);font-weight:400;line-height:1;letter-spacing:-.035em;max-width:12em}
+footer.foot .btn{display:inline-flex;align-items:center;justify-content:center;height:46px;padding:0 20px;border-radius:9999px;font:inherit;white-space:nowrap}
+footer.foot .btn-dark{background:#111113;color:#fff}
+footer.foot .btn-dark:hover{background:#2a2a2d}
+footer.foot .foot-cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px;padding-top:32px;font-size:14px}
+footer.foot .foot-cols h4{margin:0 0 8px;font-size:14px;font-weight:400;color:var(--text-subtle)}
+footer.foot .foot-cols ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3px}
+@media(min-width:1208px){footer.foot .wrap{padding-left:0;padding-right:0}}
+@media(max-width:720px){footer.foot{--sec:64px;--block:40px;padding-bottom:24px}footer.foot .foot-cols{grid-template-columns:1fr 1fr}footer.foot .foot-cols>div:first-child{grid-column:1/-1}}
+</style>
+</head>
 <body class="p2-page" data-screen-label="Copilot public preview">
 <header class="portfolio-header">
   <div class="wrap">
@@ -385,22 +405,20 @@ body.p2-page .p2-hero{padding-top:max(105px, 8vw)}
 </div>
 </section>
 </main>
-<footer class="portfolio-footer" id="contact">
-<div class="portfolio-footer-inner">
-<div>
-<p class="portfolio-footer-eyebrow">Get in touch</p>
-<h2>Let's make something meaningful.</h2>
-<a class="portfolio-footer-cta" href="work-with-me.html">Work with me <span aria-hidden="true" class="cta-icon cta-icon-up"></span></a>
-</div>
-<div class="portfolio-footer-links">
-<a href="https://www.linkedin.com/in/sophia-akrofi/">LinkedIn <span aria-hidden="true" class="cta-icon cta-icon-up"></span></a>
-<a href="https://www.youtube.com/@sophia_akrofi">YouTube <span aria-hidden="true" class="cta-icon cta-icon-up"></span></a>
-<a href="https://sophiaakrofi.substack.com/">Substack <span aria-hidden="true" class="cta-icon cta-icon-up"></span></a>
-<a href="https://www.instagram.com/sophia_akrofi/">Instagram <span aria-hidden="true" class="cta-icon cta-icon-up"></span></a>
-<a href="#top">Back to top ↑</a>
-<small>Website built by Sophia Akrofi · © 2026</small>
-</div>
-</div>
+<footer class="foot" id="contact">
+  <div class="wrap">
+    <div class="foot-cta">
+      <p class="label">Get in touch</p>
+      <h2>Let’s make something meaningful.</h2>
+      <a class="btn btn-dark" href="work-with-me.html">Work with me</a>
+    </div>
+    <div class="foot-cols">
+      <div><p class="subtle">Designed and built by Sophia Akrofi · © 2026</p></div>
+      <div><h4>Menu</h4><ul><li><a href="index.html#work">Work</a></li><li><a href="index.html#testimonials">Testimonials</a></li><li><a href="index.html#about">About</a></li><li><a href="#top">Back to top ↑</a></li></ul></div>
+      <div><h4>Socials</h4><ul><li><a href="https://www.linkedin.com/in/sophia-akrofi/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@sophia_akrofi" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://sophiaakrofi.substack.com/" target="_blank" rel="noopener">Substack</a></li><li><a href="https://www.instagram.com/sophia_akrofi/" target="_blank" rel="noopener">Instagram</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="work-with-me.html">Work with me</a></li><li><a href="work-with-me.html#mentorship">Mentorship</a></li></ul></div>
+    </div>
+  </div>
 </footer>
 <script data-phase="body" src="scripts.js"></script>
 <script>
