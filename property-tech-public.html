@@ -288,6 +288,96 @@ figcaption{font-size:13px;color:var(--ink-3);margin-top:10px}
 .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:14px;color:#9a968f}
 .foot small{grid-column:1/-1;font-size:12px;color:#6d6a65;border-top:1px solid #2a2a2a;padding-top:16px}
 
+/* role: how the scope grew, then where the time went */
+.arc{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;border-top:1px solid var(--line)}
+@media (min-width:720px){.arc{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.arc li{padding:16px 18px 18px 0;display:grid;gap:6px;align-content:start;border-bottom:1px solid var(--line)}
+@media (min-width:720px){.arc li{border-bottom:0}.arc li+li{padding-left:18px;border-left:1px solid var(--line)}}
+.arc .label{color:var(--ink-3)}
+.arc b{font-weight:500;font-size:17px;letter-spacing:-.01em}
+.arc span:last-child{font-size:14px;color:var(--ink-2);line-height:1.45}
+.arc li:last-child b{color:var(--teal)}
+.modes{display:grid;gap:12px;grid-template-columns:1fr}
+@media (min-width:720px){.modes{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.modes > div{border-radius:16px;padding:20px;display:grid;gap:12px;align-content:start}
+.modes > div:nth-child(1){background:var(--sand)}
+.modes > div:nth-child(2){background:#f2f2f2}
+.modes > div:nth-child(3){background:var(--navy);color:#f2efe8}
+.modes > div:nth-child(3) .label,.modes > div:nth-child(3) li{color:#c9cfdc}
+.modes h3{font-size:17px}
+.modes ul{margin:0;padding-left:16px;display:grid;gap:6px;font-size:14px;color:var(--ink-2);line-height:1.45}
+
+/* research to MVP: the Home Services journey, with the line the first release stopped at */
+.journey{list-style:none;margin:0;padding:0;display:grid;gap:6px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:720px){.journey{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.journey li{border-radius:12px;padding:12px 12px 14px;display:grid;gap:6px;align-content:start;background:#fff;border:1px solid var(--line)}
+.journey li.mvp{background:var(--sand);border-color:#efe3cf}
+.journey li.later{background:transparent;border:1px dashed #d6cfc2;color:var(--ink-2)}
+.journey i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.journey b{font-weight:500;font-size:14px;line-height:1.3}
+.journey span{font-size:12.5px;color:var(--ink-2);line-height:1.4}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend span::before{content:"";width:12px;height:12px;border-radius:3px;background:var(--sand);border:1px solid #efe3cf}
+.legend span.l::before{background:transparent;border:1px dashed #b9b1a3}
+.calls{display:grid;gap:12px;grid-template-columns:1fr}
+@media (min-width:720px){.calls{grid-template-columns:1fr 1fr}}
+.calls div{border-top:1px solid var(--ink);padding-top:12px;display:grid;gap:6px}
+.calls b{font-weight:500}
+.calls p{font-size:14.5px;color:var(--ink-2)}
+
+/* design system */
+.gov{list-style:none;margin:0;padding:0;display:grid;gap:0 24px;grid-template-columns:1fr;border-top:1px solid var(--line)}
+@media (min-width:720px){.gov{grid-template-columns:1fr 1fr}}
+.gov li{padding:14px 0;border-bottom:1px solid var(--line);display:grid;gap:4px}
+.gov b{font-weight:500}
+.gov span{font-size:14.5px;color:var(--ink-2)}
+.docs{display:grid;gap:12px}
+.docs-tabs{display:flex;flex-wrap:wrap;gap:6px}
+.docs-tabs button{font:500 13px var(--display);border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 13px;cursor:pointer;color:var(--ink-2)}
+.docs-tabs button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.docs-stage{border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--line);aspect-ratio:1600/1000}
+.docs-stage video{width:100%;height:100%;object-fit:cover;display:block}
+.clip{width:100%;height:auto;display:block;border-radius:16px;background:var(--sand);border:1px solid var(--line)}
+
+/* engineering loop */
+.loop{list-style:none;margin:0;padding:0;display:grid;gap:6px;grid-template-columns:1fr;counter-reset:l}
+@media (min-width:720px){.loop{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.loop li{position:relative;background:#f2f2f2;border-radius:12px;padding:14px;display:grid;gap:6px;align-content:start}
+.loop i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.loop b{font-weight:500;font-size:14.5px}
+.loop span{font-size:13px;color:var(--ink-2);line-height:1.45}
+.loop-note{font-size:13px;color:var(--ink-3);display:flex;align-items:center;gap:8px}
+
+/* Arabic as a primary script */
+.script{display:grid;gap:12px;grid-template-columns:1fr}
+@media (min-width:760px){.script{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.specimen{border-radius:16px;background:var(--sand);padding:20px;display:grid;gap:14px;align-content:start}
+.specimen .pair{display:grid;gap:4px;padding-bottom:14px;border-bottom:1px solid #eadfcd}
+.specimen .pair:last-of-type{border-bottom:0;padding-bottom:0}
+.specimen .en{font:500 22px/1.25 var(--display);letter-spacing:-.01em}
+.specimen .ar{font:600 22px/1.6 "IBM Plex Sans Arabic","Geeza Pro",Tahoma,sans-serif;letter-spacing:0;text-align:right}
+.specimen .btnpair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.specimen .btnpair span{display:block;text-align:center;border-radius:99px;background:#daa520;color:#fff;padding:10px 8px}
+.specimen .btnpair span:first-child{font:600 11px var(--display);letter-spacing:.12em;text-transform:uppercase}
+.specimen .btnpair span:last-child{font:600 13px "IBM Plex Sans Arabic","Geeza Pro",Tahoma,sans-serif;letter-spacing:0}
+.specimen small{font-size:12.5px;color:var(--ink-2)}
+.mirror{border-radius:16px;border:1px solid var(--line);padding:20px;display:grid;gap:12px;align-content:start}
+.mirror table{width:100%;border-collapse:collapse;font-size:13.5px}
+.mirror th{font-weight:400;text-align:left;color:var(--ink-3);font-size:12px;padding:0 0 8px}
+.mirror td{border-top:1px solid var(--line);padding:9px 0;vertical-align:middle;color:var(--ink-2)}
+.mirror td:first-child{color:var(--ink)}
+.mirror td.g{display:flex;gap:10px;align-items:center;justify-content:flex-end;color:var(--ink)}
+.mirror td.g em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--ink-3);width:22px}
+.tag{display:inline-block;font-size:11.5px;border-radius:99px;padding:2px 8px;white-space:nowrap}
+.tag.f{background:#e3f1ef;color:#0b5f58}
+.tag.k{background:#f1ede6;color:var(--ink-2)}
+.glance{margin-top:8px}
+/* image placeholders: swap each .slot for an <img> once the asset exists */
+.slot{aspect-ratio:16/9;border-radius:16px;border:1.5px dashed var(--ph);background:var(--ph-bg);display:grid;place-content:center;gap:8px;padding:24px;text-align:center}
+.slot .label{color:var(--ph)}
+.slot p{max-width:46ch;font-size:14px;color:var(--ink-2)}
+
 /* Floating navigation: Neue Haas, matching the Copilot reference. */
 .portfolio-header,.portfolio-header *{box-sizing:border-box}
 .portfolio-header{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));left:0;right:0;z-index:100;pointer-events:none;font-family:"Neue Haas Grotesk Display Pro","Neue Haas Grotesk Text Pro","Neue Haas Grotesk",Arial,sans-serif;font-size:16px;line-height:1.35;letter-spacing:0;color:#0b0b12}
@@ -371,14 +461,22 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
 
 <div class="head">
   <div class="crumbs"><span>Product design</span><span>Design systems</span><span>Bilingual</span></div>
-  <h1>Property technology ecosystem</h1>
-  <p class="sub">Three products and one English and Arabic design system for a national property developer. The platform sold $40m of homes online in the first four weeks after launch and $1bn within a year.</p>
+  <span class="label">Property technology ecosystem</span>
+  <h1>A property platform that generated $400M in its first quarter</h1>
+  <p class="sub">I led design for three connected products and the English and Arabic design system behind them, for a national property developer. I joined a design team of four and went on to lead design for the programme, directing three design interns through delivery and the handover to the client.</p>
   <dl class="meta">
-    <div><dt>Role</dt><dd>Associate Design Director</dd></div>
+    <div><dt>Role</dt><dd>Senior Analyst → Associate Design Director</dd></div>
     <div><dt>Scope</dt><dd>3 products · 1 design system</dd></div>
-    <div><dt>Region</dt><dd>Middle East</dd></div>
-    <div><dt>Year</dt><dd>2023 to 2025</dd></div>
+    <div><dt>Team</dt><dd>Design lead · 3 interns · client designers coached</dd></div>
+    <div><dt>Year</dt><dd>2023 to 2024 · Middle East</dd></div>
   </dl>
+  <div class="stats glance" aria-label="Results at a glance">
+    <div><strong class="num">$400M</strong><span>revenue in the first quarter after launch</span></div>
+    <div><strong class="num">$1bn</strong><span>in home sales within 12 months</span></div>
+    <div><strong class="num">46→3</strong><span>days from lead to sale</span></div>
+    <div><strong class="num">3,000+</strong><span>bilingual components built</span></div>
+  </div>
+  <p class="cap" style="margin:0">Results of the wider programme, delivered alongside design and engineering. Full detail in <a href="#impact">The impact</a>.</p>
 </div>
 
 <div class="hero">
@@ -394,6 +492,9 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
     <ol>
       <li><a href="#challenge">The challenge</a></li>
       <li><a href="#role">My role</a></li>
+      <li><a href="#research">Research to MVP</a></li>
+      <li><a href="#system">Design system</a></li>
+      <li><a href="#engineering">With engineering</a></li>
       <li><a href="#solution">The solution</a></li>
       <li><a href="#impact">The impact</a></li>
     </ol>
@@ -417,8 +518,59 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
           <div class="days num">3<small>days, lead to conversion, 12 months on</small></div>
         </div>
       </div>
-      <div class="txt" style="margin-top:12px">
-        <h3>Research showed where residents needed help most</h3>
+      <p class="cap" style="margin:0">Homeownership figures: Housing Program annual reports, 2023 and 2024, and 2025 ministry reporting.</p>
+    </section>
+
+    <section id="role">
+      <div class="txt">
+        <span class="label">My role</span>
+        <h2>My scope grew as the programme did.</h2>
+        <p>I joined in 2023 as a Senior Analyst in a design team of four, with designers on each product stream, and left in 2024 as Associate Design Director. As the programme moved from launch into scale, the other designers rolled off. I became the <b>design lead for the whole programme</b>: three products and the design system, with three design interns reporting to me. I was responsible for direction, delivery and preparing the client’s team to take over. The scope I took on was a major reason for my promotion.</p>
+      </div>
+      <ol class="arc">
+        <li><span class="label">Phase 1 · Launch</span><b>One of four designers</b><span>Set direction across the product streams and reviewed work, while staying hands-on with research synthesis and the core journeys.</span></li>
+        <li><span class="label">Phase 2 · Scale</span><b>Leading design with three interns</b><span>Took on all three products, the design system backlog and design QA with every front-end squad. I decided where to stay hands-on and where to delegate to the interns.</span></li>
+        <li><span class="label">Phase 3 · Handover</span><b>Building the client’s team</b><span>Handover documentation, sandboxes and ownership maps, plus weekly Figma coaching for the client’s junior designers.</span></li>
+      </ol>
+      <div class="modes">
+        <div>
+          <span class="label">Designed · hands-on</span>
+          <ul><li>Research synthesis and design imperatives</li><li>Journeys, information architecture and MVP scope for all three products</li><li>The atomic design system and key component specifications</li></ul>
+        </div>
+        <div>
+          <span class="label">Directed · with the team</span>
+          <ul><li>Briefed, reviewed and coached three design interns</li><li>Design QA with front-end squads before every release</li><li>Ran the system backlog and daily stand-ups</li></ul>
+        </div>
+        <div>
+          <span class="label">Enabled · for after we left</span>
+          <ul><li>Handover docs, sandboxes and ownership maps</li><li>Weekly Figma coaching for junior designers</li><li>A joint team of consultancy and client designers</li></ul>
+        </div>
+      </div>
+      <div class="txt" style="margin-top:8px">
+        <h3>Who I led and influenced</h3>
+      </div>
+      <ul class="gov">
+        <li><b>Led · 3 design interns</b><span>Set priorities, reviewed their work and decided what they owned.</span></li>
+        <li><b>Coached · the client’s designers</b><span>Weekly Figma sessions, so their team could run the system without us.</span></li>
+        <li><b>Partnered · front-end squads</b><span>Design QA on live builds before every release, with decisions made together.</span></li>
+        <li><b>Influenced · senior stakeholders</b><span>Made the case for the design system to leaders at the consultancy and the client.</span></li>
+      </ul>
+      <div class="txt" style="margin-top:8px">
+        <h3>Decisions I owned</h3>
+      </div>
+      <ul class="pts">
+        <li><b>One system for three products,</b> not three systems. Products differ in colour and tone, never in how things work.</li>
+        <li><b>Arabic from the first component,</b> not a translation pass at the end. Every component has a language property.</li>
+        <li><b>Tokens and names as the contract with engineering,</b> so a Figma component and its Storybook counterpart are the same thing.</li>
+        <li><b>Build the client’s capability,</b> so their team could run and extend the system after we left.</li>
+      </ul>
+    </section>
+
+    <section id="research">
+      <div class="txt">
+        <span class="label">Research to MVP</span>
+        <h2>Research decided which product to build next.</h2>
+        <p>We surveyed more than a thousand homeowners and renters. One need stood out: home maintenance was the most in-demand service and the worst served. That evidence turned Home Services from a feature on a list into its own mini app inside the super app.</p>
       </div>
       <div class="research">
         <div>
@@ -442,28 +594,106 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
           </ol>
         </div>
       </div>
-      <p class="cap" style="margin:0">Homeownership figures: Housing Program annual reports, 2023 and 2024, and 2025 ministry reporting.</p>
+      <div class="txt" style="margin-top:12px">
+        <h3>From journey to a scoped first release</h3>
+        <p>I mapped every user activity in Home Services, from opening the mini app to getting help afterwards. Then I traced each one through to an MVP requirement and a screen. The first release stopped at a coherent core: request, book, confirm, track and give feedback. Everything else was staged for later.</p>
+      </div>
+      <figure>
+        <ol class="journey" aria-label="Home Services journey, in ten stages">
+          <li class="mvp"><i>01</i><b>Onboarding</b><span>Check the user is a homeowner. Explain the service to anyone who isn’t.</span></li>
+          <li class="mvp"><i>02</i><b>Open the mini app</b><span>Enter Home Services from the super app with the same account.</span></li>
+          <li class="mvp"><i>03</i><b>Home dashboard</b><span>Ownership details and the services available for this home.</span></li>
+          <li class="mvp"><i>04</i><b>Choose a service</b><span>Pick the type of issue. Unavailable services are greyed out, not hidden.</span></li>
+          <li class="mvp"><i>05</i><b>Book</b><span>Date and time. Address filled in from the user’s home. Optional notes and a photo.</span></li>
+          <li class="mvp"><i>06</i><b>Confirm</b><span>A summary to check or edit before confirming.</span></li>
+          <li class="mvp"><i>07</i><b>Track</b><span>A booking confirmation with a status tracker.</span></li>
+          <li class="mvp"><i>08</i><b>Feedback</b><span>Rate the service once it is complete.</span></li>
+          <li class="mvp"><i>09</i><b>Support</b><span>FAQs and a single route to help.</span></li>
+          <li class="later"><i>10</i><b>Retention</b><span>Promotions, new services and reminders. Staged for a later release.</span></li>
+        </ol>
+        <figcaption><span class="legend"><span>In the first release</span><span class="l">Staged for later</span></span></figcaption>
+      </figure>
+<figure>
+        <video class="clip" src="visual-assets/hs-journey.mp4" poster="visual-assets/hs-journey-poster.jpg" muted loop playsinline preload="metadata" data-inview aria-label="Home Services journey: ten wireframe screens, with the first-release scope highlighted"></video>
+        <figcaption>The first release, screen by screen: from welcome to rating and help. Promotions were staged for later.</figcaption>
+      </figure>
+      <div class="calls">
+        <div><b>Payment waited.</b><p>New homes were under a two-year warranty, so service requests were free at launch. In-app payment could follow without blocking the first release.</p></div>
+        <div><b>UX first, then backend scale.</b><p>Version 1 had to make booking feel effortless. Version 2 was where scalable backend capabilities came in.</p></div>
+      </div>
     </section>
 
-    <section id="role">
+    <section id="system">
       <div class="txt">
-        <span class="label">My role</span>
-        <h2>One direction across three product streams.</h2>
-        <p>As Associate Design Director I led design for home acquisition, home services and community, owned the design system, and coached the client’s designers. These were the calls that shaped it:</p>
+        <span class="label">Design system</span>
+        <h2>From designing pages to building a system.</h2>
+        <p>When I arrived, the team designed each page on its own. With three products, two languages and several squads, that meant repeated work and inconsistent builds. I introduced an atomic design system, based on Brad Frost’s model, so we designed reusable parts once, from atoms up to full templates, and assembled pages from them in both languages.</p>
       </div>
-      <ul class="pts">
-        <li><b>One system for three products,</b> not three systems. Products differ in colour and tone, never in how things work.</li>
-        <li><b>Arabic from the first component,</b> not a translation pass at the end. Every component has a language property.</li>
-        <li><b>Tokens as the contract with engineering.</b> I worked closely with the front-end team in live build reviews, so the design held up in code.</li>
-        <li><b>Build the client’s capability,</b> so their team could run and extend the system after we left.</li>
+      <figure>
+        <video class="clip" src="visual-assets/design-system.mp4" poster="visual-assets/design-system-poster.jpg" controls playsinline preload="metadata" aria-label="Design system walkthrough: atoms, molecules, organisms, templates and pages"></video>
+        <figcaption>How the 3,000+ component system was built, from the smallest parts up. 1 min 12 s.</figcaption>
+      </figure>
+<figure>
+        <video class="clip" src="visual-assets/ds-language-property.mp4" poster="visual-assets/ds-language-property-poster.jpg" muted loop playsinline preload="metadata" data-inview aria-label="A Figma component with Mode, Language, App and State properties; switching Language to Arabic mirrors the layout"></video>
+        <figcaption>One component, every context. Language and mode are properties, so switching to Arabic mirrors the layout without a separate component.</figcaption>
+      </figure>
+      <div class="txt" style="margin-top:12px">
+        <h3>A business case, not just a Figma library</h3>
+        <p>A system changes how an organisation works. I made the case for it to senior stakeholders on both the consultancy and client sides. The argument rested on speed, reuse and ownership, held together by governance.</p>
+      </div>
+      <div class="stats">
+        <div><strong class="num">&lt;5 mo</strong><span>to first release</span></div>
+        <div><strong class="num">35%</strong><span>faster from design to development</span></div>
+        <div><strong class="num">1,500+</strong><span>of the 3,000+ components in use across products</span></div>
+        <div><strong class="num">1 token</strong><span>change updates every product</span></div>
+      </div>
+      <ul class="gov">
+        <li><b>Clear standards</b><span>Guidelines from atoms to foundations, with explicit rules for English and Arabic.</span></li>
+        <li><b>Regular working sessions</b><span>Design, product and engineering reviewed the system together.</span></li>
+        <li><b>One shared backlog</b><span>Every component request had an owner, a status and a priority.</span></li>
+        <li><b>Aligned with Storybook</b><span>Figma names matched the front-end Storybook, so design and code stayed in step.</span></li>
       </ul>
+      <figure>
+        <div class="docs">
+          <div class="docs-tabs" role="tablist" aria-label="Documentation examples">
+            <button type="button" role="tab" aria-selected="true" aria-controls="dl-1" id="dt-1">Toast notifications</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="dl-2" id="dt-2">Mobile layout</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="dl-3" id="dt-3">Basket and checkout</button>
+          </div>
+          <div class="docs-stage">
+            <video id="dl-1" role="tabpanel" aria-labelledby="dt-1" src="visual-assets/dl-toast.mp4" poster="visual-assets/dl-toast-poster.jpg" muted loop playsinline preload="metadata" data-inview aria-label="Toast specification: top of the screen over content, dismisses after 5 to 7 seconds, non-modal"></video>
+            <video id="dl-2" role="tabpanel" aria-labelledby="dt-2" src="visual-assets/dl-layout.mp4" poster="visual-assets/dl-layout-poster.jpg" muted loop playsinline preload="none" hidden data-inview aria-label="Mobile master layout: header and footer heights, body padding and four footer dock options"></video>
+            <video id="dl-3" role="tabpanel" aria-labelledby="dt-3" src="visual-assets/dl-basket.mp4" poster="visual-assets/dl-basket-poster.jpg" muted loop playsinline preload="none" hidden data-inview aria-label="Basket template leading to the checkout template"></video>
+          </div>
+        </div>
+        <figcaption>Excerpts from the documentation we handed to the client team. Personal details have been removed.</figcaption>
+      </figure>
+    </section>
+
+    <section id="engineering">
+      <div class="txt">
+        <span class="label">With engineering</span>
+        <h2>The design was only finished when the build matched it.</h2>
+        <p>I worked directly with front-end engineers, separate from writing specifications. We reviewed live builds of the sales dashboard, the customer views and the native super app side by side with the designs. Together we resolved differences, talked through technical constraints and made implementation calls on the spot.</p>
+      </div>
+      <ol class="loop" aria-label="How design and engineering worked together">
+        <li><i>01</i><b>Specify</b><span>Components and templates with states, rules and both languages.</span></li>
+        <li><i>02</i><b>Build</b><span>Engineers build to the same names in Storybook.</span></li>
+        <li><i>03</i><b>Review live</b><span>Design QA on working software, with each squad before release.</span></li>
+        <li><i>04</i><b>Decide and log</b><span>Fixes and new needs go into the shared system backlog.</span></li>
+      </ol>
+<figure>
+        <video class="clip" src="visual-assets/eng-review.mp4" poster="visual-assets/eng-review-poster.jpg" muted loop playsinline preload="metadata" data-inview aria-label="Design QA: the Figma menu next to the built menu, with differences flagged for icon colour and row height"></video>
+        <figcaption>Design and build side by side. Differences such as icon colour and row height were flagged against the spec and fixed before release.</figcaption>
+      </figure>
+      <p class="loop-note"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.5-3.5M13 2v3h-3"/></svg>Repeated every two-week release.</p>
     </section>
 
     <section id="solution">
       <div class="txt">
         <span class="label">The solution</span>
         <h2>One bilingual system, from first visit to signed agreement.</h2>
-        <p><b>2,695+ components</b> were ready for launch. The library grew to 5,066 variants, 1,838 of them in Arabic, with light and dark modes. Here is the home acquisition journey it made possible, and a prototype you can try in both languages.</p>
+        <p>We built <b>3,000+ components</b>. 2,695 were ready for launch and 1,500+ are in use across the three products. Counting variants, the library holds 5,066, including 1,838 in Arabic, with light and dark modes. Here is the home acquisition journey it made possible, and a prototype you can try in both languages.</p>
       </div>
       <figure>
         <div class="walk">
@@ -484,6 +714,41 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
         </div>
         <figcaption>The full journey in one app, from first visit to a signed sales agreement. Select a step to jump to it.</figcaption>
       </figure>
+      <div class="txt" style="margin-top:12px">
+        <h3>Arabic as a primary script, not a mirrored copy</h3>
+        <p>Flipping the layout is the easy part. The decisions that matter are about how Arabic reads. We chose a typeface designed for Arabic, rather than a Latin font with an Arabic fallback, and gave Arabic its own typographic rules. Then we decided element by element what mirrors and what doesn’t. You can see these rules working in the prototype below.</p>
+      </div>
+<figure>
+        <video class="clip" src="visual-assets/ar-en-compare.mp4" poster="visual-assets/ar-en-compare-poster.jpg" muted loop playsinline preload="metadata" data-inview aria-label="The property details screen switching between English and Arabic"></video>
+        <figcaption>One screen, two directions. Layout, alignment and icons mirror right to left, from the same components.</figcaption>
+      </figure>
+      <div class="script">
+        <div class="specimen">
+          <span class="label">Type · same component, two scripts</span>
+          <div class="pair"><span class="en">Estimate your home finance</span><span class="ar" lang="ar" dir="rtl">قم بتقدير تمويلك العقاري</span></div>
+          <div class="btnpair" aria-hidden="true"><span>Reserve this home</span><span lang="ar" dir="rtl">احجز هذا المنزل</span></div>
+          <ul class="pts" style="font-size:14px;padding-left:16px">
+            <li><b>A dedicated Arabic typeface</b> with proper proportions for dots and connected strokes.</li>
+            <li><b>More line height</b> so diacritics and stacked letters never collide.</li>
+            <li><b>No letter-spacing.</b> Uppercase tracking works in English but breaks Arabic’s connected letters, so the button style drops it.</li>
+            <li><b>Flexible containers,</b> because Arabic labels wrap at different lengths.</li>
+          </ul>
+        </div>
+        <div class="mirror">
+          <span class="label">Direction · mirror selectively</span>
+          <table>
+            <thead><tr><th>Element</th><th>Rule</th><th style="text-align:right">EN · AR</th></tr></thead>
+            <tbody>
+              <tr><td>Back arrow</td><td><span class="tag f">Mirrors</span></td><td class="g"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" style="transform:scaleX(-1)"><path d="M10 3 5 8l5 5"/></svg></td></tr>
+              <tr><td>Stepper progress</td><td><span class="tag f">Fills from the right</span></td><td class="g"><svg width="40" height="6" aria-hidden="true"><rect width="40" height="4" y="1" rx="2" fill="#e9e9e9"/><rect width="24" height="4" y="1" rx="2" fill="#daa520"/></svg><svg width="40" height="6" aria-hidden="true"><rect width="40" height="4" y="1" rx="2" fill="#e9e9e9"/><rect x="16" width="24" height="4" y="1" rx="2" fill="#daa520"/></svg></td></tr>
+              <tr><td>Sliders</td><td><span class="tag f">Fill from the right</span></td><td class="g"><svg width="40" height="12" aria-hidden="true"><rect width="40" height="3" y="4.5" rx="1.5" fill="#e6e6e6"/><rect width="14" height="3" y="4.5" rx="1.5" fill="#daa520"/><circle cx="14" cy="6" r="4.5" fill="#fff" stroke="#daa520" stroke-width="1.5"/></svg><svg width="40" height="12" aria-hidden="true"><rect width="40" height="3" y="4.5" rx="1.5" fill="#e6e6e6"/><rect x="26" width="14" height="3" y="4.5" rx="1.5" fill="#daa520"/><circle cx="26" cy="6" r="4.5" fill="#fff" stroke="#daa520" stroke-width="1.5"/></svg></td></tr>
+              <tr><td>Prices and numbers</td><td><span class="tag k">Stay left to right</span></td><td class="g"><span class="num" style="font-size:12px">5,000 SAR</span><span class="num" style="font-size:12px;font-family:'IBM Plex Sans Arabic',sans-serif" dir="rtl"><bdi dir="ltr">5,000</bdi> ر.س</span></td></tr>
+              <tr><td>Status bar and clock</td><td><span class="tag k">Never mirror</span></td><td class="g"><span class="num" style="font-size:12px">9:41</span><span class="num" style="font-size:12px">9:41</span></td></tr>
+              <tr><td>Language switch</td><td><span class="tag k">Native script, no flags</span></td><td class="g"><span style="font-size:12px">العربية</span><span style="font-size:12px">English</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <figure>
         <div class="proto">
           <div class="pside">
@@ -512,14 +777,29 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
     <section id="impact">
       <div class="txt">
         <span class="label">The impact</span>
-        <h2>$1bn in sales within a year of launch.</h2>
+        <h2>$400M in the first quarter. $1bn within a year.</h2>
         <p>Commercial results of the wider programme, delivered alongside design and engineering.</p>
       </div>
       <div class="stats">
         <div><strong class="num">$40m+</strong><span>from 80+ homes sold online in the first 4 weeks after launch</span></div>
+        <div><strong class="num">$400M</strong><span>revenue in the first quarter after launch</span></div>
         <div><strong class="num">$1bn</strong><span>total sales in 12 months</span></div>
-        <div><strong class="num">15×</strong><span>lead conversion with the online journey</span></div>
-        <div><strong class="num">46→3</strong><span>days, lead to conversion</span></div>
+        <div><strong class="num">1.5K+</strong><span>homes sold online in 12 months</span></div>
+        <div><strong class="num">46→3</strong><span>days from lead to conversion</span></div>
+        <div><strong class="num">15×</strong><span>lead conversion with the fully online journey</span></div>
+        <div><strong class="num">+70%</strong><span>sales online</span></div>
+        <div><strong class="num">20K</strong><span>users registered</span></div>
+      </div>
+      <p class="cap" style="margin:0">Figures from the programme’s published impact summary.</p>
+      <div class="txt" style="margin-top:12px">
+        <h3>The design decisions behind the numbers</h3>
+        <p>These results belong to the whole programme. These are the design decisions most directly connected to them.</p>
+      </div>
+      <div class="calls">
+        <div><b>46 → 3 days: one journey, not seven channels.</b><p>A buyer can browse, reserve, e-sign and pay the reservation fee in one app. That replaced the sales centre visit, bank appointment and paper forms shown at the top of this page.</p></div>
+        <div><b>15× conversion: fewer reasons to stop.</b><p>The financial calculator shows buyers what they can afford before they commit. The three-step reservation always shows what comes next. Both were designed to stop a qualified lead dropping out between interest and reservation.</p></div>
+        <div><b>Releases every two weeks: the system.</b><p>Shared components named the same in Figma and Storybook got the first release out in under five months and kept releases coming every two weeks.</p></div>
+        <div><b>Two languages without twice the work.</b><p>Every component was built for English and Arabic from the start. Arabic never had to wait for a separate translation pass before it could launch.</p></div>
       </div>
       <div class="txt" style="margin-top:12px"><h3>What the team said</h3></div>
       <div class="quotes">
@@ -530,7 +810,7 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
       </div>
       <div class="txt" style="margin-top:12px">
         <h3>Capability that outlasted the engagement</h3>
-        <p>We didn’t only hand over screens. We set up the system, the ways of working and a client design team that could run it. The client has since evolved the app on those foundations into a resident super app. It is still live today, rated <b>4.1★ on the App Store from 216 ratings</b>.</p>
+        <p>We didn’t only hand over screens. We set up the system, the ways of working and a client design team that could run it. The client has since evolved the app on those foundations into a resident super app. It is still live today, rated <b>4.1★ on the App Store from 216 ratings</b>, and the brand has since <a href="https://www.constructionweekonline.com/news/roshn-breaks-1bn-brand-value-eyes-global-expansion-with-vision-2030-strategy" target="_blank" rel="noopener">passed $1bn in brand value</a>.</p>
       </div>
       <figure>
         <div class="panel sand strip" aria-label="Screens from the live app today">
@@ -539,6 +819,14 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
         <figcaption>The live app today, as evolved by the client’s team.</figcaption>
       </figure>
       <a class="applink" href="https://apps.apple.com/sa/app/roshn-%D8%B1%D9%88%D8%B4%D9%86/id6472248406" target="_blank" rel="noopener">See the live app on the App Store · 4.1★ ↗</a>
+      <div class="txt" style="margin-top:12px">
+        <h3>What I’d do differently</h3>
+      </div>
+      <ul class="pts">
+        <li><b>Start the handover on day one.</b> The client’s designers were coached as the programme scaled. If they had been involved from the first component, they would have helped shape the system, not just inherited it.</li>
+        <li><b>Measure design decisions, not only the funnel.</b> The team logged 100+ events per session to track user behaviour and the sales funnel. I’d connect specific design changes to those events earlier, so the impact of design shows up on its own.</li>
+        <li><b>Delegate whole problems, not screens.</b> With three interns and no other senior designer, I learned to give each of them a whole problem rather than screens. Next time I’d do that from day one, so I could focus on the system and stakeholders sooner.</li>
+      </ul>
     </section>
   </main>
 </div>
@@ -692,6 +980,13 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
   ['mouseout','focusout'].forEach(ev=>built.addEventListener(ev,e=>{const b=e.target.closest('[data-hl]');if(b)hl(b.dataset.hl,false);}));
   built.addEventListener('click',e=>{const b=e.target.closest('[data-hl]');if(!b)return;const x=scr.querySelector('[data-c="'+b.dataset.hl+'"]');if(x){x.scrollIntoView({block:'nearest',behavior:'smooth'});hl(b.dataset.hl,true);setTimeout(()=>hl(b.dataset.hl,false),1200);}});
   draw();
+
+  // case study clips: play only while on screen
+  const clips=[...document.querySelectorAll('video[data-inview]')],still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!still&&'IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!e.target.hidden)e.target.play().catch(()=>{});else e.target.pause();}),{threshold:.3});clips.forEach(c=>io.observe(c));}
+  // documentation tabs
+  const dts=[...document.querySelectorAll('.docs-tabs [role=tab]')];
+  dts.forEach(t=>t.addEventListener('click',()=>{dts.forEach(x=>{const on=x===t,v=document.getElementById(x.getAttribute('aria-controls'));x.setAttribute('aria-selected',on);v.hidden=!on;if(on){v.preload='metadata';if(!still)v.play().catch(()=>{});}else v.pause();});}));
 
   const links=[...document.querySelectorAll('.toc a')],secs=links.map(a=>document.querySelector(a.getAttribute('href')));
   function onScroll(){let cur=0;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<innerHeight*.4)cur=i;});links.forEach((a,i)=>a.classList.toggle('on',i===cur));}
