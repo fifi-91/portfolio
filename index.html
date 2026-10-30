@@ -107,6 +107,62 @@ body.dark .telegraph-gallery .telegraph-card-stage { background: #171717; }
  .brixton-gallery .brixton-reel-stage { height:min(56vw,310px) !important; max-height:310px; }
 }
 </style>
+<style>
+/* Hero work reel, inside the old portrait frame. Logo cards flash between projects;
+   every asset is shown whole or trimmed only around a centred subject. Hard cuts. */
+.work-show{position:relative;display:block;aspect-ratio:4/5;border-radius:20px;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black);background:#111;text-decoration:none}
+@media (max-width:860px){.me-photo.work-show{aspect-ratio:4/5}}
+.ws-slide{position:absolute;inset:0;margin:0;display:none;background:var(--ws-bg);color:#fff;--pad:24px;--top:56px;--bottom:136px}
+.ws-slide.is-on{display:block}
+.ws-slide[data-tone="light"]{color:#111}
+.ws-stage{position:absolute;inset:var(--top) var(--pad) var(--bottom);display:flex;align-items:center;justify-content:center}
+.work-show .ws-media{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.ws-slide[data-layout="fit"] .ws-media{width:100%;height:100%}
+.ws-slide[data-layout="card"] .ws-media{border-radius:10px}
+/* full-frame layouts */
+.ws-slide[data-layout="bleed"] .ws-stage,.ws-slide[data-layout="full"] .ws-stage,.ws-slide[data-layout="flash"] .ws-stage{inset:0}
+.ws-slide[data-layout="bleed"] .ws-media,.ws-slide[data-layout="full"] .ws-media{width:100%;height:100%;max-width:none;max-height:none;object-fit:cover}
+.ws-slide[data-layout="bleed"]::after,.ws-step-bleed::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 18%,rgba(0,0,0,0) 52%,rgba(0,0,0,.8) 100%)}
+/* "steps": a slide that cuts through several frames (data-step ms each; the last one holds) */
+.ws-slide[data-layout="steps"] .ws-stage{display:block}
+.ws-step{position:absolute;inset:0;display:none;align-items:center;justify-content:center}
+.ws-step.is-on{display:flex}
+.ws-step-bleed{inset:calc(-1 * var(--top)) calc(-1 * var(--pad)) calc(-1 * var(--bottom))}
+.work-show .ws-hand{display:block;width:100%;height:100%;object-fit:cover;object-position:55% 50%}
+/* Telegraph cards: a 2x2 of tiles; each tile lifts away (up, down or sideways) to reveal the next card */
+.ws-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:68%;margin:0 auto}
+.ws-tile{position:relative;padding-bottom:109.7%}
+.ws-tile img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;border-radius:4px;box-shadow:0 10px 24px rgba(0,0,0,.45)}
+.ws-tile img.in{transform:scale(.94);opacity:.6}
+.ws-tile img.out,.ws-tile img.in.go{transition:transform .3s cubic-bezier(.3,.7,.2,1),opacity .3s ease}
+.ws-tile img.in.go{transform:none;opacity:1}
+.ws-tile img.out{z-index:1;transform:translate(var(--dx),var(--dy)) scale(1.02);opacity:0}
+.ws-slide[data-layout="flash"] .ws-stage{flex-direction:column}
+.ws-eyebrow{margin:0 0 30px;font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;opacity:.6}
+.ws-logo-steps{position:relative;width:56%;height:14%}
+.work-show .ws-logo-steps .ws-flash-logo{width:100%;height:100%;max-height:none}
+.work-show .ws-flash-logo{display:block;width:52%;height:auto;max-height:22%;object-fit:contain;filter:brightness(0) invert(1)}
+/* MTN: a phone stepping through the flow, with a tap before each screen change */
+.ws-device{position:relative;height:100%;aspect-ratio:586/1268;margin:0 auto;border-radius:26px;border:6px solid #111;background:#111;overflow:hidden;box-shadow:0 22px 50px rgba(0,0,0,.25)}
+.ws-device .ws-step{inset:0}
+.ws-device .ws-step img{display:block;width:100%;height:100%;object-fit:cover}
+.ws-tap{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:rgba(0,0,0,.28);border:2px solid #fff;opacity:0;animation:ws-tap .65s steps(1,end) forwards}
+@keyframes ws-tap{0%{opacity:0}60%{opacity:1}100%{opacity:1}}
+.ws-slide figcaption{position:absolute;z-index:2;left:var(--pad);right:var(--pad);bottom:24px}
+.ws-slide h3{margin:0 0 12px;font-size:clamp(20px,1.9vw,26px);font-weight:500;line-height:1.15;letter-spacing:-.02em;color:inherit;max-width:22ch}
+.ws-tags{display:flex;flex-wrap:wrap;gap:6px}
+.ws-tags .tag{background:rgba(255,255,255,.14);color:inherit;border:1px solid rgba(255,255,255,.24)}
+.ws-slide[data-tone="light"] .ws-tags .tag{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.12)}
+.ws-bars{position:absolute;top:18px;left:24px;right:24px;display:flex;gap:4px;z-index:3;color:var(--ws-bar,#fff)}
+.ws-bars i{flex:1;height:2px;border-radius:2px;background:rgba(127,127,127,.35);overflow:hidden;position:relative}
+.ws-bars i::after{content:"";position:absolute;inset:0;background:currentColor;transform-origin:left;transform:scaleX(0)}
+.ws-bars i.done::after{transform:scaleX(1)}
+.ws-bars i.is-on::after{animation:ws-fill var(--d) linear forwards}
+.work-show:hover .ws-bars i.is-on::after{animation-play-state:paused}
+@keyframes ws-fill{to{transform:scaleX(1)}}
+@media (max-width:860px){.ws-slide{--pad:16px;--top:44px;--bottom:116px}.ws-bars{left:16px;right:16px;top:14px}.ws-slide figcaption{bottom:16px}.ws-slide h3{font-size:19px;margin-bottom:10px}.ws-tags .tag:nth-child(n+3){display:none}}
+@media (prefers-reduced-motion:reduce){.ws-bars i.is-on::after{animation:none;transform:scaleX(1)}}
+</style>
 </head>
 <body>
 
@@ -149,7 +205,48 @@ body.dark .telegraph-gallery .telegraph-card-stage { background: #171717; }
             <a class="btn btn-ghost" href="#work">See the work</a>
           </div>
         </div>
-        <div class="me-photo"><img src="home/sophia.jpg" alt="Sophia Akrofi"></div>
+        <a class="me-photo work-show" id="workshow" href="#work" aria-label="A reel of selected work. Go to the work section">
+          <div class="ws-bars" aria-hidden="true"></div>
+          <figure class="ws-slide is-on" data-kind="work" data-tone="light" data-layout="full" data-ms="3900" data-tone-at="1880:dark" style="--ws-bg:#f9f4e8">
+            <div class="ws-stage"><video class="ws-media" muted playsinline preload="auto" poster="reel/property-ds.jpg"><source src="reel/property-ds.mp4" type="video/mp4"></video></div>
+            <figcaption><h3>A property platform that made $400M in its first quarter</h3><div class="ws-tags"><span class="tag">PropTech</span><span class="tag">English / Arabic</span><span class="tag">Design lead</span></div></figcaption>
+          </figure>
+          <figure class="ws-slide" data-kind="work" data-tone="light" data-layout="fit" data-ms="1500" style="--ws-bg:#f7f5f1">
+            <div class="ws-stage"><img class="ws-media" src="assets/genai.png" alt=""></div>
+            <figcaption><h3>One AI copilot, configured for 10+ enterprise clients</h3><div class="ws-tags"><span class="tag">GenAI</span><span class="tag">Product UI</span></div></figcaption>
+          </figure>
+          <figure class="ws-slide" data-kind="work" data-tone="light" data-layout="steps" data-ms="3000" style="--ws-bg:#ffe546">
+            <div class="ws-stage"><div class="ws-device"><div class="ws-step" data-step="450"><img src="reel/mtn/m1.jpg" alt="" loading="lazy"></div><div class="ws-step" data-step="650"><img src="reel/mtn/otp.jpg" alt="" loading="lazy"><i class="ws-tap" style="left:27%;top:68%"></i></div><div class="ws-step" data-step="650"><img src="reel/mtn/m4.jpg" alt="" loading="lazy"><i class="ws-tap" style="left:13%;top:64%"></i></div><div class="ws-step" data-step="650"><img src="reel/mtn/m5.jpg" alt="" loading="lazy"><i class="ws-tap" style="left:50%;top:80%"></i></div><div class="ws-step" data-step="650"><img src="reel/mtn/rsucc.jpg" alt="" loading="lazy"></div></div></div>
+            <figcaption><h3>A fintech super app</h3><div class="ws-tags"><span class="tag">Fintech</span><span class="tag">iOS &amp; Android</span></div></figcaption>
+          </figure>
+          <figure class="ws-slide" data-kind="work" data-tone="dark" data-layout="steps" data-ms="7430" style="--ws-bg:#141414">
+            <div class="ws-stage"><div class="ws-step" data-step="6430"><div class="ws-tiles" data-every="320" data-sets="42,01,45,34|68,72,31,58|18,50,27,70|35,33,79,41|22,48,12,15|32,23,74,36|46,02,90,47|24,19,83,25|84,87,78,89|59,77,37,86|29,20,75,71|03,65,88,28|62,67,69,40|81,43,16,82|39,63,05,85|38,07,17,10|64,66,13,06|30,76,09,49|14,80,11,08"><div class="ws-tile"><img src="visual-assets/tg-cards/card-42.png" alt="" loading="lazy"></div><div class="ws-tile"><img src="visual-assets/tg-cards/card-01.png" alt="" loading="lazy"></div><div class="ws-tile"><img src="visual-assets/tg-cards/card-45.png" alt="" loading="lazy"></div><div class="ws-tile"><img src="visual-assets/tg-cards/card-34.png" alt="" loading="lazy"></div></div></div><div class="ws-step ws-step-bleed"><img class="ws-hand" src="visual-assets/vc-telegraph-hand.png" alt="" loading="lazy"></div></div>
+            <figcaption><h3>90 editorial cards, one news app</h3><div class="ws-tags"><span class="tag">Editorial</span><span class="tag">Mobile</span></div></figcaption>
+          </figure>
+          <figure class="ws-slide" data-kind="flash" data-tone="dark" data-layout="flash" data-ms="2000" style="--ws-bg:#0b0b0b">
+            <div class="ws-stage"><p class="ws-eyebrow">Experience at</p><div class="ws-logo-steps"><div class="ws-step" data-step="650"><img class="ws-flash-logo" src="assets/mckinsey.svg" alt="McKinsey &amp; Company"></div><div class="ws-step" data-step="650"><img class="ws-flash-logo" src="assets/telegraph.svg" alt="The Telegraph"></div><div class="ws-step" data-step="650"><img class="ws-flash-logo" src="assets/apple-news.svg" alt="Apple News"></div></div></div>
+          </figure>
+          <figure class="ws-slide" data-kind="work" data-tone="dark" data-layout="fit" data-ms="4000" style="--ws-bg:#000098">
+            <div class="ws-stage"><video class="ws-media" muted playsinline preload="none" poster="reel/enbw-charging.jpg"><source src="reel/enbw-charging.mp4" type="video/mp4"></video></div>
+            <figcaption><h3>An EV charging loyalty programme</h3><div class="ws-tags"><span class="tag">E-mobility</span><span class="tag">Prototyping</span></div></figcaption>
+          </figure>
+          <figure class="ws-slide" data-kind="work" data-tone="dark" data-layout="card" data-ms="3600" style="--ws-bg:#0f0f0f">
+            <div class="ws-stage"><video class="ws-media" muted playsinline preload="none" poster="reel/telegraph-careers.jpg"><source src="reel/telegraph-careers.mp4" type="video/mp4"></video></div>
+            <figcaption><h3>Responsive product design for The Telegraph</h3><div class="ws-tags"><span class="tag">Responsive web</span><span class="tag">Product design</span></div></figcaption>
+          </figure>
+          <figure class="ws-slide" data-kind="work" data-tone="dark" data-layout="bleed" data-ms="3450" style="--ws-bg:#0a1630">
+            <div class="ws-stage"><video class="ws-media" muted playsinline preload="none" poster="reel/padel-swipe.jpg"><source src="reel/padel-swipe.mp4" type="video/mp4"></video></div>
+            <figcaption><h3>A sports league identity</h3><div class="ws-tags"><span class="tag">Brand</span><span class="tag">Motion</span></div></figcaption>
+          </figure>
+          <figure class="ws-slide" data-kind="work" data-tone="dark" data-layout="bleed" data-ms="1600" style="--ws-bg:#111">
+            <div class="ws-stage"><img class="ws-media" src="reel/telegraph-sophia.jpg" alt="" style="object-position:76% 50%" loading="lazy"></div>
+            <figcaption><h3>Building The Telegraph app</h3><div class="ws-tags"><span class="tag">In the newsroom</span></div></figcaption>
+          </figure>
+          <figure class="ws-slide" data-kind="work" data-tone="dark" data-layout="steps" data-ms="1360" style="--ws-bg:#111">
+            <div class="ws-stage"><div class="ws-step ws-step-bleed" data-step="170"><img class="ws-hand" src="reel/brixton/01.jpg" alt="" loading="lazy"></div><div class="ws-step ws-step-bleed" data-step="170"><img class="ws-hand" src="reel/brixton/08.jpg" alt="" loading="lazy"></div><div class="ws-step ws-step-bleed" data-step="170"><img class="ws-hand" src="reel/brixton/22.jpg" alt="" loading="lazy"></div><div class="ws-step ws-step-bleed" data-step="170"><img class="ws-hand" src="reel/brixton/29.jpg" alt="" loading="lazy"></div><div class="ws-step ws-step-bleed" data-step="170"><img class="ws-hand" src="reel/brixton/36.jpg" alt="" loading="lazy"></div><div class="ws-step ws-step-bleed" data-step="170"><img class="ws-hand" src="reel/brixton/43.jpg" alt="" loading="lazy"></div><div class="ws-step ws-step-bleed" data-step="170"><img class="ws-hand" src="reel/brixton/50.jpg" alt="" loading="lazy"></div><div class="ws-step ws-step-bleed" data-step="170"><img class="ws-hand" src="reel/brixton/64.jpg" alt="" loading="lazy"></div></div>
+            <figcaption><h3>Bites of Brixton, a local food directory</h3><div class="ws-tags"><span class="tag">Self-initiated</span><span class="tag">Photography</span></div></figcaption>
+          </figure>
+        </a>
       </div>
       <div class="logos" aria-label="Where I have worked">
         <figure><img src="assets/mckinsey.svg" alt="McKinsey &amp; Company"><figcaption>Associate Design Director</figcaption></figure>
@@ -500,7 +597,7 @@ body.dark .telegraph-gallery .telegraph-card-stage { background: #171717; }
   <!-- About -->
   <section class="sec" id="about" aria-labelledby="a-title">
     <div class="wrap about">
-      <img src="assets/sophia-rooftop.png" alt="Sophia Akrofi on a rooftop" loading="lazy">
+      <img src="home/sophia.jpg" alt="Sophia Akrofi" loading="lazy">
       <div class="about-body">
         <p class="label">About • Adaptable design practice</p>
         <h2 id="a-title">Rooted in graphic design studies. Now leading product design across enterprise tech, AI and new ventures.</h2>
@@ -530,6 +627,66 @@ body.dark .telegraph-gallery .telegraph-card-stage { background: #171717; }
   </div>
 </footer>
 
+<script>
+/* Hero work reel: hard cuts, each slide has its own length (data-ms); logo flashes have no bar.
+   data-tone-at="ms:tone" flips caption colour mid-slide when the footage changes background. Pauses on hover. */
+(function(){
+  const root=document.getElementById('workshow');if(!root)return;
+  const slides=[...root.querySelectorAll('.ws-slide')],barsEl=root.querySelector('.ws-bars');
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const barOf=[];let nb=0;slides.forEach(s=>barOf.push(s.dataset.kind==='flash'?-1:nb++));
+  const bars=[];slides.forEach(s=>{if(s.dataset.kind!=='flash'){const b=barsEl.appendChild(document.createElement('i'));b.style.setProperty('--d',s.dataset.ms+'ms');bars.push(b)}});
+  let i=0,timer,stepTimer,toneTimer,left,started;
+  const vids=n=>[...slides[n].querySelectorAll('video')];
+  function warm(n){
+    slides[n].querySelectorAll('img').forEach(im=>im.loading='eager');
+    vids(n).forEach(v=>{if(v.preload==='none'){v.preload='auto';v.load()}});
+  }
+  function tone(s,t){s.dataset.tone=t;root.style.setProperty('--ws-bar',t==='light'?'#111':'#fff')}
+  function steps(s){
+    const st=[...s.querySelectorAll('.ws-step')];if(!st.length)return;
+    let k=0;const on=()=>st.forEach((x,j)=>x.classList.toggle('is-on',j===k));on();
+    (function next(){if(k>=st.length-1||reduced)return;stepTimer=setTimeout(()=>{k++;on();next()},+st[k].dataset.step||300)})();
+  }
+  let tileTimers=[];
+  function tiles(s){
+    tileTimers.forEach(clearTimeout);tileTimers=[];
+    const box=s.querySelector('.ws-tiles');if(!box)return;
+    const sets=box.dataset.sets.split('|').map(x=>x.split(','));const slots=[...box.children];
+    const src=c=>'visual-assets/tg-cards/card-'+c+'.png';
+    sets.flat().forEach(c=>{new Image().src=src(c)});
+    slots.forEach((t,j)=>{t.innerHTML='<img src="'+src(sets[0][j])+'" alt="">'});
+    if(reduced)return;
+    const dirs=[['0','-110%'],['-110%','0'],['110%','0'],['0','110%']];
+    for(let k=1;k<sets.length;k++)slots.forEach((t,j)=>tileTimers.push(setTimeout(()=>{
+      const old=t.querySelector('img:not(.out)'),img=new Image();img.alt='';img.src=src(sets[k][j]);img.className='in';t.prepend(img);
+      const d=dirs[(j+k)%4];old.style.setProperty('--dx',d[0]);old.style.setProperty('--dy',d[1]);
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{old.classList.add('out');img.classList.add('go')}));
+      tileTimers.push(setTimeout(()=>old.remove(),340));
+    },k*(+box.dataset.every||450)+j*55)));
+  }
+  function show(n){
+    if(n!==i)vids(i).forEach(v=>v.pause());
+    clearTimeout(stepTimer);clearTimeout(toneTimer);
+    i=(n+slides.length)%slides.length;const s=slides[i];
+    slides.forEach((x,k)=>x.classList.toggle('is-on',k===i));
+    if(!s.dataset.tone0)s.dataset.tone0=s.dataset.tone;
+    tone(s,s.dataset.tone0);
+    if(s.dataset.toneAt){const [ms,t]=s.dataset.toneAt.split(':');toneTimer=setTimeout(()=>tone(s,t),+ms)}
+    const cur=barOf[i]>=0?barOf[i]:(barOf.slice(i).find(b=>b>=0)??bars.length);
+    bars.forEach((b,k)=>{b.className=k<cur?'done':'';if(k===barOf[i]){void b.offsetWidth;b.className='is-on'}});
+    barsEl.style.visibility=s.dataset.kind==='flash'?'hidden':'';
+    warm(i);warm((i+1)%slides.length);warm((i+2)%slides.length);
+    vids(i).forEach(v=>{v.currentTime=0;v.play().catch(()=>{})});
+    steps(s);tiles(s);
+    left=+s.dataset.ms;run();
+  }
+  function run(){clearTimeout(timer);if(reduced)return;started=Date.now();timer=setTimeout(()=>show(i+1),left)}
+  root.addEventListener('mouseenter',()=>{clearTimeout(timer);left-=Date.now()-started});
+  root.addEventListener('mouseleave',run);
+  show(0);
+})();
+</script>
 <script src="site.js"></script>
 <script>
 /* Reuse the original Telegraph 90-card slideshow inside the existing homepage drawer. */
