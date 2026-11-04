@@ -289,3 +289,34 @@ a.card:hover .go{transform:rotate(-45deg)}
 @media (max-width:600px){.form{grid-template-columns:1fr;padding:20px}}
 
 
+
+/* Case studies: two lead projects, followed by three smaller projects. */
+@media (min-width: 601px) {
+  .cases { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .cases > .feature, .cases > .case-hero { grid-column: span 3; }
+  .cases > .soon { grid-column: span 2; }
+  .cases > .feature .case-body { grid-template-columns: 1fr; }
+  .cases > .feature .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cases > .feature .stats div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .cases > .feature .card-media { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 600px) {
+  .cases > .feature, .cases > .case-hero, .cases > .soon { grid-column: auto; }
+}
+
+/* Leadership-focused homepage: case study ordering and concise ownership lines. */
+.case-ownership{margin-top:8px;font-size:14px;line-height:1.5;color:var(--text-subtle)}
+.xp-row p strong{display:block;font-weight:500;color:var(--text)}
+.xp-row p span{display:block;margin-top:5px;font-size:14px;line-height:1.5}
+@media(min-width:601px){.cases>.case-small{grid-column:span 2}.cases>.case-hero.soon{grid-column:span 3}}
+@media(max-width:600px){.cases>.case-small,.cases>.case-hero.soon{grid-column:auto}}
+
+/* Homepage: concise leadership principles below the bias heading. */
+.bias-principles{max-width:820px;margin-top:28px;font-size:16px;line-height:1.6;color:color-mix(in srgb,var(--text-on-inverse) 78%,transparent)}
+.bias-principles span{padding:0 8px;opacity:.5}
+@media(max-width:600px){.bias-principles{font-size:14px}.bias-principles span{padding:0 4px}}
+
+/* Case study copy refinements */
+.case-summary,.case-support{line-height:1.5;}
+.case-summary{margin:12px 0 8px;}
+.case-support{margin:8px 0 12px;opacity:.78;font-size:.92rem;}
