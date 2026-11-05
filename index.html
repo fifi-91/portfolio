@@ -163,6 +163,13 @@ body.dark .telegraph-gallery .telegraph-card-stage { background: #171717; }
 @media (max-width:860px){.ws-slide{--pad:16px;--top:44px;--bottom:116px}.ws-bars{left:16px;right:16px;top:14px}.ws-slide figcaption{bottom:16px}.ws-slide h3{font-size:19px;margin-bottom:10px}.ws-tags .tag:nth-child(n+3){display:none}}
 @media (prefers-reduced-motion:reduce){.ws-bars i.is-on::after{animation:none;transform:scaleX(1)}}
 </style>
+<style>
+/* Keep full experience dates on one line at desktop widths. */
+@media (min-width: 861px) {
+  .xp-row { grid-template-columns: 280px minmax(0, 1fr) minmax(0, 1fr); }
+  .xp-row .when { white-space: nowrap; }
+}
+</style>
 </head>
 <body>
 
@@ -299,21 +306,21 @@ body.dark .telegraph-gallery .telegraph-card-stage { background: #171717; }
         </article>
 
 
-        <div class="card case case-hero soon" data-cat="case">
-          <div class="card-media"><img src="assets/partner-thumbnail.png" alt="UK bank case study" loading="lazy"><div class="soon-veil"><span class="tag">Case study coming soon</span></div></div>
+        <a class="card case case-hero" href="uk-bank-public.html" data-cat="case">
+          <div class="card-media"><video muted loop playsinline preload="none" data-autoplay aria-label="UK banking personalisation project cover video"><source src="home/uk-bank-cover.mp4" type="video/mp4"></video><span class="go" aria-hidden="true">↗</span></div>
           <div><p class="kind">Case study · Banking</p><h3>Personalising digital banking across the customer journey</h3><p class="case-support">Product design for a UK bank’s hyper-personalisation transformation</p></div>
-        </div>
+        </a>
         <div class="card case case-small soon" data-cat="case">
           <div class="card-media"><img src="assets/partner-thumbnail.png" alt="Google Ads case study" loading="lazy"><div class="soon-veil"><span class="tag">Case study coming soon</span></div></div>
-          <div><p class="kind">Case study · Google Ads</p><h3>Making Google Ads campaign management clearer at scale</h3><p class="case-support">Product design for complex B2B advertising workflows</p></div>
+          <div><p class="kind">Case study · Google Ads</p><h3>Making Google Ads campaign management scalable</h3><p class="case-support">Product design for complex B2B advertising workflows</p></div>
         </div>
         <a class="card case case-small" href="copilot-public.html" data-cat="case">
           <div class="card-media"><img src="assets/genai.png" alt="AI customer copilot interface" loading="lazy"><div class="tags"><span class="tag">GenAI</span><span class="tag">10+ MVPs</span></div><span class="go" aria-hidden="true">↗</span></div>
-          <div><p class="kind">Case study · 2024–2025</p><h3>One AI copilot, configured for every client</h3><p class="case-ownership">Experience lead · 10+ enterprise clients · one platform</p></div>
+          <div><p class="kind">Case study · 2024–2025</p><h3>Building one AI copilot, configured for every multiple clients</h3><p class="case-ownership">Experience lead · 10+ enterprise clients · one platform</p></div>
         </a>
         <div class="card case case-small soon" data-cat="case">
           <div class="card-media"><img src="assets/partner-thumbnail.png" alt="Google B2B case study" loading="lazy"><div class="soon-veil"><span class="tag">Case study coming soon</span></div></div>
-          <div><p class="kind">Case study · Google B2B</p><h3>Building an enterprise platform for Google teams</h3><p class="case-support">Leading product design, systems and team practice across a complex B2B product</p></div>
+          <div><p class="kind">Case study · Google B2B</p><h3>Building an enterprise platform for Google Partners</h3><p class="case-support">Leading product design, systems and team practice across a complex B2B product</p></div>
         </div>
       </div>
 
@@ -575,11 +582,12 @@ body.dark .telegraph-gallery .telegraph-card-stage { background: #171717; }
     <div class="wrap">
       <div class="head"><div class="head-l"><p class="label">Experience</p><h2 id="x-title">Media, consulting and big tech</h2></div></div>
       <div class="xp">
-        <div class="xp-row"><span class="when">2026 – now</span><h3>Lead Product Designer</h3><p><strong>Equals True</strong><span>Co-leading 6 designers on a Google B2B enterprise product</span></p></div>
-        <div class="xp-row"><span class="when">2021 – 2025</span><h3>Associate Design Director</h3><p><strong>McKinsey &amp; Company</strong><span>Product design for AI, banking and 0–1 ventures; led design training for the Paris office</span></p></div>
-        <div class="xp-row"><span class="when">2018 – 2021</span><h3>Product Designer</h3><p><strong>Dailymotion</strong><span>Design system and partner experience for L’Équipe, Universal Music, NBA</span></p></div>
-        <div class="xp-row"><span class="when">2017 – 2018</span><h3>Product Designer</h3><p><strong>EDITED</strong><span>Fashion tech analytics app for buyers and merchandisers</span></p></div>
-        <div class="xp-row"><span class="when">2015 – 2017</span><h3>Product Designer</h3><p><strong>The Telegraph &amp; Apple News</strong></p></div>
+        <div class="xp-row"><span class="when">June 2026 – Present</span><h3>Lead Experience Designer</h3><p><strong>Equals True</strong><span>Leading design across enterprise B2B products and a six-person design team</span></p></div>
+        <div class="xp-row"><span class="when">August 2025 – May 2026</span><h3>Independent Product Designer</h3><p><strong>Independent</strong></p></div>
+        <div class="xp-row"><span class="when">September 2021 – June 2025</span><h3>Associate Design Director</h3><p><strong>McKinsey &amp; Company</strong><span>Product design for AI, banking and 0–1 ventures; led design training for the Paris office</span></p></div>
+        <div class="xp-row"><span class="when">October 2018 – July 2021</span><h3>Product Designer</h3><p><strong>Dailymotion</strong><span>Design system and partner experience for L’Équipe, Universal Music, NBA</span></p></div>
+        <div class="xp-row"><span class="when">October 2017 – October 2018</span><h3>Product Designer</h3><p><strong>EDITED</strong><span>Fashion tech analytics app for buyers and merchandisers</span></p></div>
+        <div class="xp-row"><span class="when">November 2015 – November 2017</span><h3>Product Designer</h3><p><strong>The Telegraph &amp; Apple News</strong><span>Digital publishing experiences across news, Premium subscriptions and Apple News</span></p></div>
       </div>
     </div>
   </section>
