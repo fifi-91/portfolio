@@ -1,16 +1,24 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta charset="utf-8">
-<title>Property Tech Ecosystem</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta charset="utf-8"/>
+<title>Bilingual property platform · Sophia Akrofi</title>
+<meta name="description" content="Case study: designing a bilingual home-buying app from scratch. Design lead across three products, with a 3,000-component design system. $400M in its first quarter.">
+<meta property="og:title" content="A new national home-buying app, designed from scratch">
+<meta property="og:description" content="Case study: designing a bilingual home-buying app from scratch. Design lead across three products, with a 3,000-component design system. $400M in its first quarter.">
+<meta property="og:image" content="https://www.sophiaakrofi.com/assets/property-og.jpg">
+<meta property="og:url" content="https://www.sophiaakrofi.com/property-tech-public.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
 
+<meta content="cover" name="claude:viewport-fit-sides"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&amp;family=IBM+Plex+Sans+Arabic:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JWHDGBM765"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JWHDGBM765"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JWHDGBM765');</script>
 <style>
 /* Layout: a quiet portfolio case study. Header, one hero film, then four short sections in a narrow column with a sticky index. */
@@ -413,8 +421,85 @@ body.p2-page .p2-hero{padding-top:max(105px, 8vw)}
 /* Keep the case-study heading clear of the floating homepage navigation. */
 .head{padding-top:100px}
 
-</style>
 
+/* Session 2: compact editorial overview, using the existing property blue. */
+/* Compact, navy editorial overview. */
+.at-glance{max-width:var(--page);margin:0 auto 22px;background:var(--navy);color:#fff;border-radius:14px;padding:clamp(20px,2.7vw,32px);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr);gap:clamp(22px,3vw,46px);align-items:start}
+.at-glance .label{color:#aab4c7;font-size:11px}
+.at-glance h2{font-size:clamp(22px,2.5vw,31px);line-height:1.17;letter-spacing:-.03em;max-width:21ch;margin-top:12px}
+.at-glance dl{margin:0;display:grid;gap:0}
+.at-glance dl>div{display:grid;grid-template-columns:105px minmax(0,1fr);gap:12px;padding:8px 0;border-top:1px solid rgba(255,255,255,.16)}
+.at-glance dl>div:first-child{border-top:0;padding-top:0}
+.at-glance dt{font-size:11.5px;color:#aab4c7}
+.at-glance dd{margin:0;font-size:12.5px;line-height:1.4;color:#f3f5f8}
+@media(max-width:760px){.at-glance{grid-template-columns:1fr;gap:18px}.at-glance h2{max-width:none;margin-top:7px}.at-glance dl>div{grid-template-columns:100px minmax(0,1fr)}}
+.final-media{max-width:var(--page);margin:0 auto 30px}
+.final-interface-video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:var(--navy);border-radius:14px}
+.final-media .cap{margin-top:10px}
+.design-index{max-width:var(--page);margin:24px auto 0}
+.design-index h2{font-size:19px;margin-bottom:14px}
+.design-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.design-tiles a{border:1px solid var(--line);border-radius:12px;padding:17px 18px;text-decoration:none;display:grid;gap:8px;transition:border-color .2s,background .2s}
+.design-tiles a:hover{border-color:var(--ph);background:var(--ph-bg)}
+.design-tiles strong{font-size:15px;font-weight:500;line-height:1.3}
+.design-tiles span{font-size:12.5px;color:var(--ink-2);line-height:1.45}
+.design-tiles em{font-style:normal;color:var(--ph);font-size:12px}
+@media(min-width:760px){.design-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:560px){.at-glance dl>div{grid-template-columns:95px minmax(0,1fr);gap:8px}.design-tiles{grid-template-columns:1fr 1fr}.design-tiles a{padding:13px}}
+
+
+/* Session 2 refinement: compact editorial overview, matching the deep-blue reference. */
+.at-glance{
+  background:#20283a!important;
+  max-width:var(--page);
+  padding:22px 28px!important;
+  margin:0 auto 18px!important;
+  border-radius:12px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:16px!important;
+}
+.at-glance > div:first-child{display:flex;align-items:baseline;gap:22px;flex-wrap:wrap}
+.at-glance > div:first-child .label{flex:0 0 auto;color:#aebbd2}
+.at-glance h2{font-size:clamp(20px,2.2vw,26px)!important;line-height:1.15!important;max-width:none!important;margin:0!important}
+.at-glance dl{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:30px;row-gap:0;margin:0!important}
+.at-glance dl>div{display:grid!important;grid-template-columns:86px minmax(0,1fr)!important;gap:9px!important;padding:8px 0!important;border-top:1px solid rgba(255,255,255,.16)!important;align-items:baseline}
+.at-glance dl>div:first-child{border-top:1px solid rgba(255,255,255,.16)!important}
+.at-glance dt{font-size:10.5px!important;line-height:1.35;color:#aebbd2!important}
+.at-glance dd{font-size:12px!important;line-height:1.4!important;color:#f5f6f9!important}
+@media(max-width:700px){
+ .at-glance{padding:20px!important;gap:12px!important}
+ .at-glance > div:first-child{display:block}
+ .at-glance h2{margin-top:6px!important}
+ .at-glance dl{grid-template-columns:1fr}
+ .at-glance dl>div{grid-template-columns:90px minmax(0,1fr)!important;padding:7px 0!important}
+}
+
+/* Case study editorial hero: one headline, one full-width product stage */
+.case-intro{max-width:var(--page);margin:0 auto;padding-top:92px;padding-bottom:24px;gap:12px;display:grid;justify-items:start}
+.case-intro h1{font-size:clamp(36px,4.1vw,60px);line-height:1.07;letter-spacing:-.045em;max-width:900px;margin:0}
+.case-intro>.label{margin-top:4px}
+.case-lead{font-size:clamp(17px,1.55vw,20px);line-height:1.45;max-width:760px;color:var(--ink-2);margin:2px 0 0}
+.case-meta{font-size:12.5px;line-height:1.5;color:var(--ink-3);margin:0}
+.case-video-stage{max-width:var(--page);margin:0 auto 28px;min-width:0}
+.case-video-inner{background:transparent;border-radius:22px;height:clamp(640px,49vw,720px);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.case-video-inner .final-interface-video{height:90%;width:auto;max-width:100%;aspect-ratio:auto;object-fit:contain;background:transparent!important;border-radius:0}
+.case-video-stage figcaption{font-size:12px;color:var(--ink-3);margin-top:9px}
+.context-row{border-top:0;margin:24px auto 30px;padding-top:0}
+.context-row>div{border:0!important;padding:0!important}
+@media(max-width:800px){.case-intro{padding-top:86px;padding-bottom:22px}.case-video-inner{height:600px}.context-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.case-intro{padding-top:80px;gap:11px}.case-intro h1{font-size:clamp(32px,9vw,43px)}.case-lead{font-size:17px}.case-meta{font-size:12px}.case-video-inner{height:520px;border-radius:16px}.case-video-inner .final-interface-video{height:90%}.context-row{grid-template-columns:1fr;gap:16px}}
+
+/* Project context: full-width dark editorial strip */
+.project-context-strip{box-sizing:border-box;width:min(var(--page),calc(100% - 40px));max-width:var(--page);margin:30px auto 38px;padding:32px 38px 38px;background:#111111;color:#f7f7f7;border-radius:16px;display:block}
+.project-context-eyebrow{font-family:monospace;font-size:11px;letter-spacing:.16em;color:#aaa7a3;margin-bottom:25px}
+.project-context-items{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.project-context-items>div{min-width:0;border-top:1px solid #444;padding-top:15px}
+.project-context-label{display:block;color:#a7a7a7;font-size:12px;font-weight:500;margin-bottom:10px}
+.project-context-items p{margin:0;color:#f2f2f2;font-size:15px;line-height:1.48;font-weight:400;letter-spacing:0}
+@media(max-width:800px){.project-context-strip{padding:28px}.project-context-items{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}}
+@media(max-width:520px){.project-context-strip{width:calc(100% - 28px);padding:25px 22px;border-radius:14px}.project-context-items{grid-template-columns:1fr;gap:18px}.project-context-eyebrow{margin-bottom:18px}.project-context-items p{font-size:15px}}
+</style>
 <style>
 /* Homepage footer, scoped to the two case studies. */
 footer.foot{--text:#0b0b12;--text-subtle:#5d5d63;--stroke:#ececee;--bg:#fff;--bg-inverse:#111113;--text-on-inverse:#fff;--sec:112px;--block:64px;box-sizing:border-box;background:var(--bg);color:var(--text);padding:var(--sec) 0 40px;font-family:"Neue Haas Grotesk Display Pro","NeueHaas","Switzer","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:22px;letter-spacing:.02em}
@@ -435,420 +520,484 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
 @media(min-width:1208px){footer.foot .wrap{padding-left:0;padding-right:0}}
 @media(max-width:720px){footer.foot{--sec:64px;--block:40px;padding-bottom:24px}footer.foot .foot-cols{grid-template-columns:1fr 1fr}footer.foot .foot-cols>div:first-child{grid-column:1/-1}}
 </style>
+<style>
+/* Property overview: full-width headline, scannable editorial grid. */
+.at-glance{display:block!important;background:#20283a!important;color:#fff!important;max-width:var(--page);margin:0 auto 20px!important;padding:clamp(24px,3.5vw,40px)!important;border-radius:14px!important}
+.at-glance .glance-heading{display:block!important;margin:0 0 24px!important;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.24)}
+.at-glance .glance-heading .label{display:block;color:#abb8cf;font-size:12px!important;letter-spacing:.11em;margin-bottom:12px}
+.at-glance .glance-heading h2{display:block;font-size:clamp(25px,3.05vw,39px)!important;font-weight:500;letter-spacing:-.035em;line-height:1.15!important;max-width:none!important;margin:0!important;text-wrap:balance}
+.at-glance dl{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0 32px!important;margin:0!important}
+.at-glance dl>div{display:grid!important;grid-template-columns:105px minmax(0,1fr)!important;gap:16px!important;align-items:start!important;border-top:1px solid rgba(255,255,255,.17)!important;padding:15px 0!important}
+.at-glance dl>div:nth-child(-n+2){border-top:0!important}
+.at-glance dt{font-size:12px!important;line-height:1.45!important;color:#b4c0d4!important;font-weight:400}
+.at-glance dd{font-size:clamp(14px,1.3vw,16px)!important;line-height:1.48!important;color:#f6f7fa!important}
+.at-glance .glance-emphasis dd{font-weight:500;color:#fff!important}
+.at-glance dl>.glance-outcome{grid-column:1/-1;grid-template-columns:105px minmax(0,1fr)!important;border-top:1px solid rgba(255,255,255,.3)!important;padding-bottom:0!important}
+.at-glance .glance-outcome dd{font-size:clamp(16px,1.65vw,20px)!important;font-weight:500;line-height:1.35!important}
+.final-interface-video{background:transparent!important;object-fit:contain;border-radius:0}
+@media(max-width:800px){.at-glance dl{grid-template-columns:1fr!important;gap:0!important}.at-glance dl>div:nth-child(2){border-top:1px solid rgba(255,255,255,.17)!important}.at-glance dl>div{grid-template-columns:105px minmax(0,1fr)!important}.at-glance .glance-heading h2{font-size:clamp(26px,5vw,35px)!important}}
+@media(max-width:480px){.at-glance{padding:24px 20px!important}.at-glance .glance-heading{margin-bottom:8px!important;padding-bottom:18px}.at-glance .glance-heading h2{font-size:26px!important}.at-glance dl>div,.at-glance dl>.glance-outcome{grid-template-columns:1fr!important;gap:4px!important;padding:12px 0!important}.at-glance dt{font-size:11px!important}.at-glance dd{font-size:14px!important}.at-glance .glance-outcome dd{font-size:17px!important}}
+</style><style>
+
+/* Session 2 finishing refinements */
+.final-media{overflow:hidden;border-radius:14px;background:#fff}
+.final-media .final-interface-video{width:100%;height:auto;aspect-ratio:auto;object-fit:contain;background:transparent!important;border-radius:0;display:block}
+/* Editorial overview: headline first, then readable, prioritised details */
+.at-glance{padding:clamp(24px,3vw,36px)!important}
+.at-glance .glance-heading{margin-bottom:14px!important;padding-bottom:20px!important}
+.at-glance .glance-heading h2{font-size:clamp(26px,3.1vw,38px)!important;line-height:1.13!important;letter-spacing:-.035em!important;text-wrap:pretty}
+.at-glance dl{column-gap:36px!important}
+.at-glance dl>div{grid-template-columns:108px minmax(0,1fr)!important;gap:15px!important;padding:14px 0!important}
+.at-glance dt{font-size:13px!important;color:#b7c4d8!important;line-height:1.4!important}
+.at-glance dd{font-size:clamp(15px,1.4vw,17px)!important;line-height:1.4!important}
+.at-glance .glance-emphasis dd{font-weight:500!important}
+.at-glance dl>.glance-outcome{grid-template-columns:108px minmax(0,1fr)!important;padding-top:18px!important}
+.at-glance .glance-outcome dd{font-size:clamp(18px,2vw,23px)!important}
+/* Keep the actual source video's proportions, rather than forcing it into a square. */
+#engineering video.clip{aspect-ratio:auto!important;width:100%;height:auto!important;object-fit:contain!important;max-height:none!important}
+@media(max-width:800px){.at-glance dl{grid-template-columns:1fr!important}.at-glance dl>div{grid-template-columns:110px minmax(0,1fr)!important}.at-glance dl>div:nth-child(2){border-top:1px solid rgba(255,255,255,.17)!important}}
+@media(max-width:520px){.at-glance{padding:22px 20px!important}.at-glance .glance-heading h2{font-size:clamp(25px,6.5vw,32px)!important}.at-glance dl>div,.at-glance dl>.glance-outcome{grid-template-columns:1fr!important;gap:5px!important;padding:12px 0!important}.at-glance dt{font-size:12px!important}.at-glance dd{font-size:15px!important}.at-glance .glance-outcome dd{font-size:19px!important}}
+</style>
+<style>
+/* Compact first viewport: override earlier glance styling without affecting the case study. */
+.head{padding-top:92px;padding-bottom:14px;gap:9px}
+.head h1{font-size:clamp(29px,3vw,39px)}
+.first-viewport{max-width:var(--page);margin:0 auto;display:grid;grid-template-columns:minmax(0,55fr) minmax(0,45fr);gap:clamp(22px,3vw,42px);align-items:center}
+.first-viewport .compact-glance{background:transparent!important;color:var(--ink)!important;padding:0!important;margin:0!important;border-radius:0!important;max-width:none!important;display:block!important}
+.compact-glance>.label{color:var(--ink-3)!important;font-size:11px!important;letter-spacing:.1em}
+.compact-glance h2{color:var(--ink)!important;font-size:clamp(27px,2.35vw,32px)!important;line-height:1.13!important;letter-spacing:-.035em;margin:12px 0 22px!important;font-weight:500}
+.compact-glance dl{display:block!important;margin:0!important}
+.compact-glance dl>div,.compact-glance dl>div:nth-child(-n+2){display:grid!important;grid-template-columns:100px minmax(0,1fr)!important;gap:12px!important;padding:11px 0!important;border-top:1px solid var(--line)!important}
+.compact-glance dt{color:var(--ink-3)!important;font-size:12px!important;line-height:1.45!important}
+.compact-glance dd{color:var(--ink)!important;font-size:15px!important;line-height:1.4!important;font-weight:400!important}
+.compact-glance dl>div:last-child dd{font-weight:500!important}
+.glance-meta{font-size:12px;color:var(--ink-2);line-height:1.5;margin-top:20px}
+.first-video{margin:0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.first-video video{display:block;max-height:510px;max-width:100%;width:auto;height:auto;object-fit:contain;background:transparent!important;border-radius:0}
+.first-video figcaption{align-self:flex-start;margin-top:8px}
+.context-row{max-width:var(--page);margin:24px auto 30px;padding-top:16px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.context-row>div{min-width:0}.context-row .label{display:block;margin-bottom:7px}.context-row p{font-size:13px;line-height:1.45;color:var(--ink-2)}
+@media(max-width:800px){.first-viewport{grid-template-columns:1fr;gap:22px}.first-video video{max-height:480px}.context-row{grid-template-columns:repeat(2,minmax(0,1fr))}.head{padding-top:92px}}
+@media(max-width:520px){.head{padding-top:86px}.compact-glance h2{font-size:28px!important}.compact-glance dl>div,.compact-glance dl>div:nth-child(-n+2){grid-template-columns:88px minmax(0,1fr)!important;gap:10px!important}.compact-glance dd{font-size:14px!important}.first-video video{max-height:420px}.context-row{grid-template-columns:1fr;gap:14px;margin-top:24px}.context-row>div{padding-bottom:12px;border-bottom:1px solid var(--line)}}
+
+/* Final polish: no coloured backdrop behind the hero footage. */
+.case-video-inner{background:transparent!important;}
+
+</style>
+<style>
+/* Design QA: restrained, proportional device comparison */
+#engineering .qa-comparison-figure{max-width:1300px;margin:42px auto 0}
+#engineering .qa-comparison,#engineering .qa-comparison *{box-sizing:border-box}
+#engineering .qa-comparison{background:#f7f5ef;border-radius:24px;padding:clamp(28px,3.4vw,48px);display:grid;grid-template-columns:minmax(180px,.85fr) minmax(480px,2.1fr) minmax(165px,.72fr);align-items:center;gap:clamp(20px,2.5vw,36px)}
+#engineering .qa-comparison-intro .label{color:#bd8d24;font-weight:400}
+#engineering .qa-comparison-intro h3{font-size:clamp(26px,2.4vw,38px);line-height:1.2;letter-spacing:-.025em;margin:16px 0 25px;color:#20283b;font-weight:400}
+#engineering .qa-comparison-intro p{font-size:15px;line-height:1.65;color:#747474;max-width:270px;font-weight:400}
+#engineering .qa-phones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,28px);align-items:start;min-width:0}
+#engineering .qa-phone-col{min-width:0}
+#engineering .qa-phone-label{display:block;font:11px/1.4 monospace;letter-spacing:.15em;color:#8a8987;margin:0 0 12px;text-align:center}
+#engineering .qa-phone{width:100%;max-width:245px;aspect-ratio:390/844;border:5px solid #16171f;border-radius:38px;background:#11121a;padding:5px;box-shadow:0 8px 24px #1a1a2412;margin:auto;overflow:hidden}
+#engineering .qa-phone-screen{position:relative;background:#11121a;border-radius:29px;width:100%;height:100%;overflow:hidden;color:#f5f5f5;font-family:Arial,sans-serif;display:flex;flex-direction:column}
+#engineering .qa-phone-top{height:35px;flex:none;display:flex;justify-content:center;padding-top:6px}
+#engineering .qa-dynamic-island{display:block;width:65px;height:15px;border-radius:20px;background:#050508}
+#engineering .qa-menu-title{height:49px;flex:none;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:400;position:relative}
+#engineering .qa-menu-title>span{position:absolute;right:9%;font-size:22px;font-weight:300}
+#engineering .qa-menu{width:100%;flex:none}
+#engineering .qa-menu-row{height:43px;display:flex;align-items:center;gap:9px;padding:0 10px;font-size:11px;font-weight:400;background:#1d1e26;border-bottom:1px solid #3b3b42;position:relative;white-space:nowrap;min-width:0}
+#engineering .qa-menu-row>span:nth-child(2){min-width:0;overflow:hidden;text-overflow:ellipsis}
+#engineering .qa-menu-row.qa-active{color:#dfb13e;font-weight:400;background:#292a31}
+#engineering .qa-menu-icon{font-size:15px;width:18px;text-align:center;flex:none;font-weight:400}
+#engineering .qa-home-indicator{position:absolute;bottom:9px;left:34%;width:32%;height:4px;border-radius:6px;background:#f5f5f5}
+#engineering .qa-pin{position:absolute;background:#db6245;color:white;border-radius:50%;width:20px;height:20px;display:grid;place-items:center;font-size:10px;font-weight:600;z-index:2}
+#engineering .qa-pin-row{left:3%;top:22%}#engineering .qa-pin-height{right:1%;top:24%}#engineering .qa-pin-divider{left:44%;bottom:-10px}
+#engineering .qa-notes{display:grid;gap:12px}
+#engineering .qa-notes>div{background:#fff;border:1px solid #ebe8e1;border-radius:14px;padding:13px}
+#engineering .qa-notes b{font-size:11px;line-height:1.5;color:#303644;display:flex;align-items:center;gap:7px;font-weight:500}
+#engineering .qa-notes b span{background:#db6245;color:white;width:19px;height:19px;display:inline-grid;place-items:center;border-radius:50%;font-size:10px;flex:none}
+#engineering .qa-notes p{font-size:11px;line-height:1.55;color:#858585;margin:7px 0 0;font-weight:400}
+#engineering .qa-comparison-figure figcaption{margin-top:12px}
+@media(max-width:1120px){#engineering .qa-comparison{grid-template-columns:minmax(160px,.8fr) minmax(400px,2fr);gap:25px}#engineering .qa-notes{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){#engineering .qa-comparison{grid-template-columns:1fr;padding:24px;gap:26px}#engineering .qa-comparison-intro p{max-width:500px}#engineering .qa-phones{max-width:520px;width:100%;margin:auto}#engineering .qa-notes{grid-column:auto}}
+@media(max-width:500px){#engineering .qa-phones{gap:10px}#engineering .qa-phone{border-width:3px;padding:3px;border-radius:27px}#engineering .qa-phone-screen{border-radius:21px}#engineering .qa-phone-top{height:25px}#engineering .qa-dynamic-island{width:45px;height:10px}#engineering .qa-menu-title{height:35px;font-size:10px}#engineering .qa-menu-row{height:32px;gap:4px;padding:0 5px;font-size:8px}#engineering .qa-menu-icon{font-size:11px;width:12px}#engineering .qa-notes{grid-template-columns:1fr}#engineering .qa-pin{width:15px;height:15px;font-size:8px}}
+</style>
 </head>
 <body>
 <header class="portfolio-header">
-  <div class="wrap">
-    <div class="hdr-group">
-      <a class="logo" href="index.html#top">Sophia Akrofi</a>
-    </div>
-    <div class="hdr-group navwrap" id="navwrap">
-      <nav class="nav" aria-label="Main">
-        <a href="index.html#work">Work</a>
-        <a href="index.html#testimonials">Testimonials</a>
-        <a href="index.html#beyond">Beyond work</a>
-        <a href="index.html#experience">Experience</a>
-        <a href="index.html#about">About</a>
-        <a class="nav-cta" href="work-with-me.html">Work with me</a>
-      </nav>
-      <button class="icon-btn menu-btn" id="menu" type="button" aria-label="Open menu" aria-expanded="false">
-        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5h12M2 11h12" stroke="currentColor" stroke-width="1.4"/></svg>
-      </button>
-      <a class="btn btn-dark" href="work-with-me.html">Work with me</a>
-    </div>
-  </div>
+<div class="wrap">
+<div class="hdr-group">
+<a class="logo" href="index.html#top">Sophia Akrofi</a>
+</div>
+<div class="hdr-group navwrap" id="navwrap">
+<nav aria-label="Main" class="nav">
+<a href="index.html#work">Work</a>
+<a href="index.html#testimonials">Testimonials</a>
+<a href="index.html#beyond">Beyond work</a>
+<a href="index.html#experience">Experience</a>
+<a href="index.html#about">About</a>
+<a class="nav-cta" href="work-with-me.html">Work with me</a>
+</nav>
+<button aria-expanded="false" aria-label="Open menu" class="icon-btn menu-btn" id="menu" type="button">
+<svg aria-hidden="true" height="16" viewbox="0 0 16 16" width="16"><path d="M2 5h12M2 11h12" stroke="currentColor" stroke-width="1.4"></path></svg>
+</button>
+<a class="btn btn-dark" href="work-with-me.html">Work with me</a>
+</div>
+</div>
 </header>
-
-<div class="head">
-  <div class="crumbs"><span>Product design</span><span>Design systems</span><span>Bilingual</span></div>
-  <span class="label">Property technology ecosystem</span>
-  <h1>Designing a bilingual property platform from strategy to scale</h1>
-  <p class="sub">I led design for three connected products and the English and Arabic design system behind them for a national property developer. I joined a design team of four and went on to lead design for the programme, directing three design interns through delivery and client handover.</p>
-  <dl class="meta">
-    <div><dt>Role</dt><dd>Senior Analyst → Associate Design Director</dd></div>
-    <div><dt>Scope</dt><dd>3 products · 1 design system</dd></div>
-    <div><dt>Team</dt><dd>Design lead · directed 3 design interns · coached client designers</dd></div>
-    <div><dt>Year</dt><dd>2023 to 2024 · Middle East</dd></div>
-  </dl>
-  <div class="stats glance" aria-label="Results at a glance">
-    <div><strong class="num">$400M</strong><span>Revenue in the first quarter</span></div>
-    <div><strong class="num">$1B+</strong><span>Sales within the first year</span></div>
-    <div><strong class="num">46 → 3</strong><span>Days from lead to sale</span></div>
-    <div><strong class="num">3,000+</strong><span>Bilingual components</span></div>
-  </div>
-  <p class="cap" style="margin:0">Commercial results of the wider programme, delivered alongside design and engineering. The design decisions most directly connected to these results are explained below. Full detail in <a href="#impact">The impact</a>.</p>
+<div class="head case-intro">
+<div class="crumbs"><span>Product design</span><span>Design systems</span><span>Bilingual</span></div>
+<span class="label">Designing a bilingual property platform from strategy to scale</span>
+<h1>A new national home-buying app, designed from scratch.</h1>
+<p class="case-lead">I led design across three products, from research to launch, for one app where people search, finance, reserve and buy a home online, in English and Arabic.</p>
+<p class="case-meta">Senior Analyst → Associate Design Director · Hands-on design + strategy · 2023–2024 · Middle East</p>
 </div>
-
-<div class="hero">
-  <div class="film">
-    <video id="vid" src="assets/film.mp4" poster="assets/poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="30-second film of the design system in English and Arabic"></video>
-    <button id="playbtn" type="button">Pause</button>
-  </div>
-  <p class="cap">The system in 30 seconds. Each product builds in English, then flips to its right-to-left Arabic version.</p>
+<figure class="case-video-stage">
+<div class="case-video-inner"><video aria-label="Final property platform interface walkthrough" class="final-interface-video" autoplay muted loop playsinline poster="assets/walk_poster.jpg" preload="metadata" src="visual-assets/product-walkthrough.mp4"></video></div>
+<figcaption>The final interface.</figcaption>
+</figure>
+<div class="head" style="padding-top:0;padding-bottom:0">
+<div aria-label="Results at a glance" class="stats glance">
+<div><strong class="num">$400M</strong><span>Revenue in the first quarter</span></div>
+<div><strong class="num">$1B+</strong><span>Sales within the first year</span></div>
+<div><strong class="num">46 → 3</strong><span>Days from lead to sale</span></div>
+<div><strong class="num">3 products</strong><span>One bilingual design system</span></div>
 </div>
-
+<p class="cap" style="margin:0">Programme-wide commercial results, delivered alongside design and engineering.</p>
+</div>
+<section class="project-context-strip" aria-label="Project context">
+  <div class="project-context-eyebrow">PROJECT CONTEXT</div>
+  <div class="project-context-items">
+    <div><span class="project-context-label">The ambition</span><p>Support Saudi Vision 2030’s goal of 70% homeownership among Saudi families by making buying a new home simpler and more accessible.</p></div>
+    <div><span class="project-context-label">Team I led</span><p>Three design interns, plus coaching the client’s designers.</p></div>
+    <div><span class="project-context-label">Who I aligned</span><p>Client leadership, product owners and engineering.</p></div>
+    <div><span class="project-context-label">The pivot</span><p>Research showed maintenance was most wanted, so Home Services came next.</p></div>
+  </div>
+</section>
+<div aria-labelledby="designed-title" class="design-index">
+<h2 id="designed-title">What I designed</h2>
+<div class="design-tiles">
+<a href="#research"><strong>Journeys and flows</strong><span>Mapped the experience from research to the first release.</span><em>Explore ↗</em></a>
+<a href="#system"><strong>Atomic design system</strong><span>Built reusable foundations across three products.</span><em>Explore ↗</em></a>
+<a href="#solution"><strong>EN/AR interface</strong><span>Designed for both scripts and reading directions.</span><em>Explore ↗</em></a>
+<a href="#engineering"><strong>Design QA with engineering</strong><span>Reviewed live builds against the design specifications.</span><em>Explore ↗</em></a>
+</div>
+</div>
 <div class="layout">
-  <aside class="toc" aria-label="On this page">
-    <ol>
-      <li><a href="#challenge">The challenge</a></li>
-      <li><a href="#role">My role</a></li>
-      <li><a href="#research">Research to MVP</a></li>
-      <li><a href="#system">Design system</a></li>
-      <li><a href="#engineering">With engineering</a></li>
-      <li><a href="#solution">The solution</a></li>
-      <li><a href="#impact">The impact</a></li>
-    </ol>
-  </aside>
-  <main>
-    <section id="challenge">
-      <div class="txt">
-        <span class="label">The challenge</span>
-        <h2>People wanted to own a home. The journey got in the way.</h2>
-        <p>Saudi homeownership rose from about 47% in 2016 to 66% in 2025, on the way to a Vision 2030 target of 70%. Demand was there. But finding, financing and living in a home happened across sales centres, banks, paperwork and separate service channels. Turning a lead into a sale was slow.</p>
-      </div>
-      <div class="ba">
-        <div class="b">
-          <span class="label">Before</span>
-          <div class="chips"><span>Sales centre visit</span><span>Bank appointment</span><span>Paper forms</span><span>Call centre</span><span>WhatsApp updates</span><span>Service hotline</span><span>Separate portals</span></div>
-          <div class="days num">46<small>days, lead to conversion</small></div>
-        </div>
-        <div class="a">
-          <span class="label">After</span>
-          <div style="display:grid;gap:10px"><h3>One app, three products, two languages</h3><ul><li>Home acquisition</li><li>Home services</li><li>Community</li></ul></div>
-          <div class="days num">3<small>days, lead to conversion, 12 months on</small></div>
-        </div>
-      </div>
-      <p class="cap" style="margin:0">Homeownership figures: Housing Program annual reports, 2023 and 2024, and 2025 ministry reporting.</p>
-    </section>
-
-    <section id="role">
-      <div class="txt">
-        <span class="label">My role</span>
-        <h2>My scope grew as the programme did.</h2>
-        <p>I joined in 2023 as a Senior Analyst in a design team of four, with designers on each product stream, and left in 2024 as Associate Design Director. As the programme moved from launch into scale, the other designers rolled off. I became the <b>design lead for the whole programme</b>: three products and the design system, with three design interns reporting to me. I was responsible for direction, delivery and preparing the client’s team to take over. The scope I took on was a major reason for my promotion.</p>
-      </div>
-      <ol class="arc">
-        <li><span class="label">Phase 1 · Launch</span><b>One of four designers</b><span>Set direction across the product streams and reviewed work, while staying hands-on with research synthesis and the core journeys.</span></li>
-        <li><span class="label">Phase 2 · Scale</span><b>Leading design with three interns</b><span>Took on all three products, the design system backlog and design QA with every front-end squad. I decided where to stay hands-on and where to delegate to the interns.</span></li>
-        <li><span class="label">Phase 3 · Handover</span><b>Building the client’s team</b><span>Handover documentation, sandboxes and ownership maps, plus weekly Figma coaching for the client’s junior designers.</span></li>
-      </ol>
-      <div class="modes">
-        <div>
-          <span class="label">Designed · hands-on</span>
-          <ul><li>Research synthesis and design imperatives</li><li>Journeys, information architecture and MVP scope for all three products</li><li>The atomic design system and key component specifications</li></ul>
-        </div>
-        <div>
-          <span class="label">Directed · with the team</span>
-          <ul><li>Briefed, reviewed and coached three design interns</li><li>Design QA with front-end squads before every release</li><li>Ran the system backlog and daily stand-ups</li></ul>
-        </div>
-        <div>
-          <span class="label">Enabled · for after we left</span>
-          <ul><li>Handover docs, sandboxes and ownership maps</li><li>Weekly Figma coaching for junior designers</li><li>A joint team of consultancy and client designers</li></ul>
-        </div>
-      </div>
-      <div class="txt" style="margin-top:8px">
-        <h3>Who I led and influenced</h3>
-      </div>
-      <ul class="gov">
-        <li><b>Led · 3 design interns</b><span>Set priorities, reviewed their work and decided what they owned.</span></li>
-        <li><b>Coached · the client’s designers</b><span>Weekly Figma sessions, so their team could run the system without us.</span></li>
-        <li><b>Partnered · front-end squads</b><span>Design QA on live builds before every release, with decisions made together.</span></li>
-        <li><b>Influenced · senior stakeholders</b><span>Made the case for the design system to leaders at the consultancy and the client.</span></li>
-      </ul>
-      <div class="txt" style="margin-top:8px">
-        <h3>Decisions I owned</h3>
-      </div>
-      <ul class="pts">
-        <li><b>One system for three products,</b> not three systems. Products differ in colour and tone, never in how things work.</li>
-        <li><b>Arabic from the first component,</b> not a translation pass at the end. Every component has a language property.</li>
-        <li><b>Tokens and names as the contract with engineering,</b> so a Figma component and its Storybook counterpart are the same thing.</li>
-        <li><b>Build the client’s capability,</b> so their team could run and extend the system after we left.</li>
-      </ul>
-    </section>
-
-    <section id="research">
-      <div class="txt">
-        <span class="label">Research to MVP</span>
-        <h2>Research decided which product to build next.</h2>
-        <p>We surveyed more than a thousand homeowners and renters. One need stood out: home maintenance was the most in-demand service and the worst served. That evidence turned Home Services from a feature on a list into its own mini app inside the super app.</p>
-      </div>
-      <div class="research">
-        <div>
-          <ul class="rs">
-            <li><b class="num">1,000+</b><span>homeowners and renters surveyed across age, income and region</span></li>
-            <li><b class="num">4</b><span>segments: homeowners, renters, villa and apartment</span></li>
-            <li><b class="num">#1</b><span>home maintenance: the most in-demand and most underserved service</span></li>
-          </ul>
-          <div class="insight"><span class="label">Insight → product direction</span><p>That gap made Home Services a priority: its own mini app inside the super app.</p></div>
-        </div>
-        <div style="display:grid;gap:12px;align-content:start">
-          <div class="persona">
-            <img src="assets/personas.webp" width="720" height="290" alt="Illustrations of three resident personas" loading="lazy">
-            <div class="pl"><span>The family oriented</span><span>The modest</span><span>The newlyweds</span></div>
-          </div>
-          <ol class="needs">
-            <li><i>01</i>Ease of use and consistent quality</li>
-            <li><i>02</i>Clear value for money</li>
-            <li><i>03</i>Navigable, relevant services</li>
-            <li><i>04</i>Trust and transparency</li>
-          </ol>
-        </div>
-      </div>
-      <div class="txt" style="margin-top:12px">
-        <h3>From journey to a scoped first release</h3>
-        <p>I mapped every user activity in Home Services, from opening the mini app to getting help afterwards. Then I traced each one through to an MVP requirement and a screen. The first release stopped at a coherent core: request, book, confirm, track and give feedback. Everything else was staged for later.</p>
-      </div>
-      <figure>
-        <ol class="journey" aria-label="Home Services journey, in ten stages">
-          <li class="mvp"><i>01</i><b>Onboarding</b><span>Check the user is a homeowner. Explain the service to anyone who isn’t.</span></li>
-          <li class="mvp"><i>02</i><b>Open the mini app</b><span>Enter Home Services from the super app with the same account.</span></li>
-          <li class="mvp"><i>03</i><b>Home dashboard</b><span>Ownership details and the services available for this home.</span></li>
-          <li class="mvp"><i>04</i><b>Choose a service</b><span>Pick the type of issue. Unavailable services are greyed out, not hidden.</span></li>
-          <li class="mvp"><i>05</i><b>Book</b><span>Date and time. Address filled in from the user’s home. Optional notes and a photo.</span></li>
-          <li class="mvp"><i>06</i><b>Confirm</b><span>A summary to check or edit before confirming.</span></li>
-          <li class="mvp"><i>07</i><b>Track</b><span>A booking confirmation with a status tracker.</span></li>
-          <li class="mvp"><i>08</i><b>Feedback</b><span>Rate the service once it is complete.</span></li>
-          <li class="mvp"><i>09</i><b>Support</b><span>FAQs and a single route to help.</span></li>
-          <li class="later"><i>10</i><b>Retention</b><span>Promotions, new services and reminders. Staged for a later release.</span></li>
-        </ol>
-        <figcaption><span class="legend"><span>In the first release</span><span class="l">Staged for later</span></span></figcaption>
-      </figure>
-<figure>
-        <video class="clip" src="visual-assets/hs-journey.mp4" poster="visual-assets/hs-journey-poster.jpg" muted loop playsinline preload="metadata" data-inview aria-label="Home Services journey: ten wireframe screens, with the first-release scope highlighted"></video>
-        <figcaption>The first release, screen by screen: from welcome to rating and help. Promotions were staged for later.</figcaption>
-      </figure>
-      <div class="calls">
-        <div><b>Payment waited.</b><p>New homes were under a two-year warranty, so service requests were free at launch. In-app payment could follow without blocking the first release.</p></div>
-        <div><b>UX first, then backend scale.</b><p>Version 1 had to make booking feel effortless. Version 2 was where scalable backend capabilities came in.</p></div>
-      </div>
-    </section>
-
-    <section id="system">
-      <div class="txt">
-        <span class="label">Design system</span>
-        <h2>From designing pages to building a system.</h2>
-        <p>When I arrived, the team designed each page on its own. With three products, two languages and several squads, that meant repeated work and inconsistent builds. I introduced an atomic design system, based on Brad Frost’s model, so we designed reusable parts once, from atoms up to full templates, and assembled pages from them in both languages.</p>
-      </div>
-      <figure>
-        <video class="clip" src="visual-assets/design-system.mp4" poster="visual-assets/design-system-poster.jpg" controls playsinline preload="metadata" aria-label="Design system walkthrough: atoms, molecules, organisms, templates and pages"></video>
-        <figcaption>How the 3,000+ component system was built, from the smallest parts up. 1 min 12 s.</figcaption>
-      </figure>
-<figure>
-        <video class="clip" src="visual-assets/ds-language-property.mp4" poster="visual-assets/ds-language-property-poster.jpg" muted loop playsinline preload="metadata" data-inview aria-label="A Figma component with Mode, Language, App and State properties; switching Language to Arabic mirrors the layout"></video>
-        <figcaption>One component, every context. Language and mode are properties, so switching to Arabic mirrors the layout without a separate component.</figcaption>
-      </figure>
-      <div class="txt" style="margin-top:12px">
-        <h3>A business case, not just a Figma library</h3>
-        <p>A system changes how an organisation works. I made the case for it to senior stakeholders on both the consultancy and client sides. The argument rested on speed, reuse and ownership, held together by governance.</p>
-      </div>
-      <div class="stats">
-        <div><strong class="num">&lt;5 mo</strong><span>to first release</span></div>
-        <div><strong class="num">35%</strong><span>faster from design to development</span></div>
-        <div><strong class="num">1,500+</strong><span>of the 3,000+ components in use across products</span></div>
-        <div><strong class="num">1 token</strong><span>change updates every product</span></div>
-      </div>
-      <ul class="gov">
-        <li><b>Clear standards</b><span>Guidelines from atoms to foundations, with explicit rules for English and Arabic.</span></li>
-        <li><b>Regular working sessions</b><span>Design, product and engineering reviewed the system together.</span></li>
-        <li><b>One shared backlog</b><span>Every component request had an owner, a status and a priority.</span></li>
-        <li><b>Aligned with Storybook</b><span>Figma names matched the front-end Storybook, so design and code stayed in step.</span></li>
-      </ul>
-      <figure>
-        <div class="docs">
-          <div class="docs-tabs" role="tablist" aria-label="Documentation examples">
-            <button type="button" role="tab" aria-selected="true" aria-controls="dl-1" id="dt-1">Toast notifications</button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="dl-2" id="dt-2">Mobile layout</button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="dl-3" id="dt-3">Basket and checkout</button>
-          </div>
-          <div class="docs-stage">
-            <video id="dl-1" role="tabpanel" aria-labelledby="dt-1" src="visual-assets/dl-toast.mp4" poster="visual-assets/dl-toast-poster.jpg" muted loop playsinline preload="metadata" data-inview aria-label="Toast specification: top of the screen over content, dismisses after 5 to 7 seconds, non-modal"></video>
-            <video id="dl-2" role="tabpanel" aria-labelledby="dt-2" src="visual-assets/dl-layout.mp4" poster="visual-assets/dl-layout-poster.jpg" muted loop playsinline preload="none" hidden data-inview aria-label="Mobile master layout: header and footer heights, body padding and four footer dock options"></video>
-            <video id="dl-3" role="tabpanel" aria-labelledby="dt-3" src="visual-assets/dl-basket.mp4" poster="visual-assets/dl-basket-poster.jpg" muted loop playsinline preload="none" hidden data-inview aria-label="Basket template leading to the checkout template"></video>
-          </div>
-        </div>
-        <figcaption>Excerpts from the documentation we handed to the client team. Personal details have been removed.</figcaption>
-      </figure>
-    </section>
-
-    <section id="engineering">
-      <div class="txt">
-        <span class="label">With engineering</span>
-        <h2>The design was only finished when the build matched it.</h2>
-        <p>I worked directly with front-end engineers, separate from writing specifications. We reviewed live builds of the sales dashboard, the customer views and the native super app side by side with the designs. Together we resolved differences, talked through technical constraints and made implementation calls on the spot.</p>
-      </div>
-      <ol class="loop" aria-label="How design and engineering worked together">
-        <li><i>01</i><b>Specify</b><span>Components and templates with states, rules and both languages.</span></li>
-        <li><i>02</i><b>Build</b><span>Engineers build to the same names in Storybook.</span></li>
-        <li><i>03</i><b>Review live</b><span>Design QA on working software, with each squad before release.</span></li>
-        <li><i>04</i><b>Decide and log</b><span>Fixes and new needs go into the shared system backlog.</span></li>
-      </ol>
-<figure>
-        <video class="clip" src="visual-assets/eng-review.mp4" poster="visual-assets/eng-review-poster.jpg" muted loop playsinline preload="metadata" data-inview aria-label="Design QA: the Figma menu next to the built menu, with differences flagged for icon colour and row height"></video>
-        <figcaption>Design and build side by side. Differences such as icon colour and row height were flagged against the spec and fixed before release.</figcaption>
-      </figure>
-      <p class="loop-note"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.5-3.5M13 2v3h-3"/></svg>Repeated every two-week release.</p>
-    </section>
-
-    <section id="solution">
-      <div class="txt">
-        <span class="label">The solution</span>
-        <h2>One bilingual system, from first visit to signed agreement.</h2>
-        <p>We built <b>3,000+ components</b>. 2,695 were ready for launch and 1,500+ are in use across the three products. Counting variants, the library holds 5,066, including 1,838 in Arabic, with light and dark modes. Here is the home acquisition journey it made possible, and a prototype you can try in both languages.</p>
-      </div>
-      <figure>
-        <div class="walk">
-          <video id="walk" src="assets/walkthrough.mp4" poster="assets/walk_poster.jpg" autoplay muted playsinline loop preload="metadata" controls aria-label="Product walkthrough of the home acquisition journey"></video>
-          <div style="display:grid;gap:12px">
-            <span class="label">Product walkthrough · home acquisition</span>
-            <ol class="chapters" id="chapters">
-              <li><button type="button" data-t="0"><span>0:00</span>Onboarding</button></li>
-              <li><button type="button" data-t="16"><span>0:16</span>Sign up with a mobile number</button></li>
-              <li><button type="button" data-t="25"><span>0:25</span>Register interest and budget</button></li>
-              <li><button type="button" data-t="34"><span>0:34</span>Browse homes and property details</button></li>
-              <li><button type="button" data-t="43"><span>0:43</span>Reserve, step 1 of 3</button></li>
-              <li><button type="button" data-t="49"><span>0:49</span>E-sign the agreement</button></li>
-              <li><button type="button" data-t="55"><span>0:55</span>Pay the reservation fee</button></li>
-              <li><button type="button" data-t="61"><span>1:01</span>Purchase agreement and my properties</button></li>
-            </ol>
-          </div>
-        </div>
-        <figcaption>The full journey in one app, from first visit to a signed sales agreement. Select a step to jump to it.</figcaption>
-      </figure>
-      <div class="txt" style="margin-top:12px">
-        <h3>Arabic as a primary script, not a mirrored copy</h3>
-        <p>Flipping the layout is the easy part. The decisions that matter are about how Arabic reads. We chose a typeface designed for Arabic, rather than a Latin font with an Arabic fallback, and gave Arabic its own typographic rules. Then we decided element by element what mirrors and what doesn’t. You can see these rules working in the prototype below.</p>
-      </div>
-<figure>
-        <video class="clip" src="visual-assets/ar-en-compare.mp4" poster="visual-assets/ar-en-compare-poster.jpg" muted loop playsinline preload="metadata" data-inview aria-label="The property details screen switching between English and Arabic"></video>
-        <figcaption>One screen, two directions. Layout, alignment and icons mirror right to left, from the same components.</figcaption>
-      </figure>
-      <div class="script">
-        <div class="specimen">
-          <span class="label">Type · same component, two scripts</span>
-          <div class="pair"><span class="en">Estimate your home finance</span><span class="ar" lang="ar" dir="rtl">قم بتقدير تمويلك العقاري</span></div>
-          <div class="btnpair" aria-hidden="true"><span>Reserve this home</span><span lang="ar" dir="rtl">احجز هذا المنزل</span></div>
-          <ul class="pts" style="font-size:14px;padding-left:16px">
-            <li><b>A dedicated Arabic typeface</b> with proper proportions for dots and connected strokes.</li>
-            <li><b>More line height</b> so diacritics and stacked letters never collide.</li>
-            <li><b>No letter-spacing.</b> Uppercase tracking works in English but breaks Arabic’s connected letters, so the button style drops it.</li>
-            <li><b>Flexible containers,</b> because Arabic labels wrap at different lengths.</li>
-          </ul>
-        </div>
-        <div class="mirror">
-          <span class="label">Direction · mirror selectively</span>
-          <table>
-            <thead><tr><th>Element</th><th>Rule</th><th style="text-align:right">EN · AR</th></tr></thead>
-            <tbody>
-              <tr><td>Back arrow</td><td><span class="tag f">Mirrors</span></td><td class="g"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" style="transform:scaleX(-1)"><path d="M10 3 5 8l5 5"/></svg></td></tr>
-              <tr><td>Stepper progress</td><td><span class="tag f">Fills from the right</span></td><td class="g"><svg width="40" height="6" aria-hidden="true"><rect width="40" height="4" y="1" rx="2" fill="#e9e9e9"/><rect width="24" height="4" y="1" rx="2" fill="#daa520"/></svg><svg width="40" height="6" aria-hidden="true"><rect width="40" height="4" y="1" rx="2" fill="#e9e9e9"/><rect x="16" width="24" height="4" y="1" rx="2" fill="#daa520"/></svg></td></tr>
-              <tr><td>Sliders</td><td><span class="tag f">Fill from the right</span></td><td class="g"><svg width="40" height="12" aria-hidden="true"><rect width="40" height="3" y="4.5" rx="1.5" fill="#e6e6e6"/><rect width="14" height="3" y="4.5" rx="1.5" fill="#daa520"/><circle cx="14" cy="6" r="4.5" fill="#fff" stroke="#daa520" stroke-width="1.5"/></svg><svg width="40" height="12" aria-hidden="true"><rect width="40" height="3" y="4.5" rx="1.5" fill="#e6e6e6"/><rect x="26" width="14" height="3" y="4.5" rx="1.5" fill="#daa520"/><circle cx="26" cy="6" r="4.5" fill="#fff" stroke="#daa520" stroke-width="1.5"/></svg></td></tr>
-              <tr><td>Prices and numbers</td><td><span class="tag k">Stay left to right</span></td><td class="g"><span class="num" style="font-size:12px">5,000 SAR</span><span class="num" style="font-size:12px;font-family:'IBM Plex Sans Arabic',sans-serif" dir="rtl"><bdi dir="ltr">5,000</bdi> ر.س</span></td></tr>
-              <tr><td>Status bar and clock</td><td><span class="tag k">Never mirror</span></td><td class="g"><span class="num" style="font-size:12px">9:41</span><span class="num" style="font-size:12px">9:41</span></td></tr>
-              <tr><td>Language switch</td><td><span class="tag k">Native script, no flags</span></td><td class="g"><span style="font-size:12px">العربية</span><span style="font-size:12px">English</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <figure>
-        <div class="proto">
-          <div class="pside">
-            <span class="label">Interactive prototype · home acquisition</span>
-            <h3>From the system to a screen, in both languages</h3>
-            <p>Three screens from the Figma reservation flow, rebuilt in code. Change the numbers in the calculator, reserve a home, or open the menu and switch the language. The whole interface mirrors to Arabic.</p>
-            <div class="switches" style="justify-content:flex-start">
-              <div class="ptabs" role="group" aria-label="Screen" id="ptabs">
-                <button type="button" data-go="calc" aria-pressed="true">Financial calculator</button>
-                <button type="button" data-go="res" aria-pressed="false">Reservation</button>
-                <button type="button" data-go="menu" aria-pressed="false">Menu</button>
-              </div>
-              <div class="switch" role="group" aria-label="Language" id="plang"><button type="button" data-pl="en" aria-pressed="true">EN</button><button type="button" data-pl="ar" aria-pressed="false">AR</button></div>
-            </div>
-            <div class="built">
-              <span class="label">Built from the system · hover to find it</span>
-              <ul id="built"></ul>
-            </div>
-          </div>
-          <div class="ph"><div class="scr" id="scr" dir="ltr" lang="en"></div></div>
-        </div>
-        <figcaption>A working prototype of the Figma designs for the financial calculator, reservation and menu. Every component it uses exists in English and Arabic in the library.</figcaption>
-      </figure>
-    </section>
-
-    <section id="impact">
-      <div class="txt">
-        <span class="label">The impact</span>
-        <h2>$400M in the first quarter. $1B+ within the first year.</h2>
-        <p>Commercial results of the wider programme, delivered alongside design and engineering. The design decisions most directly connected to these results are explained below.</p>
-      </div>
-      <div class="stats">
-        <div><strong class="num">$40m+</strong><span>from 80+ homes sold online in the first 4 weeks after launch</span></div>
-        <div><strong class="num">$400M</strong><span>revenue in the first quarter after launch</span></div>
-        <div><strong class="num">$1bn</strong><span>total sales in 12 months</span></div>
-        <div><strong class="num">1.5K+</strong><span>homes sold online in 12 months</span></div>
-        <div><strong class="num">46→3</strong><span>days from lead to conversion</span></div>
-        <div><strong class="num">15×</strong><span>lead conversion with the fully online journey</span></div>
-        <div><strong class="num">+70%</strong><span>sales online</span></div>
-        <div><strong class="num">20K</strong><span>users registered in 12 months</span></div>
-      </div>
-      <p class="cap" style="margin:0">Figures from the programme’s published impact summary.</p>
-      <div class="txt" style="margin-top:12px">
-        <h3>The design decisions behind the numbers</h3>
-        <p>These results belong to the whole programme. These are the design decisions most directly connected to them.</p>
-      </div>
-      <div class="calls">
-        <div><b>46 → 3 days: one journey, not seven channels.</b><p>A buyer can browse, reserve, e-sign and pay the reservation fee in one app. That replaced the sales centre visit, bank appointment and paper forms shown at the top of this page.</p></div>
-        <div><b>15× conversion: fewer reasons to stop.</b><p>The financial calculator shows buyers what they can afford before they commit. The three-step reservation always shows what comes next. Both were designed to stop a qualified lead dropping out between interest and reservation.</p></div>
-        <div><b>Releases every two weeks: the system.</b><p>Shared components named the same in Figma and Storybook got the first release out in under five months and kept releases coming every two weeks.</p></div>
-        <div><b>Two languages without twice the work.</b><p>Every component was built for English and Arabic from the start. Arabic never had to wait for a separate translation pass before it could launch.</p></div>
-      </div>
-      <div class="txt" style="margin-top:12px"><h3>What the team said</h3></div>
-      <div class="quotes">
-        <div><p>Put the design front in order and kept the bar extremely high through a project with real ups and downs.</p><small>Project leadership</small></div>
-        <div><p>Spotted the components the team was missing and designed them in a way that sped up their work.</p><small>Client product manager</small></div>
-        <div><p>“Working at the speed of light.”</p><small>Product owner, Home Services</small></div>
-        <div><p>The coaching made the project an incredible journey.</p><small>Designer I coached</small></div>
-      </div>
-      <div class="txt" style="margin-top:12px">
-        <h3>Capability that outlasted the engagement</h3>
-        <p>We didn’t only hand over screens. We set up the system, the ways of working and a client design team that could run it. The client has since evolved the app on those foundations into a resident super app. It is still live today, rated 4.1★ on the App Store from 216 ratings.</p>
-      </div>
-      <figure>
-        <div class="panel sand strip" aria-label="Screens from the live app today">
-          <img src="assets/as_3.jpg" alt="Live app today: home services" loading="lazy"><img src="assets/as_5.jpg" alt="Live app today: property details" loading="lazy"><img src="assets/as_6.jpg" alt="Live app today: reserve a home" loading="lazy"><img src="assets/as_4.jpg" alt="Live app today: community map" loading="lazy"><img src="assets/as_7.jpg" alt="Live app today: service requests" loading="lazy">
-        </div>
-        <figcaption>The live app today, as evolved by the client’s team.</figcaption>
-      </figure>
-      <a class="applink" href="https://apps.apple.com/sa/app/roshn-%D8%B1%D9%88%D8%B4%D9%86/id6472248406" target="_blank" rel="noopener">See the live app on the App Store · 4.1★ ↗</a>
-      <div class="txt" style="margin-top:12px">
-        <h3>What I’d do differently</h3>
-      </div>
-      <ul class="pts">
-        <li><b>Start the handover on day one.</b> The client’s designers were coached as the programme scaled. If they had been involved from the first component, they would have helped shape the system, not just inherited it.</li>
-        <li><b>Measure design decisions, not only the funnel.</b> The team logged 100+ events per session to track user behaviour and the sales funnel. I’d connect specific design changes to those events earlier, so the impact of design shows up on its own.</li>
-        <li><b>Delegate whole problems, not screens.</b> With three interns and no other senior designer, I learned to give each of them a whole problem rather than screens. Next time I’d do that from day one, so I could focus on the system and stakeholders sooner.</li>
-      </ul>
-    </section>
-  </main>
+<aside aria-label="On this page" class="toc">
+<ol>
+<li><a href="#challenge">The challenge</a></li>
+<li><a href="#role">My role</a></li>
+<li><a href="#research">Research to MVP</a></li>
+<li><a href="#system">Design system</a></li>
+<li><a href="#engineering">With engineering</a></li>
+<li><a href="#solution">The solution</a></li>
+<li><a href="#impact">The impact</a></li>
+</ol>
+</aside>
+<main>
+<section id="challenge">
+<div class="txt">
+<span class="label">The challenge</span>
+<h2>People wanted to own a home. The journey got in the way.</h2>
+<p>Saudi buyers had to navigate sales centres, banks and paperwork to buy a home. Buying took 46 days from lead to sale, and many buyers dropped out before reserving.</p>
 </div>
-
+<div class="ba">
+<div class="b">
+<span class="label">Before</span>
+<div class="chips"><span>Sales centre visit</span><span>Bank appointment</span><span>Paper forms</span><span>Call centre</span><span>WhatsApp updates</span><span>Service hotline</span><span>Separate portals</span></div>
+<div class="days num">46<small>days, lead to conversion</small></div>
+</div>
+<div class="a">
+<span class="label">After</span>
+<div style="display:grid;gap:10px"><ul><li>Home acquisition</li><li>Home services</li><li>Community</li></ul></div>
+<div class="days num">3<small>days, lead to conversion, 12 months on</small></div>
+</div>
+</div>
+</section>
+<section id="role">
+<div class="txt">
+<span class="label">My role</span>
+<h2>My scope grew as the programme did.</h2>
+<p>I progressed from Senior Analyst to Associate Design Director as I took ownership of three products, the design system and delivery. I remained hands-on with journeys, components and design QA while leading three interns.</p>
+</div>
+<ol class="arc">
+<li><span class="label">Phase 1 · Launch</span><b>One of four designers</b><span>Designed core journeys and synthesised research with the original team.</span></li>
+<li><span class="label">Phase 2 · Scale</span><b>Leading design with three interns</b><span>Owned three products, the system backlog and design QA.</span></li>
+<li><span class="label">Phase 3 · Handover</span><b>Building the client’s team</b><span>Documented the system and transferred ownership to the client.</span></li>
+</ol>
+<div class="txt" style="margin-top:8px">
+<h3>Who I led and influenced</h3>
+</div>
+<ul class="gov">
+<li><b>Led · 3 design interns</b><span>Set priorities and reviewed their work.</span></li>
+<li><b>Coached · the client’s designers</b><span>Coached client designers in weekly Figma sessions.</span></li>
+<li><b>Partnered · front-end squads</b><span>Reviewed live builds and resolved implementation issues.</span></li>
+<li><b>Influenced · senior stakeholders</b><span>Secured leadership support for a shared system.</span></li>
+</ul>
+<div class="txt" style="margin-top:8px">
+<h3>Decisions I owned</h3>
+</div>
+<ul class="pts"><li><b>One system, three products.</b> Shared behaviours, distinct visual identities.</li><li><b>Arabic from day one.</b> Language built into components, not retrofitted.</li><li><b>Client ownership.</b> Designed for a sustainable handover.</li></ul>
+</section>
+<section id="research">
+<div class="txt">
+<span class="label">Research to MVP</span>
+<h2>Research decided which product to build next.</h2>
+<p>A survey of 1,000+ homeowners and renters revealed that maintenance was the most requested and underserved service. That evidence changed the product roadmap.</p>
+</div>
+<div class="research">
+<div>
+<ul class="rs">
+<li><b class="num">1,000+</b><span>homeowners and renters surveyed across age, income and region</span></li>
+<li><b class="num">4</b><span>segments: homeowners, renters, villa and apartment</span></li>
+</ul>
+</div>
+<div style="display:grid;gap:12px;align-content:start">
+<div class="persona">
+<img alt="Illustrations of three resident personas" height="290" loading="lazy" src="assets/personas.webp" width="720"/>
+<div class="pl"><span>The family oriented</span><span>The modest</span><span>The newlyweds</span></div>
+</div>
+<ol class="needs">
+<li><i>01</i>Ease of use and consistent quality</li>
+<li><i>02</i>Clear value for money</li>
+<li><i>03</i>Navigable, relevant services</li>
+<li><i>04</i>Trust and transparency</li>
+</ol>
+</div>
+</div>
+<div class="txt" style="margin-top:12px">
+<h3>From research to first release</h3>
+<ul class="pts"><li>I mapped the end-to-end journey and prioritised the first release.</li><li>I translated each activity into requirements and screens.</li><li>Booking, tracking and feedback shipped first; retention followed later.</li></ul>
+</div>
+<figure>
+<ol aria-label="Home Services journey, in ten stages" class="journey">
+<li class="mvp"><i>01</i><b>Onboarding</b><span>Confirm eligibility.</span></li>
+<li class="mvp"><i>02</i><b>Open the mini app</b><span>Use the existing account.</span></li>
+<li class="mvp"><i>03</i><b>Home dashboard</b><span>Home and available services.</span></li>
+<li class="mvp"><i>04</i><b>Choose a service</b><span>Choose an issue.</span></li>
+<li class="mvp"><i>05</i><b>Book</b><span>Time, address and notes.</span></li>
+<li class="mvp"><i>06</i><b>Confirm</b><span>Review the request.</span></li>
+<li class="mvp"><i>07</i><b>Track</b><span>Follow progress.</span></li>
+<li class="mvp"><i>08</i><b>Feedback</b><span>Rate the service.</span></li>
+<li class="mvp"><i>09</i><b>Support</b><span>Find support.</span></li>
+<li class="later"><i>10</i><b>Retention</b><span>Deferred to later.</span></li>
+</ol>
+<figcaption><span class="legend"><span>In the first release</span><span class="l">Staged for later</span></span></figcaption>
+</figure>
+<figure>
+<video aria-label="Home Services journey: ten wireframe screens, with the first-release scope highlighted" class="clip" data-inview="" loop="" muted="" playsinline="" poster="visual-assets/hs-journey-poster.jpg" preload="metadata" src="visual-assets/hs-journey.mp4"></video>
+<figcaption>The first release, screen by screen: from welcome to rating and help. Promotions were staged for later.</figcaption>
+</figure>
+</section>
+<section id="system">
+<div class="hero" style="margin:0">
+<div class="film">
+<video aria-label="30-second film of the design system in English and Arabic" autoplay="" id="vid" loop="" muted="" playsinline="" poster="assets/poster.jpg" preload="metadata" src="assets/film.mp4"></video>
+<button id="playbtn" type="button">Pause</button>
+</div>
+<p class="cap">The system in 30 seconds. Each product builds in English, then flips to its right-to-left Arabic version.</p>
+</div>
+<div class="txt">
+<span class="label">Design system</span>
+<h2>From designing pages to building a system.</h2>
+<p>I introduced an atomic design system, from atoms and molecules to templates, to replace one-off screens with reusable patterns across products and languages.</p>
+</div>
+<figure>
+<video aria-label="Design system walkthrough: atoms, molecules, organisms, templates and pages" autoplay="" class="clip" data-inview="" loop="" muted="" playsinline="" poster="visual-assets/design-system-poster.jpg" preload="metadata" src="visual-assets/design-system.mp4"></video>
+<figcaption>Atomic components, from foundations to templates. 1 min 12 s.</figcaption>
+</figure>
+<figure>
+<video aria-label="A Figma component with Mode, Language, App and State properties; switching Language to Arabic mirrors the layout" class="clip" data-inview="" loop="" muted="" playsinline="" poster="visual-assets/ds-language-property-poster.jpg" preload="metadata" src="visual-assets/ds-language-property.mp4"></video>
+<figcaption>One component, every context. Language and mode are properties, so switching to Arabic mirrors the layout without a separate component.</figcaption>
+</figure>
+<div class="txt" style="margin-top:12px">
+<h3>A business case, not just a Figma library</h3>
+<ul class="pts"><li>Make speed and reuse measurable.</li><li>Give components clear owners and governance.</li><li>Align Figma and Storybook naming for design-to-code consistency.</li></ul>
+</div>
+<div class="stats">
+<div><strong class="num">&lt;5 mo</strong><span>to first release</span></div>
+<div><strong class="num">35%</strong><span>faster from design to development</span></div>
+<div><strong class="num">1,500+</strong><span>of the 3,000+ components in use across products</span></div>
+<div><strong class="num">1 token</strong><span>change updates every product</span></div>
+</div>
+<figure>
+<div class="docs">
+<div aria-label="Documentation examples" class="docs-tabs" role="tablist">
+<button aria-controls="dl-1" aria-selected="true" id="dt-1" role="tab" type="button">Toast notifications</button>
+<button aria-controls="dl-2" aria-selected="false" id="dt-2" role="tab" type="button">Mobile layout</button>
+<button aria-controls="dl-3" aria-selected="false" id="dt-3" role="tab" type="button">Basket and checkout</button>
+</div>
+<div class="docs-stage">
+<video aria-label="Toast specification: top of the screen over content, dismisses after 5 to 7 seconds, non-modal" aria-labelledby="dt-1" data-inview="" id="dl-1" loop="" muted="" playsinline="" poster="visual-assets/dl-toast-poster.jpg" preload="metadata" role="tabpanel" src="visual-assets/dl-toast.mp4"></video>
+<video aria-label="Mobile master layout: header and footer heights, body padding and four footer dock options" aria-labelledby="dt-2" data-inview="" hidden="" id="dl-2" loop="" muted="" playsinline="" poster="visual-assets/dl-layout-poster.jpg" preload="none" role="tabpanel" src="visual-assets/dl-layout.mp4"></video>
+<video aria-label="Basket template leading to the checkout template" aria-labelledby="dt-3" data-inview="" hidden="" id="dl-3" loop="" muted="" playsinline="" poster="visual-assets/dl-basket-poster.jpg" preload="none" role="tabpanel" src="visual-assets/dl-basket.mp4"></video>
+</div>
+</div>
+<figcaption>Excerpts from the documentation we handed to the client team. Personal details have been removed.</figcaption>
+</figure>
+</section>
+<section id="engineering">
+<div class="txt">
+<span class="label">With engineering</span>
+<h2>The design was only finished when the build matched it.</h2>
+<p>I reviewed working builds with front-end engineers and resolved differences against the designs before release. The team repeated this design QA loop every two weeks.</p>
+</div>
+<ol aria-label="How design and engineering worked together" class="loop">
+<li><i>01</i><b>Specify</b><span>Components and templates with states, rules and both languages.</span></li>
+<li><i>02</i><b>Build</b><span>Engineers implement the shared specifications.</span></li>
+<li><i>03</i><b>Review live</b><span>Design QA on working software, with each squad before release.</span></li>
+<li><i>04</i><b>Decide and log</b><span>Fixes and new needs go into the shared system backlog.</span></li>
+</ol>
+<figure class="qa-comparison-figure">
+<div class="qa-comparison" aria-label="Design QA comparison of the Figma design and engineering build">
+<div class="qa-comparison-intro"><span class="label">Design QA</span><h3>Design and build, side by side.</h3><p>Reviewing the live build against the Figma specification, with differences documented for engineering before release.</p></div>
+<div class="qa-phones"><div class="qa-phone-col"><span class="qa-phone-label">FIGMA</span><div class="qa-phone"><div class="qa-phone-screen"><div class="qa-phone-top"><span class="qa-dynamic-island"></span></div><div class="qa-menu-title">Menu <span aria-hidden="true">×</span></div><div class="qa-menu"><div class="qa-menu-row qa-active"><span class="qa-menu-icon">⌂</span><span>Home</span></div><div class="qa-menu-row "><span class="qa-menu-icon">♙</span><span>My account</span></div><div class="qa-menu-row "><span class="qa-menu-icon">♧</span><span>Notifications</span></div><div class="qa-menu-row "><span class="qa-menu-icon">▤</span><span>Contact us</span></div><div class="qa-menu-row "><span class="qa-menu-icon">▣</span><span>Payment methods</span></div><div class="qa-menu-row "><span class="qa-menu-icon">⚙</span><span>Settings</span></div></div><div class="qa-home-indicator"></div></div></div></div><div class="qa-phone-col"><span class="qa-phone-label">BUILD</span><div class="qa-phone"><div class="qa-phone-screen"><div class="qa-phone-top"><span class="qa-dynamic-island"></span></div><div class="qa-menu-title">Menu <span aria-hidden="true">×</span></div><div class="qa-menu"><div class="qa-menu-row qa-active"><span class="qa-menu-icon">⌂</span><span>Home</span><span class="qa-pin qa-pin-row">1</span></div><div class="qa-menu-row "><span class="qa-menu-icon">♙</span><span>My account</span></div><div class="qa-menu-row "><span class="qa-menu-icon">♧</span><span>Notifications</span><span class="qa-pin qa-pin-height">2</span></div><div class="qa-menu-row "><span class="qa-menu-icon">▤</span><span>Contact us</span><span class="qa-pin qa-pin-divider">3</span></div><div class="qa-menu-row "><span class="qa-menu-icon">▣</span><span>Payment methods</span></div><div class="qa-menu-row "><span class="qa-menu-icon">⚙</span><span>Settings</span></div></div><div class="qa-home-indicator"></div></div></div></div></div>
+<div class="qa-notes"><div><b><span>1</span> Active icon colour</b><p>Build uses the wrong active-state colour.</p></div><div><b><span>2</span> Row height</b><p>Build row height differs from the 56px specification.</p></div><div><b><span>3</span> Divider token</b><p>Divider colour doesn't match the design-system token.</p></div></div>
+</div><figcaption>Design and build side by side. Differences such as icon colour and row height were flagged against the spec and fixed before release.</figcaption></figure>
+</section>
+<section id="solution">
+<div class="txt">
+<span class="label">The solution</span>
+<h2>One bilingual system, from first visit to signed agreement.</h2>
+<p>The system supported a complete home acquisition journey, from browsing and finance estimates to reservation and agreement. Explore the walkthrough and bilingual prototype below.</p>
+</div>
+<figure>
+<div class="walk">
+<video aria-label="Product walkthrough of the home acquisition journey" autoplay="" controls="" id="walk" loop="" muted="" playsinline="" poster="assets/walk_poster.jpg" preload="metadata" src="assets/walkthrough.mp4"></video>
+<div style="display:grid;gap:12px">
+<span class="label">Product walkthrough · home acquisition</span>
+<ol class="chapters" id="chapters">
+<li><button data-t="0" type="button"><span>0:00</span>Onboarding</button></li>
+<li><button data-t="16" type="button"><span>0:16</span>Sign up with a mobile number</button></li>
+<li><button data-t="25" type="button"><span>0:25</span>Register interest and budget</button></li>
+<li><button data-t="34" type="button"><span>0:34</span>Browse homes and property details</button></li>
+<li><button data-t="43" type="button"><span>0:43</span>Reserve, step 1 of 3</button></li>
+<li><button data-t="49" type="button"><span>0:49</span>E-sign the agreement</button></li>
+<li><button data-t="55" type="button"><span>0:55</span>Pay the reservation fee</button></li>
+<li><button data-t="61" type="button"><span>1:01</span>Purchase agreement and my properties</button></li>
+</ol>
+</div>
+</div>
+<figcaption>The full journey in one app, from first visit to a signed sales agreement. Select a step to jump to it.</figcaption>
+</figure>
+<div class="txt" style="margin-top:12px">
+<h3>Arabic as a primary script</h3>
+<ul class="pts"><li><b>Type:</b> Arabic-specific typography, not a Latin fallback.</li><li><b>Line height:</b> Space for connected letters and diacritics.</li><li><b>Mirroring:</b> Reverse navigation and layout selectively.</li><li><b>Numbers:</b> Keep prices and numerals readable left to right.</li></ul>
+</div>
+<figure>
+<video aria-label="The property details screen switching between English and Arabic" class="clip" data-inview="" loop="" muted="" playsinline="" poster="visual-assets/ar-en-compare-poster.jpg" preload="metadata" src="visual-assets/ar-en-compare.mp4"></video>
+<figcaption>One screen, two directions. Layout, alignment and icons mirror right to left, from the same components.</figcaption>
+</figure>
+<div class="script">
+<div class="specimen">
+<span class="label">Type · same component, two scripts</span>
+<div class="pair"><span class="en">Estimate your home finance</span><span class="ar" dir="rtl" lang="ar">قم بتقدير تمويلك العقاري</span></div>
+<div aria-hidden="true" class="btnpair"><span>Reserve this home</span><span dir="rtl" lang="ar">احجز هذا المنزل</span></div>
+</div>
+<div class="mirror">
+<span class="label">Direction · mirror selectively</span>
+<table>
+<thead><tr><th>Element</th><th>Rule</th><th style="text-align:right">EN · AR</th></tr></thead>
+<tbody>
+<tr><td>Back arrow</td><td><span class="tag f">Mirrors</span></td><td class="g"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="16"><path d="M10 3 5 8l5 5"></path></svg><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-width="1.5" style="transform:scaleX(-1)" viewbox="0 0 16 16" width="16"><path d="M10 3 5 8l5 5"></path></svg></td></tr>
+<tr><td>Stepper progress</td><td><span class="tag f">Fills from the right</span></td><td class="g"><svg aria-hidden="true" height="6" width="40"><rect fill="#e9e9e9" height="4" rx="2" width="40" y="1"></rect><rect fill="#daa520" height="4" rx="2" width="24" y="1"></rect></svg><svg aria-hidden="true" height="6" width="40"><rect fill="#e9e9e9" height="4" rx="2" width="40" y="1"></rect><rect fill="#daa520" height="4" rx="2" width="24" x="16" y="1"></rect></svg></td></tr>
+<tr><td>Sliders</td><td><span class="tag f">Fill from the right</span></td><td class="g"><svg aria-hidden="true" height="12" width="40"><rect fill="#e6e6e6" height="3" rx="1.5" width="40" y="4.5"></rect><rect fill="#daa520" height="3" rx="1.5" width="14" y="4.5"></rect><circle cx="14" cy="6" fill="#fff" r="4.5" stroke="#daa520" stroke-width="1.5"></circle></svg><svg aria-hidden="true" height="12" width="40"><rect fill="#e6e6e6" height="3" rx="1.5" width="40" y="4.5"></rect><rect fill="#daa520" height="3" rx="1.5" width="14" x="26" y="4.5"></rect><circle cx="26" cy="6" fill="#fff" r="4.5" stroke="#daa520" stroke-width="1.5"></circle></svg></td></tr>
+<tr><td>Prices and numbers</td><td><span class="tag k">Stay left to right</span></td><td class="g"><span class="num" style="font-size:12px">5,000 SAR</span><span class="num" dir="rtl" style="font-size:12px;font-family:'IBM Plex Sans Arabic',sans-serif"><bdi dir="ltr">5,000</bdi> ر.س</span></td></tr>
+<tr><td>Status bar and clock</td><td><span class="tag k">Never mirror</span></td><td class="g"><span class="num" style="font-size:12px">9:41</span><span class="num" style="font-size:12px">9:41</span></td></tr>
+<tr><td>Language switch</td><td><span class="tag k">Native script, no flags</span></td><td class="g"><span style="font-size:12px">العربية</span><span style="font-size:12px">English</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<figure>
+<div class="proto">
+<div class="pside">
+<span class="label">Interactive prototype · home acquisition</span>
+<p>Try the calculator, reservation flow and language switch in this working prototype.</p>
+<div class="switches" style="justify-content:flex-start">
+<div aria-label="Screen" class="ptabs" id="ptabs" role="group">
+<button aria-pressed="true" data-go="calc" type="button">Financial calculator</button>
+<button aria-pressed="false" data-go="res" type="button">Reservation</button>
+<button aria-pressed="false" data-go="menu" type="button">Menu</button>
+</div>
+<div aria-label="Language" class="switch" id="plang" role="group"><button aria-pressed="true" data-pl="en" type="button">EN</button><button aria-pressed="false" data-pl="ar" type="button">AR</button></div>
+</div>
+<div class="built">
+<span class="label">Built from the system · hover to find it</span>
+<ul id="built"></ul>
+</div>
+</div>
+<div class="ph"><div class="scr" dir="ltr" id="scr" lang="en"></div></div>
+</div>
+<figcaption>A working prototype of the Figma designs for the financial calculator, reservation and menu. Every component it uses exists in English and Arabic in the library.</figcaption>
+</figure>
+</section>
+<section id="impact">
+<div class="txt">
+<span class="label">The impact</span>
+<h2>A faster, simpler way to buy a home.</h2>
+</div>
+<div class="stats">
+<div><strong class="num">$40m+</strong><span>from 80+ homes sold online in the first 4 weeks after launch</span></div>
+<div><strong class="num">$400M</strong><span>revenue in the first quarter after launch</span></div>
+<div><strong class="num">$1bn</strong><span>total sales in 12 months</span></div>
+<div><strong class="num">1.5K+</strong><span>homes sold online in 12 months</span></div>
+<div><strong class="num">46→3</strong><span>days from lead to conversion</span></div>
+<div><strong class="num">15×</strong><span>lead conversion with the fully online journey</span></div>
+<div><strong class="num">+70%</strong><span>sales online</span></div>
+<div><strong class="num">20K</strong><span>users registered in 12 months</span></div>
+</div>
+<p class="cap" style="margin:0">Figures from the programme’s published impact summary.</p>
+<div class="txt" style="margin-top:12px">
+<h3>The design decisions behind the numbers</h3>
+</div>
+<div class="calls">
+<div><b>A complete buying journey</b><p>Browsing, finance, reservation and signing moved into one flow.</p></div>
+<div><b>15× lead conversion</b><p>A calculator and clear reservation steps reduced drop-off.</p></div>
+<div><b>A scalable foundation</b><p>Reusable components made product expansion easier.</p></div>
+</div>
+<div class="txt" style="margin-top:12px"><h3>What the team said</h3></div>
+<div class="quotes">
+<div><p>Put the design front in order and kept the bar extremely high through a project with real ups and downs.</p><small>Project leadership</small></div>
+<div><p>Spotted the components the team was missing and designed them in a way that sped up their work.</p><small>Client product manager</small></div>
+<div><p>“Working at the speed of light.”</p><small>Product owner, Home Services</small></div>
+<div><p>The coaching made the project an incredible journey.</p><small>Designer I coached</small></div>
+</div>
+<div class="txt" style="margin-top:12px">
+<p>The client team continued evolving the live app using the system and working practices we handed over.</p>
+</div>
+<figure>
+<div aria-label="Screens from the live app today" class="panel sand strip">
+<img alt="Live app today: home services" loading="lazy" src="assets/as_3.jpg"/><img alt="Live app today: property details" loading="lazy" src="assets/as_5.jpg"/><img alt="Live app today: reserve a home" loading="lazy" src="assets/as_6.jpg"/><img alt="Live app today: community map" loading="lazy" src="assets/as_4.jpg"/><img alt="Live app today: service requests" loading="lazy" src="assets/as_7.jpg"/>
+</div>
+<figcaption>The live app today, as evolved by the client’s team.</figcaption>
+</figure>
+<a class="applink" href="https://apps.apple.com/sa/app/roshn-%D8%B1%D9%88%D8%B4%D9%86/id6472248406" rel="noopener" target="_blank">See the live app on the App Store · 4.1★ ↗</a>
+<div class="txt" style="margin-top:12px">
+<h3>What I’d do differently</h3>
+</div>
+<ul class="pts">
+<li><b>Handover:</b> Involve client designers from the first component.</li>
+<li><b>Measurement:</b> Link design changes to behavioural events earlier.</li>
+<li><b>Delegation:</b> Give junior designers whole problems, not screens.</li>
+</ul>
+</section>
+</main>
+</div>
 <a class="next" href="copilot-public.html"><div><span class="label">Next project</span><h2>AI copilot for customer experience at enterprise scale</h2></div><span aria-hidden="true">→</span></a>
-
 <footer class="foot" id="contact">
-  <div class="wrap">
-    <div class="foot-cta">
-      <p class="label">Get in touch</p>
-      <h2>Let’s make something meaningful.</h2>
-      <a class="btn btn-dark" href="work-with-me.html">Work with me</a>
-    </div>
-    <div class="foot-cols">
-      <div><p class="subtle">Designed and built by Sophia Akrofi · © 2026</p></div>
-      <div><h4>Menu</h4><ul><li><a href="index.html#work">Work</a></li><li><a href="index.html#testimonials">Testimonials</a></li><li><a href="index.html#about">About</a></li><li><a href="#top">Back to top ↑</a></li></ul></div>
-      <div><h4>Socials</h4><ul><li><a href="https://www.linkedin.com/in/sophia-akrofi/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@sophia_akrofi" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://sophiaakrofi.substack.com/" target="_blank" rel="noopener">Substack</a></li><li><a href="https://www.instagram.com/sophia_akrofi/" target="_blank" rel="noopener">Instagram</a></li></ul></div>
-      <div><h4>Contact</h4><ul><li><a href="work-with-me.html">Work with me</a></li><li><a href="work-with-me.html#mentorship">Mentorship</a></li></ul></div>
-    </div>
-  </div>
+<div class="wrap">
+<div class="foot-cta">
+<p class="label">Get in touch</p>
+<h2>Let’s make something meaningful.</h2>
+<a class="btn btn-dark" href="work-with-me.html">Work with me</a>
+</div>
+<div class="foot-cols">
+<div><p class="subtle">Designed and built by Sophia Akrofi · © 2026</p></div>
+<div><h4>Menu</h4><ul><li><a href="index.html#work">Work</a></li><li><a href="index.html#testimonials">Testimonials</a></li><li><a href="index.html#about">About</a></li><li><a href="#top">Back to top ↑</a></li></ul></div>
+<div><h4>Socials</h4><ul><li><a href="https://www.linkedin.com/in/sophia-akrofi/" rel="noopener" target="_blank">LinkedIn</a></li><li><a href="https://www.youtube.com/@sophia_akrofi" rel="noopener" target="_blank">YouTube</a></li><li><a href="https://sophiaakrofi.substack.com/" rel="noopener" target="_blank">Substack</a></li><li><a href="https://www.instagram.com/sophia_akrofi/" rel="noopener" target="_blank">Instagram</a></li></ul></div>
+<div><h4>Contact</h4><ul><li><a href="work-with-me.html">Work with me</a></li><li><a href="work-with-me.html#mentorship">Mentorship</a></li></ul></div>
+</div>
+</div>
 </footer>
-
 <script>
 (function(){
  const h=document.querySelector('.portfolio-header'), n=h.querySelector('#navwrap'), m=h.querySelector('#menu');
@@ -861,6 +1010,19 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
   const v=document.getElementById('vid'),pb=document.getElementById('playbtn');
   pb.addEventListener('click',()=>{if(v.paused){v.play();pb.textContent='Pause'}else{v.pause();pb.textContent='Play'}});
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();pb.textContent='Play'}
+
+  // Only animate the final interface while visible; respect reduced motion.
+  const finalVideo=document.querySelector('.final-interface-video');
+  if(finalVideo){
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+    if(reduced.matches){finalVideo.removeAttribute('autoplay');finalVideo.pause();finalVideo.setAttribute('controls','');}
+    else if('IntersectionObserver' in window){
+      const observer=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{if(entry.isIntersecting)finalVideo.play().catch(()=>{});else finalVideo.pause();});
+      },{threshold:.1});
+      observer.observe(finalVideo);
+    }
+  }
 
   // walkthrough chapters
   const w=document.getElementById('walk'),chs=[...document.querySelectorAll('#chapters button')];
@@ -993,6 +1155,7 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
   addEventListener('scroll',onScroll,{passive:true});onScroll();
 })();
 </script>
-
-</body>
+<script>
+(function(){const v=document.querySelector('.final-interface-video');if(!v)return;const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduced){v.removeAttribute('autoplay');v.pause();return;}if('IntersectionObserver' in window){new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)v.play().catch(()=>{});else v.pause();}),{threshold:.2}).observe(v);}})();
+</script></body>
 </html>

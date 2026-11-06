@@ -1,16 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta charset="utf-8">
-<title>GenAI Customer Copilot</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Libre+Caslon+Text:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap">
-
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta charset="utf-8"/>
+<title>White-label GenAI copilot · Sophia Akrofi</title>
+<meta content="cover" name="claude:viewport-fit-sides"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&amp;family=IBM+Plex+Sans+Arabic:wght@400;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Source+Sans+3:wght@400;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=Libre+Caslon+Text:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JWHDGBM765"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JWHDGBM765"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JWHDGBM765');</script>
 <style>
 /* Layout: a quiet portfolio case study. Header, one hero film, then four short sections in a narrow column with a sticky index. */
@@ -1343,7 +1343,6 @@ body.p2-page .p2-hero{padding-top:max(105px, 8vw)}
   .tpls figure{flex:0 0 72%;scroll-snap-align:center}
 }
 </style>
-
 <style>
 /* Homepage footer, scoped to the two case studies. */
 footer.foot{--text:#0b0b12;--text-subtle:#5d5d63;--stroke:#ececee;--bg:#fff;--bg-inverse:#111113;--text-on-inverse:#fff;--sec:112px;--block:64px;box-sizing:border-box;background:var(--bg);color:var(--text);padding:var(--sec) 0 40px;font-family:"Neue Haas Grotesk Display Pro","NeueHaas","Switzer","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:22px;letter-spacing:.02em}
@@ -1364,416 +1363,363 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
 @media(min-width:1208px){footer.foot .wrap{padding-left:0;padding-right:0}}
 @media(max-width:720px){footer.foot{--sec:64px;--block:40px;padding-bottom:24px}footer.foot .foot-cols{grid-template-columns:1fr 1fr}footer.foot .foot-cols>div:first-child{grid-column:1/-1}}
 </style>
-</head>
+<style>
+/* Shared case-study components, matched to property-tech */
+.case-intro{max-width:var(--page);margin:0 auto;padding-top:92px;padding-bottom:24px;gap:12px;display:grid;justify-items:start}
+.case-intro h1{font-size:clamp(36px,4.1vw,60px);line-height:1.07;letter-spacing:-.045em;max-width:900px;margin:0}
+.case-intro>.label{margin-top:4px}
+.case-lead{font-size:clamp(17px,1.55vw,20px);line-height:1.45;max-width:760px;color:var(--ink-2);margin:2px 0 0}
+.case-meta{font-size:12.5px;line-height:1.5;color:var(--ink-3);margin:0}
+.case-video-stage{max-width:var(--page);margin:0 auto 28px;min-width:0}
+.case-video-inner{background:transparent;border-radius:22px;height:clamp(640px,49vw,720px);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.case-video-inner .final-interface-video{height:90%;width:auto;max-width:100%;aspect-ratio:auto;object-fit:contain;background:transparent!important;border-radius:0}
+.case-video-stage figcaption{font-size:12px;color:var(--ink-3);margin-top:9px}
+.context-row{border-top:0;margin:24px auto 30px;padding-top:0}
+.context-row>div{border:0!important;padding:0!important}
+.context-row .label{display:block;margin-bottom:7px}
+.context-row p{font-size:13px;line-height:1.45;color:var(--ink-2)}
+.design-index{max-width:var(--page);margin:24px auto 0}
+.design-index h2{font-size:19px;margin-bottom:14px}
+.design-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.design-tiles a{border:1px solid var(--line);border-radius:12px;padding:17px 18px;text-decoration:none;display:grid;gap:8px;transition:border-color .2s,background .2s}
+.design-tiles strong{font-size:15px;font-weight:500;line-height:1.3}
+.design-tiles span{font-size:12.5px;color:var(--ink-2);line-height:1.45}
+.design-tiles em{font-style:normal;color:var(--ph);font-size:12px}
+.case-intro{padding-top:92px;padding-bottom:24px}.case-video-inner.copilot-video-inner{height:clamp(640px,49vw,720px);background:#f2efe8;border-radius:22px;padding:30px 22px;box-sizing:border-box}.copilot-video-inner .trio{display:flex;align-items:center;justify-content:center;gap:clamp(12px,2vw,28px);width:100%;height:100%;margin:0}.copilot-video-inner .trio figure{min-width:0;flex:0 1 260px;max-width:260px;margin:0}.copilot-video-inner .trio video{width:100%;height:auto;max-height:590px;object-fit:contain}.context-row{max-width:var(--page);margin:24px auto 30px;padding-top:16px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}.context-row>div{min-width:0;border:0!important;padding:0!important}.design-index{max-width:var(--page);margin:24px auto 40px}.design-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.design-tiles a{display:flex;flex-direction:column;gap:8px;min-width:0;text-decoration:none}.design-tiles strong{font-size:15px}.design-tiles span{font-size:12px;line-height:1.5}.design-tiles em{font-size:11px;margin-top:auto}.bp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:800px){.context-row,.design-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.case-video-inner.copilot-video-inner{height:600px}.copilot-video-inner .trio{gap:10px}}@media(max-width:520px){.case-intro{padding-top:80px}.case-video-inner.copilot-video-inner{height:480px;padding:12px 6px}.copilot-video-inner .trio{gap:5px}.context-row,.design-tiles{grid-template-columns:1fr}.bp-grid{grid-template-columns:1fr}}</style><meta content="Case study: designing one white-label GenAI copilot that airlines, retailers and banks configured instead of building their own. Conversation design, trust patterns and design system for 10+ enterprises." name="description"/><meta content="One AI assistant that any company could make its own" property="og:title"/><meta content="Case study: designing one white-label GenAI copilot that airlines, retailers and banks configured instead of building their own. Conversation design, trust patterns and design system for 10+ enterprises." property="og:description"/><meta content="https://www.sophiaakrofi.com/assets/copilot-og.jpg" property="og:image"/><meta content="https://www.sophiaakrofi.com/copilot-public.html" property="og:url"/><meta content="article" property="og:type"/><meta content="summary_large_image" name="twitter:card"/><style>/* Project context: full-width dark editorial strip */
+.project-context-strip{box-sizing:border-box;width:min(var(--page),calc(100% - 40px));max-width:var(--page);margin:30px auto 38px;padding:32px 38px 38px;background:#111111;color:#f7f7f7;border-radius:16px;display:block}
+.project-context-eyebrow{font-family:monospace;font-size:11px;letter-spacing:.16em;color:#aaa7a3;margin-bottom:25px}
+.project-context-items{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.project-context-items>div{min-width:0;border-top:1px solid #444;padding-top:15px}
+.project-context-label{display:block;color:#a7a7a7;font-size:12px;font-weight:500;margin-bottom:10px}
+.project-context-items p{margin:0;color:#f2f2f2;font-size:15px;line-height:1.48;font-weight:400;letter-spacing:0}
+@media(max-width:800px){.project-context-strip{padding:28px}.project-context-items{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}}
+@media(max-width:520px){.project-context-strip{width:calc(100% - 28px);padding:25px 22px;border-radius:14px}.project-context-items{grid-template-columns:1fr;gap:18px}.project-context-eyebrow{margin-bottom:18px}.project-context-items p{font-size:15px}}</style></head>
 <body>
 <header class="portfolio-header">
-  <div class="wrap">
-    <div class="hdr-group">
-      <a class="logo" href="index.html#top">Sophia Akrofi</a>
-    </div>
-    <div class="hdr-group navwrap" id="navwrap">
-      <nav class="nav" aria-label="Main">
-        <a href="index.html#work">Work</a>
-        <a href="index.html#testimonials">Testimonials</a>
-        <a href="index.html#beyond">Beyond work</a>
-        <a href="index.html#experience">Experience</a>
-        <a href="index.html#about">About</a>
-        <a class="nav-cta" href="work-with-me.html">Work with me</a>
-      </nav>
-      <button class="icon-btn menu-btn" id="menu" type="button" aria-label="Open menu" aria-expanded="false">
-        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5h12M2 11h12" stroke="currentColor" stroke-width="1.4"/></svg>
-      </button>
-      <a class="btn btn-dark" href="work-with-me.html">Work with me</a>
-    </div>
-  </div>
+<div class="wrap">
+<div class="hdr-group">
+<a class="logo" href="index.html#top">Sophia Akrofi</a>
+</div>
+<div class="hdr-group navwrap" id="navwrap">
+<nav aria-label="Main" class="nav">
+<a href="index.html#work">Work</a>
+<a href="index.html#testimonials">Testimonials</a>
+<a href="index.html#beyond">Beyond work</a>
+<a href="index.html#experience">Experience</a>
+<a href="index.html#about">About</a>
+<a class="nav-cta" href="work-with-me.html">Work with me</a>
+</nav>
+<button aria-expanded="false" aria-label="Open menu" class="icon-btn menu-btn" id="menu" type="button">
+<svg aria-hidden="true" height="16" viewbox="0 0 16 16" width="16"><path d="M2 5h12M2 11h12" stroke="currentColor" stroke-width="1.4"></path></svg>
+</button>
+<a class="btn btn-dark" href="work-with-me.html">Work with me</a>
+</div>
+</div>
 </header>
-
-<div class="head">
-  <div class="crumbs"><span>AI product design</span><span>Conversational UX</span><span>Design systems</span></div>
-  <span class="label">GenAI customer copilot</span>
-  <h1>One generative AI copilot, configured for 10+ consumer enterprises</h1>
-  <p class="sub">I led experience design for a white-label copilot at a global consultancy. One platform, re-skinned for brands in travel, retail and banking.</p>
-  <dl class="meta">
-    <div><dt>Role</dt><dd>Associate Design Director</dd></div>
-    <div><dt>Scope</dt><dd>Conversational UX · AI patterns · design system</dd></div>
-    <div><dt>Team</dt><dd>Experience lead · AI engineering · client teams</dd></div>
-    <div><dt>Year</dt><dd>2024 to 2025 · Global</dd></div>
-  </dl>
-  <div class="stats glance" aria-label="Results at a glance">
-    <div><strong class="num">10+</strong><span>consumer enterprises on one platform</span></div>
-    <div><strong class="num">60%</strong><span>faster onboarding per new client</span></div>
-    <div><strong class="num">20–30%</strong><span>projected NPS uplift</span></div>
-    <div><strong class="num">30–40%</strong><span>projected cross-sell uplift</span></div>
-  </div>
-  <p class="cap" style="margin:0">Programme results, with AI engineering and client teams. Work shown is illustrative. <a href="#impact">Full detail</a>.</p>
-  <div class="aiwork">
-    <span class="label">AI at a glance</span>
-    <p class="ai-claim">Most designers use AI. <b>I build the products it runs in.</b></p>
-    <ul>
-      <li>LLM interaction design</li><li>Agent orchestration UX</li><li>Trust, fallback and guardrails</li><li>Conversational design systems</li><li>Rapid AI prototyping</li><li>Selling AI to the C-suite</li>
-    </ul>
-  </div>
-</div>
-
-<div class="hero">
-  <div class="trio">
-    <figure><video src="visual-assets/genai-travel-video.mp4" autoplay muted loop playsinline preload="metadata" data-inview aria-label="Travel copilot prototype"></video><figcaption>Travel</figcaption></figure>
-    <figure><video src="visual-assets/genai-retail-video.mp4" autoplay muted loop playsinline preload="metadata" data-inview aria-label="Retail copilot prototype"></video><figcaption>Retail</figcaption></figure>
-    <figure><video src="visual-assets/genai-banking-video.mp4" autoplay muted loop playsinline preload="metadata" data-inview aria-label="Banking copilot prototype"></video><figcaption>Banking</figcaption></figure>
-  </div>
-  <p class="cap">One copilot, three industries.</p>
-</div>
-
+<div class="head case-intro"><div class="crumbs"><span>AI product design</span><span>Conversational UX</span><span>Design systems</span></div><span class="label">Building one AI copilot, configured for every client</span><h1>One AI assistant that any company could make its own.</h1><p class="case-lead">I led experience design for a white-label GenAI copilot that airlines, retailers and banks configured instead of building their own.</p><p class="case-meta">Associate Design Director · Hands-on design + strategy · 2024–2025 · Global</p></div>
+<figure class="case-video-stage"><div class="case-video-inner copilot-video-inner"><div class="trio"><figure><video aria-label="Travel copilot prototype" autoplay="" data-inview="" loop="" muted="" playsinline="" preload="metadata" src="visual-assets/genai-travel-video.mp4"></video><figcaption>Travel</figcaption></figure><figure><video aria-label="Retail copilot prototype" autoplay="" data-inview="" loop="" muted="" playsinline="" preload="metadata" src="visual-assets/genai-retail-video.mp4"></video><figcaption>Retail</figcaption></figure><figure><video aria-label="Banking copilot prototype" autoplay="" data-inview="" loop="" muted="" playsinline="" preload="metadata" src="visual-assets/genai-banking-video.mp4"></video><figcaption>Banking</figcaption></figure></div></div><figcaption>The final interface. Illustrative recreations of client experiences.</figcaption></figure><div class="head" style="padding-top:0;padding-bottom:0"><div aria-label="Results at a glance" class="stats glance"><div><strong class="num">10+</strong><span>enterprises</span></div><div><strong class="num">60%</strong><span>faster client onboarding</span></div><div><strong class="num">20–30%</strong><span>projected NPS uplift</span></div><div><strong class="num">30–40%</strong><span>projected cross-sell</span></div></div><p class="cap" style="margin:0">Projected and programme-level results.</p></div><section aria-label="Project context" class="project-context-strip">
+<div class="project-context-eyebrow">PROJECT CONTEXT</div>
+<div class="project-context-items">
+<div><span class="project-context-label">The ambition</span><p>Make enterprise-grade AI assistance adaptable to different businesses, without each company having to build its own solution from scratch.</p></div>
+<div><span class="project-context-label">Who I worked with</span><p>AI engineers, product and client teams.</p></div>
+<div><span class="project-context-label">Who I aligned</span><p>Engagement leadership, AI engineers and client teams.</p></div>
+<div><span class="project-context-label">The pivot</span><p>Shared conversation patterns with brand, voice and data tailored per client.</p></div>
+</div></section><div aria-labelledby="designed-title" class="design-index"><h2 id="designed-title">What I designed</h2><div class="design-tiles"><a href="#built"><strong>Conversation patterns</strong><span>Reusable interaction flows and responses.</span><em>Explore ↗</em></a><a href="#uncertainty"><strong>Trust and fallback states</strong><span>Clear recovery, consent and confirmation.</span><em>Explore ↗</em></a><a href="#system"><strong>White-label design system</strong><span>Reusable components across brands.</span><em>Explore ↗</em></a><a href="#orchestration"><strong>Agent orchestration UI</strong><span>Make complex agent activity understandable.</span><em>Explore ↗</em></a></div></div>
 <div class="layout">
-  <aside class="toc" aria-label="On this page">
-    <ol>
-      <li><a href="#challenge">The challenge</a></li>
-      <li><a href="#role">My role</a></li>
-      <li><a href="#built">How we built it</a></li>
-      <li><a href="#orchestration">Agent orchestration</a></li>
-      <li><a href="#uncertainty">Designing for trust</a></li>
-      <li><a href="#solution">The solution</a></li>
-      <li><a href="#system">Design system</a></li>
-      <li><a href="#validated">Validation</a></li>
-      <li><a href="#impact">The impact</a></li>
-    </ol>
-  </aside>
-  <main>
-    <section id="challenge">
-      <div class="txt">
-        <span class="label">The challenge</span>
-        <h2>Every client wanted its own copilot. Building ten would not scale.</h2>
-        <p>Ten bespoke assistants would have been slow, expensive and inconsistent.</p>
-      </div>
-      <div class="why">
-        <span class="label">Why it mattered</span>
-        <p>Every brand wanted GenAI in front of customers, yesterday. Most pilots died as one-offs that nobody trusted. <b>This made GenAI repeatable for the business and trustworthy for customers.</b></p>
-      </div>
-      <div class="ba anim">
-        <div class="b">
-          <span class="label">Before · a build per client</span>
-          <div class="mx chaos" aria-label="Five clients, each needing its own UX, prompts and code">
-            <span></span><span class="ch">A</span><span class="ch">B</span><span class="ch">C</span><span class="ch">D</span><span class="ch">E</span>
-            <span class="rl">UX</span><i></i><i></i><i></i><i></i><i></i>
-            <span class="rl">Prompts</span><i></i><i></i><i></i><i></i><i></i>
-            <span class="rl">Code</span><i></i><i></i><i></i><i></i><i></i>
-          </div>
-          <div class="days num">15<small>things to build and maintain</small></div>
-        </div>
-        <div class="ba-arrow" aria-hidden="true"><svg viewBox="0 0 48 24"><path d="M2 12h40"/><path d="M34 4l8 8-8 8"/></svg></div>
-        <div class="a">
-          <span class="label">After · one platform</span>
-          <div class="mx one calm" aria-label="One shared core for every client">
-            <span></span><span class="ch">A</span><span class="ch">B</span><span class="ch">C</span><span class="ch">D</span><span class="ch">E</span>
-            <span class="rl">UX</span><b><i></i>Design system</b>
-            <span class="rl">Prompts</span><b><i></i>Agents and rules</b>
-            <span class="rl">Code</span><b><i></i>Orchestration</b>
-          </div>
-          <div class="days num">1<small>platform, configured per client</small></div>
-        </div>
-      </div>
-      <p class="pull">Different brands. <b>The same behaviours.</b><span>Understand, ask when unsure, confirm, hand over. Only the brand, voice and data changed.</span></p>
-    </section>
-
-    <section id="role">
-      <div class="txt">
-        <span class="label">My role</span>
-        <h2>I owned the experience layer between the AI and the client.</h2>
-        <p>Turning model capability into something customers trust, and a system other teams could ship from.</p>
-      </div>
-      <div class="modes four">
-        <div><span class="label">Engagement leads</span><h3>Vision and client strategy</h3></div>
-        <div class="me"><span class="label">Me</span><h3>Experience and system</h3><ul><li>Conversational UX and AI patterns</li><li>Design system for every skin</li><li>Prototypes and C-suite storyboards</li></ul></div>
-        <div><span class="label">AI engineering</span><h3>Agents, reasoning, integrations</h3></div>
-        <div><span class="label">Client teams</span><h3>Brand, data and rules</h3></div>
-      </div>
-      <div class="txt" style="margin-top:8px"><h3>Decisions I owned</h3></div>
-      <div class="dec">
-        <div><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg><b>Fixed behaviours, flexible brand</b><span>Conversation states never change. Tokens, voice and data do.</span></div>
-        <div><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3" stroke-dasharray="3 3"/><path d="M9 12h6M12 9v6"/></svg><b>One line for bespoke requests</b><span>Checked against the system before anything new was built.</span></div>
-        <div><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><b>Trust lives in the system</b><span>Every copilot handles uncertainty the same way.</span></div>
-        <div><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 18h2"/><path d="M10.5 9.5l3.5 2-3.5 2z"/></svg><b>Prototype before building</b><span>Each client scenario tested early.</span></div>
-      </div>
-    </section>
-
-    <section id="built">
-      <div class="txt">
-        <span class="label">How we built it</span>
-        <h2>Built once. Re-skinned ten times.</h2>
-        <p>Each new client was a deployment, not a build.</p>
-      </div>
-      <figure>
-        <div class="plat2">
-          <div class="p2-row">
-            <div class="quiet"><span class="label">Inputs</span><ul><li>Client data</li><li>Knowledge sources</li><li>Brand and content rules</li></ul></div>
-            <div class="p2-arrow" aria-hidden="true"><i></i></div>
-            <div class="ai"><span class="label">AI layer · built by engineering</span>
-              <div class="ai-c"><b>Agent orchestration</b><span>Single, sequential, parallel</span></div>
-              <div class="ai-c"><b>Reasoning and retrieval</b><span>Grounding, planning, tool use</span></div>
-              <div class="ai-c"><b>Guardrails and policy</b><span>Safety, privacy, compliance</span></div>
-            </div>
-            <div class="p2-arrow" aria-hidden="true"><i></i></div>
-            <div class="quiet"><span class="label">Client experiences</span><ul><li>Airline</li><li>Retail</li><li>Banking</li><li>Hospitality</li></ul></div>
-          </div>
-          <div class="xl">
-            <div class="xl-glow" aria-hidden="true"><i></i><i></i><i></i></div>
-            <div class="xl-hd">
-              <span class="av work"><i class="glow"></i><i class="ball"><b></b></i></span>
-              <div><span class="label">My role</span><h3>The experience layer</h3><p>What the copilot says, shows and does, for every brand.</p></div>
-            </div>
-            <div class="xl-grid">
-              <div><b>Conversation patterns</b><span>Turn-taking, quick replies, cards and handoff</span></div>
-              <div><b>Trust and uncertainty states</b><span>Ask, confirm, show sources, fall back</span></div>
-              <div><b>Design system and tokens</b><span>One component library, a skin per brand</span></div>
-              <div><b>Configuration model</b><span>Voice, agents, data and rules per client</span></div>
-            </div>
-          </div>
-        </div>
-        <figcaption>Engineering built the AI layer against the experience layer. Clients configured it, never redesigned it.</figcaption>
-      </figure>
-      <ol class="arc">
-        <li><span class="label">01 · Strategy</span><b>Parameterise everything</b><span>Voice, rules and patterns become settings.</span></li>
-        <li><span class="label">02 · Design</span><b>Patterns and rules</b><span>Reasoning cards, trust signals, one component library.</span></li>
-        <li><span class="label">03 · Scale</span><b>White-label prototypes</b><span>Re-skinned and tested across 10+ clients.</span></li>
-      </ol>
-    </section>
-
-    <section id="orchestration">
-      <div class="txt">
-        <span class="label">Agent orchestration</span>
-        <h2>Three patterns, one reasoning engine.</h2>
-        <p>The experience had to flex with how the agents worked, and show their reasoning.</p>
-      </div>
-      <figure>
-        <div class="orch">
-          <div class="olist" role="tablist" aria-label="Orchestration pattern" id="otabs">
-            <button type="button" role="tab" data-o="single" aria-selected="true"><span class="label">01 / Pattern</span><b>Single agent</b><span>One model, step by step. For simple tasks.</span></button>
-            <button type="button" role="tab" data-o="seq" aria-selected="false"><span class="label">02 / Pattern</span><b>Sequential agents</b><span>Specialists hand over in turn. Predictable.</span></button>
-            <button type="button" role="tab" data-o="par" aria-selected="false"><span class="label">03 / Pattern</span><b>Parallel agents</b><span>Tasks run at once, then merge. Faster.</span></button>
-          </div>
-          <div class="canvas">
-            <div class="cv-top"><span class="label" id="otitle">Pattern · Single agent</span><button type="button" class="replay" id="oreplay">↻ Replay</button></div>
-            <div class="cv-body">
-              <svg class="orch-svg" id="osvg" viewBox="0 0 360 220" role="img" aria-label="Agent flow diagram"></svg>
-              <div class="trans" id="otrans" aria-live="polite"></div>
-            </div>
-          </div>
-        </div>
-        <figcaption>Illustrative recreation.</figcaption>
-      </figure>
-    </section>
-
-    <section id="uncertainty">
-      <div class="txt">
-        <span class="label">Designing for trust</span>
-        <h2>Models are non-deterministic. The interface has to earn trust.</h2>
-        <p>A confident wrong answer is worse than a question. So the copilot asks when unsure and never acts without a yes.</p>
-      </div>
-      <figure>
-        <div class="bp">
-          <div class="bp-hd"><span>Templates</span><b>Conversational design best practice</b><em>View card and molecule components ↗</em></div>
-          <div class="bp-body">
-            <div class="bp-grid"><div class="bp-c"><h4>1. Multimodal inputs</h4><p><b>Use when</b> When typing is slower than saying or showing.</p><div class="minis"><div class="mini"><span class="m-card"></span><span class="m-bub b">I’ve got data available to see.</span><span class="m-in"></span></div><div class="mini"><span class="m-in wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div><div class="mini"><span class="m-me">I’m looking for skin care near me</span><span class="m-in"></span></div></div></div><div class="bp-c"><h4>2. Feedback and confirmation</h4><p><b>Use when</b> Anything with a consequence: bookings, payments, changes.</p><div class="minis"><div class="mini"><span class="m-prod"><i></i>Summer skin facial<b>Book</b></span><span class="m-prod"><i></i>Laser treatment<b>Book</b></span><span class="m-in"></span></div><div class="mini"><span class="m-step">Step 3 of 3 · Review your order<em></em></span><span class="m-in"></span></div><div class="mini"><span class="m-bub b">Shall I book it?</span><span class="m-yn"><i>✕ No</i><i class="y">✓ Yes</i></span><span class="m-in"></span></div></div></div><div class="bp-c"><h4>3. Transparency</h4><p><b>Use when</b> When an answer draws on prices, policies or several sources.</p><div class="minis"><div class="mini"><span class="m-card"></span><span class="m-bub b">I’ve got data available to see.</span><span class="m-in"></span></div><div class="mini"><span class="m-chip">ⓘ 3 sources</span><span class="m-fare"><b>BER – LIS</b><em>€510</em></span><span class="m-in"></span></div><div class="mini light"><span class="m-lab">Suggested AI services</span><span class="m-tiles"><i>A205</i><i></i><i></i><i class="add">+</i></span></div></div></div><div class="bp-c"><h4>4. Contextual understanding</h4><p><b>Use when</b> When the copilot already knows the trip, booking or moment.</p><div class="minis"><div class="mini"><span class="m-blk"></span><span class="m-blk c"></span><span class="m-in"></span></div><div class="mini lock"><span class="m-time">9:41</span><span class="m-note"><i></i>Your travel plan is ready</span></div><div class="mini light"><span class="m-lab">Recent AI results</span><span class="m-row"></span><span class="m-row"></span></div></div></div><div class="bp-c"><h4>5. Personalisation</h4><p><b>Use when</b> Home screens, suggestions and offers.</p><div class="minis"><div class="mini"><span class="m-card"></span><span class="m-bub b">I’ve got data available to see.</span><span class="m-in"></span></div><div class="mini light"><span class="m-lab">Suggested AI services</span><span class="m-tiles"><i></i><i></i><i></i><i class="add">+</i></span></div><div class="mini"><span class="m-blk"></span><span class="m-car"></span><span class="m-blk c"></span><span class="m-in"></span></div></div></div><div class="bp-c"><h4>6. Data handling</h4><p><b>Use when</b> Consent, privacy and long policy content.</p><div class="minis"><div class="mini"><span class="m-bub b">We monitor usage to improve your experience.</span><span class="m-opt">Fine with me</span><span class="m-opt">Don’t monitor</span><span class="m-opt">Tell me more</span></div><div class="mini mid"><span class="m-load"></span><span class="m-pol">Privacy policy</span></div><div class="mini top"><span class="m-acc">Title</span><span class="m-acc">Title</span><span class="m-acc o">Title<em></em></span><span class="m-acc">Title</span></div></div></div></div>
-            <aside class="bp-rules">
-              <b>Implementation rules</b>
-              <dl>
-                <div><dt>296px</dt><dd>Max chat tile width</dd></div>
-                <div><dt>264px</dt><dd>Content inside a tile, 16px padding</dd></div>
-                <div><dt>Full</dt><dd>Large cards span the tile</dd></div>
-                <div><dt>393px</dt><dd>Max accordion width</dd></div>
-              </dl>
-              <ul><li><b>Group</b> long answers into accordions.</li><li><b>Preview</b> each panel in its heading.</li><li><b>Reveal</b> detail on request.</li></ul>
-            </aside>
-          </div>
-        </div>
-        <figcaption>Rebuilt from the template every client team designed with.</figcaption>
-      </figure>
-      <div class="avs-wrap">
-        <div class="avs-txt"><span class="label">The avatar is the status light</span><p>Its spin tells customers how hard the copilot is working, so they know whether to wait, without a progress bar.</p></div>
-        <div class="avs" aria-label="Assistant avatar in three processing states">
-          <figure><span class="av deep"><i class="glow"></i><i class="ball"><b></b></i></span><figcaption><b>Thinking hard</b><span>Several agents at work</span></figcaption></figure>
-          <figure><span class="av work"><i class="glow"></i><i class="ball"><b></b></i></span><figcaption><b>Working</b><span>Searching or booking</span></figcaption></figure>
-          <figure><span class="av idle quick"><i class="glow"></i><i class="ball"><b></b></i></span><figcaption><b>Ready</b><span>Listening</span></figcaption></figure>
-        </div>
-      </div>
-    </section>
-
-    <section id="solution">
-      <div class="txt">
-        <span class="label">The solution</span>
-        <h2>White-label by parameter, not by redesign.</h2>
-        <p>Brand, voice, data, agents and rules: set per client, on the same components.</p>
-      </div>
-      <figure>
-        <div class="stage">
-          <div class="stage-hd">
-            <span class="label">One copilot · three clients</span>
-            <p>Same engine. Same components. Three brands. Tap a reply to steer each one.</p>
-          </div>
-          <div class="ctabs" role="tablist" aria-label="Client prototype">
-            <button type="button" role="tab" data-p="air" aria-selected="true">Airline</button>
-            <button type="button" role="tab" data-p="trv" aria-selected="false">Travel</button>
-            <button type="button" role="tab" data-p="bnk" aria-selected="false">Banking</button>
-          </div>
-          <div class="phones3">
-            <figure data-p="air" class="on"><div class="dev"><div class="pscr t-air" id="p-air"></div></div><figcaption><b>Client A · Airline</b>Extend a trip, add a car, confirm<a class="jump" href="#flow-air">See the full flow ↓</a></figcaption></figure>
-            <figure data-p="trv"><div class="dev"><div class="pscr t-trv" id="p-trv"></div></div><figcaption><b>Client B · Travel</b>Plan a holiday from a few questions<a class="jump" href="#flow-trv">See the full flow ↓</a></figcaption></figure>
-            <figure data-p="bnk"><div class="dev"><div class="pscr t-bnk" id="p-bnk"></div></div><figcaption><b>Client C · Banking</b>Open an account in conversation<a class="jump" href="#flow-bnk">See the full flow ↓</a></figcaption></figure>
-          </div>
-        </div>
-        <figcaption>Interactive recreations of three client prototypes.</figcaption>
-      </figure>
-      <div class="txt" style="margin-top:12px"><h3>Prototyped end to end, per client</h3></div>
-      <div class="films">
-        <figure class="reel f-air" id="flow-air"><div class="film-hd"><b>Airline</b><span>From a calendar nudge to flights, meals, seat and duty-free in one conversation</span><small>8 screens · drag ›</small></div><ol class="film-track" data-screens="air" tabindex="0" aria-label="Airline prototype flow. Scroll sideways."></ol><div class="arrows"><button type="button" class="round arw-prev" aria-label="Previous screens">←</button><button type="button" class="round arw-next" aria-label="Next screens">→</button></div></figure>
-        <figure class="reel f-trv" id="flow-trv"><div class="film-hd"><b>Travel</b><span>A holiday planned from a few questions, visa included, then a timely offer</span><small>8 screens · drag ›</small></div><ol class="film-track" data-screens="trv" tabindex="0" aria-label="Travel prototype flow. Scroll sideways."></ol><div class="arrows"><button type="button" class="round arw-prev" aria-label="Previous screens">←</button><button type="button" class="round arw-next" aria-label="Next screens">→</button></div></figure>
-        <figure class="reel f-bnk" id="flow-bnk"><div class="film-hd"><b>Banking</b><span>Open an account in conversation, verify, then a tax-season assist</span><small>8 screens · drag ›</small></div><ol class="film-track" data-screens="bnk" tabindex="0" aria-label="Banking prototype flow. Scroll sideways."></ol><div class="arrows"><button type="button" class="round arw-prev" aria-label="Previous screens">←</button><button type="button" class="round arw-next" aria-label="Next screens">→</button></div></figure>
-      </div>
-      <figure class="web">
-        <div class="web-glow" aria-hidden="true"><i></i><i></i></div>
-        <div class="browser">
-          <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">airline.com · book and manage</span></div>
-          <video src="visual-assets/copilot-web-airline.mp4" poster="visual-assets/copilot-web-airline-poster.jpg" muted loop playsinline preload="metadata" data-inview aria-label="The copilot re-skinned inside an airline website: searching flights and refining them in a side panel"></video>
-        </div>
-        <figcaption>And on the web: the same copilot docked inside an airline’s booking site.</figcaption>
-      </figure>
-    </section>
-
-    <section id="system">
-      <div class="txt">
-        <span class="label">Design system</span>
-        <h2>One system. Every skin.</h2>
-        <p>Components, implementation rules and conversation best practice, built so any client could re-skin it in days.</p>
-      </div>
-      <figure>
-        <div class="meth">
-          <div class="meth-hd"><b>Conversational design system</b><span>Components, rules of implementation and conversation best practice.</span></div>
-          <div class="meth-row">
-            <div class="meth-c"><h4>Organisms</h4><p>Groups of components joined into a distinct part of the conversation.</p>
-              <div class="mi org"><i><b></b><s></s></i><i><b></b><s></s></i><i><b></b><s></s></i></div></div>
-            <span class="meth-ar" aria-hidden="true"></span>
-            <div class="meth-c"><h4>Templates</h4><p>Organisms stitched into a full chat layout.</p>
-              <div class="mi tpl"><span class="o"></span><span class="ln"></span><i><b></b><s></s></i><i><b></b><s></s></i><i><b></b><s></s></i></div></div>
-            <span class="meth-ar" aria-hidden="true"></span>
-            <div class="meth-c"><h4>Pages</h4><p>Templates filled with real content, in each client’s skin.</p>
-              <div class="mi pgs"><span class="ph-m c1"><i></i><i></i><i></i></span><span class="ph-m c2"><i></i><i></i></span><span class="ph-m c3"><i></i><i></i></span><span class="ph-m c4"><i></i><i></i><i></i></span></div></div>
-          </div>
-        </div>
-      </figure>
-
-      <div class="txt" style="margin-top:12px"><h3>Organisms</h3></div>
-      <div class="orgs">
-        <figure class="og"><span class="label">Chat input</span>
-          <div class="og-stage col">
-            <div class="ci"><span class="av work"><i class="glow"></i><i class="ball"><b></b></i></span><span>Ask me anything</span><i class="mic"></i></div>
-            <div class="ci ci-type"><span class="av work"><i class="glow"></i><i class="ball"><b></b></i></span><span>Find me flights to Lis|</span><i class="send"></i></div>
-            <div class="ci voice"><span class="av work"><i class="glow"></i><i class="ball"><b></b></i></span><span class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><i class="stop"></i></div>
-          </div><figcaption>Default, typing and voice states</figcaption></figure>
-        <figure class="og"><span class="label">Commerce card</span>
-          <div class="og-stage">
-            <div class="cc2"><img src="visual-assets/copilot-card-serum.webp" alt="" loading="lazy"><div class="cc2-b"><small>Skin care · 30 ml</small><b>Glow serum</b><div class="cc2-r"><strong>€48</strong><span>★ 4.8 · 1.2k</span></div><span class="btn">Add to basket</span></div></div>
-            <div class="cc2"><img src="visual-assets/copilot-card-hotel.webp" alt="" loading="lazy"><div class="cc2-b"><small>Hotel · 5 nights</small><b>Seaside villa</b><div class="cc2-r"><strong>£2,840</strong><span>★ 4.6 · 860</span></div><span class="btn">Select</span></div></div>
-          </div><figcaption>Image, price, rating and one clear action</figcaption></figure>
-        <figure class="og"><span class="label">Interactive card</span>
-          <div class="og-stage col">
-            <div class="ic"><div class="ic-top"><span><b>BER</b><small>Berlin</small></span><i class="route"><em></em><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><em></em></i><span class="r"><b>LIS</b><small>Lisbon</small></span></div><div class="ic-mid"><div><small>Depart</small><b>07:45</b></div><div><small>Arrive</small><b>13:45</b></div><div><small>Price</small><b>€510</b></div></div><div class="ic-yn"><span>✕ No</span><span class="on">✓ Book</span></div></div>
-            <div class="ic bank"><div class="ic-row"><div><small>Holiday fund · August</small><b>€1,500 <span>of €2,000</span></b></div><em>75%</em></div><div class="bar"><i style="width:75%"></i></div><div class="bars"><i style="height:30%"></i><i style="height:45%"></i><i style="height:40%"></i><i style="height:62%"></i><i style="height:70%"></i><i class="on" style="height:85%"></i></div><div class="ic-row m"><small>Mar</small><small>Aug</small></div></div>
-          </div><figcaption>Booking and banking variants, confirmation built in</figcaption></figure>
-        <figure class="og"><span class="label">Message tiles</span>
-          <div class="og-stage col">
-            <div class="mt"><b>Your travel plan is ready</b><p>Taxi at 4:45, flight at 7:50. Everything is booked.</p><span class="btn">View plan</span></div>
-            <div class="mt light"><b>We monitor usage to improve the app</b><p>Choose what you’re happy to share.</p><span class="btn ghost">Manage</span></div>
-          </div><figcaption>Max 296px wide, 16px padding, on dark and light</figcaption></figure>
-      </div>
-
-      <div class="txt" style="margin-top:12px"><h3>Templates</h3></div>
-      <div class="tpls-wrap">
-      <div class="tpls">
-        <figure><div class="dev sm"><div class="pscr hs t-air tp"><div class="ps-sb"><span>9:41</span><span>●●●</span></div><div class="tp-hd">Notifications</div>
-          <div class="tp-body"><div class="nt new"><span class="dot"></span><b>Flight time updated</b><small>Your 7:50 flight now leaves at 8:00</small></div><div class="nt"><b>Taxi booked</b><small>Pick-up at 4:45 from home</small></div><div class="nt"><b>Gate B12</b><small>Boarding starts at 7:20</small></div><div class="nt"><b>Lounge access added</b><small>Terminal 1, level 2</small></div></div></div></div>
-          <figcaption><b>Notifications</b>Several updates at once, reviewed in order</figcaption></figure>
-        <figure><div class="dev sm"><div class="pscr hs t-air tp pfx-scr"><div class="ps-sb"><span>9:41</span><span>●●●</span></div><div class="tp-hd">Profile</div>
-          <div class="tp-body pfx">
-            <div class="pfx-top c"><span class="pfx-av"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.5"/><path d="M5.5 19a6.5 6.5 0 0 1 13 0"/></svg></span><b>Jamie Doe</b><small>Member since 2019</small></div>
-            <div class="pfx-card"><div class="pfx-row"><span>Gold</span><em>48,200 miles</em></div><div class="pfx-bar"><i></i></div><small>1,800 miles to Platinum</small></div>
-            <div class="pfx-stats"><span><b>12</b>Trips</span><span><b>9</b>Countries</span><span><b>3</b>Upcoming</span></div>
-            <span class="tp-l">Preferences the copilot uses</span>
-            <div class="pfx-tg"><span>Window seat</span><i class="on"></i></div>
-            <div class="pfx-tg"><span>Vegetarian meals</span><i></i></div>
-            <div class="pfx-tg"><span>Lounge offers</span><i class="on"></i></div>
-            <div class="tp-chips"><span class="on">Beaches</span><span class="on">Food</span><span>Museums</span><span>+ Add</span></div>
-          </div></div></div>
-          <figcaption><b>Profile settings</b>Preferences the copilot uses to personalise</figcaption></figure>
-        <figure><div class="dev sm"><div class="pscr hs t-air tp"><div class="ps-sb"><span>9:41</span><span>●●●</span></div><div class="tp-hd">Baggage policy</div>
-          <div class="tp-body"><p class="tp-p">Everything you need to know before you fly.</p><div class="acc o"><b>Cabin bags</b><small>One bag up to 8 kg, plus a personal item that fits under the seat.</small></div><div class="acc"><b>Checked bags</b></div><div class="acc"><b>Sports equipment</b></div><div class="acc"><b>Restricted items</b></div></div></div></div>
-          <figcaption><b>Text-heavy pages</b>Accordions, max 393px, headings first</figcaption></figure>
-      </div>
-        <div class="arrows"><button type="button" class="round arw-prev" aria-label="Previous screens">←</button><button type="button" class="round arw-next" aria-label="Next screens">→</button></div>
-      </div>
-    </section>
-
-    <section id="validated">
-      <div class="txt">
-        <span class="label">Validation</span>
-        <h2>Validated in prototypes. Delivered to 10+ clients.</h2>
-        <p>Every scenario was tested before it was built, then handed to engineering as the contract.</p>
-      </div>
-      <ol class="vsteps">
-        <li><i>01</i><b>Prototype</b><span>End to end, per client</span></li>
-        <li><i>02</i><b>Review with engineering</b><span>Output, fallbacks, handoffs</span></li>
-        <li><i>03</i><b>Demo to leadership</b><span>Agree scope and priorities</span></li>
-        <li><i>04</i><b>Configure and deploy</b><span>10+ clients, one platform</span></li>
-      </ol>
-    </section>
-
-    <section id="impact">
-      <div class="txt">
-        <span class="label">The impact</span>
-        <h2>10+ clients from one platform.</h2>
-      </div>
-      <div class="stats six">
-        <div><strong class="num">10+</strong><span>consumer enterprises on one platform</span></div>
-        <div><strong class="num">60%</strong><span>less implementation time per client</span></div>
-        <div><strong class="num">20–30%</strong><span>projected NPS uplift</span></div>
-        <div><strong class="num">30–40%</strong><span>projected cross-sell uplift</span></div>
-        <div><strong class="num">3</strong><span>industries: travel, retail, banking</span></div>
-        <div><strong>C-suite</strong><span>used in leadership demos worldwide</span></div>
-      </div>
-      <p class="cap" style="margin:0">NPS and cross-sell are projections.</p>
-      <div class="dec three">
-        <div><b>60% faster</b><span>A new client meant setting parameters, not designing a product.</span></div>
-        <div><b>10+ clients</b><span>A clear boundary stopped requests becoming parallel builds.</span></div>
-        <div><b>Higher trust</b><span>Fallback, confirmation and handoff came built in.</span></div>
-      </div>
-      <div class="txt" style="margin-top:12px">
-        <h3>What I’d do differently</h3>
-      </div>
-      <ul class="pts">
-        <li><b>Test with customers earlier,</b> not only in prototypes and demos.</li>
-        <li><b>Write the boundary down on day one,</b> to settle bespoke requests faster.</li>
-      </ul>
-    </section>
-  </main>
+<aside aria-label="On this page" class="toc">
+<ol>
+<li><a href="#challenge">The challenge</a></li>
+<li><a href="#role">My role</a></li>
+<li><a href="#built">How we built it</a></li>
+<li><a href="#orchestration">Agent orchestration</a></li>
+<li><a href="#uncertainty">Designing for trust</a></li>
+<li><a href="#solution">The solution</a></li>
+<li><a href="#system">Design system</a></li>
+<li><a href="#impact">The impact</a></li>
+</ol>
+</aside>
+<main>
+<section id="challenge">
+<div class="txt">
+<span class="label">The challenge</span>
+<h2>Every client wanted its own copilot. Building ten would not scale.</h2>
+<p>Each bespoke build would duplicate UX, prompts and engineering. I helped turn separate client requests into one repeatable experience, while keeping the interactions coherent and dependable. The before-and-after diagram shows the change: from parallel products to a shared foundation that could support each client without starting again.</p>
 </div>
-
+<div class="ba anim">
+<div class="b">
+<span class="label">Before · a build per client</span>
+<div aria-label="Five clients, each needing its own UX, prompts and code" class="mx chaos">
+<span></span><span class="ch">A</span><span class="ch">B</span><span class="ch">C</span><span class="ch">D</span><span class="ch">E</span>
+<span class="rl">UX</span><i></i><i></i><i></i><i></i><i></i>
+<span class="rl">Prompts</span><i></i><i></i><i></i><i></i><i></i>
+<span class="rl">Code</span><i></i><i></i><i></i><i></i><i></i>
+</div>
+<div class="days num">15<small>things to build and maintain</small></div>
+</div>
+<div aria-hidden="true" class="ba-arrow"><svg viewbox="0 0 48 24"><path d="M2 12h40"></path><path d="M34 4l8 8-8 8"></path></svg></div>
+<div class="a">
+<span class="label">After · one platform</span>
+<div aria-label="One shared core for every client" class="mx one calm">
+<span></span><span class="ch">A</span><span class="ch">B</span><span class="ch">C</span><span class="ch">D</span><span class="ch">E</span>
+<span class="rl">UX</span><b><i></i>Design system</b>
+<span class="rl">Prompts</span><b><i></i>Agents and rules</b>
+<span class="rl">Code</span><b><i></i>Orchestration</b>
+</div>
+<div class="days num">1<small>platform, configured per client</small></div>
+</div>
+</div>
+</section>
+<section id="role">
+<div class="txt">
+<span class="label">My role</span>
+<h2>I owned the experience layer between the AI and the client.</h2>
+<p>I translated AI capabilities into customer-facing interactions, prototyped end-to-end journeys and defined a reusable design language. I worked with engagement leads on the product vision, engineers on feasibility and agent behaviour, and client teams on requirements. My focus was making complex AI experiences understandable, consistent and ready for delivery.</p>
+</div>
+<div class="modes four">
+<div><span class="label">Engagement leads</span><h3>Vision and client strategy</h3></div>
+<div class="me"><span class="label">Me</span><h3>Experience and system</h3></div>
+<div><span class="label">AI engineering</span><h3>Agents, reasoning, integrations</h3></div>
+<div><span class="label">Client teams</span><h3>Brand, data and rules</h3></div>
+</div>
+<div class="txt" style="margin-top:8px"><h3>Decisions I owned</h3></div>
+<div class="dec">
+<div><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="22"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg><b>Conversation decisions</b><span>I defined how the copilot asks, responds and recovers.</span></div>
+<div><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="22"><rect height="16" rx="3" stroke-dasharray="3 3" width="16" x="4" y="4"></rect><path d="M9 12h6M12 9v6"></path></svg><b>Scope discipline</b><span>I assessed bespoke requests against reusable patterns.</span></div>
+<div><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="22"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg><b>Trust by design</b><span>I made confirmation and fallback part of the core experience.</span></div>
+</div>
+</section>
+<section id="built">
+<div class="txt">
+<span class="label">How we built it</span>
+<h2>A shared foundation for every client.</h2>
+<p>The principle was fixed behaviours, configurable expression. I designed the conversation layer, while engineering built orchestration, reasoning and integrations. Client teams supplied the brand, knowledge and policies.</p>
+</div>
+<figure>
+<div class="plat2">
+<div class="p2-row">
+<div class="quiet"><span class="label">Inputs</span><ul><li>Client data</li><li>Knowledge sources</li><li>Brand and content rules</li></ul></div>
+<div aria-hidden="true" class="p2-arrow"><i></i></div>
+<div class="ai"><span class="label">AI layer · built by engineering</span>
+<div class="ai-c"><b>Agent orchestration</b><span>Single, sequential, parallel</span></div>
+<div class="ai-c"><b>Reasoning and retrieval</b><span>Grounding, planning, tool use</span></div>
+<div class="ai-c"><b>Guardrails and policy</b><span>Safety, privacy, compliance</span></div>
+</div>
+<div aria-hidden="true" class="p2-arrow"><i></i></div>
+<div class="quiet"><span class="label">Client experiences</span><ul><li>Airline</li><li>Retail</li><li>Banking</li><li>Hospitality</li></ul></div>
+</div>
+<div class="xl">
+<div aria-hidden="true" class="xl-glow"><i></i><i></i><i></i></div>
+<div class="xl-hd">
+<span class="av work"><i class="glow"></i><i class="ball"><b></b></i></span>
+<div><span class="label">My role</span><h3>The experience layer</h3><p>What the copilot says, shows and does, for every brand.</p></div>
+</div>
+<div class="xl-grid">
+<div><b>Conversation patterns</b><span>Turn-taking, quick replies, cards and handoff</span></div>
+<div><b>Trust and uncertainty states</b><span>Ask, confirm, show sources, fall back</span></div>
+<div><b>Design system and tokens</b><span>One component library, a skin per brand</span></div>
+<div><b>Configuration model</b><span>Voice, agents, data and rules per client</span></div>
+</div>
+</div>
+</div>
+<figcaption>Engineering built the AI layer against the experience layer. Clients configured it, never redesigned it.</figcaption>
+</figure>
+<ol class="arc">
+<li><span class="label">01 · Strategy</span><b>Strategy</b><span>Define what belongs in the shared experience.</span></li>
+<li><span class="label">02 · Design</span><b>Design</b><span>Prototype conversation and trust patterns.</span></li>
+<li><span class="label">03 · Scale</span><b>Scale</b><span>Configure and test each client experience.</span></li>
+</ol>
+</section>
+<section id="orchestration">
+<div class="txt">
+<span class="label">Agent orchestration</span>
+<h2>Three patterns, one reasoning engine.</h2>
+<p>I designed how people see progress and handoffs across single, sequential and parallel agents. The replay shows how each pattern communicates what is happening without exposing unnecessary technical detail.</p>
+</div>
+<figure>
+<div class="orch">
+<div aria-label="Orchestration pattern" class="olist" id="otabs" role="tablist">
+<button aria-selected="true" data-o="single" role="tab" type="button"><span class="label">01 / Pattern</span><b>Single agent</b><span>One model, step by step. For simple tasks.</span></button>
+<button aria-selected="false" data-o="seq" role="tab" type="button"><span class="label">02 / Pattern</span><b>Sequential agents</b><span>Specialists hand over in turn. Predictable.</span></button>
+<button aria-selected="false" data-o="par" role="tab" type="button"><span class="label">03 / Pattern</span><b>Parallel agents</b><span>Tasks run at once, then merge. Faster.</span></button>
+</div>
+<div class="canvas">
+<div class="cv-top"><span class="label" id="otitle">Pattern · Single agent</span><button class="replay" id="oreplay" type="button">↻ Replay</button></div>
+<div class="cv-body">
+<svg aria-label="Agent flow diagram" class="orch-svg" id="osvg" role="img" viewbox="0 0 360 220"></svg>
+<div aria-live="polite" class="trans" id="otrans"></div>
+</div>
+</div>
+</div>
+</figure>
+</section>
+<section id="uncertainty">
+<div class="txt">
+<span class="label">Designing for trust</span>
+<h2>Models are non-deterministic. The interface has to earn trust.</h2>
+<p>AI can be uncertain, so I designed responses that help customers understand what is happening and remain in control. Rather than masking ambiguity with confident language, the experience asks for clarification, shows relevant context and confirms consequential actions.</p>
+</div>
+<figure>
+<div class="bp">
+<div class="bp-hd"><span>Templates</span><b>Conversational design best practice</b><em>View card and molecule components ↗</em></div>
+<div class="bp-body">
+<div class="bp-grid"><div class="bp-c"><h4>2. Feedback and confirmation</h4><p>Confirm bookings, payments and other consequential actions.</p><div class="minis"><div class="mini"><span class="m-prod"><i></i>Summer skin facial<b>Book</b></span><span class="m-prod"><i></i>Laser treatment<b>Book</b></span><span class="m-in"></span></div><div class="mini"><span class="m-step">Step 3 of 3 · Review your order<em></em></span><span class="m-in"></span></div><div class="mini"><span class="m-bub b">Shall I book it?</span><span class="m-yn"><i>✕ No</i><i class="y">✓ Yes</i></span><span class="m-in"></span></div></div></div><div class="bp-c"><h4>3. Transparency</h4><p>Show sources and explain the basis for answers.</p><div class="minis"><div class="mini"><span class="m-card"></span><span class="m-bub b">I’ve got data available to see.</span><span class="m-in"></span></div><div class="mini"><span class="m-chip">ⓘ 3 sources</span><span class="m-fare"><b>BER – LIS</b><em>€510</em></span><span class="m-in"></span></div><div class="mini light"><span class="m-lab">Suggested AI services</span><span class="m-tiles"><i>A205</i><i></i><i></i><i class="add">+</i></span></div></div></div><div class="bp-c"><h4>4. Contextual understanding</h4><p>Use existing journey information without making people repeat themselves.</p><div class="minis"><div class="mini"><span class="m-blk"></span><span class="m-blk c"></span><span class="m-in"></span></div><div class="mini lock"><span class="m-time">9:41</span><span class="m-note"><i></i>Your travel plan is ready</span></div><div class="mini light"><span class="m-lab">Recent AI results</span><span class="m-row"></span><span class="m-row"></span></div></div></div><div class="bp-c"><h4>6. Data handling</h4><p>Give people clear choices about consent and privacy.</p><div class="minis"><div class="mini"><span class="m-bub b">We monitor usage to improve your experience.</span><span class="m-opt">Fine with me</span><span class="m-opt">Don’t monitor</span><span class="m-opt">Tell me more</span></div><div class="mini mid"><span class="m-load"></span><span class="m-pol">Privacy policy</span></div><div class="mini top"><span class="m-acc">Title</span><span class="m-acc">Title</span><span class="m-acc o">Title<em></em></span><span class="m-acc">Title</span></div></div></div></div>
+</div>
+</div>
+<figcaption>Rebuilt from the template every client team designed with.</figcaption>
+</figure>
+<div class="avs-wrap">
+<div class="avs-txt"><span class="label">The avatar is the status light</span><p>The avatar signals whether the copilot is thinking, working or ready.</p></div>
+<div aria-label="Assistant avatar in three processing states" class="avs">
+<figure><span class="av deep"><i class="glow"></i><i class="ball"><b></b></i></span><figcaption><b>Thinking hard</b><span>Several agents at work</span></figcaption></figure>
+<figure><span class="av work"><i class="glow"></i><i class="ball"><b></b></i></span><figcaption><b>Working</b><span>Searching or booking</span></figcaption></figure>
+<figure><span class="av idle quick"><i class="glow"></i><i class="ball"><b></b></i></span><figcaption><b>Ready</b><span>Listening</span></figcaption></figure>
+</div>
+</div>
+</section>
+<section id="solution">
+<div class="txt">
+<span class="label">The solution</span>
+<h2>White-label by parameter, not by redesign.</h2>
+<p>I prototyped client-specific journeys using shared conversational components, then tested how the interface adapted to different needs. The switcher shows interactive examples; the carousels reveal each journey screen by screen.</p>
+</div>
+<figure>
+<div class="stage">
+<div class="stage-hd">
+<span class="label">One copilot · three clients</span>
+<p>Switch between experiences and try the replies.</p>
+</div>
+<div aria-label="Client prototype" class="ctabs" role="tablist">
+<button aria-selected="true" data-p="air" role="tab" type="button">Airline</button>
+<button aria-selected="false" data-p="trv" role="tab" type="button">Travel</button>
+<button aria-selected="false" data-p="bnk" role="tab" type="button">Banking</button>
+</div>
+<div class="phones3">
+<figure class="on" data-p="air"><div class="dev"><div class="pscr t-air" id="p-air"></div></div><figcaption><b>Client A · Airline</b>Extend a trip, add a car, confirm<a class="jump" href="#flow-air">See the full flow ↓</a></figcaption></figure>
+<figure data-p="trv"><div class="dev"><div class="pscr t-trv" id="p-trv"></div></div><figcaption><b>Client B · Travel</b>Plan a holiday from a few questions<a class="jump" href="#flow-trv">See the full flow ↓</a></figcaption></figure>
+<figure data-p="bnk"><div class="dev"><div class="pscr t-bnk" id="p-bnk"></div></div><figcaption><b>Client C · Banking</b>Open an account in conversation<a class="jump" href="#flow-bnk">See the full flow ↓</a></figcaption></figure>
+</div>
+</div>
+<figcaption>Interactive recreations of three client prototypes.</figcaption>
+</figure>
+<div class="txt" style="margin-top:12px"><h3>Prototyped end to end, per client</h3></div>
+<div class="films">
+<figure class="reel f-air" id="flow-air"><div class="film-hd"><b>Airline</b><span>From a calendar nudge to flights, meals, seat and duty-free in one conversation</span><small>8 screens · drag ›</small></div><ol aria-label="Airline prototype flow. Scroll sideways." class="film-track" data-screens="air" tabindex="0"></ol><div class="arrows"><button aria-label="Previous screens" class="round arw-prev" type="button">←</button><button aria-label="Next screens" class="round arw-next" type="button">→</button></div></figure>
+<figure class="reel f-trv" id="flow-trv"><div class="film-hd"><b>Travel</b><span>A holiday planned from a few questions, visa included, then a timely offer</span><small>8 screens · drag ›</small></div><ol aria-label="Travel prototype flow. Scroll sideways." class="film-track" data-screens="trv" tabindex="0"></ol><div class="arrows"><button aria-label="Previous screens" class="round arw-prev" type="button">←</button><button aria-label="Next screens" class="round arw-next" type="button">→</button></div></figure>
+<figure class="reel f-bnk" id="flow-bnk"><div class="film-hd"><b>Banking</b><span>Open an account in conversation, verify, then a tax-season assist</span><small>8 screens · drag ›</small></div><ol aria-label="Banking prototype flow. Scroll sideways." class="film-track" data-screens="bnk" tabindex="0"></ol><div class="arrows"><button aria-label="Previous screens" class="round arw-prev" type="button">←</button><button aria-label="Next screens" class="round arw-next" type="button">→</button></div></figure>
+</div>
+<figure class="web">
+<div aria-hidden="true" class="web-glow"><i></i><i></i></div>
+<div class="browser">
+<div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">airline.com · book and manage</span></div>
+<video aria-label="The copilot re-skinned inside an airline website: searching flights and refining them in a side panel" data-inview="" loop="" muted="" playsinline="" poster="visual-assets/copilot-web-airline-poster.jpg" preload="metadata" src="visual-assets/copilot-web-airline.mp4"></video>
+</div>
+<figcaption>And on the web: the same copilot docked inside an airline’s booking site.</figcaption>
+</figure>
+</section>
+<section id="system">
+<div class="txt">
+<span class="label">Design system</span>
+<h2>One system. Every skin.</h2>
+<p>I created a reusable conversational design system spanning interaction states, cards, templates and complete screens. The goal was to help teams build coherent experiences without reinventing familiar elements. The examples below show how the same foundation works across input, commerce, booking, profile and notification journeys.</p>
+</div>
+<figure>
+<div class="meth">
+<div class="meth-hd"><b>Conversational design system</b><span>Components, rules of implementation and conversation best practice.</span></div>
+<div class="meth-row">
+<div class="meth-c"><h4>Organisms</h4><p>Reusable groups of conversational components.</p>
+<div class="mi org"><i><b></b><s></s></i><i><b></b><s></s></i><i><b></b><s></s></i></div></div>
+<span aria-hidden="true" class="meth-ar"></span>
+<div class="meth-c"><h4>Templates</h4><p>Organisms assembled into complete layouts.</p>
+<div class="mi tpl"><span class="o"></span><span class="ln"></span><i><b></b><s></s></i><i><b></b><s></s></i><i><b></b><s></s></i></div></div>
+<span aria-hidden="true" class="meth-ar"></span>
+<div class="meth-c"><h4>Pages</h4><p>Templates populated with real content.</p>
+<div class="mi pgs"><span class="ph-m c1"><i></i><i></i><i></i></span><span class="ph-m c2"><i></i><i></i></span><span class="ph-m c3"><i></i><i></i></span><span class="ph-m c4"><i></i><i></i><i></i></span></div></div>
+</div>
+</div>
+</figure>
+<div class="orgs">
+<figure class="og"><span class="label">Chat input</span>
+<div class="og-stage col">
+<div class="ci"><span class="av work"><i class="glow"></i><i class="ball"><b></b></i></span><span>Ask me anything</span><i class="mic"></i></div>
+<div class="ci ci-type"><span class="av work"><i class="glow"></i><i class="ball"><b></b></i></span><span>Find me flights to Lis|</span><i class="send"></i></div>
+<div class="ci voice"><span class="av work"><i class="glow"></i><i class="ball"><b></b></i></span><span class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><i class="stop"></i></div>
+</div><figcaption>Default, typing and voice states</figcaption></figure>
+<figure class="og"><span class="label">Commerce card</span>
+<div class="og-stage">
+<div class="cc2"><img alt="" loading="lazy" src="visual-assets/copilot-card-serum.webp"/><div class="cc2-b"><small>Skin care · 30 ml</small><b>Glow serum</b><div class="cc2-r"><strong>€48</strong><span>★ 4.8 · 1.2k</span></div><span class="btn">Add to basket</span></div></div>
+<div class="cc2"><img alt="" loading="lazy" src="visual-assets/copilot-card-hotel.webp"/><div class="cc2-b"><small>Hotel · 5 nights</small><b>Seaside villa</b><div class="cc2-r"><strong>£2,840</strong><span>★ 4.6 · 860</span></div><span class="btn">Select</span></div></div>
+</div><figcaption>Image, price, rating and one clear action</figcaption></figure>
+<figure class="og"><span class="label">Interactive card</span>
+<div class="og-stage col">
+<div class="ic"><div class="ic-top"><span><b>BER</b><small>Berlin</small></span><i class="route"><em></em><svg viewbox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"></path></svg><em></em></i><span class="r"><b>LIS</b><small>Lisbon</small></span></div><div class="ic-mid"><div><small>Depart</small><b>07:45</b></div><div><small>Arrive</small><b>13:45</b></div><div><small>Price</small><b>€510</b></div></div><div class="ic-yn"><span>✕ No</span><span class="on">✓ Book</span></div></div>
+<div class="ic bank"><div class="ic-row"><div><small>Holiday fund · August</small><b>€1,500 <span>of €2,000</span></b></div><em>75%</em></div><div class="bar"><i style="width:75%"></i></div><div class="bars"><i style="height:30%"></i><i style="height:45%"></i><i style="height:40%"></i><i style="height:62%"></i><i style="height:70%"></i><i class="on" style="height:85%"></i></div><div class="ic-row m"><small>Mar</small><small>Aug</small></div></div>
+</div><figcaption>Booking and banking variants, confirmation built in</figcaption></figure>
+<figure class="og"><span class="label">Message tiles</span>
+<div class="og-stage col">
+<div class="mt"><b>Your travel plan is ready</b><p>Taxi at 4:45, flight at 7:50. Everything is booked.</p><span class="btn">View plan</span></div>
+<div class="mt light"><b>We monitor usage to improve the app</b><p>Choose what you’re happy to share.</p><span class="btn ghost">Manage</span></div>
+</div><figcaption>Max 296px wide, 16px padding, on dark and light</figcaption></figure>
+</div>
+<div class="tpls-wrap">
+<div class="tpls">
+<figure><div class="dev sm"><div class="pscr hs t-air tp"><div class="ps-sb"><span>9:41</span><span>●●●</span></div><div class="tp-hd">Notifications</div>
+<div class="tp-body"><div class="nt new"><span class="dot"></span><b>Flight time updated</b><small>Your 7:50 flight now leaves at 8:00</small></div><div class="nt"><b>Taxi booked</b><small>Pick-up at 4:45 from home</small></div><div class="nt"><b>Gate B12</b><small>Boarding starts at 7:20</small></div><div class="nt"><b>Lounge access added</b><small>Terminal 1, level 2</small></div></div></div></div>
+<figcaption><b>Notifications</b>Several updates at once, reviewed in order</figcaption></figure>
+<figure><div class="dev sm"><div class="pscr hs t-air tp pfx-scr"><div class="ps-sb"><span>9:41</span><span>●●●</span></div><div class="tp-hd">Profile</div>
+<div class="tp-body pfx">
+<div class="pfx-top c"><span class="pfx-av"><svg viewbox="0 0 24 24"><circle cx="12" cy="9" r="3.5"></circle><path d="M5.5 19a6.5 6.5 0 0 1 13 0"></path></svg></span><b>Jamie Doe</b><small>Member since 2019</small></div>
+<div class="pfx-card"><div class="pfx-row"><span>Gold</span><em>48,200 miles</em></div><div class="pfx-bar"><i></i></div><small>1,800 miles to Platinum</small></div>
+<div class="pfx-stats"><span><b>12</b>Trips</span><span><b>9</b>Countries</span><span><b>3</b>Upcoming</span></div>
+<span class="tp-l">Preferences the copilot uses</span>
+<div class="pfx-tg"><span>Window seat</span><i class="on"></i></div>
+<div class="pfx-tg"><span>Vegetarian meals</span><i></i></div>
+<div class="pfx-tg"><span>Lounge offers</span><i class="on"></i></div>
+<div class="tp-chips"><span class="on">Beaches</span><span class="on">Food</span><span>Museums</span><span>+ Add</span></div>
+</div></div></div>
+<figcaption><b>Profile settings</b>Preferences the copilot uses to personalise</figcaption></figure>
+<figure><div class="dev sm"><div class="pscr hs t-air tp"><div class="ps-sb"><span>9:41</span><span>●●●</span></div><div class="tp-hd">Baggage policy</div>
+<div class="tp-body"><p class="tp-p">Everything you need to know before you fly.</p><div class="acc o"><b>Cabin bags</b><small>One bag up to 8 kg, plus a personal item that fits under the seat.</small></div><div class="acc"><b>Checked bags</b></div><div class="acc"><b>Sports equipment</b></div><div class="acc"><b>Restricted items</b></div></div></div></div>
+<figcaption><b>Text-heavy pages</b>Accordions, max 393px, headings first</figcaption></figure>
+</div>
+<div class="arrows"><button aria-label="Previous screens" class="round arw-prev" type="button">←</button><button aria-label="Next screens" class="round arw-next" type="button">→</button></div>
+</div>
+</section>
+<section id="impact">
+<div class="txt">
+<span class="label">The impact</span>
+<h2>Faster for every new client, consistent for every customer.</h2>
+</div>
+<div class="dec three">
+<div><b>Reusable delivery</b><span>A shared system reduced repeated design and implementation work.</span></div>
+<div><b>Clearer decisions</b><span>A common design language kept client requests focused.</span></div>
+<div><b>More dependable interactions</b><span>Consistent fallback and confirmation supported customer confidence.</span></div>
+</div><p class="cap">Validated in prototypes with each client before delivery.</p>
+<div class="txt" style="margin-top:12px">
+<h3>What I’d do differently</h3>
+</div>
+<ul class="pts">
+<li><b>Test with customers earlier,</b> not only in prototypes and demos.</li>
+<li><b>Write the boundary down on day one,</b> to settle bespoke requests faster.</li>
+</ul>
+</section>
+</main>
+</div>
 <a class="next" href="property-tech-public.html"><div><span class="label">Next project</span><h2>A property platform that generated $400M in its first quarter</h2></div><span aria-hidden="true">→</span></a>
-
 <footer class="foot" id="contact">
-  <div class="wrap">
-    <div class="foot-cta">
-      <p class="label">Get in touch</p>
-      <h2>Let’s make something meaningful.</h2>
-      <a class="btn btn-dark" href="work-with-me.html">Work with me</a>
-    </div>
-    <div class="foot-cols">
-      <div><p class="subtle">Designed and built by Sophia Akrofi · © 2026</p></div>
-      <div><h4>Menu</h4><ul><li><a href="index.html#work">Work</a></li><li><a href="index.html#testimonials">Testimonials</a></li><li><a href="index.html#about">About</a></li><li><a href="#top">Back to top ↑</a></li></ul></div>
-      <div><h4>Socials</h4><ul><li><a href="https://www.linkedin.com/in/sophia-akrofi/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@sophia_akrofi" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://sophiaakrofi.substack.com/" target="_blank" rel="noopener">Substack</a></li><li><a href="https://www.instagram.com/sophia_akrofi/" target="_blank" rel="noopener">Instagram</a></li></ul></div>
-      <div><h4>Contact</h4><ul><li><a href="work-with-me.html">Work with me</a></li><li><a href="work-with-me.html#mentorship">Mentorship</a></li></ul></div>
-    </div>
-  </div>
+<div class="wrap">
+<div class="foot-cta">
+<p class="label">Get in touch</p>
+<h2>Let’s make something meaningful.</h2>
+<a class="btn btn-dark" href="work-with-me.html">Work with me</a>
+</div>
+<div class="foot-cols">
+<div><p class="subtle">Designed and built by Sophia Akrofi · © 2026</p></div>
+<div><h4>Menu</h4><ul><li><a href="index.html#work">Work</a></li><li><a href="index.html#testimonials">Testimonials</a></li><li><a href="index.html#about">About</a></li><li><a href="#top">Back to top ↑</a></li></ul></div>
+<div><h4>Socials</h4><ul><li><a href="https://www.linkedin.com/in/sophia-akrofi/" rel="noopener" target="_blank">LinkedIn</a></li><li><a href="https://www.youtube.com/@sophia_akrofi" rel="noopener" target="_blank">YouTube</a></li><li><a href="https://sophiaakrofi.substack.com/" rel="noopener" target="_blank">Substack</a></li><li><a href="https://www.instagram.com/sophia_akrofi/" rel="noopener" target="_blank">Instagram</a></li></ul></div>
+<div><h4>Contact</h4><ul><li><a href="work-with-me.html">Work with me</a></li><li><a href="work-with-me.html#mentorship">Mentorship</a></li></ul></div>
+</div>
+</div>
 </footer>
-
 <script>
 (function(){
  const h=document.querySelector('.portfolio-header'), n=h.querySelector('#navwrap'), m=h.querySelector('#menu');
@@ -2021,6 +1967,5 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
   addEventListener('scroll',onScroll,{passive:true});onScroll();
 })();
 </script>
-
 </body>
 </html>
