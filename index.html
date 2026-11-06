@@ -185,6 +185,64 @@ body.dark .telegraph-gallery .telegraph-card-stage { background: #171717; }
   }
 }
 </style>
+<style>
+/* About and mobile experience refinements only. */
+#about .about{align-items:start}
+#about .about-body{gap:16px;align-self:center}
+#about .about-body .label{margin:0}
+#about .about-body h2{font-size:clamp(25px,2.4vw,37px);line-height:1.2;letter-spacing:0em;font-weight:400;margin:0}
+#about .about-body .about-emphasis{display:block;font-size:clamp(18px,1.65vw,24px);line-height:1.3;color:var(--text);font-weight:500;margin-top:14px}
+#about .facts{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:14px 28px;margin-top:10px}
+#about .facts > div{font-size:14px;line-height:1.45;min-width:0}
+#about .facts span{font-size:12px;margin-bottom:3px}
+#about .about-leadership{margin-top:clamp(36px,4vw,64px)}
+#about .about-leadership-section + .about-leadership-section{margin-top:clamp(32px,4vw,56px)}
+#about .about-leadership-section > h3{font-size:clamp(21px,2vw,28px);font-weight:500;letter-spacing:-.035em;margin:0 0 20px}
+#about .about-principles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 40px}
+#about .about-principles details,#about .about-leadership-facts > div{border-top:1px solid var(--stroke);padding-top:14px}
+#about .about-principles summary{font-size:clamp(16px,1.3vw,19px);font-weight:500;list-style:none;cursor:default}
+#about .about-principles summary::-webkit-details-marker{display:none}
+#about .about-principles .principle-content{display:block}
+#about .about-principles p,#about .about-leadership-facts p{font-size:14px;line-height:1.55;color:var(--text-subtle);margin:8px 0 0}
+#about .about-leadership-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+#about .about-leadership-facts strong{display:block;font-size:clamp(16px,1.3vw,19px);font-weight:500;line-height:1.25}
+#about .about-leadership-closing{font-size:13px;line-height:1.6;color:var(--text-subtle);margin:32px 0 0;max-width:74ch}
+@media(max-width:860px){
+  #experience .xp-row{grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:15px 0;align-items:baseline}
+  #experience .xp-row .when{grid-column:1/-1;font-size:12px;line-height:1.3;margin-bottom:2px}
+  #experience .xp-row h3{grid-column:1;font-size:17px;line-height:1.3;margin:0}
+  #experience .xp-row p{grid-column:2;grid-row:2;margin:0;text-align:right;font-size:14px;line-height:1.3}
+  #experience .xp-row p strong{display:inline;font-weight:500}
+  #experience .xp-row p span{display:block;grid-column:1/-1;text-align:left}
+  #experience .xp-row:has(p span){grid-template-columns:minmax(0,1fr) auto}
+  #experience .xp-row p:has(span){display:contents}
+  #experience .xp-row p:has(span) strong{grid-column:2;grid-row:2;text-align:right;font-size:14px}
+  #experience .xp-row p span{grid-column:1/-1;grid-row:3;font-size:13px;line-height:1.4;margin:3px 0 0}
+  #about .about{gap:20px}
+  #about .about img{max-height:440px;aspect-ratio:4/3;object-position:center 35%}
+  #about .about-body{gap:12px}
+  #about .about-body h2{font-size:clamp(23px,5.5vw,30px);line-height:1.23}
+  #about .about-body .about-emphasis{font-size:18px;margin-top:9px}
+  #about .facts{gap:12px 22px;margin-top:6px;padding-top:12px}
+  #about .facts > div{font-size:12px}
+  #about .facts span{font-size:11px}
+  #about .about-leadership{margin-top:30px}
+  #about .about-leadership-section + .about-leadership-section{margin-top:28px}
+  #about .about-leadership-section > h3{font-size:20px;margin-bottom:12px}
+  #about .about-principles{grid-template-columns:1fr;gap:0}
+  #about .about-principles details{padding:13px 0;border-bottom:1px solid var(--stroke);border-top:0}
+  #about .about-principles summary{cursor:pointer;font-size:16px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+  #about .about-principles summary::after{content:'+';font-size:19px;font-weight:400;color:var(--text-subtle)}
+  #about .about-principles details[open] summary::after{content:'−'}
+  #about .about-principles .principle-content{display:none}
+  #about .about-principles details[open] .principle-content{display:block}
+  #about .about-leadership-facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  #about .about-leadership-facts strong{font-size:15px}
+  #about .about-leadership-facts p{font-size:12px;line-height:1.45}
+  #about .about-leadership-closing{font-size:12px;margin-top:22px}
+}
+@media(max-width:390px){#about .facts{gap:12px 18px}#experience .xp-row h3{font-size:15px}#experience .xp-row p strong{font-size:12px}}
+</style>
 </head>
 <body>
 
@@ -630,16 +688,49 @@ body.dark .telegraph-gallery .telegraph-card-stage { background: #171717; }
     <div class="wrap about">
       <img src="home/sophia.jpg" alt="Sophia Akrofi" loading="eager" fetchpriority="high" decoding="async">
       <div class="about-body">
-        <p class="label">About • Adaptable design practice</p>
-        <h2 id="a-title">Rooted in graphic design studies. Now leading product design across enterprise tech, AI and new ventures.</h2>
+        <p class="label">About</p>
+        <h2 id="a-title">Rooted in graphic design.<br>Now leading product design across enterprise tech, AI and new ventures.<span class="about-emphasis">Design that means business.</span></h2>
         <div class="facts">
           <div><span>Based in</span>London</div>
           <div><span>Languages</span>English, French, Spanish</div>
-          <div><span>Trained at</span>University of the Arts London</div>
+          <div><span>Education</span>University of the Arts London</div>
         </div>
       </div>
     </div>
+    <div class="wrap about-leadership">
+      <div class="about-leadership-section">
+        <h3>How I lead</h3>
+        <div class="about-principles">
+          <details><summary>Hands on, always.</summary><div class="principle-content"><p>I lead from inside the work: setting direction, reviewing in Figma and designing alongside my team. Craft is how I earn trust.</p></div></details>
+          <details><summary>Design is a business tool.</summary><div class="principle-content"><p>Every decision ties back to a measurable outcome, whether that’s conversion, adoption or time saved.</p></div></details>
+          <details><summary>Teams that grow.</summary><div class="principle-content"><p>I give designers ownership of whole problems, not just screens, and create space for honest critique and learning. Outside work, I mentor designers pro bono, because helping people grow is the part of leadership I love most.</p></div></details>
+          <details><summary>AI in the workflow.</summary><div class="principle-content"><p>I prototype in code with AI tools every day, and help teams use AI to explore more and ship faster, without lowering the bar.</p></div></details>
+        </div>
+      </div>
+      <div class="about-leadership-section">
+        <h3>Leadership in practice</h3>
+        <div class="about-leadership-facts">
+          <div><strong>6 designers</strong><p>Leading design on Google enterprise products</p></div>
+          <div><strong>40+ consultants a month</strong><p>Taught digital product design as McKinsey Digital faculty</p></div>
+          <div><strong>Ongoing mentoring</strong><p>I mentor designers independently, pro bono, and have mentored interns and client teams through delivery</p></div>
+          <div><strong>D&amp;AD judge</strong><p>2024 and 2026, New Blood Awards</p></div>
+        </div>
+      </div>
+      <p class="about-leadership-closing">I work closely with PMs, engineers and senior stakeholders, and I’m happiest building teams that do the best work of their careers.</p>
+    </div>
   </section>
+<script>
+/* Keep About principles visible on desktop and collapsible on mobile. */
+(() => {
+  const mq = window.matchMedia('(max-width: 860px)');
+  const items = document.querySelectorAll('#about .about-principles details');
+  function syncPrinciples() {
+    items.forEach(item => { item.open = !mq.matches; });
+  }
+  syncPrinciples();
+  mq.addEventListener('change', syncPrinciples);
+})();
+</script>
 </main>
 
 <footer class="foot" id="contact">
