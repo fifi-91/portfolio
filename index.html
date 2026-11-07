@@ -314,6 +314,12 @@ body.dark .telegraph-gallery .telegraph-card-stage { background: #171717; }
  .dr:has(.tg-nav) .tg-tab{font-size:13px!important}
 }
 
+/* Hide the native tab-strip scrollbar on mobile; keep horizontal swiping. */
+@media (max-width:600px){
+  .dr:has(.tg-nav) .tg-tabs{scrollbar-width:none;-ms-overflow-style:none}
+  .dr:has(.tg-nav) .tg-tabs::-webkit-scrollbar{display:none}
+}
+
 /* Telegraph: section navigation shares one line with tabs. */
 .dr:has(.tg-nav) .tg-nav{display:flex;align-items:center;gap:18px}
 .dr:has(.tg-nav) .tg-tabs{flex:1;min-width:0}
