@@ -406,9 +406,6 @@ figcaption{font-size:13px;color:var(--ink-3);margin-top:10px}
 @media(max-width:900px){.portfolio-header .navwrap:not(.is-open) .nav{display:none}.portfolio-header .menu-btn{display:inline-grid}.portfolio-header .navwrap.is-open .nav{display:flex;position:absolute;top:58px;right:max(16px,env(safe-area-inset-right,0px));flex-direction:column;align-items:stretch;padding:8px;min-width:200px;border-radius:10px;background:#fff;box-shadow:0 2px 12px #0002}.portfolio-header .navwrap.is-open .nav a{height:40px;line-height:40px;font-size:16px}}
 @media(max-width:420px){.portfolio-header .btn{display:none}.portfolio-header .navwrap.is-open .nav a.nav-cta{display:block;color:#0b0b12}}
 /* Keep the case-study heading clear of the floating homepage navigation. */
-body.p2-page .p2-hero{padding-top:max(105px, 8vw)}
-
-
 /* Match the Copilot floating navigation independently of case-study typography. */
 .portfolio-header,.portfolio-header *{box-sizing:border-box}
 .portfolio-header .wrap{width:100%;max-width:1176px}
@@ -424,57 +421,10 @@ body.p2-page .p2-hero{padding-top:max(105px, 8vw)}
 
 /* Session 2: compact editorial overview, using the existing property blue. */
 /* Compact, navy editorial overview. */
-.at-glance{max-width:var(--page);margin:0 auto 22px;background:var(--navy);color:#fff;border-radius:14px;padding:clamp(20px,2.7vw,32px);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr);gap:clamp(22px,3vw,46px);align-items:start}
-.at-glance .label{color:#aab4c7;font-size:11px}
-.at-glance h2{font-size:clamp(22px,2.5vw,31px);line-height:1.17;letter-spacing:-.03em;max-width:21ch;margin-top:12px}
-.at-glance dl{margin:0;display:grid;gap:0}
-.at-glance dl>div{display:grid;grid-template-columns:105px minmax(0,1fr);gap:12px;padding:8px 0;border-top:1px solid rgba(255,255,255,.16)}
-.at-glance dl>div:first-child{border-top:0;padding-top:0}
-.at-glance dt{font-size:11.5px;color:#aab4c7}
-.at-glance dd{margin:0;font-size:12.5px;line-height:1.4;color:#f3f5f8}
-@media(max-width:760px){.at-glance{grid-template-columns:1fr;gap:18px}.at-glance h2{max-width:none;margin-top:7px}.at-glance dl>div{grid-template-columns:100px minmax(0,1fr)}}
-.final-media{max-width:var(--page);margin:0 auto 30px}
 .final-interface-video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:var(--navy);border-radius:14px}
-.final-media .cap{margin-top:10px}
-.design-index{max-width:var(--page);margin:24px auto 0}
-.design-index h2{font-size:19px;margin-bottom:14px}
-.design-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.design-tiles a{border:1px solid var(--line);border-radius:12px;padding:17px 18px;text-decoration:none;display:grid;gap:8px;transition:border-color .2s,background .2s}
-.design-tiles a:hover{border-color:var(--ph);background:var(--ph-bg)}
-.design-tiles strong{font-size:15px;font-weight:500;line-height:1.3}
-.design-tiles span{font-size:12.5px;color:var(--ink-2);line-height:1.45}
-.design-tiles em{font-style:normal;color:var(--ph);font-size:12px}
-@media(min-width:760px){.design-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media(max-width:560px){.at-glance dl>div{grid-template-columns:95px minmax(0,1fr);gap:8px}.design-tiles{grid-template-columns:1fr 1fr}.design-tiles a{padding:13px}}
 
 
 /* Session 2 refinement: compact editorial overview, matching the deep-blue reference. */
-.at-glance{
-  background:#20283a!important;
-  max-width:var(--page);
-  padding:22px 28px!important;
-  margin:0 auto 18px!important;
-  border-radius:12px!important;
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr)!important;
-  gap:16px!important;
-}
-.at-glance > div:first-child{display:flex;align-items:baseline;gap:22px;flex-wrap:wrap}
-.at-glance > div:first-child .label{flex:0 0 auto;color:#aebbd2}
-.at-glance h2{font-size:clamp(20px,2.2vw,26px)!important;line-height:1.15!important;max-width:none!important;margin:0!important}
-.at-glance dl{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:30px;row-gap:0;margin:0!important}
-.at-glance dl>div{display:grid!important;grid-template-columns:86px minmax(0,1fr)!important;gap:9px!important;padding:8px 0!important;border-top:1px solid rgba(255,255,255,.16)!important;align-items:baseline}
-.at-glance dl>div:first-child{border-top:1px solid rgba(255,255,255,.16)!important}
-.at-glance dt{font-size:10.5px!important;line-height:1.35;color:#aebbd2!important}
-.at-glance dd{font-size:12px!important;line-height:1.4!important;color:#f5f6f9!important}
-@media(max-width:700px){
- .at-glance{padding:20px!important;gap:12px!important}
- .at-glance > div:first-child{display:block}
- .at-glance h2{margin-top:6px!important}
- .at-glance dl{grid-template-columns:1fr}
- .at-glance dl>div{grid-template-columns:90px minmax(0,1fr)!important;padding:7px 0!important}
-}
-
 /* Case study editorial hero: one headline, one full-width product stage */
 .case-intro{max-width:var(--page);margin:0 auto;padding-top:92px;padding-bottom:24px;gap:12px;display:grid;justify-items:start}
 .case-intro h1{font-size:clamp(36px,4.1vw,60px);line-height:1.07;letter-spacing:-.045em;max-width:900px;margin:0}
@@ -485,20 +435,28 @@ body.p2-page .p2-hero{padding-top:max(105px, 8vw)}
 .case-video-inner{background:transparent;border-radius:22px;height:clamp(640px,49vw,720px);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .case-video-inner .final-interface-video{height:90%;width:auto;max-width:100%;aspect-ratio:auto;object-fit:contain;background:transparent!important;border-radius:0}
 .case-video-stage figcaption{font-size:12px;color:var(--ink-3);margin-top:9px}
-.context-row{border-top:0;margin:24px auto 30px;padding-top:0}
-.context-row>div{border:0!important;padding:0!important}
-@media(max-width:800px){.case-intro{padding-top:86px;padding-bottom:22px}.case-video-inner{height:600px}.context-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:520px){.case-intro{padding-top:80px;gap:11px}.case-intro h1{font-size:clamp(32px,9vw,43px)}.case-lead{font-size:17px}.case-meta{font-size:12px}.case-video-inner{height:520px;border-radius:16px}.case-video-inner .final-interface-video{height:90%}.context-row{grid-template-columns:1fr;gap:16px}}
+@media(max-width:800px){.case-intro{padding-top:86px;padding-bottom:22px}.case-video-inner{height:600px}}
+@media(max-width:520px){.case-intro{padding-top:80px;gap:11px}.case-intro h1{font-size:clamp(32px,9vw,43px)}.case-lead{font-size:17px}.case-meta{font-size:12px}.case-video-inner{height:520px;border-radius:16px}.case-video-inner .final-interface-video{height:90%}}
 
 /* Project context: full-width dark editorial strip */
 .project-context-strip{box-sizing:border-box;width:min(var(--page),calc(100% - 40px));max-width:var(--page);margin:30px auto 38px;padding:32px 38px 38px;background:#111111;color:#f7f7f7;border-radius:16px;display:block}
 .project-context-eyebrow{font-family:monospace;font-size:11px;letter-spacing:.16em;color:#aaa7a3;margin-bottom:25px}
-.project-context-items{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.project-context-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
 .project-context-items>div{min-width:0;border-top:1px solid #444;padding-top:15px}
 .project-context-label{display:block;color:#a7a7a7;font-size:12px;font-weight:500;margin-bottom:10px}
 .project-context-items p{margin:0;color:#f2f2f2;font-size:15px;line-height:1.48;font-weight:400;letter-spacing:0}
 @media(max-width:800px){.project-context-strip{padding:28px}.project-context-items{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}}
 @media(max-width:520px){.project-context-strip{width:calc(100% - 28px);padding:25px 22px;border-radius:14px}.project-context-items{grid-template-columns:1fr;gap:18px}.project-context-eyebrow{margin-bottom:18px}.project-context-items p{font-size:15px}}
+/* Hands-on and leadership responsibilities */
+.role-split{max-width:var(--page);margin:24px auto 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.role-split>div{min-width:0;padding:0 28px}
+.role-split>div:first-child{padding-left:0}
+.role-split>div+div{border-left:1px solid var(--line)}
+.role-split .label{display:block;font-size:14px;color:var(--ink-3);margin-bottom:14px}
+.role-split p{margin:0 0 10px;line-height:1.5}
+@media(max-width:719px){.role-split{grid-template-columns:1fr;gap:20px}.role-split>div{padding:0}.role-split>div+div{border-left:0;border-top:1px solid var(--line);padding-top:20px}}
+.role-split a{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.role-split a:hover{text-decoration-color:var(--ink)}
 </style>
 <style>
 /* Homepage footer, scoped to the two case studies. */
@@ -522,63 +480,20 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
 </style>
 <style>
 /* Property overview: full-width headline, scannable editorial grid. */
-.at-glance{display:block!important;background:#20283a!important;color:#fff!important;max-width:var(--page);margin:0 auto 20px!important;padding:clamp(24px,3.5vw,40px)!important;border-radius:14px!important}
-.at-glance .glance-heading{display:block!important;margin:0 0 24px!important;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.24)}
-.at-glance .glance-heading .label{display:block;color:#abb8cf;font-size:12px!important;letter-spacing:.11em;margin-bottom:12px}
-.at-glance .glance-heading h2{display:block;font-size:clamp(25px,3.05vw,39px)!important;font-weight:500;letter-spacing:-.035em;line-height:1.15!important;max-width:none!important;margin:0!important;text-wrap:balance}
-.at-glance dl{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0 32px!important;margin:0!important}
-.at-glance dl>div{display:grid!important;grid-template-columns:105px minmax(0,1fr)!important;gap:16px!important;align-items:start!important;border-top:1px solid rgba(255,255,255,.17)!important;padding:15px 0!important}
-.at-glance dl>div:nth-child(-n+2){border-top:0!important}
-.at-glance dt{font-size:12px!important;line-height:1.45!important;color:#b4c0d4!important;font-weight:400}
-.at-glance dd{font-size:clamp(14px,1.3vw,16px)!important;line-height:1.48!important;color:#f6f7fa!important}
-.at-glance .glance-emphasis dd{font-weight:500;color:#fff!important}
-.at-glance dl>.glance-outcome{grid-column:1/-1;grid-template-columns:105px minmax(0,1fr)!important;border-top:1px solid rgba(255,255,255,.3)!important;padding-bottom:0!important}
-.at-glance .glance-outcome dd{font-size:clamp(16px,1.65vw,20px)!important;font-weight:500;line-height:1.35!important}
 .final-interface-video{background:transparent!important;object-fit:contain;border-radius:0}
-@media(max-width:800px){.at-glance dl{grid-template-columns:1fr!important;gap:0!important}.at-glance dl>div:nth-child(2){border-top:1px solid rgba(255,255,255,.17)!important}.at-glance dl>div{grid-template-columns:105px minmax(0,1fr)!important}.at-glance .glance-heading h2{font-size:clamp(26px,5vw,35px)!important}}
-@media(max-width:480px){.at-glance{padding:24px 20px!important}.at-glance .glance-heading{margin-bottom:8px!important;padding-bottom:18px}.at-glance .glance-heading h2{font-size:26px!important}.at-glance dl>div,.at-glance dl>.glance-outcome{grid-template-columns:1fr!important;gap:4px!important;padding:12px 0!important}.at-glance dt{font-size:11px!important}.at-glance dd{font-size:14px!important}.at-glance .glance-outcome dd{font-size:17px!important}}
 </style><style>
 
 /* Session 2 finishing refinements */
-.final-media{overflow:hidden;border-radius:14px;background:#fff}
-.final-media .final-interface-video{width:100%;height:auto;aspect-ratio:auto;object-fit:contain;background:transparent!important;border-radius:0;display:block}
 /* Editorial overview: headline first, then readable, prioritised details */
-.at-glance{padding:clamp(24px,3vw,36px)!important}
-.at-glance .glance-heading{margin-bottom:14px!important;padding-bottom:20px!important}
-.at-glance .glance-heading h2{font-size:clamp(26px,3.1vw,38px)!important;line-height:1.13!important;letter-spacing:-.035em!important;text-wrap:pretty}
-.at-glance dl{column-gap:36px!important}
-.at-glance dl>div{grid-template-columns:108px minmax(0,1fr)!important;gap:15px!important;padding:14px 0!important}
-.at-glance dt{font-size:13px!important;color:#b7c4d8!important;line-height:1.4!important}
-.at-glance dd{font-size:clamp(15px,1.4vw,17px)!important;line-height:1.4!important}
-.at-glance .glance-emphasis dd{font-weight:500!important}
-.at-glance dl>.glance-outcome{grid-template-columns:108px minmax(0,1fr)!important;padding-top:18px!important}
-.at-glance .glance-outcome dd{font-size:clamp(18px,2vw,23px)!important}
 /* Keep the actual source video's proportions, rather than forcing it into a square. */
 #engineering video.clip{aspect-ratio:auto!important;width:100%;height:auto!important;object-fit:contain!important;max-height:none!important}
-@media(max-width:800px){.at-glance dl{grid-template-columns:1fr!important}.at-glance dl>div{grid-template-columns:110px minmax(0,1fr)!important}.at-glance dl>div:nth-child(2){border-top:1px solid rgba(255,255,255,.17)!important}}
-@media(max-width:520px){.at-glance{padding:22px 20px!important}.at-glance .glance-heading h2{font-size:clamp(25px,6.5vw,32px)!important}.at-glance dl>div,.at-glance dl>.glance-outcome{grid-template-columns:1fr!important;gap:5px!important;padding:12px 0!important}.at-glance dt{font-size:12px!important}.at-glance dd{font-size:15px!important}.at-glance .glance-outcome dd{font-size:19px!important}}
 </style>
 <style>
 /* Compact first viewport: override earlier glance styling without affecting the case study. */
 .head{padding-top:92px;padding-bottom:14px;gap:9px}
 .head h1{font-size:clamp(29px,3vw,39px)}
-.first-viewport{max-width:var(--page);margin:0 auto;display:grid;grid-template-columns:minmax(0,55fr) minmax(0,45fr);gap:clamp(22px,3vw,42px);align-items:center}
-.first-viewport .compact-glance{background:transparent!important;color:var(--ink)!important;padding:0!important;margin:0!important;border-radius:0!important;max-width:none!important;display:block!important}
-.compact-glance>.label{color:var(--ink-3)!important;font-size:11px!important;letter-spacing:.1em}
-.compact-glance h2{color:var(--ink)!important;font-size:clamp(27px,2.35vw,32px)!important;line-height:1.13!important;letter-spacing:-.035em;margin:12px 0 22px!important;font-weight:500}
-.compact-glance dl{display:block!important;margin:0!important}
-.compact-glance dl>div,.compact-glance dl>div:nth-child(-n+2){display:grid!important;grid-template-columns:100px minmax(0,1fr)!important;gap:12px!important;padding:11px 0!important;border-top:1px solid var(--line)!important}
-.compact-glance dt{color:var(--ink-3)!important;font-size:12px!important;line-height:1.45!important}
-.compact-glance dd{color:var(--ink)!important;font-size:15px!important;line-height:1.4!important;font-weight:400!important}
-.compact-glance dl>div:last-child dd{font-weight:500!important}
-.glance-meta{font-size:12px;color:var(--ink-2);line-height:1.5;margin-top:20px}
-.first-video{margin:0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.first-video video{display:block;max-height:510px;max-width:100%;width:auto;height:auto;object-fit:contain;background:transparent!important;border-radius:0}
-.first-video figcaption{align-self:flex-start;margin-top:8px}
-.context-row{max-width:var(--page);margin:24px auto 30px;padding-top:16px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
-.context-row>div{min-width:0}.context-row .label{display:block;margin-bottom:7px}.context-row p{font-size:13px;line-height:1.45;color:var(--ink-2)}
-@media(max-width:800px){.first-viewport{grid-template-columns:1fr;gap:22px}.first-video video{max-height:480px}.context-row{grid-template-columns:repeat(2,minmax(0,1fr))}.head{padding-top:92px}}
-@media(max-width:520px){.head{padding-top:86px}.compact-glance h2{font-size:28px!important}.compact-glance dl>div,.compact-glance dl>div:nth-child(-n+2){grid-template-columns:88px minmax(0,1fr)!important;gap:10px!important}.compact-glance dd{font-size:14px!important}.first-video video{max-height:420px}.context-row{grid-template-columns:1fr;gap:14px;margin-top:24px}.context-row>div{padding-bottom:12px;border-bottom:1px solid var(--line)}}
+@media(max-width:800px){.head{padding-top:92px}}
+@media(max-width:520px){.head{padding-top:86px}}
 
 /* Final polish: no coloured backdrop behind the hero footage. */
 .case-video-inner{background:transparent!important;}
@@ -662,24 +577,24 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
 </div>
 <p class="cap" style="margin:0">Programme-wide commercial results, delivered alongside design and engineering.</p>
 </div>
+<div class="role-split" aria-label="My hands-on work and leadership">
+<div><span class="label">I did · hands-on</span>
+<p><a href="#research">User journeys and flows across 3 products</a></p>
+<p><a href="#system">The 3,000-component English and Arabic design system</a></p>
+<p><a href="#solution">The bilingual interface, designed for both reading directions</a></p>
+<p><a href="#engineering">Design QA with engineering on every release</a></p></div>
+<div><span class="label">I led</span>
+<p>3 design interns</p>
+<p>Coaching the client’s own design team</p>
+<p>Alignment across a 60-person programme with product, engineering and client leadership</p></div>
+</div>
 <section class="project-context-strip" aria-label="Project context">
   <div class="project-context-eyebrow">PROJECT CONTEXT</div>
   <div class="project-context-items">
     <div><span class="project-context-label">The ambition</span><p>Support Saudi Vision 2030’s goal of 70% homeownership among Saudi families by making buying a new home simpler and more accessible.</p></div>
-    <div><span class="project-context-label">Team I led</span><p>Three design interns, plus coaching the client’s designers.</p></div>
-    <div><span class="project-context-label">Who I aligned</span><p>Client leadership, product owners and engineering.</p></div>
     <div><span class="project-context-label">The pivot</span><p>Research showed maintenance was most wanted, so Home Services came next.</p></div>
   </div>
 </section>
-<div aria-labelledby="designed-title" class="design-index">
-<h2 id="designed-title">What I designed</h2>
-<div class="design-tiles">
-<a href="#research"><strong>Journeys and flows</strong><span>Mapped the experience from research to the first release.</span><em>Explore ↗</em></a>
-<a href="#system"><strong>Atomic design system</strong><span>Built reusable foundations across three products.</span><em>Explore ↗</em></a>
-<a href="#solution"><strong>EN/AR interface</strong><span>Designed for both scripts and reading directions.</span><em>Explore ↗</em></a>
-<a href="#engineering"><strong>Design QA with engineering</strong><span>Reviewed live builds against the design specifications.</span><em>Explore ↗</em></a>
-</div>
-</div>
 <div class="layout">
 <aside aria-label="On this page" class="toc">
 <ol>
@@ -716,7 +631,7 @@ footer.foot .foot-cols a:hover{text-decoration:underline;text-underline-offset:3
 <div class="txt">
 <span class="label">My role</span>
 <h2>My scope grew as the programme did.</h2>
-<p>I progressed from Senior Analyst to Associate Design Director as I took ownership of three products, the design system and delivery. I remained hands-on with journeys, components and design QA while leading three interns.</p>
+<p>I progressed from Senior Analyst to Associate Design Director as I took ownership of three products, the design system and delivery. I remained hands-on with journeys, components and design QA throughout.</p>
 </div>
 <ol class="arc">
 <li><span class="label">Phase 1 · Launch</span><b>One of four designers</b><span>Designed core journeys and synthesised research with the original team.</span></li>
