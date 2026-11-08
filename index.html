@@ -411,7 +411,15 @@ body.dark .telegraph-gallery .telegraph-card-stage { background: #171717; }
 @media(prefers-reduced-motion:reduce){.tgh-row{scroll-behavior:auto}}
 /* Requested index-wide typographic correction: never use negative tracking. */
 html body *{letter-spacing:normal!important}
-</style></head>
+</style><style>
+/* Homepage hero stats only. */
+.intro-hero .hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px;padding-top:18px;border-top:1px solid var(--stroke)}
+.intro-hero .hero-stats>div{min-width:0}
+.intro-hero .hero-stats strong{display:block;color:var(--text);font-size:24px;font-weight:500;line-height:1.2}
+.intro-hero .hero-stats span{display:block;color:var(--text-subtle);font-size:14px;line-height:1.45;margin-top:6px}
+@media(max-width:600px){.intro-hero .hero-stats{grid-template-columns:1fr;gap:16px}}
+</style>
+</head>
 <body>
 <header class="hdr">
 <div class="wrap">
@@ -449,6 +457,11 @@ html body *{letter-spacing:normal!important}
 <div class="btns">
 <a class="btn btn-dark" href="#work">See selected work</a>
 <a class="btn btn-ghost" href="#contact">Get in touch</a>
+</div>
+<div class="hero-stats" aria-label="Career highlights">
+<div><strong>$400M</strong><span>First-quarter revenue, property platform I led design on</span></div>
+<div><strong>6 designers</strong><span>I lead on Google enterprise products</span></div>
+<div><strong>10+ enterprises</strong><span>On one AI copilot I designed</span></div>
 </div>
 </div>
 <a aria-label="A reel of selected work. Go to the work section" class="me-photo work-show" href="#work" id="workshow">
@@ -688,7 +701,7 @@ html body *{letter-spacing:normal!important}
 <div class="tgh-story">
 <p class="tgh-count">Careers · 1 piece</p>
 <h3 class="tgh-title">Careers site</h3>
-<p class="tgh-lead">As lead designer, I took the Careers site from initial sketches to a responsive experience and commissioned photography and video capturing life at The Telegraph.</p><a class="tgh-external" href="https://www.telegraph.co.uk/about-us/work-at-the-telegraph/" rel="noopener" target="_blank">View careers site ↗</a>
+<p class="tgh-lead">I took the Careers site from initial sketches to a responsive experience and commissioned photography and video capturing life at The Telegraph.</p><a class="tgh-external" href="https://www.telegraph.co.uk/about-us/work-at-the-telegraph/" rel="noopener" target="_blank">View careers site ↗</a>
 <dl class="tgh-facts">
 <div><dt>Role</dt><dd>Product Designer, 2015–2017</dd></div>
 <div><dt>Platforms</dt><dd>iPhone, iPad, web, Apple News</dd></div>
@@ -830,10 +843,10 @@ html body *{letter-spacing:normal!important}
 </div>
 <p class="bias-principles">Make complexity legible <span aria-hidden="true">·</span> Build with teams, not around them <span aria-hidden="true">·</span> Connect craft to measurable outcomes</p>
 <div class="acts">
-<div><strong>$400M</strong><span>First-quarter revenue on a platform I led design for</span></div>
-<div><strong>10+</strong><span>Enterprises using one copilot I designed</span></div>
-<div><strong>6 designers</strong><span>Leading design on a Google B2B enterprise product</span></div>
-<div><strong>D&amp;AD</strong><span>New Blood Awards judge, 2024 and 2026</span></div>
+<div><strong>46 → 3 days</strong><span>Lead to sale on a property platform I designed</span></div>
+<div><strong>23%</strong><span>Growth in SME lending from journeys I designed for a UK bank</span></div>
+<div><strong>3,000+</strong><span>Bilingual components in a design system I built</span></div>
+<div><strong>D&amp;AD judge</strong><span>New Blood Awards, 2024 and 2026</span></div>
 </div>
 </div>
 </section>
