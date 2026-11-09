@@ -545,15 +545,15 @@ textarea.field { min-height: 132px; resize: none; display: block; }
   const QUESTIONS = [
     { id: 'q1_household', tag: 'Household', type: 'single', required: true, title: 'How many people live in your household?', options: ['1', '2', '3–4', '5+'] },
     { id: 'q2_shop_frequency', tag: 'Shopping', type: 'single', required: true, title: 'How often do you do a food shop?', options: ['Several times a week', 'Weekly', 'Every two weeks', 'Monthly', 'It varies'], followUp: { when: ['It varies'], label: 'What does it depend on?', field: 'q2_followup' } },
-    { id: 'q3_run_out', tag: 'Habits', type: 'scale', required: true, title: "How often does your household run out of something before you've restocked it?", hint: "e.g. you go to make your morning coffee and the jar's empty", labels: ['Never', 'All the time'] },
+    { id: 'q3_run_out', tag: 'Habits', type: 'single', required: true, title: "How often does your household run out of something before you've restocked it?", hint: "e.g. you go to make your morning coffee and the jar's empty", options: ['Rarely or never', 'About once a month', 'Every couple of weeks', 'Every week', 'Several times a week'] },
     { id: 'q4_food_items', tag: 'Food', type: 'short', required: true, notSure: true, title: 'Which food items do you most often run out of?', hint: 'e.g. coffee, milk, rice, eggs' },
     { id: 'q5_non_food', tag: 'Household', type: 'multi', required: true, title: 'Which non-food items catch you out?', options: ['Toilet roll', 'Batteries', 'Cleaning products', 'Toiletries', 'Bin bags', 'Other', 'Not sure'], exclusive: 'Not sure', followUp: { when: ['Other'], label: 'What else?', field: 'q5_other' } },
-    { id: 'q6_duplicates', tag: 'Habits', type: 'scale', required: true, title: 'How often do you buy something you already had at home?', hint: 'e.g. a third bottle of olive oil, because you forgot you had two', labels: ['Never', 'All the time'] },
-    { id: 'q7_how_you_know', tag: 'Shopping', type: 'single', required: true, title: 'How do you usually keep track of what you need to buy?', options: ['I check the cupboards and keep it in my head', 'I write a list on paper', 'I note it on my phone', 'I use a shopping list app', "I decide once I'm in the shop", 'Not sure'] },
+    { id: 'q6_duplicates', tag: 'Habits', type: 'single', required: true, title: 'How often do you buy something you already had at home?', hint: 'e.g. a third bottle of olive oil, because you forgot you had two', options: ['Never', 'Rarely', 'Sometimes', 'Often', 'All the time'] },
+    { id: 'q7_how_you_know', tag: 'Shopping', type: 'multi', required: true, exclusive: 'Not sure', title: 'How do you usually keep track of what you need to buy?', options: ['I check the cupboards and keep it in my head', 'I write a list on paper', 'I note it on my phone', 'I use a shopping list app', "I decide once I'm in the shop", 'Not sure'] },
     { id: 'q8_receipts', tag: 'Receipts', type: 'single', required: true, title: 'Do you keep your receipts, paper or digital?', options: ['Always', 'Sometimes', 'Never'] },
     { id: 'q9_receipt_photo', tag: 'Ideas', type: 'single', required: true, title: 'Would you snap a photo of your receipt if it meant never writing a shopping list again?', options: ['Yes', 'Maybe', 'No'], followUp: { when: ['Maybe', 'No'], label: 'What would put you off?', field: 'q9_followup' } },
-    { id: 'q10_one_time_setup', tag: 'Ideas', type: 'single', required: true, title: 'Would you answer a one-time question like "How much coffee do you drink a week?" to get reminders before you run out?', options: ['Yes', 'Maybe', 'No'], followUp: { when: ['Maybe', 'No'], label: 'What would put you off?', field: 'q10_followup' } },
-    { id: 'q11_frustration', tag: 'Your experience', type: 'long', required: true, title: "What's the most frustrating part of keeping your kitchen stocked?", hint: "e.g. remembering what's running low, or realising halfway through cooking" },
+    { id: 'q10_one_time_setup', tag: 'Ideas', type: 'single', required: true, title: 'Would you answer a one-time question to get reminders before you run out?', hint: 'e.g. How much coffee do you drink a week?', options: ['Yes', 'Maybe', 'No'], followUp: { when: ['Maybe', 'No'], label: 'What would put you off?', field: 'q10_followup' } },
+    { id: 'q11_frustration', tag: 'Your experience', type: 'long', required: true, minLength: 20, title: "What's the most frustrating part of keeping your kitchen stocked?", hint: "e.g. remembering what's running low, or realising halfway through cooking" },
     { id: 'q12_thank_you', tag: 'Thank you', type: 'single', required: true, title: 'As a thank-you, which would you like?', options: ['My 3 favourite design lectures', 'A portfolio review'], extra: { label: 'Your Instagram handle (optional)', hint: 'So I can send your thank-you.', field: 'q12_instagram' } }
   ];
 
@@ -616,7 +616,7 @@ textarea.field { min-height: 132px; resize: none; display: block; }
       answer = `<input class="field" type="text" name="${q.id}" aria-labelledby="${qid}"${described} placeholder="${esc(q.placeholder || '')}" autocomplete="off" enterkeyhint="next">${q.notSure ? `<div class="not-sure-wrap"><button class="not-sure-btn" type="button" aria-pressed="false">Not sure</button></div>` : ''}`;
     } else if (q.type === 'long') {
       answer = `<textarea class="field" name="${q.id}" aria-labelledby="${qid}"${described} placeholder="${esc(q.placeholder || '')}" rows="5"></textarea>
-        <div class="field-note"><span class="count" aria-hidden="true"></span></div>`;
+        <div class="field-note">${q.minLength ? 'A sentence or two is perfect.' : ''} <span class="count" aria-hidden="true"></span></div>`;
     }
     return `
       <div class="card-body">
@@ -710,7 +710,7 @@ textarea.field { min-height: 132px; resize: none; display: block; }
     const a = state.answers[q.id];
     if (a == null) return false;
     if (Array.isArray(a)) return a.length > 0;
-    return String(a).trim().length > 0;
+    return String(a).trim().length >= (q.minLength || 1);
   }
 
   scene.addEventListener('click', e => {
@@ -817,7 +817,8 @@ textarea.field { min-height: 132px; resize: none; display: block; }
     if (state.step === 0) return go(1);
     const q = qAt(state.step);
     if (q.required && !isAnswered(q)) {
-      nudge.textContent = q.type === 'multi' ? 'Choose at least one to continue.'
+      nudge.textContent = q.minLength && String(state.answers[q.id] || '').trim().length < q.minLength ? 'Tell me a little more to continue.'
+        : q.type === 'multi' ? 'Choose at least one to continue.'
         : q.type === 'short' || q.type === 'long' ? 'Add a few words to continue.'
         : 'Choose an answer to continue.';
       return;
