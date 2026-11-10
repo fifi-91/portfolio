@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The 360° customer | Sophia Akrofi</title>
+<meta name="description" content="A framework for pairing user research with advanced analytics, shown across four customer contexts.">
+<link rel="stylesheet" href="site.css">
+<script>
+  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  if (/[?&]embed\b/.test(location.search)) document.documentElement.classList.add('cx-embed');
+</script>
+<style>
+/* 360 customer demo. Tokens from site.css; everything scoped to .cx. */
+.cx {
+  --c-ink: var(--text, #0b0b12);
+  --c-ink-2: var(--text-subtle, #5d5d63);
+  --c-line: var(--stroke, #ececee);
+  --c-an: rgba(0, 150, 235, 1);        /* analytics: what they do */
+  --c-re: #8A4FD8;                     /* research: why they do it */
+  --c-an-bg: color-mix(in srgb, var(--c-an) 16%, var(--bg));
+  --c-re-bg: color-mix(in srgb, var(--c-re) 16%, var(--bg));
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  color: var(--c-ink);
+}
+:root[data-theme="dark"] .cx { --c-re: #B48BE8; --c-an: #4BB8F0; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cx { --c-re: #B48BE8; --c-an: #4BB8F0; } }
+.cx, .cx * { letter-spacing: 0; }
+.cx-page { padding-block: 48px 96px; }
+.cx-close { display: grid; place-items: center; flex: none; }
+
+.cx-demo { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: center; padding: 24px 0; }
+
+/* ---------- Ring: the customer in the middle, analytics left, research right ---------- */
+.comb-wrap { container-type: inline-size; max-width: 560px; margin: 0 auto; width: 100%; }
+.comb { position: relative; width: 100%; aspect-ratio: 1; }
+.comb svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.ring { fill: none; stroke-width: .45; transition: opacity .4s ease; }
+.ring.an { stroke: var(--c-an); } .ring.re { stroke: var(--c-re); }
+.tick { stroke: var(--c-line); stroke-width: .3; }
+.who .an { fill: var(--c-an); } .who .re { fill: var(--c-re); }
+.who g { transition: opacity .4s ease; }
+.disc { fill: var(--bg); }
+.dot { stroke: var(--bg); stroke-width: .6; transition: opacity .4s ease; }
+.dot.an { fill: var(--c-an); } .dot.re { fill: var(--c-re); }
+.off { opacity: .22; }
+.seg { position: absolute; left: 50%; top: 56.5%; transform: translateX(-50%); width: 30%; text-align: center; line-height: 1.2; }
+.seg .k { display: block; font-size: clamp(9px, 2.1cqw, 12px); color: var(--c-ink-2); }
+.seg .v { display: block; margin-top: .2em; font-size: clamp(11px, 2.9cqw, 16px); transition: opacity .25s ease; }
+.node {
+  position: absolute; width: 27%; transform: translate(-50%, -50%);
+  padding: 2.2cqw 2.4cqw; border-radius: 12px; text-align: center; line-height: 1.2;
+  transition: opacity .4s ease, background-color .4s ease;
+}
+.node.an { background: var(--c-an-bg); } .node.re { background: var(--c-re-bg); }
+.node .k { display: block; font-size: clamp(9px, 2cqw, 11.5px); color: var(--c-ink-2); }
+.node .v { display: block; margin-top: .35em; font-size: clamp(9.5px, 2.35cqw, 13px); transition: opacity .25s ease; }
+.node.off .v { opacity: 0; }
+.swap .v { opacity: 0; }
+.legend { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; margin-top: 16px; font-size: 13px; color: var(--c-ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.legend i { width: 10px; height: 10px; border-radius: 50%; }
+
+/* ---------- Copy + controls ---------- */
+.cx-copy { max-width: 480px; }
+.cx-copy h2 { margin: 0; font-size: var(--h2, 32px); line-height: 1.15; }
+.cx-copy > p { margin-top: 16px; font-size: 18px; line-height: 1.55; color: var(--c-ink-2); max-width: 42ch; }
+.cx-controls { margin-top: 28px; display: grid; gap: 20px; }
+.cx-flabel { font-size: 14px; color: var(--c-ink-2); margin-bottom: 6px; }
+.cx-seg { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.cx-seg button { display: inline-flex; align-items: center; gap: 8px; padding: 4px 0; border: 0; background: none; cursor: pointer; font: inherit; font-size: 15px; color: var(--c-ink-2); }
+.cx-seg button::before { content: ""; flex: none; width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid currentColor; box-sizing: border-box; }
+.cx-seg button[aria-checked="true"] { color: var(--c-ink); }
+.cx-seg button[aria-checked="true"]::before { background: var(--c-ink); border-color: var(--c-ink); box-shadow: inset 0 0 0 2.5px var(--bg); }
+.cx-seg button:hover { color: var(--c-ink); }
+
+.insight { margin-top: 28px; border-top: 1px solid var(--c-line); }
+.insight div { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--c-line); transition: opacity .3s ease; }
+.insight dt { font-size: 14px; color: var(--c-ink-2); display: flex; align-items: baseline; gap: 8px; }
+.insight dt i { flex: none; width: 8px; height: 8px; border-radius: 50%; transform: translateY(-1px); }
+.insight dd { margin: 0; font-size: 15px; line-height: 1.45; }
+.insight .dim { opacity: .3; }
+.insight .gap dd { color: var(--c-ink-2); font-style: italic; }
+.cx-copy .cx-note { margin-top: 14px; font-size: 13px; color: var(--c-ink-2); }
+
+@media (max-width: 860px) {
+  .cx-page { padding-block: 16px 64px; }
+  .cx-demo { grid-template-columns: 1fr; gap: 28px; padding: 8px 0; }
+  .cx-copy { max-width: none; }
+  .cx-copy > p { font-size: 17px; }
+}
+@media (max-width: 420px) { .insight div { grid-template-columns: 1fr; gap: 4px; } }
+@media (prefers-reduced-motion: reduce) { .node, .ring, .dot, .who g { transition: opacity .15s ease !important; } }
+
+/* Embed mode (inside the playground drawer) */
+.cx-embed, .cx-embed body { background: transparent !important; }
+.cx-embed body { margin: 0; }
+.cx-embed .wrap.cx-page { max-width: none; padding: 0; margin: 0; }
+.cx-embed .cx.dr { padding: 0; background: none; border: 0; box-shadow: none; }
+.cx-embed .cx > .dr-top, .cx-embed .cx > .dr-intro { display: none; }
+.cx-embed .cx-demo { padding-top: 8px; }
+</style>
+</head>
+<body>
+<main class="wrap cx-page">
+<div class="dr cx">
+  <div class="dr-top">
+    <div><p class="kind">Research · Advanced analytics</p><h3>The 360° customer</h3></div>
+    <a class="round cx-close" href="playground.html" aria-label="Back to the playground">×</a>
+  </div>
+  <div class="dr-intro">
+    <p>How pairing user research with advanced analytics reveals what neither shows alone.</p>
+    <dl class="dr-meta">
+      <div><dt>Type</dt><dd>Framework and visual</dd></div>
+      <div><dt>Focus</dt><dd>Research, analytics, segmentation</dd></div>
+    </dl>
+  </div>
+
+  <section class="cx-demo" aria-label="The 360° customer framework">
+    <div>
+      <div class="comb-wrap">
+        <div class="comb" id="comb" aria-live="polite">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <defs><clipPath id="cL"><rect x="0" y="0" width="50" height="100"/></clipPath><clipPath id="cR"><rect x="50" y="0" width="50" height="100"/></clipPath></defs>
+            <line class="tick" x1="50.00" y1="17.00" x2="50.00" y2="18.50"/><line class="tick" x1="55.73" y1="17.50" x2="55.47" y2="18.98"/><line class="tick" x1="61.29" y1="18.99" x2="60.77" y2="20.40"/><line class="tick" x1="66.50" y1="21.42" x2="65.75" y2="22.72"/><line class="tick" x1="71.21" y1="24.72" x2="70.25" y2="25.87"/><line class="tick" x1="75.28" y1="28.79" x2="74.13" y2="29.75"/><line class="tick" x1="78.58" y1="33.50" x2="77.28" y2="34.25"/><line class="tick" x1="81.01" y1="38.71" x2="79.60" y2="39.23"/><line class="tick" x1="82.50" y1="44.27" x2="81.02" y2="44.53"/><line class="tick" x1="83.00" y1="50.00" x2="81.50" y2="50.00"/><line class="tick" x1="82.50" y1="55.73" x2="81.02" y2="55.47"/><line class="tick" x1="81.01" y1="61.29" x2="79.60" y2="60.77"/><line class="tick" x1="78.58" y1="66.50" x2="77.28" y2="65.75"/><line class="tick" x1="75.28" y1="71.21" x2="74.13" y2="70.25"/><line class="tick" x1="71.21" y1="75.28" x2="70.25" y2="74.13"/><line class="tick" x1="66.50" y1="78.58" x2="65.75" y2="77.28"/><line class="tick" x1="61.29" y1="81.01" x2="60.77" y2="79.60"/><line class="tick" x1="55.73" y1="82.50" x2="55.47" y2="81.02"/><line class="tick" x1="50.00" y1="83.00" x2="50.00" y2="81.50"/><line class="tick" x1="44.27" y1="82.50" x2="44.53" y2="81.02"/><line class="tick" x1="38.71" y1="81.01" x2="39.23" y2="79.60"/><line class="tick" x1="33.50" y1="78.58" x2="34.25" y2="77.28"/><line class="tick" x1="28.79" y1="75.28" x2="29.75" y2="74.13"/><line class="tick" x1="24.72" y1="71.21" x2="25.87" y2="70.25"/><line class="tick" x1="21.42" y1="66.50" x2="22.72" y2="65.75"/><line class="tick" x1="18.99" y1="61.29" x2="20.40" y2="60.77"/><line class="tick" x1="17.50" y1="55.73" x2="18.98" y2="55.47"/><line class="tick" x1="17.00" y1="50.00" x2="18.50" y2="50.00"/><line class="tick" x1="17.50" y1="44.27" x2="18.98" y2="44.53"/><line class="tick" x1="18.99" y1="38.71" x2="20.40" y2="39.23"/><line class="tick" x1="21.42" y1="33.50" x2="22.72" y2="34.25"/><line class="tick" x1="24.72" y1="28.79" x2="25.87" y2="29.75"/><line class="tick" x1="28.79" y1="24.72" x2="29.75" y2="25.87"/><line class="tick" x1="33.50" y1="21.42" x2="34.25" y2="22.72"/><line class="tick" x1="38.71" y1="18.99" x2="39.23" y2="20.40"/><line class="tick" x1="44.27" y1="17.50" x2="44.53" y2="18.98"/>
+            <path class="ring an" data-side="an" d="M50 14 A36 36 0 0 0 50 86"/>
+            <path class="ring re" data-side="re" d="M50 14 A36 36 0 0 1 50 86"/>
+            <circle class="dot an" data-side="an" cx="26.86" cy="22.42" r="1.3"/><circle class="dot an" data-side="an" cx="14.00" cy="50.00" r="1.3"/><circle class="dot an" data-side="an" cx="26.86" cy="77.58" r="1.3"/><circle class="dot re" data-side="re" cx="73.14" cy="22.42" r="1.3"/><circle class="dot re" data-side="re" cx="86.00" cy="50.00" r="1.3"/><circle class="dot re" data-side="re" cx="73.14" cy="77.58" r="1.3"/>
+            <g class="who">
+              <g class="an" data-side="an" clip-path="url(#cL)"><circle cx="50" cy="40" r="3.6"/><path d="M42.6 53.5c0-5 3.3-8.2 7.4-8.2s7.4 3.2 7.4 8.2z"/></g>
+              <g class="re" data-side="re" clip-path="url(#cR)"><circle cx="50" cy="40" r="3.6"/><path d="M42.6 53.5c0-5 3.3-8.2 7.4-8.2s7.4 3.2 7.4 8.2z"/></g>
+            </g>
+          </svg>
+          <div class="seg"><span class="k">Segment</span><span class="v" id="segName"></span></div>
+          <div class="node an" data-k="profile" data-side="an" style="left:26.86%;top:22.42%"><span class="k">Who they are</span><span class="v"></span></div>
+          <div class="node an" data-k="behaviour" data-side="an" style="left:14.00%;top:50.00%"><span class="k">What they do</span><span class="v"></span></div>
+          <div class="node an" data-k="next" data-side="an" style="left:26.86%;top:77.58%"><span class="k">What happens next</span><span class="v"></span></div>
+          <div class="node re" data-k="goals" data-side="re" style="left:73.14%;top:22.42%"><span class="k">What they want</span><span class="v"></span></div>
+          <div class="node re" data-k="motive" data-side="re" style="left:86.00%;top:50.00%"><span class="k">Why it matters</span><span class="v"></span></div>
+          <div class="node re" data-k="barrier" data-side="re" style="left:73.14%;top:77.58%"><span class="k">What gets in the way</span><span class="v"></span></div>
+        </div>
+        <div class="legend" aria-hidden="true">
+          <span><i style="background:var(--c-an)"></i>Analytics: what they do</span>
+          <span><i style="background:var(--c-re)"></i>Research: why they do it</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cx-copy">
+      <h2>A 360° view of one customer</h2>
+      <p>Analytics tells you what people do and how many of them do it. Research tells you why. Either alone gives you half a customer. I first built this view at a bank, pairing a 50+ source data model with interviews to segment small businesses. The framework works anywhere.</p>
+      <div class="cx-controls">
+        <div>
+          <div class="cx-flabel" id="ctxLabel">Customer context</div>
+          <div class="cx-seg" id="ctx" role="radiogroup" aria-labelledby="ctxLabel"></div>
+        </div>
+        <div>
+          <div class="cx-flabel" id="lensLabel">Look through</div>
+          <div class="cx-seg" id="lens" role="radiogroup" aria-labelledby="lensLabel">
+            <button type="button" role="radio" data-v="an">Analytics only</button>
+            <button type="button" role="radio" data-v="re">Research only</button>
+            <button type="button" role="radio" data-v="both">Both</button>
+          </div>
+        </div>
+      </div>
+      <dl class="insight" id="insight">
+        <div data-row="an"><dt><i style="background:var(--c-an)"></i>The data says</dt><dd></dd></div>
+        <div data-row="re"><dt><i style="background:var(--c-re)"></i>People say</dt><dd></dd></div>
+        <div data-row="do"><dt>So we</dt><dd></dd></div>
+      </dl>
+      <p class="cx-note">Illustrative examples, not client data.</p>
+    </div>
+  </section>
+</div>
+</main>
+
+<script>
+(() => {
+  'use strict';
+  const CONTEXTS = [
+    { id: 'shop', label: 'Online shopper', segment: 'Patient planners',
+      profile: '25–34, app-first, 3 orders a quarter', behaviour: 'Saves 40+ items, buys after a price drop', next: 'Churn risk after 60 quiet days',
+      goals: 'Look put-together for specific events', motive: 'Hates paying full price, then seeing it drop', barrier: 'Unsure about fit, returns feel like a chore',
+      an: '18% of app users save 40+ items and buy within 48 hours of a price drop.',
+      re: 'They’re not bargain hunters. They plan outfits for events and dread the regret of paying too much.',
+      do: 'Send price-drop alerts tied to their saved events, with fit notes up front. Not blanket discounts.' },
+    { id: 'fit', label: 'Fitness subscriber', segment: 'Lapsed restarters',
+      profile: 'Joined in January, monthly plan', behaviour: '4 sessions in week one, 1 by week six', next: '62% likely to cancel at renewal',
+      goals: 'Build a habit, not hit a number', motive: 'Wants to feel better day to day', barrier: 'A missed week feels like failure',
+      an: '1 in 3 new members drop to one session a week by week six.',
+      re: 'They didn’t lose interest. Missing a week felt like breaking a streak, so they stopped opening the app.',
+      do: 'Replace streaks with a gentle restart plan after a missed week, sent well before renewal.' },
+    { id: 'smb', label: 'Small business', segment: 'Month-end owners',
+      profile: '1–10 staff, £100k–£1m turnover', behaviour: 'Invoices sent in bursts at month end', next: 'Likely to need cash-flow tools in Q4',
+      goals: 'Get paid on time without chasing', motive: 'The owner does the books at night', barrier: 'No time to learn a new tool',
+      an: 'Businesses at £100k–£1m send 70% of invoices in the last three days of the month.',
+      re: 'The owner does admin after hours, and chasing late payers is the job they dread most.',
+      do: 'Offer automatic payment reminders in one step from the first invoice, shown at month end, not Monday morning.' },
+    { id: 'go', label: 'Commuter', segment: 'Hybrid commuters',
+      profile: 'Weekday peaks, two regular routes', behaviour: 'Checks the app 3 times before leaving', next: 'Down to 3 office days, not 5',
+      goals: 'Arrive on time, no surprises', motive: 'Fewer trips, so each one matters more', barrier: 'Season tickets no longer pay off',
+      an: 'Weekday journeys fell to three a week, but checks per journey went up.',
+      re: 'With fewer trips, one delay ruins a whole day in the office, so they check and check again.',
+      do: 'Price a flexi ticket for three days, and alert disruption before they leave, not at the platform.' }
+  ];
+  const GAP = {
+    an: 'You know what they do and how many. You’re guessing why, so you’d probably reach for a discount.',
+    re: 'You know why, from a dozen people. You don’t know how many customers that is, or who to target.'
+  };
+
+  const $ = s => document.querySelector(s);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const state = { ctx: 0, lens: 'both' };
+
+  $('#ctx').innerHTML = CONTEXTS.map((c, i) => `<button type="button" role="radio" data-v="${i}">${c.label}</button>`).join('');
+  const seg = (sel, v) => document.querySelectorAll(sel + ' button').forEach(b => b.setAttribute('aria-checked', String(b.dataset.v === String(v))));
+
+  function fill() {
+    const c = CONTEXTS[state.ctx];
+    document.querySelectorAll('.node').forEach(h => { h.querySelector('.v').textContent = c[h.dataset.k]; });
+    $('#segName').textContent = state.lens === 'both' ? c.segment : 'Half a customer';
+    const rows = { an: $('[data-row="an"]'), re: $('[data-row="re"]'), do: $('[data-row="do"]') };
+    rows.an.querySelector('dd').textContent = c.an;
+    rows.re.querySelector('dd').textContent = c.re;
+    rows.an.classList.toggle('dim', state.lens === 're');
+    rows.re.classList.toggle('dim', state.lens === 'an');
+    rows.do.classList.toggle('gap', state.lens !== 'both');
+    rows.do.querySelector('dd').textContent = state.lens === 'both' ? c.do : GAP[state.lens];
+    document.querySelectorAll('[data-side]').forEach(h => h.classList.toggle('off', state.lens !== 'both' && h.dataset.side !== state.lens));
+  }
+  function render(swap) {
+    seg('#ctx', state.ctx); seg('#lens', state.lens);
+    if (swap && !reduce.matches) { $('#comb').classList.add('swap'); setTimeout(() => { fill(); $('#comb').classList.remove('swap'); }, 220); }
+    else fill();
+  }
+  $('#ctx').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; state.ctx = Number(b.dataset.v); render(true); });
+  $('#lens').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; state.lens = b.dataset.v; render(false); });
+  render(false);
+
+  if (window.parent !== window) {
+    const post = () => parent.postMessage({ embedHeight: document.documentElement.scrollHeight }, '*');
+    new ResizeObserver(post).observe(document.body); post();
+    addEventListener('message', e => { if (e.data && e.data.theme) document.documentElement.setAttribute('data-theme', e.data.theme); });
+  }
+})();
+</script>
+</body>
+</html>

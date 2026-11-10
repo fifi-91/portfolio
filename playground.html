@@ -18,15 +18,16 @@
 .play-card-video{width:100%;height:100%;object-fit:cover;display:block}
 .play-gallery-video{height:min(440px,52vh);width:auto;max-width:75vw;display:block;border-radius:4px;background:#000}
 @media(max-width:600px){.play-gallery-video{height:auto;width:75vw}}
+.play-embed{width:100%;border:0;display:block;height:820px;background:transparent;color-scheme:normal}
 </style></head><body class="playground">
 <header class="hdr"><div class="wrap"><div class="hdr-group"><a class="logo" href="index.html#top">Sophia Akrofi</a><button aria-label="Switch colour theme" class="icon-btn" id="theme" type="button"><svg aria-hidden="true" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" fill="none" r="6.5" stroke="currentColor"></circle><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"></path></svg></button></div><div class="hdr-group navwrap" id="navwrap"><nav aria-label="Main" class="nav"><a href="index.html#work">Work</a><a aria-current="page" href="playground.html">Playground</a><a href="index.html#experience">Experience</a><a href="index.html#about">About</a><a class="nav-cta" href="work-with-me.html">Work with me</a></nav><button aria-expanded="false" aria-label="Open menu" class="icon-btn menu-btn" id="menu" type="button"><svg aria-hidden="true" height="16" viewbox="0 0 16 16" width="16"><path d="M2 5h12M2 11h12" stroke="currentColor" stroke-width="1.4"></path></svg></button><a class="btn btn-dark" href="work-with-me.html">Work with me</a></div></div></header>
 <main class="playground-main"><section class="sec"><div class="wrap"><div class="playground-lead"><p class="label">Beyond the brief</p><h1>Playground.</h1><p>A space for experiments, independent ideas and the things I make simply because I'm curious.</p></div><div class="playground-grid" id="playground-grid"><article class="card has-drawer" data-drawer="play-1">
-<div class="card-media"><div aria-hidden="true" class="play-placeholder">01</div><span aria-hidden="true" class="go">+</span></div>
-<div><p class="kind">Digital twin · 2026</p><h3>Pantry</h3><p class="play-card-summary">A digital twin of your kitchen that predicts when things run out.</p></div>
+<div class="card-media"><img class="play-card-video" src="visual-assets/pantry-cover.jpg" alt="Pantry: a phone showing pantry shelves with a low-stock nudge, next to the model’s calculation" loading="lazy"/><span aria-hidden="true" class="go">+</span></div>
+<div><p class="kind">Digital twin · 2026</p><h3>Pantry</h3><p class="play-card-summary">A simulation and digital twin of your grocery cupboard that predicts when things run out.</p></div>
 <button aria-controls="drawer-area" aria-expanded="false" class="card-hit" type="button"><span class="sr">Show Pantry</span></button>
 </article>
 <article class="card has-drawer" data-drawer="play-2">
-<div class="card-media"><div aria-hidden="true" class="play-placeholder">02</div><span aria-hidden="true" class="go">+</span></div>
+<div class="card-media"><img class="play-card-video" src="visual-assets/scale-cover.jpg" alt="Making sense of scale: price ranges on a logarithmic chart" loading="lazy"/><span aria-hidden="true" class="go">+</span></div>
 <div><p class="kind">Data visualisation · 2017 → today</p><h3>Making sense of scale</h3><p class="play-card-summary">Designing for big data and machine learning, from logarithmic charts in 2017 to now.</p></div>
 <button aria-controls="drawer-area" aria-expanded="false" class="card-hit" type="button"><span class="sr">Show Making sense of scale</span></button>
 </article>
@@ -36,28 +37,18 @@
 <button aria-controls="drawer-area" aria-expanded="false" class="card-hit" type="button"><span class="sr">Show One shape, three inputs</span></button>
 </article>
 <article class="card has-drawer" data-drawer="play-4">
-<div class="card-media"><div aria-hidden="true" class="play-placeholder">04</div><span aria-hidden="true" class="go">+</span></div>
+<div class="card-media"><img class="play-card-video" src="visual-assets/customer-360-cover.jpg" alt="The 360° customer: analytics and research around one customer" loading="lazy"/><span aria-hidden="true" class="go">+</span></div>
 <div><p class="kind">Research · Advanced analytics</p><h3>The 360° customer</h3><p class="play-card-summary">How pairing user research with advanced analytics reveals what neither shows alone.</p></div>
 <button aria-controls="drawer-area" aria-expanded="false" class="card-hit" type="button"><span class="sr">Show The 360° customer</span></button>
 </article></div><template id="play-1">
 <div class="dr-top"><div><p class="kind">Digital twin · 2026</p><h3>Pantry</h3></div><button aria-label="Close project" class="round dr-close" type="button">×</button></div>
-<div class="dr-intro"><p>A digital twin of your kitchen that predicts when things run out.</p><dl class="dr-meta"><div><dt>Type</dt><dd>Personal product</dd></div><div><dt>Focus</dt><dd>Simulation, prediction, interaction design</dd></div></dl></div>
-<div aria-label="Pantry gallery" class="dr-gallery" tabindex="0">
-<figure><div class="play-gallery-placeholder">Add image 01</div><figcaption>Exploration 01</figcaption></figure>
-<figure><div class="play-gallery-placeholder">Add image 02</div><figcaption>Exploration 02</figcaption></figure>
-<figure><div class="play-gallery-placeholder">Add image 03</div><figcaption>Exploration 03</figcaption></figure>
-</div>
-<div class="dr-ctrl"><span class="dr-count">01 / 03</span><span><button aria-label="Previous image" class="round dr-prev" type="button">←</button> <button aria-label="Next image" class="round dr-next" type="button">→</button></span></div>
+<div class="dr-intro"><p>A simulation and digital twin of your grocery cupboard that predicts when things run out, so you don’t have to keep track.</p><dl class="dr-meta"><div><dt>Type</dt><dd>Personal product</dd></div><div><dt>Focus</dt><dd>Simulation, prediction, interaction design</dd></div></dl></div>
+<iframe class="play-embed" src="pantry-demo.html?embed" title="Pantry: interactive demo" loading="lazy"></iframe>
 </template>
 <template id="play-2">
 <div class="dr-top"><div><p class="kind">Data visualisation · 2017 → today</p><h3>Making sense of scale</h3></div><button aria-label="Close project" class="round dr-close" type="button">×</button></div>
 <div class="dr-intro"><p>Designing for big data and machine learning, from logarithmic charts in 2017 to now.</p><dl class="dr-meta"><div><dt>Type</dt><dd>Past work, rebuilt</dd></div><div><dt>Focus</dt><dd>Data visualisation, machine learning</dd></div></dl></div>
-<div aria-label="Making sense of scale gallery" class="dr-gallery" tabindex="0">
-<figure><div class="play-gallery-placeholder">Add image 01</div><figcaption>Exploration 01</figcaption></figure>
-<figure><div class="play-gallery-placeholder">Add image 02</div><figcaption>Exploration 02</figcaption></figure>
-<figure><div class="play-gallery-placeholder">Add image 03</div><figcaption>Exploration 03</figcaption></figure>
-</div>
-<div class="dr-ctrl"><span class="dr-count">01 / 03</span><span><button aria-label="Previous image" class="round dr-prev" type="button">←</button> <button aria-label="Next image" class="round dr-next" type="button">→</button></span></div>
+<iframe class="play-embed" src="scale-demo.html?embed" title="Making sense of scale: interactive chart" loading="lazy"></iframe>
 </template>
 <template id="play-3">
 <div class="dr-top"><div><p class="kind">Creative technology · TouchDesigner</p><h3>One shape, three inputs</h3></div><button aria-label="Close project" class="round dr-close" type="button">×</button></div>
@@ -71,25 +62,21 @@
 </template>
 <template id="play-4">
 <div class="dr-top"><div><p class="kind">Research · Advanced analytics</p><h3>The 360° customer</h3></div><button aria-label="Close project" class="round dr-close" type="button">×</button></div>
-<div class="dr-intro"><p>How pairing user research with advanced analytics reveals what neither shows alone.</p><dl class="dr-meta"><div><dt>Type</dt><dd>Article and visual</dd></div><div><dt>Focus</dt><dd>Research, analytics, segmentation</dd></div></dl></div>
-<div aria-label="The 360° customer gallery" class="dr-gallery" tabindex="0">
-<figure><div class="play-gallery-placeholder">Add image 01</div><figcaption>Exploration 01</figcaption></figure>
-<figure><div class="play-gallery-placeholder">Add image 02</div><figcaption>Exploration 02</figcaption></figure>
-<figure><div class="play-gallery-placeholder">Add image 03</div><figcaption>Exploration 03</figcaption></figure>
-</div>
-<div class="dr-ctrl"><span class="dr-count">01 / 03</span><span><button aria-label="Previous image" class="round dr-prev" type="button">←</button> <button aria-label="Next image" class="round dr-next" type="button">→</button></span></div>
+<div class="dr-intro"><p>How pairing user research with advanced analytics reveals what neither shows alone.</p><dl class="dr-meta"><div><dt>Type</dt><dd>Framework and visual</dd></div><div><dt>Focus</dt><dd>Research, analytics, segmentation</dd></div></dl></div>
+<iframe class="play-embed" src="customer-360-demo.html?embed" title="The 360° customer: interactive framework" loading="lazy"></iframe>
 </template></div></section></main>
 <footer class="foot"><div class="wrap"><div class="foot-cta"><p class="label">Have something in mind?</p><h2>Let's make something interesting.</h2><a class="btn btn-dark" href="index.html#contact">Get in touch <span class="arrow">↗</span></a></div><div class="foot-cols"><div>Sophia Akrofi</div><div><a href="index.html#work">Selected work</a></div><div><a href="index.html#about">About</a></div><div><a href="work-with-me.html">Work with me</a></div></div></div></footer>
 <script>
 (function(){
 const root=document.documentElement,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 try{const theme=localStorage.getItem('theme');if(theme)root.setAttribute('data-theme',theme)}catch(e){}
-document.getElementById('theme').addEventListener('click',()=>{const current=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');const next=current==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('theme',next)}catch(e){}});
+document.getElementById('theme').addEventListener('click',()=>{const current=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');const next=current==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('theme',next)}catch(e){}document.querySelectorAll('.play-embed').forEach(f=>{try{f.contentWindow.postMessage({theme:next},'*')}catch(e){}})});
+addEventListener('message',e=>{const h=e.data&&(e.data.embedHeight||e.data.pantryHeight);if(h){document.querySelectorAll('.play-embed').forEach(f=>{if(f.contentWindow===e.source)f.style.height=Math.ceil(h)+'px'})}});
 const nav=document.getElementById('navwrap'),menu=document.getElementById('menu');menu.addEventListener('click',()=>{const opened=nav.classList.toggle('is-open');menu.setAttribute('aria-expanded',String(opened))});
 const grid=document.getElementById('playground-grid');let drawer=null,active=null;
 function close(instant=false){if(!drawer)return;const d=drawer,c=active;drawer=null;active=null;c.classList.remove('is-active');c.querySelector('.card-hit').setAttribute('aria-expanded','false');if(instant)d.remove();else{d.classList.remove('is-open');setTimeout(()=>d.remove(),620)}}
 function rowEnd(card){let last=card;for(const child of grid.children){if(child.classList.contains('card')&&child.offsetTop===card.offsetTop)last=child}return last}
-function gallerySetup(d){const g=d.querySelector('.dr-gallery'),figs=[...g.querySelectorAll('figure')],count=d.querySelector('.dr-count');let current=0;function update(){let best=Infinity;figs.forEach((f,i)=>{const distance=Math.abs(f.offsetLeft-figs[0].offsetLeft-g.scrollLeft);if(distance<best){best=distance;current=i}});count.textContent=String(current+1).padStart(2,'0')+' / '+String(figs.length).padStart(2,'0')}function go(delta){const i=Math.max(0,Math.min(figs.length-1,current+delta));g.scrollTo({left:figs[i].offsetLeft-figs[0].offsetLeft,behavior:reduce?'auto':'smooth'})}d.querySelector('.dr-prev').addEventListener('click',()=>go(-1));d.querySelector('.dr-next').addEventListener('click',()=>go(1));g.addEventListener('scroll',()=>requestAnimationFrame(update),{passive:true});g.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});let down=null;g.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down={x:e.clientX,scroll:g.scrollLeft};g.setPointerCapture(e.pointerId);g.classList.add('is-dragging')});g.addEventListener('pointermove',e=>{if(down)g.scrollLeft=down.scroll-(e.clientX-down.x)});function end(){down=null;g.classList.remove('is-dragging')}g.addEventListener('pointerup',end);g.addEventListener('pointercancel',end)}
+function gallerySetup(d){const g=d.querySelector('.dr-gallery');if(!g)return;const figs=[...g.querySelectorAll('figure')],count=d.querySelector('.dr-count');let current=0;function update(){let best=Infinity;figs.forEach((f,i)=>{const distance=Math.abs(f.offsetLeft-figs[0].offsetLeft-g.scrollLeft);if(distance<best){best=distance;current=i}});count.textContent=String(current+1).padStart(2,'0')+' / '+String(figs.length).padStart(2,'0')}function go(delta){const i=Math.max(0,Math.min(figs.length-1,current+delta));g.scrollTo({left:figs[i].offsetLeft-figs[0].offsetLeft,behavior:reduce?'auto':'smooth'})}d.querySelector('.dr-prev').addEventListener('click',()=>go(-1));d.querySelector('.dr-next').addEventListener('click',()=>go(1));g.addEventListener('scroll',()=>requestAnimationFrame(update),{passive:true});g.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});let down=null;g.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down={x:e.clientX,scroll:g.scrollLeft};g.setPointerCapture(e.pointerId);g.classList.add('is-dragging')});g.addEventListener('pointermove',e=>{if(down)g.scrollLeft=down.scroll-(e.clientX-down.x)});function end(){down=null;g.classList.remove('is-dragging')}g.addEventListener('pointerup',end);g.addEventListener('pointercancel',end)}
 function open(card){const tpl=document.getElementById(card.dataset.drawer);if(!tpl)return;close(true);const d=document.createElement('div');d.className='drawer';d.setAttribute('role','region');d.innerHTML='<div class="drawer-inner"><div class="dr"></div></div>';d.querySelector('.dr').appendChild(tpl.content.cloneNode(true));d.setAttribute('aria-label',d.querySelector('h3').textContent);rowEnd(card).after(d);drawer=d;active=card;card.classList.add('is-active');card.querySelector('.card-hit').setAttribute('aria-expanded','true');d.querySelector('.dr-close').addEventListener('click',()=>{close();card.querySelector('.card-hit').focus()});gallerySetup(d);void d.offsetHeight;d.classList.add('is-open');setTimeout(()=>d.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'}),180)}
 grid.querySelectorAll('.has-drawer').forEach(card=>card.querySelector('.card-hit').addEventListener('click',()=>active===card?close():open(card)));
 addEventListener('keydown',e=>{if(e.key==='Escape'&&active){const card=active;close();card.querySelector('.card-hit').focus()}});addEventListener('resize',()=>{if(drawer&&active){const end=rowEnd(active);if(end.nextElementSibling!==drawer)end.after(drawer)}});

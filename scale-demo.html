@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Making sense of scale | Sophia Akrofi</title>
+<meta name="description" content="Designing for data that spans six orders of magnitude: a logarithmic price chart from EDITED in 2017, rebuilt in code.">
+<link rel="stylesheet" href="site.css">
+<script>
+  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  if (/[?&]embed\b/.test(location.search)) document.documentElement.classList.add('sc-embed');
+</script>
+<style>
+/* Scale demo. Tokens from site.css; everything scoped to .sc. */
+.sc {
+  --c-ink: var(--text, #0b0b12);
+  --c-ink-2: var(--text-subtle, #5d5d63);
+  --c-line: var(--stroke, #ececee);
+  --c-card: var(--bg, #fff);
+  --c-mark: var(--text, #0b0b12);
+  --c-mark-soft: color-mix(in srgb, var(--text, #0b0b12) 5%, transparent);
+  --c-err: #E5484D;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  color: var(--c-ink);
+}
+.sc, .sc * { letter-spacing: 0; }
+.sc-page { padding-block: 48px 96px; }
+.sc-close { display: grid; place-items: center; flex: none; }
+
+.sc-demo { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 48px; align-items: center; padding: 24px 0; }
+.sc-chart { padding: 0; }
+.sc-chart svg { display: block; width: 100%; height: auto; overflow: visible; font-family: inherit; }
+.sc-chart text { font-size: 11px; fill: var(--c-ink-2); font-variant-numeric: tabular-nums; }
+.sc-chart .grid { stroke: var(--c-line); }
+.sc-chart .axis { stroke: var(--c-ink-2); stroke-opacity: .5; }
+.sc-chart .wh { stroke: var(--c-mark); stroke-width: 1; }
+.sc-chart .box { fill: var(--bg-subtle, #f6f6f5); stroke: var(--c-mark); stroke-width: 1; }
+.sc-chart .med { fill: var(--c-mark); }
+.sc-chart .val { fill: var(--c-ink); font-size: 10.5px; }
+.sc-chart .cat { fill: var(--c-ink); font-size: 11.5px; }
+.sc-chart .grp { cursor: pointer; }
+.sc-chart .grp .hit { fill: transparent; }
+.sc-chart .grp:hover .hit, .sc-chart .grp.on .hit { fill: var(--c-mark-soft); }
+.sc-chart .err { fill: none; stroke: var(--c-err); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.sc-chart text.err-t { fill: var(--c-err); font-size: 11px; }
+.sc-chart .bug { transition: opacity .3s ease; }
+.sc-read { min-height: 22px; margin: 8px 4px 0; font-size: 13px; color: var(--c-ink-2); font-variant-numeric: tabular-nums; }
+.sc-read b { font-weight: 500; color: var(--c-ink); }
+
+.sc-copy { max-width: 470px; }
+.sc-copy-inner { transition: opacity .3s ease, transform .45s var(--ease); }
+.sc-copy-inner.out { opacity: 0; transform: translateY(8px); }
+.sc-copy h2 { margin: 0; font-size: var(--h2, 32px); line-height: 1.15; }
+.sc-copy p { margin-top: 14px; font-size: 17px; line-height: 1.55; color: var(--c-ink-2); max-width: 44ch; }
+.sc-copy #body p:first-child { margin-top: 16px; }
+.sc-copy #body b { font-weight: 400; color: var(--c-ink); }
+.sc-controls { margin-top: 28px; display: grid; gap: 20px; }
+.sc-flabel { font-size: 14px; color: var(--c-ink-2); margin-bottom: 6px; }
+.sc-seg { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.sc-seg button { display: inline-flex; align-items: center; gap: 8px; padding: 4px 0; border: 0; background: none; cursor: pointer; font: inherit; font-size: 15px; color: var(--c-ink-2); }
+.sc-seg button::before { content: ""; flex: none; width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid currentColor; box-sizing: border-box; }
+.sc-seg button[aria-checked="true"] { color: var(--c-ink); }
+.sc-seg button[aria-checked="true"]::before { background: var(--c-ink); border-color: var(--c-ink); box-shadow: inset 0 0 0 2.5px var(--bg); }
+.sc-seg button:hover { color: var(--c-ink); }
+.sc-act { margin-top: 32px; }
+.sc-copy .sc-note { margin-top: 14px; font-size: 13px; color: var(--c-ink-2); }
+
+@media (max-width: 860px) {
+  .sc-page { padding-block: 16px 64px; }
+  .sc-demo { grid-template-columns: 1fr; gap: 28px; padding: 8px 0; }
+  .sc-copy { order: -1; max-width: none; }
+  .sc-copy p { font-size: 17px; }
+}
+@media (prefers-reduced-motion: reduce) { .sc-copy-inner { transition: opacity .15s ease !important; transform: none !important; } }
+
+/* Embed mode (inside the playground drawer) */
+.sc-embed, .sc-embed body { background: transparent !important; }
+.sc-embed body { margin: 0; }
+.sc-embed .wrap.sc-page { max-width: none; padding: 0; margin: 0; }
+.sc-embed .sc.dr { padding: 0; background: none; border: 0; box-shadow: none; }
+.sc-embed .sc > .dr-top, .sc-embed .sc > .dr-intro { display: none; }
+.sc-embed .sc-demo { padding-top: 8px; }
+</style>
+</head>
+<body>
+<main class="wrap sc-page">
+<div class="dr sc">
+  <div class="dr-top">
+    <div><p class="kind">Data visualisation · 2017 → today</p><h3>Making sense of scale</h3></div>
+    <a class="round sc-close" href="playground.html" aria-label="Back to the playground">×</a>
+  </div>
+  <div class="dr-intro">
+    <p>Designing for big data and machine learning, from logarithmic charts in 2017 to now.</p>
+    <dl class="dr-meta">
+      <div><dt>Type</dt><dd>Past work, rebuilt</dd></div>
+      <div><dt>Focus</dt><dd>Data visualisation, machine learning</dd></div>
+    </dl>
+  </div>
+
+  <section class="sc-demo" aria-label="Making sense of scale demo">
+    <div>
+      <div class="sc-chart">
+        <svg id="chart" viewBox="0 0 640 400" role="img" aria-labelledby="chartDesc"><desc id="chartDesc">Price ranges for five market segments, from £2 to £1,000,000.</desc></svg>
+        <p class="sc-read" id="read" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="sc-copy">
+      <div class="sc-copy-inner" id="copy">
+        <h2 id="title"></h2>
+        <div id="body"></div>
+        <div class="sc-controls">
+          <div>
+            <div class="sc-flabel" id="scaleLabel">Scale</div>
+            <div class="sc-seg" id="scale" role="radiogroup" aria-labelledby="scaleLabel">
+              <button type="button" role="radio" data-v="lin">Linear</button>
+              <button type="button" role="radio" data-v="log">Logarithmic</button>
+            </div>
+          </div>
+          <div id="verWrap" hidden>
+            <div class="sc-flabel" id="verLabel">Version</div>
+            <div class="sc-seg" id="ver" role="radiogroup" aria-labelledby="verLabel">
+              <button type="button" role="radio" data-v="2017">2017 design</button>
+              <button type="button" role="radio" data-v="now">Rebuilt in code</button>
+            </div>
+          </div>
+        </div>
+        <div class="sc-act"><button class="btn btn-dark" id="action" type="button"></button></div>
+        <p class="sc-note">Illustrative prices, not EDITED data.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="dr-ctrl">
+    <span class="dr-count" id="count">01 / 05</span>
+    <span><button class="round" id="prev" type="button" aria-label="Previous step">←</button> <button class="round" id="next" type="button" aria-label="Next step">→</button></span>
+  </div>
+</div>
+</main>
+
+<script>
+(() => {
+  'use strict';
+  /* Five segments of a fashion market: [min, q1, median, q3, max] in £ */
+  const DATA = [
+    { name: 'Value',        n: 4210, v: [2, 6, 10, 16, 60] },
+    { name: 'High street',  n: 3880, v: [6, 20, 30, 50, 400] },
+    { name: 'Online',       n: 502,  v: [20, 28, 40, 70, 250.59] },
+    { name: 'Luxury',       n: 1260, v: [45, 300, 650, 1500, 48000] },
+    { name: 'Fine jewellery', n: 140, v: [180, 1200, 4800, 22000, 1000000] }
+  ];
+  /* body: array of paragraphs; <b> marks the key idea */
+  const STEPS = [
+    { title: 'Mapping scale', scale: 'lin', ver: 'now', action: 'Switch to log scale', body: [
+      'When I worked in fashion technology at EDITED in 2017, data visualisation was part of my work. Retailers wanted to compare prices across a whole market: £2 vests next to £1,000,000 necklaces.',
+      'Every chart is a map, and the scale decides how much space each value gets. On a normal <b>linear</b> scale, every pound gets the same space. So one necklace takes the whole chart, and everything else collapses into a line at the bottom.' ] },
+    { title: 'What logarithmic means', scale: 'log', ver: 'now', action: 'Why a designer cares', body: [
+      'A <b>logarithmic</b> scale gives equal space to equal multiples, not equal amounts. Each gridline is ten times the one below it, so £1 to £10 takes as much room as £100,000 to £1,000,000.',
+      'It answers a different question. Linear asks “how much more?”; log asks “how many times more?”. It’s how we already measure things that span huge ranges: earthquakes, sound in decibels, the acidity of pH.',
+      'Now a £10 high-street range and a £10,000 luxury range have the same shape, and you can compare them.' ] },
+    { title: 'Why a designer cares', scale: 'log', ver: 'now', action: 'See what the original got wrong', body: [
+      'The data decides the values. The scale decides what people notice. Pick linear and the story is one outlier; pick log and the story is how each market is spread. Same numbers, different conclusions.',
+      'That makes the scale a design decision, and an ethical one. People read distance as difference, so a log chart has to say what it’s doing: labelled gridlines, ×10 steps, no pretending the gaps are even.',
+      'Toggle the scale and watch the same data tell two stories.' ] },
+    { title: 'What the original got wrong', scale: 'log', ver: '2017', action: 'Rebuild it', body: [
+      'In the 2017 design, a maximum of 250.59 sits on the £1,000,000 gridline. The axis also starts at £0, and zero can’t exist on a log scale: you can multiply by ten forever and never reach it.',
+      'Both slipped through because the chart was a picture handed to engineering, not the chart itself.' ] },
+    { title: 'Designing in the material', scale: 'log', ver: 'now', action: 'Start again', body: [
+      'Rebuilt in code, every mark is placed by the same number it labels, so a label and its line can’t disagree.',
+      'The problem hasn’t gone away. Any data that spans orders of magnitude has it: model outputs, audiences of ten or ten million, the cost of a query. Same design judgement as 2017, different medium: designing in the material itself instead of handing off a picture of it.',
+      'Hover a range to read it.' ] }
+  ];
+
+  const $ = s => document.querySelector(s);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const NS = 'http://www.w3.org/2000/svg';
+  const W = 640, H = 400, L = 78, R = 16, T = 26, B = 40;
+  const PH = H - T - B, PW = W - L - R;
+  const state = { step: 0, t: 0, ver: 'now', sel: null };
+
+  /* y position: blend of the linear and log mappings, t = 0 linear, 1 log */
+  const LIN_MAX = 1050000, LOG_MIN = 0, LOG_MAX = 6;
+  const linY = v => T + PH * (1 - v / LIN_MAX);
+  const logY = v => T + PH * (1 - (Math.log10(Math.max(v, 1)) - LOG_MIN) / (LOG_MAX - LOG_MIN));
+  const y = v => linY(v) * (1 - state.t) + logY(v) * state.t;
+  const money = v => '£' + (v >= 100 ? Math.round(v).toLocaleString('en-GB') : v % 1 ? v.toFixed(2) : v);
+
+  function el(tag, attrs, text) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function draw() {
+    const svg = $('#chart'), t = state.t, bug = state.ver === '2017' && t > 0.5;
+    [...svg.querySelectorAll(':scope > g')].forEach(g => g.remove());
+    const g = el('g', {});
+    /* gridlines: log ticks fade in, linear ticks fade out */
+    for (let p = 0; p <= 6; p++) {
+      const v = 10 ** p, yy = y(v);
+      const gg = el('g', { opacity: t });
+      gg.append(el('line', { class: 'grid', x1: L, x2: W - R, y1: yy, y2: yy }), el('text', { x: L - 8, y: yy + 4, 'text-anchor': 'end' }, money(v)));
+      g.append(gg);
+    }
+    for (let v = 0; v <= 1000000; v += 250000) {
+      const yy = y(Math.max(v, 1e-9)) , gg = el('g', { opacity: 1 - t });
+      gg.append(el('line', { class: 'grid', x1: L, x2: W - R, y1: linY(v), y2: linY(v) }), el('text', { x: L - 8, y: linY(v) + 4, 'text-anchor': 'end' }, money(v)));
+      g.append(gg);
+    }
+    g.append(el('line', { class: 'axis', x1: L, x2: L, y1: T, y2: H - B }), el('line', { class: 'axis', x1: L, x2: W - R, y1: H - B, y2: H - B }));
+
+    const step = PW / DATA.length;
+    DATA.forEach((d, i) => {
+      const cx = L + step * (i + .5), [mn, q1, md, q3, mx] = d.v;
+      const grp = el('g', { class: 'grp' + (state.sel === i ? ' on' : ''), tabindex: 0, role: 'button',
+        'aria-label': `${d.name}: ${money(mn)} to ${money(mx)}, median ${money(md)}` });
+      grp.append(el('rect', { class: 'hit', x: cx - step / 2 + 4, y: T, width: step - 8, height: PH, rx: 6 }));
+      /* the 2017 bug: the online maximum drawn to the top of the chart */
+      const yMax = bug && i === 2 ? y(1000000) : y(mx);
+      grp.append(el('line', { class: 'wh', x1: cx, x2: cx, y1: yMax, y2: y(mn) }));
+      grp.append(el('line', { class: 'wh', x1: cx - 5, x2: cx + 5, y1: yMax, y2: yMax }), el('line', { class: 'wh', x1: cx - 5, x2: cx + 5, y1: y(mn), y2: y(mn) }));
+      const top = y(q3), h = Math.max(2, y(q1) - top);
+      grp.append(el('rect', { class: 'box', x: cx - 9, y: top, width: 18, height: h, rx: 2 }));
+      grp.append(el('circle', { class: 'med', cx, cy: y(md), r: 2.5 }));
+      grp.append(el('text', { class: 'val', x: cx, y: yMax - 7, 'text-anchor': 'middle' }, mx >= 1000 ? money(mx) : mx.toString()));
+      grp.append(el('text', { class: 'cat', x: cx, y: H - B + 20, 'text-anchor': 'middle' }, d.name));
+      grp.addEventListener('pointerenter', () => select(i));
+      grp.addEventListener('focus', () => select(i));
+      grp.addEventListener('click', () => select(i));
+      g.append(grp);
+    });
+
+    /* 2017 annotations: the misplaced label, and £0 on a log axis */
+    if (state.ver === '2017') {
+      const bg = el('g', { class: 'bug', opacity: t });
+      const cx = L + step * 2.5;
+      bg.append(el('circle', { class: 'err', cx, cy: y(1000000) - 6, r: 22 }));
+      bg.append(el('text', { class: 'err-t', x: cx + 28, y: y(1000000) + 16 }, '250.59 on the £1M line'));
+      bg.append(el('text', { class: 'err-t', x: L - 8, y: H - B + 20, 'text-anchor': 'end' }, '£0 ?'));
+      bg.append(el('text', { class: 'err-t', x: L + 8, y: H - B - 8 }, 'log(0) doesn’t exist'));
+      g.append(bg);
+    }
+    svg.append(g);
+  }
+
+  function select(i) {
+    state.sel = i;
+    const d = DATA[i], [mn, q1, md, q3, mx] = d.v;
+    $('#read').innerHTML = `<b>${d.name}</b> · ${d.n.toLocaleString('en-GB')} products · ${money(mn)} to ${money(mx)} · middle half ${money(q1)}–${money(q3)} · median ${money(md)}`;
+    draw();
+  }
+
+  /* animate t between scales */
+  let raf;
+  function toScale(s) {
+    const target = s === 'log' ? 1 : 0;
+    setSeg('#scale', s);
+    cancelAnimationFrame(raf);
+    if (reduce.matches) { state.t = target; draw(); return; }
+    const from = state.t, start = performance.now(), dur = 900;
+    const ease = x => 1 - Math.pow(1 - x, 3);
+    const tick = now => {
+      const k = Math.min(1, (now - start) / dur);
+      state.t = from + (target - from) * ease(k); draw();
+      if (k < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+  }
+  function setVer(v) { state.ver = v; setSeg('#ver', v); draw(); }
+  function setSeg(sel, v) { document.querySelectorAll(sel + ' button').forEach(b => b.setAttribute('aria-checked', String(b.dataset.v === v))); }
+
+  function go(i, animate = true) {
+    state.step = i;
+    const s = STEPS[i], copy = $('#copy');
+    const apply = () => {
+      $('#title').textContent = s.title; $('#body').innerHTML = s.body.map(p => `<p>${p}</p>`).join(''); $('#action').textContent = s.action;
+      $('#action').className = 'btn ' + (i === STEPS.length - 1 ? 'btn-ghost' : 'btn-dark');
+      $('#verWrap').hidden = i < 3;
+      copy.classList.remove('out');
+    };
+    if (animate && !reduce.matches) { copy.classList.add('out'); setTimeout(apply, 180); } else apply();
+    setVer(s.ver); toScale(s.scale);
+    if (i === STEPS.length - 1 && state.sel == null) select(2);
+    if (i < STEPS.length - 1) { state.sel = null; $('#read').textContent = i === 0 ? 'Hover a range to read it.' : ''; }
+    $('#count').textContent = `0${i + 1} / 0${STEPS.length}`;
+    $('#prev').disabled = i === 0; $('#next').disabled = i === STEPS.length - 1;
+  }
+
+  $('#scale').addEventListener('click', e => { const b = e.target.closest('button'); if (b) toScale(b.dataset.v); });
+  $('#ver').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setVer(b.dataset.v); });
+  $('#action').addEventListener('click', () => go(state.step === STEPS.length - 1 ? 0 : state.step + 1));
+  $('#next').addEventListener('click', () => state.step < STEPS.length - 1 && go(state.step + 1));
+  $('#prev').addEventListener('click', () => state.step > 0 && go(state.step - 1));
+
+  go(0, false);
+
+  /* Embed: tell the playground how tall the demo is, follow its theme */
+  if (window.parent !== window) {
+    const post = () => parent.postMessage({ embedHeight: document.documentElement.scrollHeight }, '*');
+    new ResizeObserver(post).observe(document.body); post();
+    addEventListener('message', e => { if (e.data && e.data.theme) document.documentElement.setAttribute('data-theme', e.data.theme); });
+  }
+})();
+</script>
+</body>
+</html>
