@@ -167,18 +167,52 @@
 /* Footer back on every size; the viewer still fills the first screen. */
 body.playground{height:auto!important;overflow-x:hidden!important;overflow-y:auto!important}
 body.playground>.foot{display:block!important}
+
+/* Breathing room + tabs sized to their labels. */
+.pg-heading{margin-bottom:28px!important}
+.pg-tabs{gap:36px;margin-bottom:32px!important}
+.pg-tab,.pg-tab:first-child{padding:10px 0 12px!important}
+.pg-project{gap:28px!important}
+.pg-info{row-gap:8px!important}
+@media(max-width:760px){
+ .pg-heading{margin-bottom:20px!important}
+ .pg-tabs{gap:24px;margin-bottom:24px!important}
+ .pg-project{gap:24px!important}
+}
+@media(min-width:761px) and (max-height:820px){
+ .pg-heading{margin-bottom:20px!important}
+ .pg-tabs{margin-bottom:24px!important}
+ .pg-project{gap:20px!important}
+}
+
+/* Description stacks under the title, flush with the demo's left edge. */
+@media(min-width:761px){
+ .pg-info{grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"eye meta" "h2 meta" "p meta"!important;column-gap:48px!important}
+ .pg-info p{align-self:start!important;font-size:17px!important;line-height:1.5!important;max-width:68ch!important;margin-top:6px!important}
+ .pg-info h2{font-size:26px!important}
+ .pg-info .pg-meta{display:block!important;align-self:end!important}
+}
+@media(max-width:760px){.pg-info p{font-size:15px!important;line-height:1.5!important}}
+
+/* Info: stacked on the left edge, larger description. */
+@media(min-width:761px){
+ .pg-info{grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"eye meta" "h2 meta" "p meta"!important;column-gap:48px!important;row-gap:8px!important}
+ .pg-info p{align-self:start!important;font-size:18px!important;line-height:1.5!important;max-width:62ch!important;margin-top:4px!important}
+ .pg-info .pg-meta{display:block!important;align-self:end}
+}
+@media(max-width:760px){.pg-info p{font-size:16px!important;line-height:1.5!important}}
 </style></head><body class="playground" id="top">
 <header class="hdr"><div class="wrap"><div class="hdr-group"><a class="logo" href="index.html#top">Sophia Akrofi</a><button aria-label="Switch colour theme" class="icon-btn" id="theme" type="button"><svg aria-hidden="true" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" fill="none" r="6.5" stroke="currentColor"></circle><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"></path></svg></button></div><div class="hdr-group navwrap" id="navwrap"><nav aria-label="Main" class="nav"><a href="index.html#work">Work</a><a aria-current="page" href="playground.html">Playground</a><a href="index.html#testimonials">Testimonials</a><a href="index.html#beyond">Beyond work</a><a href="index.html#experience">Experience</a><a href="index.html#about">About</a><a class="nav-cta" href="work-with-me.html">Work with me</a></nav><button aria-expanded="false" aria-label="Open menu" class="icon-btn menu-btn" id="menu" type="button"><svg aria-hidden="true" height="16" viewbox="0 0 16 16" width="16"><path d="M2 5h12M2 11h12" stroke="currentColor" stroke-width="1.4"></path></svg></button><a class="btn btn-dark" href="work-with-me.html">Work with me</a></div></div></header>
-<main class="playground-main"><div class="pg-heading"><h1>Playground.</h1><p>A space for experiments, independent ideas and the things I make simply because I'm curious.</p></div>
+<main class="playground-main"><div class="pg-heading"><h1>Playground.</h1></div>
 <div aria-label="Playground projects" class="pg-tabs" role="tablist">
 <button aria-controls="pg-panel-1" aria-selected="true" class="pg-tab" data-target="1" id="pg-tab-1" role="tab">The 360° customer</button>
 <button aria-controls="pg-panel-2" aria-selected="false" class="pg-tab" data-target="2" id="pg-tab-2" role="tab">Pantry</button>
-<button aria-controls="pg-panel-3" aria-selected="false" class="pg-tab" data-target="3" id="pg-tab-3" role="tab">Making sense of scale</button>
+<button aria-controls="pg-panel-3" aria-selected="false" class="pg-tab" data-target="3" id="pg-tab-3" role="tab">Data visualisation</button>
 <button aria-controls="pg-panel-4" aria-selected="false" class="pg-tab" data-target="4" id="pg-tab-4" role="tab">TouchDesigner experiments</button>
 </div>
 <div aria-labelledby="pg-tab-1" class="pg-panel" id="pg-panel-1" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Research · Advanced analytics</div><h2>The 360° customer</h2><p>How pairing user research with advanced analytics reveals what neither shows alone.</p><div class="pg-meta">Framework and visual<br/>Research, analytics, segmentation</div></div></aside><div class="pg-stage"><iframe scrolling="no" data-src="customer-360-demo.html?embed" loading="lazy" title="The 360° customer interactive framework"></iframe></div></div></div>
 <div aria-labelledby="pg-tab-2" class="pg-panel" id="pg-panel-2" hidden="" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Digital twin · 2026</div><h2>Pantry</h2><p>A simulation and digital twin of your grocery cupboard that predicts when things run out, so you don’t have to keep track.</p><div class="pg-meta">Personal product<br/>Simulation, prediction, interaction design</div></div></aside><div class="pg-stage"><iframe scrolling="no" loading="lazy" data-src="pantry-demo.html?embed" title="Pantry interactive demo"></iframe></div></div></div>
-<div aria-labelledby="pg-tab-3" class="pg-panel" id="pg-panel-3" hidden="" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Data visualisation · 2017 → today</div><h2>Making sense of scale</h2><p>Designing for big data and machine learning, from logarithmic charts in 2017 to now.</p><div class="pg-meta">Past work, rebuilt<br/>Data visualisation, machine learning</div></div></aside><div class="pg-stage"><iframe scrolling="no" data-src="scale-demo.html?embed" loading="lazy" title="Making sense of scale interactive chart"></iframe></div></div></div>
+<div aria-labelledby="pg-tab-3" class="pg-panel" id="pg-panel-3" hidden="" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Big data · 2017 → today</div><h2>Data visualisation</h2><p>Designing for big data and machine learning, from logarithmic charts in 2017 to now.</p><div class="pg-meta">Past work, rebuilt<br/>Data visualisation, machine learning</div></div></aside><div class="pg-stage"><iframe scrolling="no" data-src="scale-demo.html?embed" loading="lazy" title="Making sense of scale interactive chart"></iframe></div></div></div>
 <div aria-labelledby="pg-tab-4" class="pg-panel" id="pg-panel-4" hidden="" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Creative technology · TouchDesigner</div><h2>TouchDesigner experiments</h2><p>Motion graphics and generative design I make in TouchDesigner. Some respond to my hands, some to sound. It’s where I play with how input becomes something you can see and feel, the same question behind every interface I design.</p><div class="pg-meta">Personal exploration<br/>Generative, audio-reactive, real-time</div></div></aside><div class="pg-stage"><div class="pg-gallery"><video autoplay="" loop="" muted="" playsinline="" preload="metadata" src="visual-assets/td-hand-tracking.mp4" aria-label="Hands: real-time hand tracking"></video><video autoplay="" loop="" muted="" playsinline="" preload="metadata" src="visual-assets/td-audio-particles.mp4" aria-label="Sound: audio-reactive particles"></video></div><span class="pg-count">01 / 02</span><button aria-label="Previous video" class="pg-arrow prev" type="button">←</button><button aria-label="Next video" class="pg-arrow next" type="button">→</button></div></div></div></main>
 <footer class="foot" id="contact">
 <div class="wrap">
@@ -212,27 +246,44 @@ select(0);
 
 // The embedded demos use desktop-sized canvases. Scale the entire canvas
 // to the stage's available width AND height, including on narrow phones.
-const FIT_W=1100,FIT_H=760,MAX_W=1680;
+const FIT_W=1100,FIT_H=760;
+// Measure the demo's own empty margin (left, right, top) so its first visible
+// box can sit flush with the page column, like the text above it.
+function insets(frame){
+ try{
+  const d=frame.contentDocument,win=frame.contentWindow;if(!d||!d.body)return null;
+  const W=win.innerWidth;let L=1e9,R=-1e9,T=1e9;
+  for(const el of d.body.querySelectorAll('*')){
+   const r=el.getBoundingClientRect();if(r.width<2||r.height<2||r.left<-1||r.right>W+1)continue;
+   const cs=win.getComputedStyle(el);if(cs.visibility==='hidden'||cs.opacity==='0')continue;
+   const bg=cs.backgroundColor,hasBg=bg&&bg!=='transparent'&&!/rgba\(\d+, \d+, \d+, 0\)/.test(bg);
+   const hasBorder=parseFloat(cs.borderLeftWidth)>0||parseFloat(cs.borderTopWidth)>0;
+   const media=/^(img|video|canvas|svg)$/i.test(el.tagName);
+   const text=[...el.childNodes].some(n=>n.nodeType===3&&n.textContent.trim());
+   if(!(hasBg||hasBorder||media||text))continue;
+   L=Math.min(L,r.left);R=Math.max(R,r.right);T=Math.min(T,r.top);
+  }
+  if(L>=1e9)return null;
+  return {l:Math.max(0,L),r:Math.max(0,W-R),t:Math.max(0,T)};
+ }catch(e){return null}
+}
 function fitFrames(){
  const mobile=matchMedia('(max-width:760px)').matches;
  document.querySelectorAll('.pg-stage iframe').forEach(frame=>{
    const stage=frame.closest('.pg-stage');if(!stage)return;
    const w=stage.clientWidth;if(!w)return;
    frame.classList.add('pg-fitted-frame');
-   if(mobile){
-     const scale=Math.min(w/FIT_W,1);
-     stage.style.height=Math.round(FIT_H*scale)+'px';
-     frame.style.width=FIT_W+'px';frame.style.height=FIT_H+'px';
-     frame.style.transform=`scale(${scale})`;return;
-   }
-   stage.style.height='';
-   const h=stage.clientHeight;if(!h)return;
-   const scale=Math.min(w/FIT_W,h/FIT_H,1);
-   const fw=Math.min(w/scale,MAX_W),fh=h/scale;
-   frame.style.width=fw+'px';frame.style.height=fh+'px';
-   frame.style.transform=`translate(${Math.max(0,(w-fw*scale)/2)}px,0) scale(${scale})`;
+   let scale,cw,ch;
+   if(mobile){scale=Math.min(w/FIT_W,1);cw=w/scale;ch=FIT_H;stage.style.height=Math.round(FIT_H*scale)+'px'}
+   else{stage.style.height='';const h=stage.clientHeight;if(!h)return;scale=Math.min(w/FIT_W,h/FIT_H,1);cw=w/scale;ch=h/scale}
+   frame.style.width=cw+'px';frame.style.height=ch+'px';
+   const m=insets(frame)||{l:0,r:0,t:0};
+   frame.style.width=(cw+m.l+m.r)+'px';frame.style.height=(ch+m.t)+'px';
+   frame.style.transform=`translate(${-m.l*scale}px,${-m.t*scale}px) scale(${scale})`;
  });
 }
+document.querySelectorAll('.pg-stage iframe').forEach(f=>f.addEventListener('load',()=>{fitFrames();setTimeout(fitFrames,300);setTimeout(fitFrames,1200)}));
+document.querySelectorAll('.pg-tab').forEach(t=>t.addEventListener('click',()=>setTimeout(fitFrames,50)));
 const fitObserver=new ResizeObserver(fitFrames);
 document.querySelectorAll('.pg-stage').forEach(stage=>fitObserver.observe(stage));
 window.addEventListener('resize',fitFrames);
