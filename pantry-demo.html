@@ -4,482 +4,501 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pantry | Sophia Akrofi</title>
-<meta name="description" content="A playable demo of Pantry: a simulation and digital twin of your grocery cupboard that predicts when things run out.">
+<meta name="description" content="Pantry: a digital twin of your kitchen. A receipt is the only moment it's measured; everything after is a guess, shown honestly as a range.">
 <link rel="stylesheet" href="site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@800&display=swap">
 <script>
-  /* Match the portfolio's saved theme before first paint. */
   try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
-  /* Embedded in playground.html: hide the page chrome, the drawer shows the title. */
-  if (/[?&]embed\b/.test(location.search)) document.documentElement.classList.add('pd-embed');
+  if (/[?&]embed\b/.test(location.search)) document.documentElement.classList.add('px-embed');
 </script>
 <style>
 /* ============================================================
-   Pantry demo. Layout + tokens come from site.css (.dr drawer,
-   .kind, .dr-meta, .dr-ctrl, .round, .btn). Everything below is
-   scoped to .pd so it can drop into playground.html as is.
+   Pantry. Same design system as the 360° customer demo.
+   BLUE = evidence (what Pantry knows). ORANGE = prediction.
    ============================================================ */
-.pd {
-  --p-bg: var(--bg, #fff);
-  --p-subtle: var(--bg-subtle, #f6f6f5);
-  --p-ink: var(--text, #0b0b12);
-  --p-ink-2: var(--text-subtle, #5d5d63);
-  --p-line: var(--stroke, #ececee);
+html *, html *::before, html *::after { letter-spacing: 0 !important; }
+.px {
+  --ink: var(--text, #0b0b12);
+  --ink-2: var(--text-subtle, #5d5d63);
+  --line: var(--stroke, #ececee);
+  --stage: #ffffff;
+  --card: #ffffff;
+  --card-shadow: 0 1px 0 rgba(0,0,0,.02), 0 18px 40px -24px rgba(0,0,0,.22);
+  --dotgrid: rgba(11, 11, 18, .07);
+  --l-an: #2438FF;          /* evidence */
+  --l-sim: #FF4F17;         /* prediction */
+  --ease: cubic-bezier(.65, 0, .35, 1);
+  --soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --stage-h: clamp(560px, calc(100vh - 200px), 760px);
+  --card-w: 258px;
+  --tl-h: 56px;
 
   /* the phone */
-  --ph-body: var(--p-bg);
-  --ph-card: var(--p-subtle);
-  --ph-ink: var(--p-ink);
-  --ph-ink-2: var(--p-ink-2);
-  --ph-chip: color-mix(in srgb, var(--p-ink) 6%, transparent);
-  --ph-glass: color-mix(in srgb, var(--p-ink) 5%, transparent);
-  --ph-lid: color-mix(in srgb, var(--p-ink) 14%, transparent);
-  --ph-shadow: 0 50px 100px -50px rgba(0, 0, 0, .25), 0 16px 36px -24px rgba(0, 0, 0, .14);
-  --ph-scrim: color-mix(in srgb, var(--p-ink) 14%, transparent);
-
-  --acrylic: rgba(0, 175, 255, 0.24);   /* same tint as the survey shelf */
-  --lvl-ok: rgba(0, 150, 235, 0.42);
-  --lvl-low: #F0A23A;
-  --lvl-out: #E5484D;
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  color: var(--p-ink);
+  --ph-body: #ffffff;
+  --ph-card: #f6f6f5;
+  --ph-ink: #0b0b12;
+  --ph-ink-2: #5d5d63;
+  --ph-chip: rgba(11,11,18,.06);
+  --ph-glass: rgba(11,11,18,.05);
+  --ph-lid: rgba(11,11,18,.14);
+  --ph-shadow: 0 70px 120px -40px rgba(16,22,80,.32), 0 30px 60px -30px rgba(0,0,0,.22), 0 0 0 1px rgba(11,11,18,.08);
+  --ph-scrim: rgba(11,11,18,.14);
+  --ev: color-mix(in srgb, var(--l-an) 72%, transparent);
+  --ev-soft: color-mix(in srgb, var(--l-an) 16%, transparent);
+  --pr: var(--l-sim);
+  --pr-soft: color-mix(in srgb, var(--l-sim) 16%, transparent);
+  color: var(--ink);
 }
-:root[data-theme="dark"] .pd { --ph-shadow: 0 40px 80px -40px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.12); --ph-scrim: rgba(0,0,0,.5); --ph-body: #1b1b1e; --ph-card: #26262a; --ph-ink: #f4f4f5; --ph-ink-2: #a1a1a8; --ph-chip: rgba(255,255,255,.08); --ph-glass: rgba(255,255,255,.07); --ph-lid: rgba(255,255,255,.22); --p-line: rgba(255,255,255,.12); }
-:root[data-theme="dark"] .pd-stage { background: rgba(255,255,255,.035); }
-:root[data-theme="dark"] .pd-code { background: rgba(255,255,255,.04); }
-:root[data-theme="dark"] .pd-code .k { color: #5cc4ff; }
+:root[data-theme="dark"] .px { --stage: #0c0c0e; --card: #18181b; --card-shadow: 0 0 0 1px rgba(255,255,255,.05), 0 18px 40px -24px rgba(0,0,0,.8); --dotgrid: rgba(255,255,255,.07); --l-an: #5C6BFF; --l-sim: #FF6A3D;
+  --ph-body: #232327; --ph-card: #2e2e33; --glow: 22%; --tcard-bg: color-mix(in srgb, #18181b 58%, transparent); --ph-ink: #f4f4f5; --ph-ink-2: #a1a1a8; --ph-chip: rgba(255,255,255,.08); --ph-glass: rgba(255,255,255,.07); --ph-lid: rgba(255,255,255,.22); --ph-shadow: 0 60px 120px -30px rgba(0,0,0,.95), 0 0 80px -20px color-mix(in srgb, #5C6BFF 35%, transparent), 0 0 0 1px rgba(255,255,255,.18); --ph-scrim: rgba(0,0,0,.5); }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .pd { --ph-shadow: 0 40px 80px -40px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.12); --ph-scrim: rgba(0,0,0,.5); --ph-body: #1b1b1e; --ph-card: #26262a; --ph-ink: #f4f4f5; --ph-ink-2: #a1a1a8; --ph-chip: rgba(255,255,255,.08); --ph-glass: rgba(255,255,255,.07); --ph-lid: rgba(255,255,255,.22); --p-line: rgba(255,255,255,.12); }
-  :root:not([data-theme="light"]) .pd-stage { background: rgba(255,255,255,.035); }
-  :root:not([data-theme="light"]) .pd-code { background: rgba(255,255,255,.04); }
-  :root:not([data-theme="light"]) .pd-code .k { color: #5cc4ff; }
+  :root:not([data-theme="light"]) .px { --stage: #0c0c0e; --card: #18181b; --card-shadow: 0 0 0 1px rgba(255,255,255,.05), 0 18px 40px -24px rgba(0,0,0,.8); --dotgrid: rgba(255,255,255,.07); --l-an: #5C6BFF; --l-sim: #FF6A3D;
+    --ph-body: #232327; --ph-card: #2e2e33; --glow: 22%; --tcard-bg: color-mix(in srgb, #18181b 58%, transparent); --ph-ink: #f4f4f5; --ph-ink-2: #a1a1a8; --ph-chip: rgba(255,255,255,.08); --ph-glass: rgba(255,255,255,.07); --ph-lid: rgba(255,255,255,.22); --ph-shadow: 0 60px 120px -30px rgba(0,0,0,.95), 0 0 80px -20px color-mix(in srgb, #5C6BFF 35%, transparent), 0 0 0 1px rgba(255,255,255,.18); --ph-scrim: rgba(0,0,0,.5); }
 }
-.pd, .pd * { letter-spacing: 0; }
-.pd *, .pd *::before, .pd *::after { box-sizing: border-box; }
-:where(.pd button) { font: inherit; color: inherit; }
-.pd-page { padding-block: 48px 96px; }
-.pd-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.pd-close { display: grid; place-items: center; flex: none; text-decoration: none; }
+.px *, .px *::before, .px *::after { box-sizing: border-box; }
+:where(.px button) { font: inherit; color: inherit; }
+.px-page { padding-block: 24px 24px; }
+.px.dr { gap: 20px; }
+.px .dr-top h3 { font-size: 24px; }
+.px-tools { display: flex; gap: 8px; flex: none; }
+.px-tools .round { display: grid; place-items: center; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.doto { font-family: "Doto", ui-monospace, monospace; font-weight: 800; text-transform: uppercase; }
 
 /* ============================================================
-   Demo: phone left, chapter text right
+   Layout: narrow story card, big stage
    ============================================================ */
-.pd-head { padding-top: 40px; max-width: 760px; transition: opacity .3s ease; }
-.pd-head.out { opacity: 0; }
-.pd-head h2 { margin: 0; font-size: var(--h2, 32px); line-height: 1.15; }
-.pd-head p { margin: 12px 0 0; font-size: 18px; line-height: 1.55; color: var(--p-ink-2); max-width: 62ch; }
-.pd-demo {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 48px;
-  align-items: start;
-  padding: 32px 0 24px;
+.px-demo { display: grid; grid-template-columns: 252px minmax(0, 1fr); gap: 14px; height: var(--stage-h); }
+
+.px-side { display: flex; flex-direction: column; gap: 14px; padding: 22px; border-radius: 18px; background: var(--card); box-shadow: var(--card-shadow); font-size: 14px; line-height: 1.5; overflow: auto; scrollbar-width: none; }
+.px-side::-webkit-scrollbar { display: none; }
+.px-side h2 { margin: 0 0 4px; font-size: 24px; line-height: 1.15; font-weight: 400; }
+.px-side p { color: var(--ink-2); }
+.px-side p.lead { color: var(--ink); }
+.px-side .btn { align-self: flex-start; height: 40px; font-size: 14px; padding: 0 18px; flex: none; }
+.px-side .btn:disabled { opacity: .5; cursor: progress; }
+.wip { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; border-radius: 99px; border: 1px solid var(--line); font-size: 11px; color: var(--ink-2); }
+.wip i { width: 6px; height: 6px; border-radius: 50%; background: var(--l-sim); }
+.thinking { font-size: 13px; color: var(--ink-2); }
+.thinking summary { cursor: pointer; list-style: none; width: max-content; border-radius: 4px; }
+.thinking summary::-webkit-details-marker { display: none; }
+.thinking summary::before { content: '+'; display: inline-block; width: 14px; transition: transform .25s ease; }
+.thinking[open] summary::before { transform: rotate(45deg); }
+.thinking summary:hover { color: var(--ink); }
+.thinking dl { margin: 10px 0 0; display: grid; gap: 10px; }
+.thinking dt { font-size: 11px; color: var(--ink); }
+.thinking dd { margin: 2px 0 0; font-size: 13px; line-height: 1.45; }
+.px-key { margin-top: auto !important; padding-top: 14px; border-top: 1px solid var(--line); display: flex; gap: 16px; font-size: 13px; color: var(--ink) !important; flex: none; }
+.px-key span { display: inline-flex; align-items: center; gap: 7px; }
+.px-key i { width: 8px; height: 8px; border-radius: 50%; }
+.px-note { font-size: 12px; color: var(--ink-2); flex: none; }
+
+.px-stage { position: relative; border-radius: 18px; overflow: hidden; background: var(--stage); box-shadow: var(--card-shadow); }
+.st-canvas {
+  position: absolute; inset: 0; overflow: hidden;
+  background-image: radial-gradient(ellipse 34% 50% at 50% 48%, color-mix(in srgb, var(--l-an) var(--glow, 11%), transparent), transparent 70%), radial-gradient(var(--dotgrid) 1px, transparent 1.2px);
+  background-size: 100% 100%, 18px 18px; background-position: 0 0, 9px 9px;
 }
-.pd-stage { display: grid; place-items: center; padding: 48px 16px; border-radius: 28px; background: var(--p-subtle); }
 
-.pd-copy { max-width: 470px; min-width: 0; }
-.pd-copy-inner { transition: opacity .3s ease, transform .45s var(--ease); }
-.pd-copy-inner.out { opacity: 0; transform: translateY(8px); }
-.pd-count { font-size: 14px; color: var(--p-ink-2); font-variant-numeric: tabular-nums; }
-.pd-copy h2 { margin-top: 0; font-size: var(--h2, 32px); line-height: 1.15; }
-.pd-copy p { margin-top: 16px; font-size: 18px; line-height: 1.55; color: var(--p-ink-2); max-width: 40ch; }
-.pd-act { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
-.pd .btn svg { width: 16px; height: 16px; }
+/* ---------- HUD ---------- */
+.hud { position: absolute; left: 50%; top: 16px; transform: translateX(-50%); z-index: 5; font-size: 13px; line-height: 1.25; width: max-content; max-width: calc(100% - 2 * var(--card-w) - 56px); text-align: center; pointer-events: none; color: var(--hud, var(--ink)); transition: color .5s ease, font-size .4s ease; }
+.hud.big { font-size: 22px; top: 14px; }
 
-.pd-slider { margin-top: 32px; }
-.pd-slider label { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 14px; color: var(--p-ink-2); }
-.pd-slider output { color: var(--p-ink); font-size: 16px; font-variant-numeric: tabular-nums; }
-.pd-slider input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 36px; margin: 8px 0 0; background: transparent; cursor: pointer; }
-.pd-slider input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 99px; background: var(--p-line); }
-.pd-slider input[type="range"]::-moz-range-track { height: 6px; border-radius: 99px; background: var(--p-line); }
-.pd-slider input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; margin-top: -9px; border-radius: 50%; background: var(--p-ink); border: 0; }
-.pd-slider input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: var(--p-ink); border: 0; }
-.pd-slider input[type="range"]:focus-visible { outline: none; }
-.pd-slider input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--p-subtle), 0 0 0 5px var(--p-ink); }
-.pd-slider .ends { display: flex; justify-content: space-between; font-size: 13px; color: var(--p-ink-2); }
-.pd-controls { margin-top: 28px; display: grid; gap: 22px; }
-.pd-controls[hidden] { display: none; }
-.pd-controls .pd-slider { margin-top: 0; }
-.pd-flabel { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 14px; color: var(--p-ink-2); margin-bottom: 8px; }
-.pd-flabel b { font-weight: 400; color: var(--p-ink); font-size: 16px; font-variant-numeric: tabular-nums; }
-.pd-seg { display: flex; flex-wrap: wrap; gap: 6px 22px; }
-.pd-seg button { display: inline-flex; align-items: center; gap: 8px; padding: 4px 0; border: 0; background: none; cursor: pointer; font-size: 15px; color: var(--p-ink-2); transition: color .2s ease; }
-.pd-seg button::before { content: ""; flex: none; width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid currentColor; box-sizing: border-box; transition: background-color .2s ease, box-shadow .2s ease; }
-.pd-seg button[aria-checked="true"] { color: var(--p-ink); }
-.pd-seg button[aria-checked="true"]::before { background: var(--p-ink); border-color: var(--p-ink); box-shadow: inset 0 0 0 2.5px var(--p-bg); }
-.pd-seg button:hover { color: var(--p-ink); }
-.pd-seg button:focus-visible { outline: 2px solid var(--p-ink); outline-offset: 3px; border-radius: 4px; }
-.pd-controls .pd-flabel { margin-bottom: 4px; }
-.pd-num { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.pd-num > span { font-size: 16px; }
-.pd-num small { display: block; font-size: 13px; color: var(--p-ink-2); }
-.pd-step { display: inline-flex; align-items: center; gap: 4px; }
-.pd-step button { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--p-line); background: none; cursor: pointer; font-size: 16px; line-height: 1; color: var(--p-ink); }
-.pd-step button:hover { border-color: var(--p-ink-2); }
-.pd-step button:disabled { opacity: .3; cursor: default; }
-.pd-step output { min-width: 28px; text-align: center; font-size: 16px; font-variant-numeric: tabular-nums; }
-.pd-note, .pd-copy .pd-note { font-size: 13px; line-height: 1.5; color: var(--p-ink-2); margin: 0; max-width: none; }
-.pd-group { display: grid; gap: 14px; }
-.pd-ghead { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; color: var(--p-ink-2); }
-.pd-ghead button { border: 0; background: none; padding: 0; cursor: pointer; font-size: 13px; color: var(--p-ink); text-decoration: underline; text-underline-offset: 3px; }
-.pd-num.locked > span:first-child { color: var(--p-ink-2); }
-.pd-num.locked .pd-step button { visibility: hidden; }
-.pd-code { margin: 0; padding: 16px 18px; border-radius: 12px; background: var(--p-subtle); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; max-width: 100%; color: var(--p-ink); }
-.pd-code .c { color: var(--p-ink-2); }
-.pd-code .k { color: #0a84d6; }
-.pd-codehead { display: flex; justify-content: space-between; font-size: 13px; color: var(--p-ink-2); margin-bottom: 8px; }
-.pd-acc { border-top: 1px solid var(--p-line); }
-.pd-acc:last-of-type { border-bottom: 1px solid var(--p-line); }
-.pd-acc summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; cursor: pointer; font-size: 16px; }
-.pd-acc summary::-webkit-details-marker { display: none; }
-.pd-acc summary small { display: block; font-size: 13px; color: var(--p-ink-2); margin-top: 2px; }
-.pd-acc summary i { position: relative; flex: none; width: 14px; height: 14px; }
-.pd-acc summary i::before, .pd-acc summary i::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; margin-top: -.75px; background: var(--p-ink); transition: transform .25s var(--ease); }
-.pd-acc summary i::after { transform: rotate(90deg); }
-.pd-acc[open] summary i::after { transform: rotate(0deg); }
-.pd-acc summary:focus-visible { outline: 2px solid var(--p-ink); outline-offset: 2px; border-radius: 4px; }
-.pd-acc-body { display: grid; gap: 14px; padding: 0 0 20px; }
-#setupWrap { gap: 0; }
-.pd-model { margin-top: 4px; border: 1px solid var(--p-line); border-radius: 14px; overflow: hidden; }
-.pd-model .pd-codehead { margin: 0; padding: 10px 16px; border-bottom: 1px solid var(--p-line); font-size: 12px; }
-.pd-model .pd-code { border-radius: 0; }
-.habit-val { font-size: 12px; color: var(--ph-ink-2); white-space: nowrap; }
-.pd-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 18px; border-top: 1px solid var(--p-line); }
-.pd-stats span { display: block; font-size: 13px; color: var(--p-ink-2); }
-.pd-stats b { display: block; margin-top: 4px; font-size: 22px; font-weight: 400; font-variant-numeric: tabular-nums; }
+/* ---------- Phone, pinned in the exact centre ---------- */
+.phone-wrap { position: absolute; left: 50%; top: 50%; width: 320px; height: 680px; transform: translate(-50%, -50%) scale(var(--s, .75)); transform-origin: 50% 50%; z-index: 2; }
 
-.pd .round:disabled { opacity: .35; cursor: default; }
-.pd .round:disabled:hover { background: var(--bg); }
+/* ---------- Timeline across the bottom ---------- */
+.timeline { position: absolute; left: 14px; right: 14px; bottom: 6px; height: var(--tl-h); z-index: 4; }
+.timeline svg { display: block; width: 100%; height: 100%; overflow: visible; touch-action: none; cursor: ew-resize; }
+.tl-axis { stroke: var(--line); stroke-width: 1.5; }
+.tl-future { stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 2 4; }
+.tl-band { fill: var(--l-sim); opacity: .32; }
+.tl-r circle { fill: var(--l-an); cursor: pointer; transition: r .2s ease; }
+.tl-r:hover circle, .tl-r.sel circle { r: 7; }
+.tl-r:focus { outline: none; }
+.tl-r:focus-visible circle { stroke: var(--ink); stroke-width: 2; }
+.tl-r text, .tl-lbl { font-family: "Doto", ui-monospace, monospace; font-weight: 800; font-size: 11px; text-transform: uppercase; }
+.tl-r text { fill: var(--l-an); }
+.tl-next circle { fill: var(--stage); stroke: var(--ink-2); stroke-width: 1.5; }
+.tl-next text { fill: var(--ink-2); }
+.tl-now line { stroke: var(--now, var(--ink)); stroke-width: 1.5; }
+.tl-now text { fill: var(--now, var(--ink)); }
 
 /* ============================================================
-   Phone: borderless, off-white, soft shadow
+   Floating tool cards
    ============================================================ */
-.phone {
-  position: relative;
-  width: 320px; height: 680px;
-  border-radius: 46px;
-  background: var(--ph-body);
-  color: var(--ph-ink);
-  box-shadow: var(--ph-shadow);
-  overflow: hidden;
-  display: flex; flex-direction: column;
-  font-size: 13px; line-height: 1.35;
-  transition: background-color .3s ease;
-}
+.tcard { position: absolute; z-index: 6; top: 14px; width: var(--card-w); max-height: calc(100% - 28px - var(--tl-h)); overflow: auto; scrollbar-width: thin; background: var(--tcard-bg, color-mix(in srgb, #f3f3f2 82%, transparent)); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-radius: 14px; box-shadow: none; padding: 16px; font-size: 13px; line-height: 1.45; }
+.tcard { outline: 1px solid color-mix(in srgb, var(--ink) 7%, transparent); outline-offset: -1px; }
+.c-left { left: 14px; }
+.c-right { right: 14px; }
+.tcard h3 { margin: 0 0 10px; font-size: 12px; font-weight: 400; color: var(--ink-2); display: flex; align-items: center; gap: 7px; }
+.tcard h3 .for { margin-left: auto; color: var(--ink); }
+.tcard h3 i { width: 7px; height: 7px; border-radius: 2px; }
+.grp + .grp { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.flabel { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: 13px; color: var(--ink-2); }
+.flabel output { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+.rng { -webkit-appearance: none; appearance: none; width: 100%; height: 26px; margin: 2px 0 0; background: transparent; cursor: pointer; }
+.rng::-webkit-slider-runnable-track { height: 4px; border-radius: 99px; background: linear-gradient(90deg, var(--fillc, var(--ink)) var(--z, 0%), var(--line) var(--z, 0%)); }
+.rng::-moz-range-track { height: 4px; border-radius: 99px; background: var(--line); }
+.rng::-moz-range-progress { height: 4px; border-radius: 99px; background: var(--fillc, var(--ink)); }
+.rng::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; margin-top: -6px; border-radius: 50%; background: var(--ink); border: 0; }
+.rng::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: var(--ink); border: 0; }
+#day { --fillc: var(--l-sim); }
+
+.radios { display: flex; flex-wrap: wrap; gap: 2px 14px; margin-top: 4px; }
+.radios button { display: inline-flex; align-items: center; gap: 8px; padding: 4px 0; border: 0; background: none; cursor: pointer; font-size: 13px; color: var(--ink-2); transition: color .2s ease; }
+.radios button::before { content: ""; flex: none; width: 11px; height: 11px; border-radius: 50%; border: 1.25px solid currentColor; }
+.radios button[aria-checked="true"] { color: var(--ink); }
+.radios button[aria-checked="true"]::before { background: var(--ink); border-color: var(--ink); box-shadow: inset 0 0 0 2px var(--card); }
+.radios button:hover { color: var(--ink); }
+
+.verdicts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.verdicts div { padding: 8px 8px 7px; border-radius: 10px; background: color-mix(in srgb, var(--ink) 4%, transparent); }
+.verdicts b { display: block; font-size: 24px; line-height: 1; font-weight: 800; }
+.verdicts span { display: block; margin-top: 4px; font-size: 11px; color: var(--ink-2); line-height: 1.2; }
+.verdicts .buy b { color: var(--l-sim); }
+.vnote { margin-top: 8px !important; font-size: 11px; color: var(--ink-2); }
+
+.more { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
+.more summary { cursor: pointer; list-style: none; font-size: 13px; color: var(--ink); width: max-content; border-radius: 4px; }
+.more summary::-webkit-details-marker { display: none; }
+.more summary::before { content: '+'; display: inline-block; width: 14px; color: var(--ink-2); transition: transform .25s ease; }
+.more[open] summary::before { transform: rotate(45deg); }
+.more.ev summary { color: var(--l-an); }
+.more-body { margin-top: 10px; display: grid; gap: 8px; }
+.steppers { display: grid; gap: 8px; }
+.stp { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.stp > span small { display: block; font-size: 11px; color: var(--ink-2); }
+.stp .ctl { display: inline-flex; align-items: center; gap: 2px; }
+.stp .ctl button { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--line); background: none; cursor: pointer; font-size: 14px; line-height: 1; color: var(--ink); }
+.stp .ctl button:disabled { opacity: .3; cursor: default; }
+.stp .ctl output { min-width: 22px; text-align: center; font-variant-numeric: tabular-nums; }
+
+/* prediction (orange) */
+.pred-hero { display: flex; align-items: baseline; gap: 10px; }
+.pred-hero b { font-size: 34px; line-height: 1; font-weight: 800; color: var(--l-sim); }
+.pred-hero span { font-size: 13px; color: var(--ink-2); line-height: 1.3; }
+.pred-rows { margin: 12px 0 0; display: grid; gap: 7px; }
+.pred-rows div { display: flex; justify-content: space-between; gap: 10px; }
+.pred-rows dt { color: var(--ink-2); }
+.pred-rows dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.pred-rows .range { color: var(--l-sim); }
+.verdict { display: inline-block; padding: 1px 8px; border-radius: 99px; font-size: 12px; background: var(--pr-soft); color: var(--l-sim); }
+.verdict.skip { background: color-mix(in srgb, var(--ink) 6%, transparent); color: var(--ink-2); }
+.pred-why { margin-top: 10px !important; font-size: 13px; color: var(--ink-2); }
+.hint { margin-top: 10px !important; font-size: 11px; color: var(--ink-2); }
+
+/* evidence (blue) */
+.rc-list { display: grid; gap: 4px; }
+.rc-mini { display: grid; grid-template-columns: 74px minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 5px 8px; border-radius: 8px; border: 0; background: color-mix(in srgb, var(--ink) 4%, transparent); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11px; color: var(--ink-2); text-align: left; cursor: pointer; width: 100%; }
+.rc-mini b { font-weight: 400; color: var(--ink); }
+.rc-mini .hit { padding: 1px 4px; border-radius: 3px; background: var(--ev-soft); color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; justify-self: start; max-width: 100%; }
+.rc-mini .miss { opacity: .6; }
+.rc-mini.sel { box-shadow: inset 0 0 0 1.5px var(--l-an); }
+.rc-full { padding: 10px; border-radius: 10px; background: color-mix(in srgb, var(--l-an) 6%, transparent); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11px; line-height: 1.6; }
+.rc-full:empty { display: none; }
+.rc-full .row { display: flex; justify-content: space-between; gap: 8px; padding: 0 3px; border-radius: 3px; }
+.rc-full .row.on { background: var(--ev-soft); color: var(--ink); }
+.rc-full .hd { color: var(--l-an); margin-bottom: 4px; }
+.ev-sum { font-size: 13px; line-height: 1.45; }
+.rc-empty { font-size: 13px; color: var(--ink-2); }
+.code { margin: 0; padding: 10px; border-radius: 8px; background: color-mix(in srgb, var(--ink) 4%, transparent); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--ink); }
+.code .c { color: var(--ink-2); }
+.code .k { color: var(--l-an); }
+.backtest { font-size: 13px; color: var(--ink-2); }
+.backtest b { font-weight: 500; color: var(--ink); }
+.tcard :focus-visible, .px-side :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* ============================================================
+   The phone (Pantry's own UI)
+   ============================================================ */
+.phone { position: relative; width: 320px; height: 680px; border-radius: 46px; background: var(--ph-body); color: var(--ph-ink); box-shadow: var(--ph-shadow); overflow: hidden; display: flex; flex-direction: column; font-size: 13px; line-height: 1.35; transition: background-color .3s ease; }
 .status { flex: none; height: 54px; display: flex; align-items: center; justify-content: space-between; padding: 6px 26px 0 34px; }
 .status .time { font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .island { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 96px; height: 28px; border-radius: 99px; background: #000; z-index: 30; }
 .status .icons { display: flex; align-items: center; gap: 5px; }
 .status svg { display: block; }
-
 .appbar { flex: none; display: flex; align-items: center; justify-content: space-between; padding: 6px 16px 10px; }
 .datepill { font-size: 11px; color: var(--ph-ink-2); background: var(--ph-chip); border-radius: 99px; padding: 4px 9px; font-variant-numeric: tabular-nums; }
-
-.views { position: relative; flex: 1; min-height: 0; }
-.view {
-  position: absolute; inset: 0;
-  overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none;
-  padding: 0 14px 24px;
-  transition: opacity .3s ease, transform .4s var(--ease), visibility .4s;
-}
+.views { position: relative; flex: 1; min-height: 0; padding-bottom: 64px; }
+.view { position: absolute; inset: 0; bottom: 64px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; padding: 0 14px 24px; transition: opacity .3s ease, transform .4s var(--soft), visibility .4s; }
 .view::-webkit-scrollbar { display: none; }
 .view[aria-hidden="true"] { opacity: 0; transform: translateY(10px); visibility: hidden; pointer-events: none; }
-
-.hero {
-  background: var(--ph-card); border-radius: 18px;
-  padding: 16px 16px 15px; margin-bottom: 18px;
-}
-.hero h3 { margin: 0; font-size: 22px; font-weight: 500; line-height: 1.15; }
+.hero { background: var(--ph-card); border-radius: 18px; padding: 14px 16px 13px; margin-bottom: 14px; }
+.hero h4 { margin: 0; font-size: 22px; font-weight: 500; line-height: 1.15; }
 .hero p { margin-top: 6px; font-size: 12px; color: var(--ph-ink-2); }
 .sect { display: flex; justify-content: space-between; align-items: center; margin: 0 2px 10px; font-size: 12px; color: var(--ph-ink-2); }
 
-/* ---------- Receipt ---------- */
-.receipt {
-  position: relative; overflow: hidden;
-  background: var(--ph-card); border-radius: 14px;
-  padding: 16px 16px 18px;
-  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 10.5px; line-height: 1.65;
-  transition: transform .5s var(--ease), opacity .4s ease;
-}
+.receipt { position: relative; overflow: hidden; background: var(--ph-card); border-radius: 14px; padding: 16px 16px 18px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 10.5px; line-height: 1.65; transition: transform .5s var(--soft), opacity .4s ease; }
 .rc-head { text-align: center; margin-bottom: 8px; color: var(--ph-ink-2); }
 .rc-head strong { display: block; color: var(--ph-ink); font-size: 12px; font-weight: 600; }
 .rc-rule { border-top: 1px dashed var(--ph-lid); margin: 8px 0; }
 .rc-row { display: flex; justify-content: space-between; gap: 8px; border-radius: 3px; padding: 0 3px; margin: 0 -3px; transition: background-color .2s ease; }
-.rc-row.read { background: var(--acrylic); }
+.rc-row.read { background: var(--ev-soft); }
 .rc-total { font-weight: 600; }
 .rc-foot { text-align: center; margin-top: 8px; color: var(--ph-ink-2); }
-.scanbar { position: absolute; left: 0; right: 0; top: 0; height: 24px; background: var(--acrylic); opacity: 0; pointer-events: none; }
-.scanning .scanbar { opacity: 1; animation: scan 1.5s var(--ease) forwards; }
+.scanbar { position: absolute; left: 0; right: 0; top: 0; height: 24px; background: color-mix(in srgb, var(--l-an) 24%, transparent); opacity: 0; pointer-events: none; }
+.scanning .scanbar { opacity: 1; animation: scan 1.5s var(--soft) forwards; }
 @keyframes scan { from { transform: translateY(-24px); } to { transform: translateY(420px); } }
 .scanned .receipt { transform: scale(.94) translateY(-8px); opacity: 0; }
 
-/* ---------- Shelves + jars (max three to a shelf) ---------- */
-.shelf-row { position: relative; margin-bottom: 20px; --vessel: 88px; }
-.shelf-items { display: grid; grid-template-columns: repeat(3, 1fr); align-items: start; padding: 0 6px; }
-.shelf-items.two { grid-template-columns: repeat(2, 1fr); padding: 0 34px; }
-.vessel { height: var(--vessel); display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
-.shelf {
-  position: absolute; z-index: 2; left: 0; right: 0; top: calc(var(--vessel) - 5px); height: 11px;
-  border-radius: 4px; background: var(--acrylic);
-  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
-}
-.shelf::before, .shelf::after { content: ""; position: absolute; top: 50%; width: 5px; height: 5px; margin-top: -2.5px; border-radius: 50%; background: #C9CDD2; }
-.shelf::before { left: 6px; } .shelf::after { right: 6px; }
-
-.item { border: 0; background: none; padding: 0; display: flex; flex-direction: column; align-items: center; cursor: pointer; min-width: 0; color: var(--ph-ink); transition: transform .35s var(--ease), opacity .35s ease; }
-.item:active { transform: scale(.96); }
-.item:focus-visible { outline: 2px solid var(--ph-ink); outline-offset: 4px; border-radius: 10px; }
-.lid { width: 62%; height: 6px; border-radius: 3px 3px 1px 1px; background: var(--ph-lid); margin-bottom: 2px; }
-.jar { position: relative; display: block; border-radius: 10px 10px 12px 12px; background: var(--ph-glass); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); overflow: hidden; }
-.jar.tall { width: 42px; height: 78px; }
-.jar.mid  { width: 54px; height: 62px; }
-.jar.wide { width: 68px; height: 48px; }
-.fill { position: absolute; left: 0; right: 0; bottom: 0; height: 100%; background: var(--lvl-ok); transition: height .25s linear, background-color .4s ease; }
-.item[data-level="low"] .fill { background: var(--lvl-low); }
-.item[data-level="out"] .fill { background: var(--lvl-out); }
-.item .name { margin-top: 15px; font-size: 12px; white-space: nowrap; }
-.item .left { font-size: 11px; color: var(--ph-ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; min-height: 14px; }
-.item[data-level="low"] .left { color: #B26E10; }
-.item[data-level="out"] .left { color: var(--lvl-out); }
-.item[aria-expanded="true"] .jar { box-shadow: 0 0 0 2px var(--ph-ink); }
+.meters { display: grid; gap: 2px; }
+.item { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 5px 8px; padding: 7px 8px; margin: 0 -8px; width: calc(100% + 16px); border: 0; border-radius: 10px; background: none; cursor: pointer; text-align: left; color: var(--ph-ink); transition: background-color .2s ease, transform .35s var(--soft), opacity .35s ease; }
+.item:hover { background: var(--ph-chip); }
+.item:focus-visible { outline: 2px solid var(--ph-ink); outline-offset: -2px; }
+.item .name { font-size: 13px; white-space: nowrap; }
+.item .left { font-size: 11px; color: var(--ph-ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.item[data-level="low"] .left, .item[data-level="out"] .left { color: var(--l-sim); }
+.item[aria-expanded="true"], .item.focus { background: var(--ph-chip); }
+.dots { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(28, 1fr); gap: 3px; }
+.dots i { display: block; aspect-ratio: 1; border-radius: 50%; background: var(--ph-glass); transition: background-color .45s var(--soft); }
+.dots i.e { background: var(--l-an); }
+.dots i.p { background: var(--l-sim); opacity: .75; }
 .stocking .item { opacity: 0; transform: translateY(10px); }
 .stocked .item { transition-delay: calc(var(--i) * 40ms); }
 
-/* ---------- List ---------- */
 .list { list-style: none; margin: 0; padding: 0; }
-.list li { display: grid; grid-template-rows: 1fr; margin-bottom: 8px; transition: grid-template-rows .35s var(--ease), opacity .25s ease, margin .35s var(--ease); }
+.list li { display: grid; grid-template-rows: 1fr; margin-bottom: 8px; transition: grid-template-rows .35s var(--soft), opacity .25s ease, margin .35s var(--soft); }
 .list li.gone { grid-template-rows: 0fr; opacity: 0; margin-bottom: 0; }
 .li-row { overflow: hidden; min-height: 0; display: flex; align-items: center; gap: 10px; background: var(--ph-card); border-radius: 14px; padding: 11px 10px 11px 14px; }
 .li-row > div { flex: 1; min-width: 0; }
-.li-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--lvl-out); }
-.li-dot.added { background: var(--ph-ink); }
+.li-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--l-sim); }
+.li-dot.check { opacity: .45; }
+.li-dot.added { background: var(--ph-ink); opacity: 1; }
 .li-nm { font-size: 13px; }
 .li-why { font-size: 11px; color: var(--ph-ink-2); }
 .li-row button { flex: none; height: 28px; padding: 0 10px; border: 0; border-radius: 99px; background: var(--ph-chip); color: var(--ph-ink); font-size: 11px; cursor: pointer; }
+.habit-val { font-size: 12px; color: var(--ph-ink-2); white-space: nowrap; }
 .empty { text-align: center; padding: 60px 10px; color: var(--ph-ink-2); }
 .empty[hidden] { display: none; }
 
-/* ---------- Overlays ---------- */
-.scrim {
-  position: absolute; inset: 0; z-index: 8;
-  background: var(--ph-scrim);
-  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-  opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s;
-}
+.scrim { position: absolute; inset: 0; z-index: 8; background: var(--ph-scrim); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s; }
 .scrim.on { opacity: 1; visibility: visible; }
-.sheet {
-  position: absolute; z-index: 10; left: 10px; right: 10px; bottom: 10px;
-  background: var(--ph-body); border-radius: 30px; box-shadow: 0 -10px 40px -20px rgba(0,0,0,.25);
-  padding: 12px 18px 18px;
-  transition: transform .4s var(--ease), opacity .25s ease, visibility .4s;
-}
+.sheet { position: absolute; z-index: 10; left: 10px; right: 10px; bottom: 10px; background: var(--ph-body); border-radius: 30px; box-shadow: 0 -10px 40px -20px rgba(0,0,0,.25); padding: 12px 18px 18px; transition: transform .4s var(--soft), opacity .25s ease, visibility .4s; }
 .sheet[aria-hidden="true"] { transform: translateY(30px); opacity: 0; visibility: hidden; }
 .grab { width: 34px; height: 4px; border-radius: 2px; background: var(--ph-lid); margin: 0 auto 12px; }
 .sheet h4 { margin: 0; font-size: 17px; font-weight: 500; }
 .sheet .sub { margin-top: 2px; color: var(--ph-ink-2); font-size: 12px; }
 .sheet .sheet-facts { margin-top: 14px; font-size: 14px; }
-.sheet .state { margin-top: 4px; font-size: 12px; color: var(--ph-ink-2); }
+.sheet .state { margin-top: 4px; font-size: 12px; color: var(--l-sim); }
 .sheet .x { position: absolute; top: 14px; right: 14px; width: 28px; height: 28px; border-radius: 50%; border: 0; background: var(--ph-chip); color: var(--ph-ink); cursor: pointer; font-size: 15px; line-height: 1; }
-
-.nudge {
-  position: absolute; z-index: 10; left: 10px; right: 10px; top: 50px;
-  background: var(--ph-body); border-radius: 24px; box-shadow: 0 20px 40px -20px rgba(0,0,0,.3), 0 0 0 1px var(--p-line);
-  padding: 14px;
-  transition: transform .45s var(--ease), opacity .3s ease, visibility .45s;
-}
+.nudge { position: absolute; z-index: 10; left: 10px; right: 10px; top: 50px; background: var(--ph-body); border-radius: 24px; box-shadow: 0 20px 40px -20px rgba(0,0,0,.3), 0 0 0 1.5px var(--l-sim); padding: 14px; transition: transform .45s var(--soft), opacity .3s ease, visibility .45s; }
 .nudge[aria-hidden="true"] { transform: translateY(-130%); opacity: 0; visibility: hidden; }
 .nudge .eyebrow { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--ph-ink-2); }
-.nudge .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--lvl-out); }
+.nudge .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--l-sim); }
 .nudge h4 { margin: 7px 0 0; font-size: 15px; font-weight: 500; }
 .nudge p { margin-top: 3px; font-size: 12.5px; line-height: 1.45; color: var(--ph-ink-2); }
 .nudge-btns { display: flex; gap: 6px; margin-top: 12px; }
 .nudge-btns button { flex: 1; height: 36px; border-radius: 99px; border: 0; cursor: pointer; font-size: 12.5px; font-weight: 500; white-space: nowrap; padding: 0 8px; }
 .nudge-btns .primary { background: var(--ph-ink); color: var(--ph-body); }
 .nudge-btns .secondary { background: var(--ph-chip); color: var(--ph-ink); }
-
-.toast {
-  position: absolute; z-index: 12; bottom: 16px; left: 50%;
-  transform: translateX(-50%);
-  background: var(--ph-ink); color: var(--ph-body);
-  border-radius: 99px; padding: 9px 14px; font-size: 12px; white-space: nowrap;
-  transition: opacity .25s ease, transform .35s var(--ease), visibility .35s;
-}
+.toast { position: absolute; z-index: 12; bottom: 84px; left: 50%; transform: translateX(-50%); background: var(--ph-ink); color: var(--ph-body); border-radius: 99px; padding: 9px 14px; font-size: 12px; white-space: nowrap; transition: opacity .25s ease, transform .35s var(--soft), visibility .35s; }
 .toast[aria-hidden="true"] { opacity: 0; transform: translate(-50%, 10px); visibility: hidden; }
+.tabbar { position: absolute; z-index: 9; left: 0; right: 0; bottom: 0; height: 74px; padding: 6px 12px 22px; display: grid; grid-template-columns: repeat(4, 1fr); background: var(--ph-body); border-top: 1px solid var(--ph-chip); }
+.tabbar button { display: grid; justify-items: center; align-content: center; gap: 3px; border: 0; background: none; cursor: pointer; font-size: 10px; color: var(--ph-ink-2); }
+.tabbar svg { width: 20px; height: 20px; }
+.tabbar button[aria-current="true"] { color: var(--ph-ink); font-weight: 500; }
+.tabbar button:focus-visible { outline: 2px solid var(--ph-ink); outline-offset: -2px; border-radius: 8px; }
 .homebar { position: absolute; z-index: 20; bottom: 8px; left: 50%; transform: translateX(-50%); width: 110px; height: 4px; border-radius: 2px; background: var(--ph-ink); opacity: .85; }
 
 /* ============================================================
-   Responsive
+   Narrow: canvas on top, cards flow underneath (JS adds .stack
+   whenever the cards would touch the phone)
    ============================================================ */
-@media (max-width: 860px) {
-  .pd-page { padding-block: 16px 64px; }
-  .pd-demo { grid-template-columns: 1fr; gap: 32px; padding: 8px 0 8px; }
-  .pd-copy { max-width: none; }
-  .pd-copy p { font-size: 17px; }
-  .pd-act, .pd-slider { margin-top: 22px; }
+@media (max-width: 960px) {
+  .px-demo { grid-template-columns: 1fr; height: auto; }
+  .px-side { overflow: visible; }
 }
-@media (max-width: 380px) {
-  .phone { width: 100%; height: 640px; border-radius: 40px; }
-}
+.px-stage.stack { overflow: visible; background: none; box-shadow: none; display: grid; gap: 12px; height: auto; }
+.px-stage.stack .st-canvas { position: relative; inset: auto; height: 620px; border-radius: 18px; background-color: var(--stage); box-shadow: var(--card-shadow); }
+.px-stage.stack .tcard { background: var(--card); position: static; width: auto; max-height: none; overflow: visible; }
+.px-stage.stack .hud { max-width: calc(100% - 32px); }
+.px-demo:has(.stack) { height: auto; }
 
-/* ============================================================
-   Reduced motion: quick fades, no travel
-   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
-  .pd *, .pd *::before, .pd *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; transition-delay: 0s !important; }
-  .view, .sheet, .nudge, .scrim, .pd-copy-inner { transition: opacity .15s ease, visibility .15s !important; transform: none !important; }
-  .toast { transform: translateX(-50%) !important; }
+  .px *, .px *::before, .px *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; transition-delay: 0s !important; }
   .scanning .scanbar { opacity: 0; }
 }
 
-/* ============================================================
-   Embed mode (inside the playground drawer)
-   ============================================================ */
-.pd-embed, .pd-embed body { background: transparent !important; }
-.pd-embed body { margin: 0; }
-.pd-embed .wrap.pd-page { max-width: none; padding: 0; margin: 0; }
-.pd-embed .pd.dr { padding: 0; background: none; border: 0; box-shadow: none; }
-.pd-embed .pd > .dr-top, .pd-embed .pd > .dr-intro { display: none; }
-.pd-embed .pd-head { padding-top: 8px; }
+/* Embed mode (inside the playground drawer) */
+.px-embed, .px-embed body { background: transparent !important; }
+.px-embed body { margin: 0; }
+.px-embed .wrap.px-page { max-width: none; padding: 0; margin: 0; }
+.px-embed .px.dr { padding: 0; background: none; border: 0; box-shadow: none; }
+.px-embed .px > .dr-top { display: none; }
+.px-embed .px { --stage-h: 700px; }
 </style>
 </head>
 <body>
-<main class="wrap pd-page">
-<div class="dr pd" id="pantry-demo">
+<main class="wrap px-page">
+<div class="dr px">
   <div class="dr-top">
     <div><p class="kind">Digital twin · 2026</p><h3>Pantry</h3></div>
-    <a class="round pd-close" href="playground.html" aria-label="Back to the playground">×</a>
-  </div>
-  <div class="dr-intro">
-    <p>A simulation and digital twin of your grocery cupboard that predicts when things run out, so you don’t have to keep track.</p>
-    <dl class="dr-meta">
-      <div><dt>Type</dt><dd>Personal product</dd></div>
-      <div><dt>Focus</dt><dd>Simulation, prediction, interaction design</dd></div>
-    </dl>
+    <span class="px-tools">
+      <button class="round" id="themeBtn" type="button" aria-label="Switch to dark mode"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg></button>
+      <a class="round" href="playground.html" aria-label="Back to the playground">×</a>
+    </span>
   </div>
 
-  <header class="pd-head" id="pdHead"><h2 id="copyTitle"></h2><p id="copyBody"></p></header>
-  <section class="pd-demo" aria-label="Pantry demo">
-    <!-- Phone -->
-    <div class="pd-stage">
-      <div class="phone" id="phone">
-        <span class="island" aria-hidden="true"></span>
-        <div class="status" aria-hidden="true">
-          <span class="time">09:41</span>
-          <span class="icons">
-            <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
-            <svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor"><path d="M7.5 2.2c2.1 0 4 .8 5.4 2.2l1.1-1.1A9.2 9.2 0 0 0 7.5.7 9.2 9.2 0 0 0 1 3.3l1.1 1.1a7.6 7.6 0 0 1 5.4-2.2Zm0 3c1.3 0 2.4.5 3.3 1.3l1.1-1.1A6.2 6.2 0 0 0 7.5 3.7c-1.7 0-3.3.7-4.4 1.8l1.1 1.1c.9-.9 2-1.4 3.3-1.4Zm0 3a1.4 1.4 0 0 0-1.1.5l1.1 1.1 1.1-1.1a1.4 1.4 0 0 0-1.1-.5Z"/></svg>
-            <svg width="26" height="12" viewBox="0 0 26 12"><rect x=".5" y=".5" width="22" height="11" rx="3.5" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor"/><rect x="23.5" y="4" width="1.8" height="4" rx=".9" fill="currentColor" fill-opacity=".4"/></svg>
-          </span>
-        </div>
-        <div class="appbar"><span></span><span class="datepill" id="appDate">Mon 2 Nov</span></div>
+  <section class="px-demo" id="demo" aria-label="Pantry, interactive">
+    <!-- Story -->
+    <aside class="px-side">
+      <span class="wip"><i></i>Work in progress</span>
+      <h2>What’s in your cupboard right now?</h2>
+      <p class="lead">A receipt is the only moment your kitchen is ever measured. Everything after that is a guess.</p>
+      <p>Pantry makes the guess honest: a range, not a date, and sharper with every shop.</p>
+      <details class="thinking">
+        <summary>The thinking</summary>
+        <dl>
+          <!-- THINKING COPY: replace each <dd> with your own text -->
+          <div><dt>Problem</dt><dd>You only find out you’ve run out when you reach for it. Pantry apps fix that by asking you to log everything, and nobody keeps it up.</dd></div>
+          <div><dt>Target user</dt><dd>People who shop weekly or fortnightly and cook at home, whose routine shifts week to week. In a survey of 26 people, 88% ran out of something at least every two weeks.</dd></div>
+          <div><dt>Competitors</dt><dd>Manual trackers and barcode scanners need constant input. Supermarket apps know what you bought, not what you’ve used. Smart fridges see one shelf, at a price.</dd></div>
+          <div><dt>Insight</dt><dd>The receipt is the only reliable signal. Between receipts, any app is guessing, so the honest design shows the guess as a range and lets each new receipt sharpen it.</dd></div>
+          <div><dt>Why I chose it</dt><dd>It’s a digital twin you can feel: small, everyday, and all about designing for uncertainty, the hardest part of any predictive product.</dd></div>
+        </dl>
+      </details>
+      <button class="btn btn-dark" id="sideBtn" type="button">Scan the receipt</button>
+      <p class="px-key" aria-label="Key"><span><i style="background:var(--l-an)"></i>Evidence</span><span><i style="background:var(--l-sim)"></i>Prediction</span></p>
+      <p class="px-note">Illustrative data. Survey of 26 people.</p>
+    </aside>
 
-        <div class="views">
-          <!-- receipt -->
-          <div class="view" id="vSetup" aria-hidden="false">
-            <div class="hero"><h3>Pantry</h3><p>Your daily habits, in numbers.</p></div>
-            <ul class="list" id="habits"></ul>
-          </div>
-          <div class="view" id="vReceipt" aria-hidden="true">
-            <div class="hero"><h3>Pantry</h3><p id="receiptHint">One receipt from Monday’s shop.</p></div>
-            <div class="receipt">
-              <div class="rc-head"><strong>GREENGROCER &amp; CO.</strong>14 Market Street<br>02/11/2026 &nbsp;18:42</div>
-              <div class="rc-rule"></div>
-              <div id="receiptRows"></div>
-              <div class="rc-rule"></div>
-              <div class="rc-row rc-total"><span>TOTAL</span><span id="receiptTotal"></span></div>
-              <div class="rc-foot">11 items · Thank you</div>
-              <span class="scanbar" aria-hidden="true"></span>
+    <!-- Stage -->
+    <div class="px-stage" id="stage">
+      <div class="st-canvas" id="canvas">
+        <div class="hud doto" id="hud" aria-hidden="true">Meet Sophia’s kitchen.</div>
+
+        <div class="phone-wrap" id="phoneWrap">
+          <div class="phone" id="phone">
+            <span class="island" aria-hidden="true"></span>
+            <div class="status" aria-hidden="true">
+              <span class="time">09:41</span>
+              <span class="icons">
+                <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
+                <svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor"><path d="M7.5 2.2c2.1 0 4 .8 5.4 2.2l1.1-1.1A9.2 9.2 0 0 0 7.5.7 9.2 9.2 0 0 0 1 3.3l1.1 1.1a7.6 7.6 0 0 1 5.4-2.2Zm0 3c1.3 0 2.4.5 3.3 1.3l1.1-1.1A6.2 6.2 0 0 0 7.5 3.7c-1.7 0-3.3.7-4.4 1.8l1.1 1.1c.9-.9 2-1.4 3.3-1.4Zm0 3a1.4 1.4 0 0 0-1.1.5l1.1 1.1 1.1-1.1a1.4 1.4 0 0 0-1.1-.5Z"/></svg>
+                <svg width="26" height="12" viewBox="0 0 26 12"><rect x=".5" y=".5" width="22" height="11" rx="3.5" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="16" height="8" rx="2" fill="currentColor"/><rect x="23.5" y="4" width="1.8" height="4" rx=".9" fill="currentColor" fill-opacity=".4"/></svg>
+              </span>
             </div>
-          </div>
-          <!-- pantry -->
-          <div class="view" id="vPantry" aria-hidden="true">
-            <div class="hero"><h3>Pantry</h3><p id="summary"></p></div>
-            <div class="sect"><span>Shelves</span><span>Tap an item</span></div>
-            <div id="shelves"></div>
-          </div>
-          <!-- list -->
-          <div class="view" id="vList" aria-hidden="true">
-            <div class="hero"><h3>Shopping list</h3><p id="listSub"></p></div>
-            <ul class="list" id="list"></ul>
-            <p class="empty" id="empty" hidden>All stocked up until your next shop.</p>
+            <div class="appbar"><span></span><span class="datepill" id="appDate">Mon 2 Nov</span></div>
+            <div class="views">
+              <div class="view" id="vSetup" aria-hidden="true">
+                <div class="hero"><h4>Pantry</h4><p>Your daily habits, in numbers.</p></div>
+                <ul class="list" id="habits"></ul>
+              </div>
+              <div class="view" id="vReceipt" aria-hidden="false">
+                <div class="hero"><h4>Pantry</h4><p id="receiptHint">One receipt from Monday’s shop.</p></div>
+                <div class="receipt">
+                  <div class="rc-head"><strong>GREENGROCER &amp; CO.</strong>14 Market Street<br>02/11/2026 &nbsp;18:42</div>
+                  <div class="rc-rule"></div>
+                  <div id="receiptRows"></div>
+                  <div class="rc-rule"></div>
+                  <div class="rc-row rc-total"><span>TOTAL</span><span id="receiptTotal"></span></div>
+                  <div class="rc-foot">11 items · Thank you</div>
+                  <span class="scanbar" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="view" id="vPantry" aria-hidden="true">
+                <div class="hero"><h4>Pantry</h4><p id="summary"></p></div>
+                <div class="sect"><span>Your kitchen</span><span>Tap an item</span></div>
+                <div id="shelves"></div>
+              </div>
+              <div class="view" id="vList" aria-hidden="true">
+                <div class="hero"><h4>Shopping list</h4><p id="listSub"></p></div>
+                <ul class="list" id="list"></ul>
+                <p class="empty" id="empty" hidden>All stocked up until your next shop.</p>
+              </div>
+            </div>
+            <div class="scrim" id="scrim"></div>
+            <div class="nudge" id="nudge" role="alertdialog" aria-labelledby="nudgeTitle" aria-describedby="nudgeBody" aria-hidden="true">
+              <div class="eyebrow"><i></i>Pantry · prediction</div>
+              <h4 id="nudgeTitle">Running low</h4>
+              <p id="nudgeBody"></p>
+              <div class="nudge-btns">
+                <button class="primary" id="nudgeAdd" type="button">Add to list</button>
+                <button class="secondary" id="nudgeKeep" type="button">I’ve still got some</button>
+              </div>
+            </div>
+            <div class="sheet" id="sheet" role="dialog" aria-labelledby="sheetTitle" aria-hidden="true">
+              <div class="grab" aria-hidden="true"></div>
+              <button class="x" id="sheetClose" type="button" aria-label="Close">×</button>
+              <h4 id="sheetTitle"></h4>
+              <p class="sub" id="sheetSub"></p>
+              <p class="sheet-facts" id="sheetFacts"></p>
+              <p class="state" id="sheetState"></p>
+            </div>
+            <div class="toast" id="toast" role="status" aria-hidden="true"></div>
+            <nav class="tabbar" id="tabbar" aria-label="Pantry sections">
+              <button type="button" data-step="0"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 5h12M4 10h12M4 15h7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>Habits</button>
+              <button type="button" data-step="1"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h10v15l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3z M7.5 7h5M7.5 10h5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/></svg>Receipt</button>
+              <button type="button" data-step="2"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8h14M3 15h14M5 8V4h3v4M11 8V5h3v3M5 15v-4h4v4M12 15v-3h3v3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/></svg>Pantry</button>
+              <button type="button" data-step="3"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5.5h9M7 10h9M7 14.5h9M3.5 5.5h.01M3.5 10h.01M3.5 14.5h.01" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>List</button>
+            </nav>
+            <span class="homebar" aria-hidden="true"></span>
           </div>
         </div>
 
-        <div class="scrim" id="scrim"></div>
-        <div class="nudge" id="nudge" role="alertdialog" aria-labelledby="nudgeTitle" aria-describedby="nudgeBody" aria-hidden="true">
-          <div class="eyebrow"><i></i>Pantry · now</div>
-          <h4 id="nudgeTitle">Running low on coffee</h4>
-          <p id="nudgeBody"></p>
-          <div class="nudge-btns">
-            <button class="primary" id="nudgeAdd" type="button">Add to list</button>
-            <button class="secondary" id="nudgeKeep" type="button">I’ve still got some</button>
-          </div>
-        </div>
-        <div class="sheet" id="sheet" role="dialog" aria-labelledby="sheetTitle" aria-hidden="true">
-          <div class="grab" aria-hidden="true"></div>
-          <button class="x" id="sheetClose" type="button" aria-label="Close">×</button>
-          <h4 id="sheetTitle"></h4>
-          <p class="sub" id="sheetSub"></p>
-          <p class="sheet-facts" id="sheetFacts"></p>
-          <p class="state" id="sheetState"></p>
-        </div>
-        <div class="toast" id="toast" role="status" aria-hidden="true"></div>
-        <span class="homebar" aria-hidden="true"></span>
+        <div class="timeline" id="timeline"><svg id="tl" role="group" aria-label="Receipt timeline"></svg></div>
       </div>
-    </div>
 
-    <!-- Chapter text + controls -->
-    <div class="pd-copy">
-      <div class="pd-copy-inner" id="copy">
-        <div class="pd-controls" id="setupWrap" hidden>
-          <details class="pd-acc" name="habits" open>
-            <summary><span>Your daily habits<small>4 quick answers</small></span><i aria-hidden="true"></i></summary>
-            <div class="pd-acc-body"><div class="pd-group" id="habitsDaily"></div>
-              <p class="pd-note">Milk isn’t asked. It’s worked out from your coffee (30ml a cup) and cereal (150ml a bowl).</p></div>
-          </details>
-          <details class="pd-acc" name="habits">
-            <summary><span>Already learned from your receipts<small>6 items · pasta, rice, olive oil and more</small></span><i aria-hidden="true"></i></summary>
-            <div class="pd-acc-body"><div class="pd-ghead"><span>From your last 6 receipts</span><button type="button" id="editLearned" aria-pressed="false">Habits changed? Edit</button></div><div class="pd-group" id="habitsLearned"></div></div>
-          </details>
+      <!-- Controls -->
+      <div class="tcard c-left" id="cLeft">
+        <h3>Simulate the week</h3>
+        <div class="grp">
+          <div class="flabel"><label for="day">Time since receipt</label><output id="dayOut" for="day">Receipt day</output></div>
+          <input class="rng" id="day" type="range" min="0" max="14" step="0.1" value="0">
+          <div class="flabel" style="margin-top:8px"><label for="home">Days at home</label><output id="homeOut" for="home">3 of 7</output></div>
+          <input class="rng" id="home" type="range" min="0" max="7" step="1" value="3">
+          <div class="flabel" style="margin-top:8px"><span id="shopLabel">You shop</span></div>
+          <div class="radios" id="cadence" role="radiogroup" aria-labelledby="shopLabel">
+            <button type="button" role="radio" data-v="3">Every 3 days</button>
+            <button type="button" role="radio" data-v="7">Weekly</button>
+            <button type="button" role="radio" data-v="14">Fortnightly</button>
+          </div>
         </div>
-        <div class="pd-controls" id="sliderWrap" hidden>
-          <div class="pd-slider">
-            <label for="day"><span>Time</span><output id="dayOut" for="day">Today</output></label>
-            <input id="day" type="range" min="0" max="14" step="0.1" value="0">
-            <div class="ends" aria-hidden="true"><span>Today</span><span>+14 days</span></div>
+        <div class="grp">
+          <div class="verdicts" aria-live="polite">
+            <div class="buy"><b class="doto" id="stBuy">0</b><span>Buy</span></div>
+            <div><b class="doto" id="stCheck">0</b><span>Worth checking</span></div>
+            <div><b class="doto" id="stSkip">11</b><span>Skip</span></div>
           </div>
-          <div class="pd-slider">
-            <label for="home"><span>Days at home this week</span><output id="homeOut" for="home">3 of 7</output></label>
-            <input id="home" type="range" min="0" max="7" step="1" value="3">
-          </div>
-          <div>
-            <div class="pd-flabel" id="shopLabel"><span>You shop</span></div>
-            <div class="pd-seg" id="cadence" data-key="shop" role="radiogroup" aria-labelledby="shopLabel">
-              <button type="button" role="radio" aria-checked="false" data-v="3">Every 3 days</button>
-              <button type="button" role="radio" aria-checked="true" data-v="7">Weekly</button>
-              <button type="button" role="radio" aria-checked="false" data-v="14">Fortnightly</button>
-            </div>
-          </div>
-          <div class="pd-stats" aria-live="polite">
-            <div><span>Next shop</span><b id="stNext">Mon 9 Nov</b></div>
-            <div><span>Items to buy</span><b id="stBuy">0</b></div>
-            <div><span>Items to skip</span><b id="stSkip">11</b></div>
-          </div>
-          <p class="pd-note" id="stNote"></p>
-          <section class="pd-model" aria-label="How it’s calculated">
-            <div class="pd-codehead"><span>How it’s calculated</span><span id="codeFor">Tap any item</span></div>
-            <pre class="pd-code" id="calc" aria-live="off"></pre>
-          </section>
+          <p class="vnote" id="stNote"></p>
         </div>
-        <div class="pd-act"><button class="btn btn-dark" id="action" type="button"><span id="actionLabel"></span></button></div>
+        <details class="more">
+          <summary>Your habits</summary>
+          <div class="more-body"><div class="steppers" id="steppers"></div><p class="hint">Milk is worked out from coffee and cereal. Six more items are learned from past receipts.</p></div>
+        </details>
+      </div>
+
+      <!-- Outputs -->
+      <div class="tcard c-right" id="cRight">
+        <h3><i style="background:var(--l-sim)"></i>Prediction<span class="for" id="predFor">Eggs</span></h3>
+        <div class="pred-hero"><b class="doto" id="pPct">0%</b><span>likely to run out before <span id="pBefore"></span></span></div>
+        <dl class="pred-rows">
+          <div><dt>Likely runs out</dt><dd class="range" id="pRange"></dd></div>
+          <div><dt>Confidence</dt><dd id="pConf"></dd></div>
+          <div><dt>Verdict</dt><dd><span class="verdict" id="pVerdict"></span></dd></div>
+        </dl>
+        <p class="pred-why" id="pWhy"></p>
+        <details class="more ev" id="evDetails">
+          <summary>See the evidence</summary>
+          <div class="more-body">
+            <div class="rc-list" id="receipts"></div>
+            <div class="rc-full" id="rcFull" aria-live="polite"></div>
+            <p class="ev-sum" id="evSum"></p>
+          </div>
+        </details>
+        <details class="more">
+          <summary>Show the maths</summary>
+          <div class="more-body"><p class="backtest" id="backtest"></p><pre class="code" id="calc"></pre></div>
+        </details>
+        <p class="hint">Tap an item on the phone to inspect it.</p>
       </div>
     </div>
   </section>
-
-  <div class="dr-ctrl">
-    <span class="dr-count" id="stepCount">01 / 04</span>
-    <span><button class="round" id="prev" type="button" aria-label="Previous step">←</button> <button class="round" id="next" type="button" aria-label="Next step">→</button></span>
-  </div>
-  <p class="pd-sr" id="announce" aria-live="polite"></p>
+  <p class="sr" id="announce" aria-live="polite"></p>
 </div>
 </main>
 
@@ -487,33 +506,30 @@
 (() => {
   'use strict';
 
-  /* ---------- Sample data: one receipt, ten staples ---------- */
-  const BASE = new Date(2026, 10, 2);          // Mon 2 Nov 2026: receipt date and "Today"
-    /* Each item: what the receipt says (qty in real units) and how it gets used.
-     use: 'habit' = measured from your inputs, 'learned' = rate learned from past receipts. */
-  /* Receipt lines, read as real quantities. */
+  /* ============================================================
+     Data: one receipt, eleven staples
+     ============================================================ */
+  const BASE = new Date(2026, 10, 2);          // Mon 2 Nov 2026: the setup receipt
   const ITEMS = [
-    { id: 'coffee',  name: 'Coffee',            short: 'Coffee',      line: 'COFFEE BEANS 250G',    detail: 'Beans, 250g',          price: 5.20, qty: 35,   unit: 'cups',    note: '7g a cup',      shape: 'mid'  },
-    { id: 'cereal',  name: 'Cereal',            short: 'Cereal',      line: 'GRANOLA 500G',         detail: 'Granola, 500g',        price: 3.20, qty: 12,   unit: 'bowls',   note: '40g a bowl',    shape: 'tall' },
-    { id: 'milk',    name: 'Milk',              short: 'Milk',        line: 'SEMI-SKIMMED MILK 2L', detail: 'Semi-skimmed, 2L',     price: 1.65, qty: 2000, unit: 'ml',      note: '2 litres',      shape: 'tall' },
-    { id: 'bread',   name: 'Bread',             short: 'Bread',       line: 'SOURDOUGH LOAF',       detail: 'Sourdough, 16 slices', price: 2.80, qty: 16,   unit: 'slices',  note: '16 slices',     shape: 'wide' },
-    { id: 'eggs',    name: 'Eggs',              short: 'Eggs',        line: 'FREE-RANGE EGGS X12',  detail: 'Free-range, 12',       price: 3.10, qty: 12,   unit: 'eggs',    note: 'box of 12',     shape: 'wide' },
-    { id: 'bananas', name: 'Bananas',           short: 'Bananas',     line: 'BANANAS X6',           detail: 'Bunch of 6',           price: 0.90, qty: 6,    unit: 'bananas', note: 'bunch of 6',    shape: 'wide' },
-    { id: 'pasta',   name: 'Pasta',             short: 'Pasta',       line: 'PENNE PASTA 500G',     detail: 'Penne, 500g',          price: 0.95, qty: 500,  unit: 'g',       note: '500g',          shape: 'mid'  },
-    { id: 'rice',    name: 'Rice',              short: 'Rice',        line: 'BASMATI RICE 1KG',     detail: 'Basmati, 1kg',         price: 2.40, qty: 1000, unit: 'g',       note: '1kg',           shape: 'mid'  },
-    { id: 'oil',     name: 'Olive oil',         short: 'Olive oil',   line: 'OLIVE OIL 500ML',      detail: 'Extra virgin, 500ml',  price: 4.75, qty: 500,  unit: 'ml',      note: '500ml',         shape: 'tall' },
-    { id: 'loo',     name: 'Toilet roll',       short: 'Toilet roll', line: 'TOILET ROLL X9',       detail: '9 rolls',              price: 4.50, qty: 9,    unit: 'rolls',   note: '9 rolls',       shape: 'wide' },
-    { id: 'soap',    name: 'Washing-up liquid', short: 'Washing-up',  line: 'WASHING-UP LIQUID',    detail: '450ml',                price: 1.30, qty: 450,  unit: 'ml',      note: '450ml',         shape: 'tall' }
+    { id: 'coffee',  name: 'Coffee',            short: 'Coffee',      line: 'COFFEE BEANS 250G',    detail: 'Beans, 250g',          price: 5.20, qty: 35,   unit: 'cups',    shape: 'mid'  },
+    { id: 'cereal',  name: 'Cereal',            short: 'Cereal',      line: 'GRANOLA 500G',         detail: 'Granola, 500g',        price: 3.20, qty: 12,   unit: 'bowls',   shape: 'tall' },
+    { id: 'milk',    name: 'Milk',              short: 'Milk',        line: 'SEMI-SKIMMED MILK 2L', detail: 'Semi-skimmed, 2L',     price: 1.65, qty: 2000, unit: 'ml',      shape: 'tall' },
+    { id: 'bread',   name: 'Bread',             short: 'Bread',       line: 'SOURDOUGH LOAF',       detail: 'Sourdough, 16 slices', price: 2.80, qty: 16,   unit: 'slices',  shape: 'wide' },
+    { id: 'eggs',    name: 'Eggs',              short: 'Eggs',        line: 'FREE-RANGE EGGS X6',   detail: 'Free-range, 6',        price: 1.90, qty: 6,    unit: 'eggs',    shape: 'wide' },
+    { id: 'bananas', name: 'Bananas',           short: 'Bananas',     line: 'BANANAS X6',           detail: 'Bunch of 6',           price: 0.90, qty: 6,    unit: 'bananas', shape: 'wide' },
+    { id: 'pasta',   name: 'Pasta',             short: 'Pasta',       line: 'PENNE PASTA 500G',     detail: 'Penne, 500g',          price: 0.95, qty: 500,  unit: 'g',       shape: 'mid'  },
+    { id: 'rice',    name: 'Rice',              short: 'Rice',        line: 'BASMATI RICE 1KG',     detail: 'Basmati, 1kg',         price: 2.40, qty: 1000, unit: 'g',       shape: 'mid'  },
+    { id: 'oil',     name: 'Olive oil',         short: 'Olive oil',   line: 'OLIVE OIL 500ML',      detail: 'Extra virgin, 500ml',  price: 4.75, qty: 500,  unit: 'ml',      shape: 'tall' },
+    { id: 'loo',     name: 'Toilet roll',       short: 'Toilet roll', line: 'TOILET ROLL X9',       detail: '9 rolls',              price: 4.50, qty: 9,    unit: 'rolls',   shape: 'wide' },
+    { id: 'soap',    name: 'Washing-up liquid', short: 'Washing-up',  line: 'WASHING-UP LIQUID',    detail: '450ml',                price: 1.30, qty: 450,  unit: 'ml',      shape: 'tall' }
   ];
   const SHELVES = [['coffee', 'cereal', 'milk'], ['bread', 'eggs', 'bananas'], ['pasta', 'rice', 'oil'], ['loo', 'soap']];
-
-  /* What the user tells Pantry, in units they actually know.
-     perDay converts the answer into the item's own unit per day. */
+  /* What the user tells Pantry, in units they know. perDay converts to the item's own unit per day. */
   const HABITS = [
     { k: 'coffee',  label: 'Coffee',      unit: 'cups a day',      def: 2, max: 8,  home: true,  perDay: v => v,              how: v => `${v} cups/day` },
     { k: 'cereal',  label: 'Cereal',      unit: 'bowls a day',     def: 1, max: 4,  home: true,  perDay: v => v,              how: v => `${v} bowls/day` },
     { k: 'bread',   label: 'Bread',       unit: 'slices a day',    def: 2, max: 8,  home: true,  perDay: v => v,              how: v => `${v} slices/day` },
-    { k: 'eggs',    label: 'Eggs',        unit: 'a week',          def: 6, max: 21, home: true,  perDay: v => v / 7,          how: v => `${v} eggs/week ÷ 7` },
+    { k: 'eggs',    label: 'Eggs',        unit: 'a week',          def: 8, max: 21, home: true,  perDay: v => v / 7,          how: v => `${v} eggs/week ÷ 7` },
     { k: 'pasta',   label: 'Pasta',       unit: 'portions a week', def: 3, max: 10, learned: true, perDay: v => v * 100 / 7,  how: v => `${v} portions/week × 100g ÷ 7` },
     { k: 'rice',    label: 'Rice',        unit: 'portions a week', def: 2, max: 10, learned: true, perDay: v => v * 75 / 7,   how: v => `${v} portions/week × 75g ÷ 7` },
     { k: 'oil',     label: 'Olive oil',   unit: 'tbsp a day',      def: 1, max: 4,  learned: true, perDay: v => v * 15,       how: v => `${v} tbsp/day × 15ml` },
@@ -522,56 +538,79 @@
     { k: 'soap',    label: 'Washing-up',  unit: 'washes a day',    def: 1, max: 4,  learned: true, perDay: v => v * 15,       how: v => `${v} washes/day × 15ml` }
   ];
   const habitBy = Object.fromEntries(HABITS.map(h => [h.k, h]));
-  /* ---------- Chapter text for each step ---------- */
-  const STEPS = [
-    { title: 'Your habits, in numbers', body: 'Not how long things last, nobody remembers that. Just what you actually have. The rest Pantry already knows from your past receipts.', action: 'Continue' },
-    { title: 'Start with a receipt', body: 'Pantry builds your cupboard from what you buy, so there’s nothing to type. This is a sample weekly shop: eleven staples on one receipt, each read as a real quantity.', action: 'Upload receipt' },
-    { title: 'Your pantry', body: 'Every line is now a quantity on a shelf, used at your rate. Habits happen at home, so days at home change everything. Move time forward and Pantry predicts what runs out before your next shop, and what you don’t need to buy.', action: 'See shopping list' },
-    { title: 'Your shopping list', body: 'Everything that runs out before your next shop, plus anything you added. Nothing written down, nothing typed.', action: 'Start again' }
-  ];
-
   const byId = Object.fromEntries(ITEMS.map(i => [i.id, i]));
   const $ = s => document.querySelector(s);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+
   const state = {};
   function fresh() {
     Object.assign(state, {
-      step: 0, day: 0, scanning: false, scanned: false,
+      step: 1, day: 0, scanning: false, scanned: false,
+      lastR: 0, receipts: [-21, -14, -7, 0], landed: false, selR: null,   // receipts: days from Mon 2 Nov
       adj: Object.fromEntries(ITEMS.map(i => [i.id, 1])),
-      habits: Object.fromEntries(HABITS.map(h => [h.k, h.def])), home: 3, editLearned: false, focus: 'milk',
-      added: new Set(), removed: new Set(), handled: new Set(), nudgeItem: null, openItem: null,
-      shop: 7
+      habits: Object.fromEntries(HABITS.map(h => [h.k, h.def])), home: 3, editLearned: false, focus: 'eggs', userFocus: false,
+      corrections: Object.fromEntries(ITEMS.map(i => [i.id, 0])),
+      added: new Set(), removed: new Set(), handled: new Set(), nudgeItem: null, openItem: null, shop: 7
     });
   }
 
-  /* ---------- Helpers ---------- */
+  /* ---------- Dates: everything is relative to the last receipt ---------- */
   const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const dateAt = d => { const x = new Date(BASE); x.setDate(x.getDate() + Math.floor(d)); return x; };
-  const fmt = d => { const x = dateAt(d); return `${DAYS[x.getDay()].slice(0, 3)} ${x.getDate()} ${MONTHS[x.getMonth()]}`; };
-  const weekday = d => DAYS[dateAt(d).getDay()];
-  const pad = n => String(n).padStart(2, '0');
-  /* The model. Habits run fully on days at home and at 40% on days out
-     (breakfast only). Milk is derived: 150ml a day base + 30ml per hot drink.
-     Everything else uses a rate learned from past receipts. */
+  const absDate = a => { const x = new Date(BASE); x.setDate(x.getDate() + Math.floor(a)); return x; };
+  const fmtAbs = a => { const x = absDate(a); return `${DAYS[x.getDay()].slice(0, 3)} ${x.getDate()} ${MONTHS[x.getMonth()]}`; };
+  const shortAbs = a => { const x = absDate(a); return `${x.getDate()} ${MONTHS[x.getMonth()]}`; };
+  const fmt = d => fmtAbs(state.lastR + d);
+  const weekday = d => DAYS[absDate(state.lastR + d).getDay()];
+
+  /* ============================================================
+     The model (unchanged). Habits run fully on days at home and at
+     40% on days out. Milk is derived. Everything else is learned.
+     Prior ±30% from the survey; each receipt since setup moves the
+     estimate toward what you buy and shrinks the spread: sd ÷ √(1+n).
+     ============================================================ */
   const homeShare = () => state.home / 7 + 0.4 * (7 - state.home) / 7;
-  const MILK = { coffee: 30, cereal: 150 };   // ml per cup, per bowl
+  const MILK = { coffee: 30, cereal: 150 };
   function baseRate(id) {
     if (id === 'milk') return state.habits.coffee * MILK.coffee + state.habits.cereal * MILK.cereal;
     return habitBy[id].perDay(state.habits[id]);
   }
   const atHome = id => id === 'milk' || (habitBy[id] && habitBy[id].home);
-  const rate = id => baseRate(id) * (atHome(id) ? homeShare() : 1) * state.adj[id];
+  const PRIOR_SD = 0.30, Z80 = 1.28;
+  const TRUTH = { coffee: 1.2, cereal: 0.8, milk: 1.1, bread: 1.25, eggs: 0.85 };   // what receipts reveal vs what people say
+  const isHabit = id => id in TRUTH;
+  const ev = () => Math.min(6, state.receipts.filter(r => r > 0).length);           // receipts since setup
+  const nEvidence = id => (isHabit(id) ? ev() : (state.editLearned ? 1 : 6)) + state.corrections[id];
+  const learnW = id => isHabit(id) ? ev() / (ev() + 2) : 0;
+  const learned = id => isHabit(id) ? 1 + (TRUTH[id] - 1) * learnW(id) : 1;
+  const sd = id => PRIOR_SD * (id === 'milk' ? 1.15 : 1) / Math.sqrt(1 + nEvidence(id));
+  const rate = id => baseRate(id) * (atHome(id) ? homeShare() : 1) * state.adj[id] * learned(id);
   const outDay = id => byId[id].qty / Math.max(rate(id), 1e-6);
-  const fill = id => Math.max(0, Math.min(1, 1 - state.day / outDay(id)));
+  const outLo = id => outDay(id) * Math.exp(-Z80 * sd(id));
+  const outHi = id => outDay(id) * Math.exp(Z80 * sd(id));
+  const fillAt = (id, T) => Math.max(0, Math.min(1, 1 - state.day / T));
+  const fill = id => fillAt(id, outDay(id));
+  const erf = x => { const t = 1 / (1 + 0.3275911 * Math.abs(x)), y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return x >= 0 ? y : -y; };
+  const Phi = z => 0.5 * (1 + erf(z / Math.SQRT2));
+  const pOut = (id, h) => h <= 0 ? 0 : 1 - Phi(Math.log((byId[id].qty / h) / rate(id)) / sd(id));
   const nextShop = () => Math.floor(state.day / state.shop + 1e-9) * state.shop + state.shop;
   const horizon = () => nextShop() + state.shop;   // buy now what runs out before the shop after
-  const toBuy = () => ITEMS.filter(i => outDay(i.id) <= horizon()).map(i => i.id);
+  const verdict = id => { const p = pOut(id, horizon()); return p >= 0.6 ? 'buy' : p >= 0.25 ? 'check' : 'skip'; };
+  const toBuy = () => ITEMS.filter(i => verdict(i.id) === 'buy').map(i => i.id);
+  const toCheck = () => ITEMS.filter(i => verdict(i.id) === 'check').map(i => i.id);
+  const backtestErr = () => ITEMS.reduce((a, i) => a + 0.8 * outDay(i.id) * sd(i.id), 0) / ITEMS.length;
+  const range = id => { const a = fmt(outLo(id)), b = fmt(outHi(id)); return a === b ? a : `${a} – ${b}`; };
   const level = f => f < 0.1 ? 'out' : f < 0.3 ? 'low' : 'ok';
+  const nf = n => n >= 100 ? Math.round(n).toLocaleString('en-GB') : n >= 10 ? Math.round(n) : (Math.round(n * 10) / 10);
   function leftText(id) {
     if (state.day === 0) return 'Full';
-    const left = Math.ceil(outDay(id) - state.day);
-    return left <= 0 ? 'Run out' : left === 1 ? '1 day left' : `${left} days left`;
+    const lo = Math.max(0, Math.round(outLo(id) - state.day)), hi = Math.round(outHi(id) - state.day);
+    if (hi <= 0) return 'Run out';
+    return lo === hi ? `${hi} day${hi === 1 ? '' : 's'} left` : `${lo}–${hi} days left`;
+  }
+  function confidence(id) {
+    const s = sd(id), n = nEvidence(id);
+    return [s < 0.14 ? 'high' : s < 0.22 ? 'medium' : 'low', `±${Math.round(s * 100)}% after ${n} receipt${n === 1 ? '' : 's'}`];
   }
   let toastTimer;
   function toast(msg) {
@@ -580,183 +619,271 @@
   }
   const announce = msg => { $('#announce').textContent = msg; };
 
-  /* ---------- Build receipt + shelves ---------- */
+  /* ---------- Receipts: what each shop actually contained ---------- */
+  const truthRate = id => baseRate(id) * (atHome(id) ? homeShare() : 1) * (isHabit(id) ? TRUTH[id] : 1);
+  function packsFor(id) {
+    const i = byId[id], rs = [...state.receipts].sort((a, b) => a - b), m = {};
+    let acc = i.qty * 0.5, prev = null;
+    rs.forEach(r => {
+      if (r === 0 || prev === null) { m[r] = 1; acc = i.qty * 0.5; prev = r; return; }   // the setup receipt has everything
+      acc += truthRate(id) * (r - prev);
+      const p = Math.floor(acc / i.qty); acc -= p * i.qty; m[r] = p; prev = r;
+    });
+    return m;
+  }
+
+  /* ============================================================
+     Phone: receipt + shelves
+     ============================================================ */
   $('#receiptRows').innerHTML = ITEMS.map(i => `<div class="rc-row"><span>${i.line}</span><span>£${i.price.toFixed(2)}</span></div>`).join('');
   $('#receiptTotal').textContent = '£' + ITEMS.reduce((s, i) => s + i.price, 0).toFixed(2);
-  let n = 0;
-  $('#shelves').innerHTML = SHELVES.map(row => `
-    <div class="shelf-row">
-      <div class="shelf-items${row.length === 2 ? ' two' : ''}">${row.map(id => { const i = byId[id]; return `
-        <button class="item" type="button" data-id="${id}" style="--i:${n++}" aria-expanded="false" aria-controls="sheet">
-          <span class="vessel" aria-hidden="true"><span class="lid"></span><span class="jar ${i.shape}"><span class="fill"></span></span></span>
-          <span class="name">${i.short}</span><span class="left"></span>
-        </button>`; }).join('')}
-      </div>
-      <div class="shelf" aria-hidden="true"></div>
-    </div>`).join('');
+  const DOTS = 28;
+  $('#shelves').innerHTML = `<div class="meters">${SHELVES.flat().map((id, n) => { const i = byId[id]; return `
+    <button class="item" type="button" data-id="${id}" style="--i:${n}" aria-expanded="false" aria-controls="sheet">
+      <span class="name">${i.short}</span><span class="left"></span>
+      <span class="dots" aria-hidden="true">${'<i></i>'.repeat(DOTS)}</span>
+    </button>`; }).join('')}</div>`;
   const itemEls = [...document.querySelectorAll('.item')];
 
-  /* ---------- Render ---------- */
   function setView(name) {
     for (const [v, el] of [['setup', '#vSetup'], ['receipt', '#vReceipt'], ['pantry', '#vPantry'], ['list', '#vList']]) {
       $(el).setAttribute('aria-hidden', String(v !== name)); $(el).inert = v !== name;
     }
+    document.querySelectorAll('#tabbar button').forEach(b => b.setAttribute('aria-current', String(Number(b.dataset.step) === state.step)));
   }
-  function renderCopy(animate) {
-    const s = STEPS[state.step], copy = $('#copy');
-    const apply = () => {
-      $('#copyTitle').textContent = s.title;
-      $('#copyBody').textContent = s.body;
-      $('#setupWrap').hidden = state.step !== 0;
-      $('#sliderWrap').hidden = state.step !== 2;
-      $('#actionLabel').textContent = s.action;
-      $('#action').className = 'btn ' + (state.step === 3 ? 'btn-ghost' : 'btn-dark');
-      copy.classList.remove('out'); $('#pdHead').classList.remove('out');
-    };
-    if (animate && !reduce.matches) { copy.classList.add('out'); $('#pdHead').classList.add('out'); setTimeout(apply, 180); } else apply();
-    $('#stepCount').textContent = `${pad(state.step + 1)} / ${pad(STEPS.length)}`;
-    $('#prev').disabled = state.step === 0;
-    $('#next').disabled = state.step === STEPS.length - 1;
-  }
+
+  /* ============================================================
+     Render
+     ============================================================ */
   function renderPantry() {
+    if (!state.userFocus) state.focus = mostAtRisk();
     let low = 0, out = 0;
     itemEls.forEach(el => {
       const id = el.dataset.id, f = fill(id), lv = level(f);
       if (lv === 'low') low++; if (lv === 'out') out++;
       el.dataset.level = lv;
-      el.querySelector('.fill').style.height = (f * 100).toFixed(1) + '%';
+      /* blue = proven by the last receipt (pessimistic end); orange = the honest range above it */
+      const fl = fillAt(id, outLo(id)), fh = fillAt(id, outHi(id));
+      const ne = Math.round(fl * DOTS), np = state.day > 0 ? Math.max(fh > fl ? 1 : 0, Math.round(fh * DOTS) - ne) : 0;
+      el.querySelectorAll('.dots i').forEach((d, k) => { d.className = k < ne ? 'e' : k < ne + np ? 'p' : ''; });
       el.querySelector('.left').textContent = leftText(id);
-      el.setAttribute('aria-label', `${byId[id].name}, ${Math.round(f * 100)}% left. ${leftText(id)}.`);
+      el.classList.toggle('focus', id === state.focus);
+      el.setAttribute('aria-label', `${byId[id].name}: about ${Math.round(f * 100)}% left. ${leftText(id)}.`);
     });
     const bits = [];
     if (low) bits.push(`${low} running low`);
     if (out) bits.push(`${out} almost out`);
-    $('#summary').textContent = state.day === 0 ? `${ITEMS.length} items, all full.` : `${ITEMS.length} items. ${bits.length ? bits.join(', ') + '.' : 'All good.'}`;
-    const d = Math.floor(state.day);
+    $('#summary').textContent = state.day === 0 ? `${ITEMS.length} items, measured by your receipt.` : `${ITEMS.length} items. ${bits.length ? bits.join(', ') + '.' : 'All good.'}`;
     $('#appDate').textContent = fmt(state.day);
-    const buy = toBuy();
-    $('#stNext').textContent = fmt(nextShop());
-    $('#stBuy').textContent = buy.length;
-    $('#stSkip').textContent = ITEMS.length - buy.length;
-    $('#stNote').textContent = `Of your ${ITEMS.length} items, ${buy.length} will run out before ${fmt(horizon())}, so buy them on ${fmt(nextShop())}. The other ${ITEMS.length - buy.length} will last beyond that, so skip them this time.`;
-    $('#dayOut').textContent = d === 0 ? 'Today' : `+${d} day${d === 1 ? '' : 's'} · ${fmt(state.day)}`;
-    $('#day').setAttribute('aria-valuetext', d === 0 ? 'Today' : `${d} days from now, ${fmt(state.day)}`);
+    const buy = toBuy(), chk = toCheck();
+    $('#stBuy').textContent = buy.length; $('#stCheck').textContent = chk.length; $('#stSkip').textContent = ITEMS.length - buy.length - chk.length;
+    $('#stNote').textContent = `For your shop on ${fmt(nextShop())}. Buy: 60%+ likely out before ${fmt(horizon())}.`;
+    const d = state.day;
+    $('#dayOut').textContent = d < 0.05 ? 'Receipt day' : `Day ${Math.max(1, Math.round(d))} · ${fmt(d)}`;
+    $('#day').setAttribute('aria-valuetext', d < 0.05 ? `Receipt day, ${fmt(0)}` : `${Math.round(d)} days after the receipt, ${fmt(d)}`);
+    $('#day').style.setProperty('--z', (d / 14 * 100) + '%');
+    $('#home').style.setProperty('--z', (state.home / 7 * 100) + '%');
+    $('#backtest').innerHTML = `Backtest on past shops (simulated): off by <b>±${backtestErr().toFixed(1)} days</b> on average.`;
     if (state.openItem) fillSheet(state.openItem);
-    renderCalc();
+    renderPrediction(); renderTimeline(); renderHud(); renderSideBtn();
     checkNudge();
   }
 
-  /* ---------- Item sheet ---------- */
-  const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-  /* Plain-language reasoning shown under the maths */
-  function why(id, od) {
-    const ns = nextShop(), hz = ns + state.shop, h = habitBy[id];
-    let w;
-    if (state.adj[id] !== 1) w = `You said you still had some, so the usage rate was lowered ${Math.round((1 - state.adj[id]) * 100)}%.`;
-    else if (id === 'milk') w = `Milk follows your coffee and cereal, so changing either one moves it.`;
-    else if (atHome(id)) w = `At home ${state.home} of 7 days, so you use ${Math.round(homeShare() * 100)}% of your full daily habit.`;
-    else w = `Steady across your last 6 receipts, so days at home don’t change it.`;
-    const plan = od <= ns ? `Runs out before your next shop. Buy now.` : od <= hz ? `Lasts until ${fmt(ns)} but not ${fmt(hz)}. On the list.` : `Lasts past ${fmt(hz)}. Don’t buy.`;
-    return [w, plan];
+  /* ---------- HUD: the thread ---------- */
+  let hudOverride = null;
+  function renderHud() {
+    let t, col;
+    if (hudOverride) { t = hudOverride; col = 'var(--ink)'; }
+    else if (state.scanning) { t = `Receipt // ${fmt(0)}`; col = 'var(--l-an)'; }
+    else if (!state.scanned) { t = 'Meet Sophia’s kitchen.'; col = 'var(--ink)'; }
+    else if (state.day < 0.05) { t = `${state.landed ? 'Next receipt' : 'Receipt'} // ${fmt(0)}`; col = 'var(--l-an)'; }
+    else { t = `Between receipts // Day ${Math.max(1, Math.round(state.day))}`; col = 'var(--l-sim)'; }
+    $('#hud').textContent = t; $('#canvas').style.setProperty('--hud', col);
   }
+  function renderSideBtn() {
+    const b = $('#sideBtn');
+    b.textContent = state.scanning ? 'Reading receipt…' : state.scanned ? 'Add the next receipt' : 'Scan the receipt';
+    b.disabled = state.scanning;
+  }
+
+  /* ---------- Prediction (orange) + evidence (blue) ---------- */
+  const esc = t => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;');
   const SERVING = { coffee: '7g a cup', cereal: '40g a bowl', milk: '30ml a coffee, 150ml a bowl', bread: '1 slice', eggs: '1 egg', bananas: '1 banana', pasta: '100g a portion', rice: '75g a portion', oil: '15ml a tbsp', loo: '1 roll', soap: '15ml a wash' };
-  function confidence(id) {
-    if (state.adj[id] !== 1) return ['high', 'corrected by you'];
-    if (id === 'milk') return ['medium', 'derived from 2 habits'];
-    const h = habitBy[id];
-    if (h.learned) return state.editLearned ? ['medium', 'edited by you, re-learning'] : ['high', 'seen on 6 of 6 receipts'];
-    return ['medium', 'self-reported habit'];
+  function why(id) {
+    if (state.corrections[id]) return 'You said you still had some, so the rate came down and the model got more certain.';
+    if (isHabit(id) && ev()) return `${ev()} receipt${ev() === 1 ? '' : 's'} since setup: you buy ${learned(id) > 1 ? 'more' : 'less'} than you said, so the estimate moved ${Math.round(Math.abs(learned(id) - 1) * 100)}%.`;
+    if (isHabit(id)) return 'No receipts since setup yet, so this rests on your answer and the survey’s ±30% spread.';
+    return 'Steady across your past receipts, so the range is narrow.';
   }
-  function renderCalc() {
-    const id = state.focus, i = byId[id], r = rate(id), od = outDay(id), hs = homeShare(), h = habitBy[id];
+  /* Until someone taps an item, show the one most at risk, so the first number makes the point */
+  const mostAtRisk = () => ITEMS.map(i => i.id).sort((a, b) => outLo(a) - outLo(b))[0];   /* the item that could run out soonest */
+  function renderPrediction() {
+    if (!state.userFocus) state.focus = mostAtRisk();
+    const id = state.focus, i = byId[id], hz = horizon(), p = Math.min(99, Math.floor(pOut(id, hz) * 100)), v = verdict(id), [lvl, lvlWhy] = confidence(id);
+    $('#predFor').textContent = i.name;
+    $('#pPct').textContent = p + '%';
+    $('#pBefore').textContent = fmt(hz);
+    $('#pRange').textContent = range(id);
+    $('#pConf').textContent = `${lvl}, ±${Math.round(sd(id) * 100)}%`;
+    $('#pVerdict').textContent = v === 'buy' ? 'Buy' : v === 'check' ? 'Worth checking' : 'Skip';
+    $('#pVerdict').className = 'verdict ' + v;
+    $('#pWhy').textContent = why(id);
+    renderReceipts(); renderCalc(lvl, lvlWhy);
+  }
+  function renderReceipts() {
+    const id = state.focus, i = byId[id], packs = packsFor(id), rs = [...state.receipts].sort((a, b) => b - a).slice(0, 6);
+    $('#receipts').innerHTML = rs.map(r => {
+      const pk = packs[r] || 0;
+      return `<button type="button" class="rc-mini${state.selR === r ? ' sel' : ''}" data-r="${r}" aria-pressed="${state.selR === r}"><b>${fmtAbs(r)}</b>${pk ? `<span class="hit">${i.line}${pk > 1 ? ' ×' + pk : ''}</span>` : '<span class="miss">not bought</span>'}<span>${pk ? '£' + (i.price * pk).toFixed(2) : ''}</span></button>`;
+    }).join('');
+    if (state.selR !== null) {
+      const r = state.selR, lines = ITEMS.map(it => [it, packsFor(it.id)[r] || 0]).filter(([, pk]) => pk);
+      $('#rcFull').innerHTML = `<div class="hd">RECEIPT · ${fmtAbs(r).toUpperCase()}</div>` + lines.map(([it, pk]) =>
+        `<div class="row${it.id === id ? ' on' : ''}"><span>${it.line}${pk > 1 ? ' ×' + pk : ''}</span><span>£${(it.price * pk).toFixed(2)}</span></div>`).join('');
+    } else $('#rcFull').innerHTML = '';
+    const since = state.receipts.filter(r => r > 0);
+    if (isHabit(id)) {
+      if (!since.length) { $('#evSum').textContent = `Only the setup receipt so far. Pantry is using your answer (${id === 'milk' ? 'worked out from coffee and cereal' : habitBy[id].how(state.habits[id])}) and a ±30% spread. Add the next receipt to sharpen it.`; return; }
+      const bought = since.reduce((a, r) => a + (packs[r] || 0), 0);
+      $('#evSum').textContent = `Bought on ${since.filter(r => packs[r]).length} of ${since.length} shop${since.length === 1 ? '' : 's'} since setup (${bought} pack${bought === 1 ? '' : 's'}). Estimate moved ${learned(id) > 1 ? '+' : '−'}${Math.round(Math.abs(learned(id) - 1) * 100)}%, range ±${Math.round(sd(id) * 100)}%.`;
+    } else $('#evSum').textContent = 'Learned from your past receipts. Steady, so the range is narrow.';
+  }
+  function renderCalc(lvl, lvlWhy) {
+    const id = state.focus, i = byId[id], r = rate(id), od = outDay(id), hs = homeShare(), h = habitBy[id], n = nEvidence(id);
     const c = t => `<span class="c">${esc(t)}</span>`, k = t => `<span class="k">${esc(t.padEnd(12))}</span>`;
-    const src = id === 'milk' ? 'worked out: coffee × 30ml + cereal × 150ml' : h.learned ? (state.editLearned ? 'edited by you' : 'learned from your last 6 receipts') : 'your habit';
+    const src = id === 'milk' ? 'worked out: coffee × 30ml + cereal × 150ml' : h.learned ? 'learned from your past receipts' : 'your habit';
     const usage = id === 'milk' ? `${state.habits.coffee} × 30 + ${state.habits.cereal} × 150 = ${nf(baseRate(id))} ml/day` : `${h.how(state.habits[id])} = ${nf(baseRate(id))} ${i.unit}/day`;
-    const [lvl, lvlWhy] = confidence(id);
-    const L = [
-      c(`// receipt: ${i.detail}`),
-      `${k('purchased')}= ${nf(i.qty)} ${i.unit}`,
-      `${k('serving')}= ${SERVING[id]}`,
-      c(`// ${src}`),
-      `${k('usage')}= ${usage}`
-    ];
+    const L = [c(`// receipt: ${i.detail}`), `${k('purchased')}= ${nf(i.qty)} ${i.unit}`, `${k('serving')}= ${SERVING[id]}`, c(`// ${src}`), `${k('usage')}= ${usage}`];
     if (atHome(id)) { L.push(c('// days out count as breakfast only')); L.push(`${k('home_factor')}= ${state.home}/7 + 0.4 × ${7 - state.home}/7 = ${hs.toFixed(2)}`); }
     if (state.adj[id] !== 1) { L.push(c('// you said you still had some')); L.push(`${k('correction')}= × ${state.adj[id].toFixed(2)}`); }
+    if (isHabit(id)) { L.push(c(ev() ? `// learned from ${ev()} receipt${ev() === 1 ? '' : 's'} since setup` : '// no receipts since setup: stated habit only')); L.push(`${k('learned')}= × ${learned(id).toFixed(2)}`); }
+    L.push(c('// uncertainty: survey prior, shrinks with evidence'));
+    L.push(`${k('sd')}= 30% ÷ √(1 + ${n}) = ±${Math.round(sd(id) * 100)}%`);
     L.push(c('// prediction'));
     L.push(`${k('daily_rate')}= ${nf(r)} ${i.unit}/day`);
-    L.push(`${k('runs_out')}= ${nf(i.qty)} ÷ ${nf(r)} = ${nf(od)} days → ${fmt(od)}`);
-    L.push(`${k('remaining')}= ${nf(Math.max(0, i.qty - r * state.day))} ${i.unit} on ${fmt(state.day)}`);
+    L.push(`${k('runs_out')}= ${fmt(od)} (most likely)`);
+    L.push(`${k('range_80')}= ${range(id)}`);
+    L.push(`${k('p_out')}= ${Math.min(99, Math.floor(pOut(id, horizon()) * 100))}% before ${fmt(horizon())}`);
     L.push(`${k('confidence')}= ${lvl} (${lvlWhy})`);
-    L.push('');
-    why(id, od).forEach(t => L.push(c('// ' + t)));
     $('#calc').innerHTML = L.join('\n');
-    $('#codeFor').textContent = `${i.name} · tap any item`;
   }
-  const nf = n => n >= 100 ? Math.round(n).toLocaleString('en-GB') : n >= 10 ? Math.round(n) : (Math.round(n * 10) / 10);
+  $('#receipts').addEventListener('click', e => {
+    const b = e.target.closest('[data-r]'); if (!b) return;
+    const r = Number(b.dataset.r); state.selR = state.selR === r ? null : r; renderPrediction(); renderTimeline();
+  });
+
+  /* ---------- Timeline: receipts (blue), today, next shop, growing range (orange) ---------- */
+  const NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; }
+  let tlGeo = null;
+  function renderTimeline() {
+    const svg = $('#tl'), w = svg.clientWidth || 600, h = svg.clientHeight || 56, pad = 34, y = 22;
+    const from = state.lastR - 21, to = state.lastR + 14, x = a => pad + (a - from) / (to - from) * (w - 2 * pad);
+    tlGeo = { x, from, to, pad, w };
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    svg.innerHTML = '';
+    const now = state.lastR + state.day, nxt = state.lastR + nextShop();
+    svg.append(el('line', { class: 'tl-axis', x1: pad, x2: x(now), y1: y, y2: y }), el('line', { class: 'tl-future', x1: x(now), x2: w - pad, y1: y, y2: y }));
+    /* uncertainty grows with time since the last receipt, and shrinks with evidence */
+    if (state.day > 0.05) {
+      const meanSd = ITEMS.reduce((a, i) => a + sd(i.id), 0) / ITEMS.length;
+      const hw = 2 + 13 * (state.day / 14) * (meanSd / 0.21);
+      svg.append(el('polygon', { class: 'tl-band', points: `${x(state.lastR)},${y} ${x(now)},${y - hw} ${x(now)},${y + hw}` }));
+    }
+    state.receipts.filter(r => r >= from && r <= to).forEach(r => {
+      const g = el('g', { class: 'tl-r' + (state.selR === r ? ' sel' : ''), tabindex: 0, role: 'button', 'aria-label': `Receipt, ${fmtAbs(r)}. Show it in the evidence.`, 'data-r': r });
+      g.append(el('circle', { cx: x(r), cy: y, r: 5 }), el('text', { x: x(r), y: y + 24, 'text-anchor': 'middle' }, shortAbs(r)));
+      svg.append(g);
+    });
+    if (nxt <= to) {
+      const g = el('g', { class: 'tl-next' });
+      g.append(el('circle', { cx: x(nxt), cy: y, r: 5 }), el('text', { class: 'tl-lbl', x: x(nxt), y: y + 24, 'text-anchor': 'middle' }, 'Next shop'));
+      svg.append(g);
+    }
+    if (state.day > 0.05) {
+      const g = el('g', { class: 'tl-now' }); $('#timeline').style.setProperty('--now', 'var(--l-sim)');
+      g.append(el('line', { x1: x(now), x2: x(now), y1: y - 14, y2: y + 14 }), el('text', { class: 'tl-lbl', x: x(now), y: y - 17, 'text-anchor': 'middle' }, 'Today'));
+      svg.append(g);
+    }
+  }
+  function selectReceipt(r) {
+    state.selR = r; $('#evDetails').open = true; renderPrediction(); renderTimeline();
+    announce(`Receipt from ${fmtAbs(r)} shown in the evidence.`);
+  }
+  let dragging = false;
+  function dayFromX(cx) {
+    const b = $('#tl').getBoundingClientRect(), px = cx - b.left;
+    const a = tlGeo.from + (px - tlGeo.pad) / (tlGeo.w - 2 * tlGeo.pad) * (tlGeo.to - tlGeo.from);
+    return Math.max(0, Math.min(14, a - state.lastR));
+  }
+  $('#tl').addEventListener('pointerdown', e => {
+    const r = e.target.closest('.tl-r'); if (r) { selectReceipt(Number(r.dataset.r)); return; }
+    if (!state.scanned) return;
+    dragging = true; $('#tl').setPointerCapture(e.pointerId); setDay(dayFromX(e.clientX));
+  });
+  $('#tl').addEventListener('pointermove', e => { if (dragging) setDay(dayFromX(e.clientX)); });
+  ['pointerup', 'pointercancel'].forEach(t => $('#tl').addEventListener(t, () => { dragging = false; }));
+  $('#tl').addEventListener('keydown', e => { const r = e.target.closest('.tl-r'); if (r && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); selectReceipt(Number(r.dataset.r)); } });
+
+  function setDay(d) {
+    if (state.step < 2 && state.scanned) go(2);
+    state.day = d; if (d > 0.05) state.landed = false;
+    $('#day').value = d; renderPantry();
+  }
+
+  /* ---------- Item sheet ---------- */
   function fillSheet(id) {
     const i = byId[id], left = i.qty * fill(id);
     $('#sheetTitle').textContent = i.name;
     $('#sheetSub').textContent = `${i.detail} · ${id === 'milk' ? 'worked out from your coffee and cereal' : habitBy[id].learned ? 'learned from past receipts' : 'from your habits'}`;
-    $('#sheetFacts').textContent = `${nf(left)} of ${nf(i.qty)} ${i.unit} left · using ${nf(rate(id))} ${i.unit} a day`;
-    $('#sheetState').textContent = outDay(id) - state.day <= 0 ? `Ran out around ${fmt(outDay(id))}` : `Runs out around ${fmt(outDay(id))}`;
+    $('#sheetFacts').textContent = `About ${nf(left)} of ${nf(i.qty)} ${i.unit} left · using ${nf(rate(id))} ${i.unit} a day`;
+    $('#sheetState').textContent = outHi(id) - state.day <= 0 ? `Likely ran out around ${fmt(outDay(id))}` : `Likely runs out ${range(id)}`;
   }
-
   function scrim() { $('#scrim').classList.toggle('on', !!state.openItem); }
-  function openSheet(id) {
-    state.openItem = id; fillSheet(id);
-    itemEls.forEach(el => el.setAttribute('aria-expanded', String(el.dataset.id === id)));
-    $('#sheet').setAttribute('aria-hidden', 'false'); $('#sheet').inert = false; scrim();
-  }
-  function closeSheet() {
-    state.openItem = null;
-    itemEls.forEach(el => el.setAttribute('aria-expanded', 'false'));
-    $('#sheet').setAttribute('aria-hidden', 'true'); $('#sheet').inert = true; scrim();
-  }
+  function openSheet(id) { state.openItem = id; fillSheet(id); itemEls.forEach(e => e.setAttribute('aria-expanded', String(e.dataset.id === id))); $('#sheet').setAttribute('aria-hidden', 'false'); $('#sheet').inert = false; scrim(); }
+  function closeSheet() { state.openItem = null; itemEls.forEach(e => e.setAttribute('aria-expanded', 'false')); $('#sheet').setAttribute('aria-hidden', 'true'); $('#sheet').inert = true; scrim(); }
   $('#shelves').addEventListener('click', e => {
     const b = e.target.closest('.item'); if (!b) return;
-    state.focus = b.dataset.id; renderCalc();
+    state.focus = b.dataset.id; state.userFocus = true; state.selR = null; renderPantry();
     state.openItem === b.dataset.id ? closeSheet() : openSheet(b.dataset.id);
   });
   $('#sheetClose').addEventListener('click', closeSheet);
   $('#scrim').addEventListener('click', closeSheet);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
 
-  /* ---------- Nudge ---------- */
-  /* Nudge: the first item about to run out that you haven't dealt with yet */
+  /* ---------- Nudge: the first item likely to run out that you haven't dealt with ---------- */
   function checkNudge() {
-    const due = ITEMS.filter(i => !state.handled.has(i.id) && outDay(i.id) - state.day <= 2).sort((a, b) => outDay(a.id) - outDay(b.id))[0];
-    const show = state.step === 2 && !!due;
-    const nd = $('#nudge');
+    const due = ITEMS.filter(i => !state.handled.has(i.id) && pOut(i.id, state.day + 2) >= 0.5).sort((a, b) => outDay(a.id) - outDay(b.id))[0];
+    const show = state.step === 2 && !!due, nd = $('#nudge');
     if (show && (nd.getAttribute('aria-hidden') === 'true' || state.nudgeItem !== due.id)) {
       closeSheet();
       state.nudgeItem = due.id;
       const od = outDay(due.id), gone = od <= state.day, nm = due.name.toLowerCase();
-      $('#nudgeTitle').textContent = gone ? `You’re out of ${nm}` : `Running low on ${nm}`;
-      $('#nudgeBody').textContent = (gone ? `You ran out on ${weekday(od)}.` : `At your rate, you’ll be out by ${weekday(od)}.`) + ` Add it to your list before your next shop on ${fmt(nextShop())}.`;
+      $('#nudgeTitle').textContent = gone ? `You’re likely out of ${nm}` : `Running low on ${nm}`;
+      $('#nudgeBody').textContent = (gone ? `You likely ran out on ${weekday(od)}.` : `At your rate, likely between ${fmt(outLo(due.id))} and ${fmt(outHi(due.id))}.`) + ` Add it before your shop on ${fmt(nextShop())}.`;
       announce($('#nudgeTitle').textContent + '. ' + $('#nudgeBody').textContent);
     }
     nd.setAttribute('aria-hidden', String(!show)); nd.inert = !show;
   }
   $('#nudgeAdd').addEventListener('click', () => {
-    const id = state.nudgeItem;
-    state.added.add(id); state.removed.delete(id); state.handled.add(id);
+    const id = state.nudgeItem; state.added.add(id); state.removed.delete(id); state.handled.add(id);
     checkNudge(); toast(`${byId[id].name} added to your list`);
   });
   $('#nudgeKeep').addEventListener('click', () => {
     const id = state.nudgeItem, i = byId[id];
-    state.adj[id] *= 0.8;   // the correction that teaches the model: you use less than predicted
-    state.handled.add(id); renderPantry();
+    state.adj[id] *= 0.8; state.corrections[id]++;   // the correction is evidence: rate down, certainty up
+    state.handled.add(id); state.focus = id; state.userFocus = true; renderPantry();
     toast(`Got it. ${i.name} now ${nf(rate(id))} ${i.unit} a day`);
   });
 
   /* ---------- Shopping list ---------- */
   function buildList() {
-    const rows = ITEMS.filter(i => !state.removed.has(i.id) && (outDay(i.id) <= horizon() || state.added.has(i.id)));
-    $('#listSub').textContent = `For your shop on ${fmt(nextShop())}: everything that runs out before the one after.`;
+    const rows = ITEMS.filter(i => !state.removed.has(i.id) && (verdict(i.id) !== 'skip' || state.added.has(i.id)));
+    $('#listSub').textContent = `For your shop on ${fmt(nextShop())}: what will likely run out before ${fmt(horizon())}.`;
     $('#list').innerHTML = rows.map(i => {
-      const runs = outDay(i.id) <= horizon(), added = state.added.has(i.id);
-      const why = added && runs ? `Added by you · out ${fmt(outDay(i.id))}` : added ? 'Added by you' : `Runs out ${fmt(outDay(i.id))}`;
-      return `<li data-id="${i.id}"><div class="li-row"><span class="li-dot${added ? ' added' : ''}" aria-hidden="true"></span><div><div class="li-nm">${i.name}</div><div class="li-why">${why}</div></div><button type="button" aria-label="Still have some ${i.name.toLowerCase()}, remove from list">Still have some</button></div></li>`;
+      const v = verdict(i.id), added = state.added.has(i.id), p = Math.min(99, Math.floor(pOut(i.id, horizon()) * 100));
+      const w = added ? `Added by you · likely out ${range(i.id)}` : v === 'buy' ? `${p}% likely out · ${range(i.id)}` : `Worth checking · ${p}% likely out`;
+      return `<li data-id="${i.id}"><div class="li-row"><span class="li-dot${added ? ' added' : v === 'check' ? ' check' : ''}" aria-hidden="true"></span><div><div class="li-nm">${i.name}</div><div class="li-why">${w}</div></div><button type="button" aria-label="Still have some ${i.name.toLowerCase()}, remove from list">Still have some</button></div></li>`;
     }).join('');
     $('#empty').hidden = rows.length > 0;
   }
@@ -767,35 +894,52 @@
     setTimeout(() => { li.remove(); $('#empty').hidden = $('#list').children.length > 0; }, reduce.matches ? 10 : 380);
   });
 
-  /* ---------- Steps ---------- */
-  function resetReceipt() {
-    const wrap = $('#vReceipt');
-    wrap.classList.remove('scanning', 'scanned');
-    document.querySelectorAll('#receiptRows .rc-row').forEach(r => r.classList.remove('read'));
-    $('#receiptHint').textContent = 'One receipt from Monday’s shop.';
-    state.scanned = false;
+  /* ---------- Habits (phone view + steppers) ---------- */
+  function renderHabits() {
+    const row = (nm, v, sub) => `<li><div class="li-row"><div><div class="li-nm">${nm}</div>${sub ? `<div class="li-why">${sub}</div>` : ''}</div><span class="habit-val">${v}</span></div></li>`;
+    $('#habits').innerHTML =
+      HABITS.filter(h => !h.learned).map(h => row(h.label, `${state.habits[h.k]} ${h.unit}`)).join('') +
+      row('Milk', `${nf(baseRate('milk'))}ml a day`, 'Worked out from coffee and cereal') +
+      row('6 more items', 'Learned', 'Pasta, rice, oil and more, from past receipts');
   }
-  function go(step, animate = true) {
-    state.step = step;
-    closeSheet();
+  $('#steppers').innerHTML = HABITS.filter(h => !h.learned).map(h => `<div class="stp"><span>${h.label}<small>${h.unit}</small></span><span class="ctl" data-k="${h.k}"><button type="button" aria-label="Less ${h.label.toLowerCase()}">−</button><output aria-live="polite"></output><button type="button" aria-label="More ${h.label.toLowerCase()}">+</button></span></div>`).join('');
+  function renderSteppers() {
+    document.querySelectorAll('#steppers .ctl').forEach(st => {
+      const h = habitBy[st.dataset.k], v = state.habits[h.k], [minus, plus] = st.querySelectorAll('button');
+      st.querySelector('output').textContent = v; minus.disabled = v <= 0; plus.disabled = v >= h.max;
+    });
+  }
+  $('#steppers').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b || b.disabled) return;
+    const st = b.closest('.ctl'), h = habitBy[st.dataset.k], d = b.textContent.trim() === '+' ? 1 : -1;
+    state.habits[h.k] = Math.max(0, Math.min(h.max, state.habits[h.k] + d));
+    renderSteppers(); renderHabits(); renderPantry();
+  });
+
+  /* ============================================================
+     Steps: the phone's own tabs
+     ============================================================ */
+  function resetReceipt() {
+    $('#vReceipt').classList.remove('scanning', 'scanned');
+    document.querySelectorAll('#receiptRows .rc-row').forEach(r => r.classList.toggle('read', state.scanned));
+    $('#receiptHint').textContent = state.scanned ? `Your setup receipt, ${fmtAbs(0)}.` : 'One receipt from Monday’s shop.';
+  }
+  function go(step) {
+    state.step = step; closeSheet();
     if (step === 0) { renderHabits(); setView('setup'); }
     if (step === 1) { resetReceipt(); setView('receipt'); }
-    if (step === 2) { setView('pantry'); renderPantry(); }
+    if (step >= 2 && !state.scanned) state.scanned = true;
+    if (step === 2) setView('pantry');
     if (step === 3) { buildList(); setView('list'); }
-    checkNudge();
-    renderCopy(animate);
-    $('#action').disabled = false;
-    announce(`Step ${step + 1} of ${STEPS.length}: ${STEPS[step].title}`);
+    renderPantry();
   }
   function upload() {
-    if (state.scanning) return;
-    state.scanning = true;
-    $('#action').disabled = true; $('#next').disabled = true;
-    $('#actionLabel').textContent = 'Reading receipt…';
+    if (state.scanning || state.scanned) return;
+    state.scanning = true; renderSideBtn(); renderHud();
+    if (state.step !== 1) { state.step = 1; resetReceipt(); setView('receipt'); }
     $('#receiptHint').textContent = 'Reading receipt…';
     announce('Reading receipt');
-    const wrap = $('#vReceipt'), rows = [...document.querySelectorAll('#receiptRows .rc-row')];
-    const dur = reduce.matches ? 300 : 1500;
+    const wrap = $('#vReceipt'), rows = [...document.querySelectorAll('#receiptRows .rc-row')], dur = reduce.matches ? 300 : 1500;
     wrap.classList.add('scanning');
     rows.forEach((r, i) => setTimeout(() => r.classList.add('read'), (i + 1) * dur / (rows.length + 2)));
     setTimeout(() => wrap.classList.add('scanned'), dur);
@@ -804,86 +948,123 @@
       shelves.classList.add('stocking');
       state.scanning = false; state.scanned = true;
       go(2);
+      announce(`Receipt read: ${ITEMS.length} items on the shelves.`);
       requestAnimationFrame(() => requestAnimationFrame(() => {
         shelves.classList.remove('stocking'); shelves.classList.add('stocked');
         setTimeout(() => shelves.classList.remove('stocked'), 900);
       }));
     }, dur + (reduce.matches ? 50 : 350));
   }
-  function restart() {
-    fresh(); $('#day').value = 0; document.querySelectorAll('.pd-seg[data-key]').forEach(g => select(g, g.dataset.def)); $('#home').value = 3; $('#homeOut').textContent = '3 of 7'; renderSteppers();
+  /* A new receipt lands on the next shop day: orange snaps back to blue, the range tightens */
+  function landReceipt() {
+    if (!state.scanned) return upload();
+    const gap = nextShop();
+    state.lastR += gap; state.receipts.push(state.lastR);
+    state.day = 0; $('#day').value = 0; state.landed = true; state.selR = null;
+    state.handled.clear(); state.nudgeItem = null;
     $('#nudge').setAttribute('aria-hidden', 'true');
-    renderPantry(); go(0);
-    $('#action').focus({ preventScroll: true });
-    announce('Demo reset');
+    if (state.step !== 2) go(2); else renderPantry();
+    toast(`Receipt added · ${fmt(0)}`);
+    announce(`New receipt on ${fmt(0)}. Ranges tightened: ${ev()} receipt${ev() === 1 ? '' : 's'} since setup.`);
   }
-  function forward() {
-    if (state.scanning) return;
-    if (state.step === 0) { go(1); return; }
-    if (state.step === 1) return upload();
-    if (state.step === 2) { go(3); return; }
-    restart();
+  $('#sideBtn').addEventListener('click', landReceipt);
+  $('#tabbar').addEventListener('click', e => { const b = e.target.closest('button'); if (b && !state.scanning) go(Number(b.dataset.step)); });
+  $('#day').addEventListener('input', e => setDay(Number(e.target.value)));
+  $('#home').addEventListener('input', e => { state.home = Number(e.target.value); $('#homeOut').textContent = `${state.home} of 7`; renderHabits(); renderPantry(); });
+  function setShop(v) {
+    state.shop = Number(v);
+    document.querySelectorAll('#cadence button').forEach(b => { const on = b.dataset.v === String(v); b.setAttribute('aria-checked', String(on)); b.tabIndex = on ? 0 : -1; });
   }
-  $('#action').addEventListener('click', forward);
-  $('#next').addEventListener('click', forward);
-  $('#prev').addEventListener('click', () => { if (!state.scanning && state.step > 0) go(state.step - 1); });
-  $('#day').addEventListener('input', e => { state.day = Number(e.target.value); renderPantry(); });
-  function select(g, v) {
-    const key = g.dataset.key;
-    state[key] = Number(v);
-    g.querySelectorAll('button').forEach(b => b.setAttribute('aria-checked', String(b.dataset.v === v)));
-  }
-  /* Steppers, built from HABITS */
-  const stepperHTML = h => `<div class="pd-num${h.learned ? ' locked' : ''}" data-row="${h.k}"><span>${h.label}<small>${h.unit}${h.learned ? ' · from receipts' : ''}</small></span><span class="pd-step" data-k="${h.k}"><button type="button" aria-label="Less ${h.label.toLowerCase()}">−</button><output aria-live="polite"></output><button type="button" aria-label="More ${h.label.toLowerCase()}">+</button></span></div>`;
-  $('#habitsDaily').innerHTML = HABITS.filter(h => !h.learned).map(stepperHTML).join('');
-  $('#habitsLearned').innerHTML = HABITS.filter(h => h.learned).map(stepperHTML).join('');
-  function renderSteppers() {
-    document.querySelectorAll('.pd-step').forEach(st => {
-      const h = habitBy[st.dataset.k], v = state.habits[h.k], [minus, plus] = st.querySelectorAll('button');
-      const locked = !!h.learned && !state.editLearned;
-      st.closest('.pd-num').classList.toggle('locked', locked);
-      st.querySelector('output').textContent = v;
-      minus.disabled = locked || v <= 0; plus.disabled = locked || v >= h.max;
-    });
-    $('#editLearned').textContent = state.editLearned ? 'Done' : 'Habits changed? Edit';
-    $('#editLearned').setAttribute('aria-pressed', String(state.editLearned));
-  }
-  function renderHabits() {
-    const row = (n, v, sub) => `<li><div class="li-row"><div><div class="li-nm">${n}</div>${sub ? `<div class="li-why">${sub}</div>` : ''}</div><span class="habit-val">${v}</span></div></li>`;
-    $('#habits').innerHTML =
-      HABITS.filter(h => !h.learned).map(h => row(h.label, `${state.habits[h.k]} ${state.habits[h.k] === 1 ? h.unit.replace(/^(cup|bowl|slice)s/, '$1') : h.unit}`)).join('') +
-      row('Milk', `${nf(baseRate('milk'))}ml a day`, 'Worked out from coffee and cereal') +
-      row('6 more items', state.editLearned ? 'Edited' : 'Learned', 'Pasta, rice, oil and more, from past receipts');
-  }
-  document.querySelectorAll('.pd-step').forEach(st => st.addEventListener('click', e => {
-    const b = e.target.closest('button'); if (!b || b.disabled) return;
-    const h = habitBy[st.dataset.k], d = b.textContent.trim() === '+' ? 1 : -1;
-    state.habits[h.k] = Math.max(0, Math.min(h.max, state.habits[h.k] + d));
-    renderSteppers(); renderHabits(); renderPantry();
-  }));
-  $('#editLearned').addEventListener('click', () => { state.editLearned = !state.editLearned; renderSteppers(); renderHabits(); renderPantry(); });
-  $('#home').addEventListener('input', e => { state.home = Number(e.target.value); $('#homeOut').textContent = `${state.home} of 7`; renderPantry(); });
-
-  document.querySelectorAll('.pd-seg[data-key]').forEach(g => {
-    g.dataset.def = g.querySelector('[aria-checked="true"]').dataset.v;
-    g.addEventListener('click', e => {
-      const b = e.target.closest('button'); if (!b) return;
-      select(g, b.dataset.v); renderHabits(); renderPantry();
-    });
+  $('#cadence').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; setShop(b.dataset.v); if (state.step === 3) buildList(); renderPantry(); });
+  $('#cadence').addEventListener('keydown', e => {
+    const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }; if (!(e.key in keys)) return;
+    e.preventDefault(); const bs = [...$('#cadence').querySelectorAll('button')], i = bs.indexOf(document.activeElement), nb = bs[(i + keys[e.key] + bs.length) % bs.length];
+    setShop(nb.dataset.v); nb.focus(); renderPantry();
   });
 
-  /* One accordion open at a time (fallback for browsers without <details name>) */
-  const accs = [...document.querySelectorAll('.pd-acc')];
-  accs.forEach(d => d.addEventListener('toggle', () => { if (d.open) accs.forEach(o => { if (o !== d) o.open = false; }); }));
+  /* ============================================================
+     Layout: phone pinned in the centre, scaled to fit, never cropped.
+     Cards never touch it: if they would, they move under the stage.
+     ============================================================ */
+  function layout() {
+    const stage = $('#stage'), cardW = 258, gapToPhone = 16, edge = 14;
+    const tl = parseFloat(getComputedStyle($('.px')).getPropertyValue('--tl-h')) || 56;
+    const sizeFor = H => Math.min(1, (H - 64 - 2 * tl) / 680);
+    stage.classList.remove('stack');
+    const W = stage.clientWidth, H = stage.clientHeight;
+    const between = (W - 2 * (cardW + edge + gapToPhone)) / 320;   /* widest the phone can be without touching a card */
+    const stack = Math.min(sizeFor(H), between) < 0.58 || H < 420;
+    stage.classList.toggle('stack', stack);
+    const cv = $('#canvas'), cw = cv.clientWidth, ch = cv.clientHeight;
+    const s = Math.max(0.3, Math.min(sizeFor(ch), stack ? (cw - 32) / 320 : between));
+    $('#phoneWrap').style.setProperty('--s', s.toFixed(4));
+    renderTimeline();
+  }
+  new ResizeObserver(() => layout()).observe($('#demo'));
 
-  /* ---------- Init ---------- */
-  fresh(); document.querySelectorAll('.pd-seg[data-key]').forEach(g => select(g, g.dataset.def)); renderSteppers(); renderPantry(); go(0, false);
+  /* ============================================================
+     Auto-play for skimmers: receipt → guess → next receipt is sharper
+     ============================================================ */
+  let beats = [], played = false, interacted = false, anim = null;
+  function animateDay(to, dur) {
+    cancelAnimationFrame(anim);
+    const from = state.day, t0 = performance.now();
+    const step = now => {
+      if (interacted) return;
+      const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      setDay(from + (to - from) * e);
+      if (k < 1) anim = requestAnimationFrame(step);
+    };
+    anim = requestAnimationFrame(step);
+  }
+  function startAuto() {
+    if (played || interacted || reduce.matches) return;
+    played = true; $('#hud').classList.add('big');
+    const B = [
+      () => { renderHud(); },                                   // MEET SOPHIA'S KITCHEN.
+      () => { upload(); },                                      // receipt scans, shelves fill in blue
+      () => { animateDay(5, 1900); },     // time slides, orange ranges spread
+      () => { animateDay(6.5, 1400); },                           // the first nudge appears
+      () => { landReceipt(); },                                 // next receipt lands, ranges tighten
+      () => { $('#hud').classList.remove('big'); }              // stop on Pantry
+    ];
+    B.forEach((b, i) => beats.push(setTimeout(() => { if (!interacted) b(); }, i * 2500)));
+  }
+  function stopAuto() {
+    if (interacted) return;
+    interacted = true; beats.forEach(clearTimeout); cancelAnimationFrame(anim);
+    $('#hud').classList.remove('big');
+  }
+  ['pointerdown', 'keydown', 'wheel'].forEach(t => $('#demo').addEventListener(t, stopAuto, { capture: true, passive: true }));
+  new IntersectionObserver(es => { if (es[0].isIntersecting && !played) setTimeout(startAuto, 500); }, { threshold: 0.35 }).observe($('#canvas'));
 
-  /* ---------- Embed: tell the playground how tall the demo is ---------- */
+  /* ============================================================
+     Theme switch (same 'theme' key as the rest of the site)
+     ============================================================ */
+  const isDark = () => (document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
+  const syncThemeBtn = () => $('#themeBtn').setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
+  $('#themeBtn').addEventListener('click', () => {
+    const next = isDark() ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    syncThemeBtn();
+  });
+  syncThemeBtn();
+
+  /* ============================================================
+     Init
+     ============================================================ */
+  fresh(); setShop(7); renderSteppers(); renderHabits();
+  if (reduce.matches) { state.scanned = true; state.receipts.forEach(() => {}); go(2); setDay(4); }   // no auto-play: show the guess straight away
+  else { resetReceipt(); setView('receipt'); renderPantry(); }
+  layout();
+  if (document.fonts) document.fonts.load('800 13px Doto').then(renderTimeline).catch(() => {});
+
+  /* Embed: tell the playground how tall the demo is, follow its theme */
   if (window.parent !== window) {
-    const post = () => parent.postMessage({ pantryHeight: document.documentElement.scrollHeight }, '*');
+    const post = () => { const h = document.documentElement.scrollHeight; parent.postMessage({ embedHeight: h, pantryHeight: h }, '*'); };
     new ResizeObserver(post).observe(document.body); post();
-    addEventListener('message', e => { if (e.data && e.data.theme) document.documentElement.setAttribute('data-theme', e.data.theme); });
+    addEventListener('message', e => { if (e.data && e.data.theme) { document.documentElement.setAttribute('data-theme', e.data.theme); syncThemeBtn(); } });
   }
 })();
 </script>

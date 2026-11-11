@@ -4,302 +4,603 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Making sense of scale | Sophia Akrofi</title>
-<meta name="description" content="Designing for data that spans six orders of magnitude: a logarithmic price chart from EDITED in 2017, rebuilt in code.">
+<meta name="description" content="Scale, outliers and chart type are design decisions. One set of prices, shown four ways, from a 2017 EDITED chart rebuilt in code.">
 <link rel="stylesheet" href="site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@800&display=swap">
 <script>
   try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
-  if (/[?&]embed\b/.test(location.search)) document.documentElement.classList.add('sc-embed');
+  if (/[?&]embed\b/.test(location.search)) document.documentElement.classList.add('sx-embed');
 </script>
 <style>
-/* Scale demo. Tokens from site.css; everything scoped to .sc. */
-.sc {
-  --c-ink: var(--text, #0b0b12);
-  --c-ink-2: var(--text-subtle, #5d5d63);
-  --c-line: var(--stroke, #ececee);
-  --c-card: var(--bg, #fff);
-  --c-mark: var(--text, #0b0b12);
-  --c-mark-soft: color-mix(in srgb, var(--text, #0b0b12) 5%, transparent);
-  --c-err: #E5484D;
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  color: var(--c-ink);
+/* ============================================================
+   Making sense of scale. Same design system as the 360° customer
+   and Pantry. BLUE = the data as it is. ORANGE = a design decision.
+   ============================================================ */
+html *, html *::before, html *::after { letter-spacing: 0 !important; }
+.sx {
+  --ink: var(--text, #0b0b12);
+  --ink-2: var(--text-subtle, #5d5d63);
+  --line: var(--stroke, #ececee);
+  --stage: #ffffff;
+  --card: #ffffff;
+  --card-shadow: 0 1px 0 rgba(0,0,0,.02), 0 18px 40px -24px rgba(0,0,0,.22);
+  --tcard-bg: color-mix(in srgb, #f3f3f2 82%, transparent);
+  --dotgrid: rgba(11, 11, 18, .07);
+  --l-an: #2438FF;          /* data */
+  --l-sim: #FF4F17;         /* design decision */
+  --ease: cubic-bezier(.65, 0, .35, 1);
+  --stage-h: clamp(560px, calc(100vh - 200px), 760px);
+  --card-w: 214px;
+  color: var(--ink);
 }
-.sc, .sc * { letter-spacing: 0; }
-.sc-page { padding-block: 48px 96px; }
-.sc-close { display: grid; place-items: center; flex: none; }
-
-.sc-demo { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 48px; align-items: center; padding: 24px 0; }
-.sc-chart { padding: 0; }
-.sc-chart svg { display: block; width: 100%; height: auto; overflow: visible; font-family: inherit; }
-.sc-chart text { font-size: 11px; fill: var(--c-ink-2); font-variant-numeric: tabular-nums; }
-.sc-chart .grid { stroke: var(--c-line); }
-.sc-chart .axis { stroke: var(--c-ink-2); stroke-opacity: .5; }
-.sc-chart .wh { stroke: var(--c-mark); stroke-width: 1; }
-.sc-chart .box { fill: var(--bg-subtle, #f6f6f5); stroke: var(--c-mark); stroke-width: 1; }
-.sc-chart .med { fill: var(--c-mark); }
-.sc-chart .val { fill: var(--c-ink); font-size: 10.5px; }
-.sc-chart .cat { fill: var(--c-ink); font-size: 11.5px; }
-.sc-chart .grp { cursor: pointer; }
-.sc-chart .grp .hit { fill: transparent; }
-.sc-chart .grp:hover .hit, .sc-chart .grp.on .hit { fill: var(--c-mark-soft); }
-.sc-chart .err { fill: none; stroke: var(--c-err); stroke-width: 1.5; stroke-dasharray: 3 3; }
-.sc-chart text.err-t { fill: var(--c-err); font-size: 11px; }
-.sc-chart .bug { transition: opacity .3s ease; }
-.sc-read { min-height: 22px; margin: 8px 4px 0; font-size: 13px; color: var(--c-ink-2); font-variant-numeric: tabular-nums; }
-.sc-read b { font-weight: 500; color: var(--c-ink); }
-
-.sc-copy { max-width: 470px; }
-.sc-copy-inner { transition: opacity .3s ease, transform .45s var(--ease); }
-.sc-copy-inner.out { opacity: 0; transform: translateY(8px); }
-.sc-copy h2 { margin: 0; font-size: var(--h2, 32px); line-height: 1.15; }
-.sc-copy p { margin-top: 14px; font-size: 17px; line-height: 1.55; color: var(--c-ink-2); max-width: 44ch; }
-.sc-copy #body p:first-child { margin-top: 16px; }
-.sc-copy #body b { font-weight: 400; color: var(--c-ink); }
-.sc-controls { margin-top: 28px; display: grid; gap: 20px; }
-.sc-flabel { font-size: 14px; color: var(--c-ink-2); margin-bottom: 6px; }
-.sc-seg { display: flex; flex-wrap: wrap; gap: 6px 22px; }
-.sc-seg button { display: inline-flex; align-items: center; gap: 8px; padding: 4px 0; border: 0; background: none; cursor: pointer; font: inherit; font-size: 15px; color: var(--c-ink-2); }
-.sc-seg button::before { content: ""; flex: none; width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid currentColor; box-sizing: border-box; }
-.sc-seg button[aria-checked="true"] { color: var(--c-ink); }
-.sc-seg button[aria-checked="true"]::before { background: var(--c-ink); border-color: var(--c-ink); box-shadow: inset 0 0 0 2.5px var(--bg); }
-.sc-seg button:hover { color: var(--c-ink); }
-.sc-act { margin-top: 32px; }
-.sc-copy .sc-note { margin-top: 14px; font-size: 13px; color: var(--c-ink-2); }
-
-@media (max-width: 860px) {
-  .sc-page { padding-block: 16px 64px; }
-  .sc-demo { grid-template-columns: 1fr; gap: 28px; padding: 8px 0; }
-  .sc-copy { order: -1; max-width: none; }
-  .sc-copy p { font-size: 17px; }
+:root[data-theme="dark"] .sx { --stage: #0c0c0e; --card: #18181b; --card-shadow: 0 0 0 1px rgba(255,255,255,.05), 0 18px 40px -24px rgba(0,0,0,.8); --tcard-bg: color-mix(in srgb, #18181b 70%, transparent); --dotgrid: rgba(255,255,255,.07); --l-an: #5C6BFF; --l-sim: #FF6A3D; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .sx { --stage: #0c0c0e; --card: #18181b; --card-shadow: 0 0 0 1px rgba(255,255,255,.05), 0 18px 40px -24px rgba(0,0,0,.8); --tcard-bg: color-mix(in srgb, #18181b 70%, transparent); --dotgrid: rgba(255,255,255,.07); --l-an: #5C6BFF; --l-sim: #FF6A3D; }
 }
-@media (prefers-reduced-motion: reduce) { .sc-copy-inner { transition: opacity .15s ease !important; transform: none !important; } }
+.sx *, .sx *::before, .sx *::after { box-sizing: border-box; }
+:where(.sx button) { font: inherit; color: inherit; }
+.sx-page { padding-block: 24px 24px; }
+.sx.dr { gap: 20px; }
+.sx .dr-top h3 { font-size: 24px; }
+.sx-tools { display: flex; gap: 8px; flex: none; }
+.sx-tools .round { display: grid; place-items: center; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.doto { font-family: "Doto", ui-monospace, monospace; font-weight: 800; text-transform: uppercase; }
 
-/* Embed mode (inside the playground drawer) */
-.sc-embed, .sc-embed body { background: transparent !important; }
-.sc-embed body { margin: 0; }
-.sc-embed .wrap.sc-page { max-width: none; padding: 0; margin: 0; }
-.sc-embed .sc.dr { padding: 0; background: none; border: 0; box-shadow: none; }
-.sc-embed .sc > .dr-top, .sc-embed .sc > .dr-intro { display: none; }
-.sc-embed .sc-demo { padding-top: 8px; }
+/* ============================================================
+   Layout: narrow story card | tabs + big stage
+   ============================================================ */
+.sx-demo { display: grid; grid-template-columns: 244px minmax(0, 1fr); gap: 14px; height: var(--stage-h); }
+.sx-side { display: flex; flex-direction: column; gap: 14px; padding: 22px; border-radius: 18px; background: var(--card); box-shadow: var(--card-shadow); font-size: 14px; line-height: 1.5; overflow: auto; scrollbar-width: none; }
+.sx-side::-webkit-scrollbar { display: none; }
+.sx-side h2 { margin: 0 0 4px; font-size: 24px; line-height: 1.15; font-weight: 400; }
+.sx-side p { color: var(--ink-2); }
+.sx-side p.lead { color: var(--ink); }
+.sx-side .btn { align-self: flex-start; height: 40px; font-size: 14px; padding: 0 18px; flex: none; }
+.wip { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; border-radius: 99px; border: 1px solid var(--line); font-size: 11px; color: var(--ink-2); }
+.wip i { width: 6px; height: 6px; border-radius: 50%; background: var(--l-sim); }
+.thinking { font-size: 13px; color: var(--ink-2); }
+.thinking summary { cursor: pointer; list-style: none; width: max-content; border-radius: 4px; }
+.thinking summary::-webkit-details-marker { display: none; }
+.thinking summary::before { content: '+'; display: inline-block; width: 14px; transition: transform .25s ease; }
+.thinking[open] summary::before { transform: rotate(45deg); }
+.thinking summary:hover { color: var(--ink); }
+.thinking dl { margin: 10px 0 0; display: grid; gap: 10px; }
+.thinking dt { font-size: 11px; color: var(--ink); }
+.thinking dd { margin: 2px 0 0; font-size: 13px; line-height: 1.45; }
+.sx-key { margin-top: auto !important; padding-top: 14px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink) !important; flex: none; }
+.sx-key span { display: inline-flex; align-items: center; gap: 7px; }
+.sx-key i { width: 8px; height: 8px; border-radius: 50%; }
+.sx-note { font-size: 12px; color: var(--ink-2); flex: none; }
+
+.sx-main { display: flex; flex-direction: column; gap: 10px; min-width: 0; min-height: 0; }
+.tabs { flex: none; display: flex; gap: 4px; flex-wrap: wrap; }
+.tabs button { height: 36px; padding: 0 14px; border: 0; border-radius: 99px; background: none; cursor: pointer; font-size: 14px; color: var(--ink-2); transition: background-color .2s ease, color .2s ease; }
+.tabs button:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 5%, transparent); }
+.tabs button[aria-selected="true"] { color: var(--card); background: var(--ink); }
+.tabs button span { margin-right: 6px; opacity: .6; font-variant-numeric: tabular-nums; }
+.sx-stage { position: relative; flex: 1; min-height: 0; border-radius: 18px; overflow: hidden; background: var(--stage); box-shadow: var(--card-shadow); }
+.st-canvas { position: absolute; inset: 0; overflow: hidden; background-image: radial-gradient(var(--dotgrid) 1px, transparent 1.2px); background-size: 18px 18px; background-position: 9px 9px; }
+
+/* HUD */
+.hud { position: absolute; left: 50%; top: 16px; transform: translateX(-50%); z-index: 5; font-size: 13px; line-height: 1.25; width: max-content; max-width: calc(100% - 2 * var(--card-w) - 56px); text-align: center; pointer-events: none; color: var(--hud, var(--ink)); transition: color .5s ease, font-size .4s ease; }
+.hud.big { font-size: 22px; top: 12px; }
+
+/* Chart: pinned in the centre */
+.chart { position: absolute; z-index: 2; }
+.chart svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.chart text { font-family: "Doto", ui-monospace, monospace; font-weight: 800; font-size: 12px; fill: var(--ink-2); text-transform: uppercase; }
+.chart .grid { stroke: var(--line); }
+.chart .axis { stroke: var(--ink-2); stroke-opacity: .5; }
+.chart .wh { stroke: var(--l-an); stroke-width: 1.5; }
+.chart .box { fill: color-mix(in srgb, var(--l-an) 14%, var(--stage)); stroke: var(--l-an); stroke-width: 1.5; }
+.chart .med { fill: var(--l-an); }
+.chart text.val { fill: var(--l-an); }
+.chart text.cat { fill: var(--ink); font-size: 11px; }
+.chart .grp { cursor: pointer; }
+.chart .grp .hit { fill: transparent; }
+.chart .grp:hover .hit, .chart .grp.on .hit { fill: color-mix(in srgb, var(--l-an) 6%, transparent); }
+.chart .dec { stroke: var(--l-sim); fill: none; stroke-width: 1.5; }
+.chart .dec-dash { stroke: var(--l-sim); fill: none; stroke-width: 1.5; stroke-dasharray: 3 3; }
+.chart text.dec-t { fill: var(--l-sim); font-family: inherit; font-weight: 400; text-transform: none; font-size: 12px; }
+.chart text.dec-d { fill: var(--l-sim); }
+.chart text.ttl { fill: var(--ink-2); font-family: inherit; font-weight: 400; text-transform: none; font-size: 12px; }
+.chart .inset { fill: var(--stage); stroke: var(--l-sim); stroke-width: 1.5; }
+.chart .series { fill: none; stroke: var(--l-an); stroke-width: 2; }
+.chart .cell { fill: var(--l-an); }
+
+/* pager under the chart */
+.pager { position: absolute; z-index: 5; left: 50%; bottom: 12px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--ink-2); }
+.pager button { width: 30px; height: 30px; border-radius: 50%; border: 0; background: color-mix(in srgb, var(--ink) 6%, transparent); color: var(--ink); cursor: pointer; font-size: 14px; }
+.pager button:hover { background: color-mix(in srgb, var(--ink) 11%, transparent); }
+
+/* ============================================================
+   Floating tool cards (behind the chart in the hierarchy)
+   ============================================================ */
+.tcard { position: absolute; z-index: 6; top: 14px; width: var(--card-w); max-height: calc(100% - 28px); overflow: auto; scrollbar-width: thin; background: var(--tcard-bg); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-radius: 14px; outline: 1px solid color-mix(in srgb, var(--ink) 7%, transparent); outline-offset: -1px; padding: 16px; font-size: 13px; line-height: 1.45; }
+.c-left { left: 14px; }
+.c-right { right: 14px; }
+.tcard h3 { margin: 0 0 10px; font-size: 12px; font-weight: 400; color: var(--ink-2); }
+.tcard .q { font-size: 14px; line-height: 1.35; color: var(--ink); margin-bottom: 8px !important; }
+.radios { display: grid; gap: 2px; }
+.radios button { display: flex; align-items: center; gap: 9px; width: 100%; padding: 4px 6px; margin: 0 -6px; border: 0; border-radius: 6px; background: none; cursor: pointer; text-align: left; font-size: 13px; color: var(--ink-2); transition: color .2s ease, background-color .2s ease; }
+.radios button::before { content: ""; flex: none; width: 11px; height: 11px; border-radius: 50%; border: 1.25px solid currentColor; }
+.radios button[aria-checked="true"] { color: var(--ink); }
+.radios button[aria-checked="true"]::before { background: var(--l-sim); border-color: var(--l-sim); box-shadow: inset 0 0 0 2px var(--card); }
+.radios button:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 4%, transparent); }
+.cap { margin-top: 10px !important; padding-top: 10px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-2); }
+.cap:empty { display: none; }
+.shot { display: block; width: 100%; margin-top: 12px; padding: 0; border: 0; border-radius: 8px; overflow: hidden; cursor: zoom-in; background: var(--card); outline: 1px solid var(--line); }
+.shot img { display: block; width: 100%; height: auto; }
+.shot-cap { margin-top: 6px !important; font-size: 11px; color: var(--ink-2); }
+.says { display: grid; gap: 12px; }
+.says dt { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--ink-2); }
+.says dt i { width: 7px; height: 7px; border-radius: 2px; }
+.says dd { margin: 3px 0 0; font-size: 14px; line-height: 1.4; }
+.read { margin-top: 12px !important; padding-top: 10px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.read b { font-weight: 400; color: var(--l-an); }
+.tcard :focus-visible, .sx-side :focus-visible, .tabs :focus-visible, .pager :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* the original 2017 screenshot, opened on the stage */
+.shot-view { position: absolute; inset: 0; z-index: 20; display: grid; place-items: center; padding: 48px 24px 24px; background: color-mix(in srgb, var(--stage) 92%, transparent); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.shot-view[hidden] { display: none; }
+.shot-view figure { margin: 0; max-width: 100%; max-height: 100%; display: grid; gap: 8px; }
+.shot-view img { max-width: 100%; max-height: calc(var(--stage-h) - 160px); border-radius: 8px; box-shadow: var(--card-shadow); background: #fff; }
+.shot-view figcaption { font-size: 13px; color: var(--ink-2); }
+.shot-view .x { position: absolute; top: 12px; right: 12px; }
+
+/* ============================================================
+   Narrow: chart on top, cards flow underneath (JS adds .stack)
+   ============================================================ */
+@media (max-width: 960px) { .sx-demo { grid-template-columns: 1fr; height: auto; } .sx-side { overflow: visible; } }
+.sx-stage.stack { overflow: visible; background: none; box-shadow: none; display: grid; gap: 12px; flex: none; }
+.sx-stage.stack .st-canvas { position: relative; inset: auto; height: 560px; border-radius: 18px; background-color: var(--stage); box-shadow: var(--card-shadow); }
+.sx-stage.stack .tcard { position: static; width: auto; max-height: none; overflow: visible; background: var(--card); }
+.sx-stage.stack .hud { max-width: calc(100% - 32px); }
+.sx-demo:has(.stack) { height: auto; }
+
+@media (prefers-reduced-motion: reduce) { .sx *, .sx *::before, .sx *::after { transition-duration: 1ms !important; } }
+
+/* Embed mode */
+.sx-embed, .sx-embed body { background: transparent !important; }
+.sx-embed body { margin: 0; }
+.sx-embed .wrap.sx-page { max-width: none; padding: 0; margin: 0; }
+.sx-embed .sx.dr { padding: 0; background: none; border: 0; box-shadow: none; }
+.sx-embed .sx > .dr-top { display: none; }
+.sx-embed .sx { --stage-h: 700px; }
 </style>
 </head>
 <body>
-<main class="wrap sc-page">
-<div class="dr sc">
+<main class="wrap sx-page">
+<div class="dr sx">
   <div class="dr-top">
     <div><p class="kind">Data visualisation · 2017 → today</p><h3>Making sense of scale</h3></div>
-    <a class="round sc-close" href="playground.html" aria-label="Back to the playground">×</a>
-  </div>
-  <div class="dr-intro">
-    <p>Designing for big data and machine learning, from logarithmic charts in 2017 to now.</p>
-    <dl class="dr-meta">
-      <div><dt>Type</dt><dd>Past work, rebuilt</dd></div>
-      <div><dt>Focus</dt><dd>Data visualisation, machine learning</dd></div>
-    </dl>
+    <span class="sx-tools">
+      <button class="round" id="themeBtn" type="button" aria-label="Switch to dark mode"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg></button>
+      <a class="round" href="playground.html" aria-label="Back to the playground">×</a>
+    </span>
   </div>
 
-  <section class="sc-demo" aria-label="Making sense of scale demo">
-    <div>
-      <div class="sc-chart">
-        <svg id="chart" viewBox="0 0 640 400" role="img" aria-labelledby="chartDesc"><desc id="chartDesc">Price ranges for five market segments, from £2 to £1,000,000.</desc></svg>
-        <p class="sc-read" id="read" aria-live="polite"></p>
+  <section class="sx-demo" id="demo" aria-label="Making sense of scale, interactive">
+    <aside class="sx-side">
+      <span class="wip"><i></i>Work in progress</span>
+      <h2>What does this chart want you to notice?</h2>
+      <p class="lead">The data decides the values. The designer decides what people see.</p>
+      <p>Scale, outliers and chart type are design decisions. I’d rather make them on purpose.</p>
+      <details class="thinking">
+        <summary>The thinking</summary>
+        <dl>
+          <!-- THINKING COPY: replace each <dd> with your own text -->
+          <div><dt>Problem</dt><dd>At EDITED in 2017, retailers compared prices across whole markets: £2 vests next to £1,000,000 necklaces. A normal chart flattened everything but the necklace.</dd></div>
+          <div><dt>Who it’s for</dt><dd>Merchandisers and pricing teams making fast decisions from dashboards, who need to compare ranges, not admire outliers.</dd></div>
+          <div><dt>Principles</dt><dd>Show the shape before the detail. Never let a label and its mark disagree. Make every scale say what it’s doing.</dd></div>
+          <div><dt>Insight</dt><dd>Every chart choice gains something and hides something. The job isn’t to find a neutral chart; there isn’t one. It’s to choose what people should notice, and be honest about the cost.</dd></div>
+          <div><dt>Why I chose it</dt><dd>The same problem is everywhere now: model outputs, audiences of ten or ten million, the cost of a query. Designing in the material, in code, is how I make those choices properly.</dd></div>
+        </dl>
+      </details>
+      <button class="btn btn-dark" id="sideBtn" type="button">Next decision</button>
+      <p class="sx-key" aria-label="Key"><span><i style="background:var(--l-an)"></i>Data</span><span><i style="background:var(--l-sim)"></i>Design decision</span></p>
+      <p class="sx-note">Illustrative prices, not EDITED data.</p>
+    </aside>
+
+    <div class="sx-main">
+      <div class="tabs" id="tabs" role="tablist" aria-label="Design decisions">
+        <button type="button" role="tab" data-t="then" aria-controls="stage"><span>01</span>2017 → Now</button>
+        <button type="button" role="tab" data-t="scale" aria-controls="stage"><span>02</span>Scale</button>
+        <button type="button" role="tab" data-t="out" aria-controls="stage"><span>03</span>Outliers</button>
+        <button type="button" role="tab" data-t="chart" aria-controls="stage"><span>04</span>The right chart</button>
       </div>
-    </div>
-
-    <div class="sc-copy">
-      <div class="sc-copy-inner" id="copy">
-        <h2 id="title"></h2>
-        <div id="body"></div>
-        <div class="sc-controls">
-          <div>
-            <div class="sc-flabel" id="scaleLabel">Scale</div>
-            <div class="sc-seg" id="scale" role="radiogroup" aria-labelledby="scaleLabel">
-              <button type="button" role="radio" data-v="lin">Linear</button>
-              <button type="button" role="radio" data-v="log">Logarithmic</button>
-            </div>
+      <div class="sx-stage" id="stage" role="tabpanel">
+        <div class="st-canvas" id="canvas">
+          <div class="hud doto" id="hud" aria-hidden="true"></div>
+          <div class="chart" id="chartBox"><svg id="chart" role="img" aria-labelledby="chartDesc"><desc id="chartDesc"></desc></svg></div>
+          <div class="pager doto" aria-label="Pager">
+            <button type="button" id="prev" aria-label="Previous decision">←</button>
+            <span id="count">01 / 04</span>
+            <button type="button" id="next" aria-label="Next decision">→</button>
           </div>
-          <div id="verWrap" hidden>
-            <div class="sc-flabel" id="verLabel">Version</div>
-            <div class="sc-seg" id="ver" role="radiogroup" aria-labelledby="verLabel">
-              <button type="button" role="radio" data-v="2017">2017 design</button>
-              <button type="button" role="radio" data-v="now">Rebuilt in code</button>
-            </div>
+          <div class="shot-view" id="shotView" hidden role="dialog" aria-label="The original 2017 chart">
+            <button class="round x" id="shotClose" type="button" aria-label="Close">×</button>
+            <figure><img src="visual-assets/edited-2017.png" alt="The original 2017 EDITED price chart on a logarithmic scale, with 250.59 sitting on the £1,000,000 gridline."><figcaption>The original, EDITED 2017. Spot the label on the £1,000,000 line.</figcaption></figure>
           </div>
         </div>
-        <div class="sc-act"><button class="btn btn-dark" id="action" type="button"></button></div>
-        <p class="sc-note">Illustrative prices, not EDITED data.</p>
+
+        <div class="tcard c-left" id="cLeft"></div>
+
+        <div class="tcard c-right" id="cRight">
+          <h3>What this choice does</h3>
+          <dl class="says">
+            <div><dt><i style="background:var(--l-an)"></i>What it says</dt><dd id="says"></dd></div>
+            <div><dt><i style="background:var(--l-sim)"></i>What it hides</dt><dd id="hides"></dd></div>
+          </dl>
+          <p class="read" id="read" aria-live="polite"></p>
+        </div>
       </div>
     </div>
   </section>
-
-  <div class="dr-ctrl">
-    <span class="dr-count" id="count">01 / 05</span>
-    <span><button class="round" id="prev" type="button" aria-label="Previous step">←</button> <button class="round" id="next" type="button" aria-label="Next step">→</button></span>
-  </div>
+  <p class="sr" id="announce" aria-live="polite"></p>
 </div>
 </main>
 
 <script>
 (() => {
   'use strict';
-  /* Five segments of a fashion market: [min, q1, median, q3, max] in £ */
+
+  /* ============================================================
+     Data (illustrative). Five segments of a fashion market:
+     [min, q1, median, q3, max] in £
+     ============================================================ */
   const DATA = [
-    { name: 'Value',        n: 4210, v: [2, 6, 10, 16, 60] },
-    { name: 'High street',  n: 3880, v: [6, 20, 30, 50, 400] },
-    { name: 'Online',       n: 502,  v: [20, 28, 40, 70, 250.59] },
-    { name: 'Luxury',       n: 1260, v: [45, 300, 650, 1500, 48000] },
-    { name: 'Fine jewellery', n: 140, v: [180, 1200, 4800, 22000, 1000000] }
+    { name: 'Value',          short: 'Value',     n: 4210, v: [2, 6, 10, 16, 60] },
+    { name: 'High street',    short: 'High st',   n: 3880, v: [6, 20, 30, 50, 400] },
+    { name: 'Online',         short: 'Online',    n: 502,  v: [20, 28, 40, 70, 250.59] },
+    { name: 'Luxury',         short: 'Luxury',    n: 1260, v: [45, 300, 650, 1500, 48000] },
+    { name: 'Fine jewellery', short: 'Jewellery', n: 140,  v: [180, 1200, 4800, 22000, 1000000] }
   ];
-  /* body: array of paragraphs; <b> marks the key idea */
-  const STEPS = [
-    { title: 'Mapping scale', scale: 'lin', ver: 'now', action: 'Switch to log scale', body: [
-      'When I worked in fashion technology at EDITED in 2017, data visualisation was part of my work. Retailers wanted to compare prices across a whole market: £2 vests next to £1,000,000 necklaces.',
-      'Every chart is a map, and the scale decides how much space each value gets. On a normal <b>linear</b> scale, every pound gets the same space. So one necklace takes the whole chart, and everything else collapses into a line at the bottom.' ] },
-    { title: 'What logarithmic means', scale: 'log', ver: 'now', action: 'Why a designer cares', body: [
-      'A <b>logarithmic</b> scale gives equal space to equal multiples, not equal amounts. Each gridline is ten times the one below it, so £1 to £10 takes as much room as £100,000 to £1,000,000.',
-      'It answers a different question. Linear asks “how much more?”; log asks “how many times more?”. It’s how we already measure things that span huge ranges: earthquakes, sound in decibels, the acidity of pH.',
-      'Now a £10 high-street range and a £10,000 luxury range have the same shape, and you can compare them.' ] },
-    { title: 'Why a designer cares', scale: 'log', ver: 'now', action: 'See what the original got wrong', body: [
-      'The data decides the values. The scale decides what people notice. Pick linear and the story is one outlier; pick log and the story is how each market is spread. Same numbers, different conclusions.',
-      'That makes the scale a design decision, and an ethical one. People read distance as difference, so a log chart has to say what it’s doing: labelled gridlines, ×10 steps, no pretending the gaps are even.',
-      'Toggle the scale and watch the same data tell two stories.' ] },
-    { title: 'What the original got wrong', scale: 'log', ver: '2017', action: 'Rebuild it', body: [
-      'In the 2017 design, a maximum of 250.59 sits on the £1,000,000 gridline. The axis also starts at £0, and zero can’t exist on a log scale: you can multiply by ten forever and never reach it.',
-      'Both slipped through because the chart was a picture handed to engineering, not the chart itself.' ] },
-    { title: 'Designing in the material', scale: 'log', ver: 'now', action: 'Start again', body: [
-      'Rebuilt in code, every mark is placed by the same number it labels, so a label and its line can’t disagree.',
-      'The problem hasn’t gone away. Any data that spans orders of magnitude has it: model outputs, audiences of ten or ten million, the cost of a query. Same design judgement as 2017, different medium: designing in the material itself instead of handing off a picture of it.',
-      'Hover a range to read it.' ] }
-  ];
+  /* % of products discounted each month (fictional): peaks in Jan, Jul, Nov */
+  const MONTHS = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
+  const PEAK = [18, 6, 0, 0, 2, 8, 15, 6, 0, 2, 20, 12];
+  const LINES = [['Value', 34], ['High st', 26], ['Online', 20], ['Luxury', 6]].map(([nm, b], k) =>
+    ({ nm, v: PEAK.map((p, m) => Math.round(b + p * (1 - k * 0.22) + 2 * Math.sin(m * 1.7 + k))) }));
+  /* share of products by segment, four retailers (fictional) */
+  const MIX = [['Retailer A', [.55, .30, .08, .06, .01]], ['Retailer B', [.30, .45, .15, .08, .02]], ['Retailer C', [.15, .35, .30, .17, .03]], ['Retailer D', [.05, .15, .20, .45, .15]]];
+  /* new products launched per week, Jan to Jun (fictional, seeded) */
+  let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const WEEKS = 26;
+  const CAL = DATA.map((d, s) => Array.from({ length: WEEKS }, (_, w) => {
+    let v = 0.25 + 0.45 * Math.max(0, Math.sin((w - 4) / 22 * Math.PI)) + 0.3 * rnd();
+    if (s === 0) v += 0.15;
+    if (s === 4) v = (w === 5 || w === 6) ? 0.95 : 0.12 + 0.2 * rnd();   // Valentine's spike
+    if (s === 3 && (w === 8 || w === 9)) v = 0.95;                        // spring collection drop
+    return Math.min(1, v);
+  }));
+
+  /* ============================================================
+     What each choice says and hides
+     ============================================================ */
+  const COPY = {
+    then: {
+      '2017': { hud: 'Chart // 2017 design', says: 'Online prices appear to run all the way to £1,000,000.', hides: 'The truth: the real maximum is £250.59, and a log axis can’t start at £0.' },
+      now:    { hud: 'Chart // Rebuilt', says: 'Online prices run from £20 to £250.59, most between £28 and £70.', hides: 'Nothing false. It still hides how many products sit at each price.' }
+    },
+    scale: {
+      lin: { hud: 'Scale // Linear', says: 'One necklace is worth more than the rest of the market put together.', hides: 'Every other market: four of five segments flatten into a line at £0.' },
+      log: { hud: 'Scale // Log ×10', says: 'Every market has a shape you can compare, side by side.', hides: 'How big the gaps really are: £10 to £100 looks as tall as £100K to £1M.' }
+    },
+    out: {
+      keep: { hud: 'Outlier // Kept', cap: 'Honest about size. Everything else flattens.', says: 'One necklace dwarfs the whole market.', hides: 'Every other segment: they sit in a line at the bottom.' },
+      log:  { hud: 'Outlier // Log scale', cap: 'Every market readable. Gaps look smaller than they are.', says: 'Every segment has a readable shape, side by side.', hides: 'True distances: equal gaps now mean ×10, not +£.' },
+      brk:  { hud: 'Outlier // Axis broken', cap: 'Room for the rest. The break must be impossible to miss.', says: 'The main markets at a readable scale, with the necklace still on the chart.', hides: 'How far away the necklace really is: the break swallows £940,000.' },
+      sep:  { hud: 'Outlier // Separated', cap: 'Each gets its own scale. You can’t compare them directly.', says: 'The main market clearly, and jewellery in its own panel.', hides: 'The comparison: two scales can’t be read against each other.' }
+    },
+    chart: {
+      box:  { hud: 'Chart // Box plot', cap: 'Spread: where the middle half sits, and how far the extremes reach.', says: 'How prices spread within each market.', hides: 'How many products sit at each price, and how prices change over time.' },
+      line: { hud: 'Chart // Line', cap: 'Change over time: one value per point, joined so you see the trend.', says: 'When discounting peaks: January, July and Black Friday.', hides: 'The spread: a line shows one number a month and flattens the rest.' },
+      bar:  { hud: 'Chart // Stacked bar', cap: 'Part of a whole: every bar adds up to 100%.', says: 'What each retailer is made of: A is mostly value, D mostly luxury.', hides: 'Absolute size: a 100% bar makes a small retailer look as big as a large one.' },
+      cal:  { hud: 'Chart // Calendar matrix', cap: 'Dense time × category: every week for every segment at once.', says: 'Rhythm: the Valentine’s spike in jewellery, luxury’s spring drop.', hides: 'Exact values: colour is good at patterns, bad at precise numbers.' }
+    }
+  };
+  const OPTIONS = {
+    then:  { label: 'Version', q: '', key: 'ver', opts: [['2017', '2017 design'], ['now', 'Rebuilt']] },
+    scale: { label: 'Scale', q: '', key: 'scale', opts: [['lin', 'Linear'], ['log', 'Logarithmic']] },
+    out:   { label: 'Outliers', q: 'What do we do with the £1,000,000 necklace?', key: 'out', opts: [['keep', 'Keep it'], ['log', 'Log scale'], ['brk', 'Break the axis'], ['sep', 'Show it separately']] },
+    chart: { label: 'The right chart', q: 'What’s the shape of your data?', key: 'chart', opts: [['box', 'Spread'], ['line', 'Change over time'], ['bar', 'Part of a whole'], ['cal', 'Dense time × category']] }
+  };
+  const TABS = ['then', 'scale', 'out', 'chart'];
 
   const $ = s => document.querySelector(s);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const NS = 'http://www.w3.org/2000/svg';
-  const W = 640, H = 400, L = 78, R = 16, T = 26, B = 40;
-  const PH = H - T - B, PW = W - L - R;
-  const state = { step: 0, t: 0, ver: 'now', sel: null };
+  const state = { tab: 'then', ver: 'now', scale: 'log', out: 'keep', chart: 'box', t: 1, sel: null };
+  let hudOverride = null;
+  const box = { w: 360, h: 520 };
 
-  /* y position: blend of the linear and log mappings, t = 0 linear, 1 log */
-  const LIN_MAX = 1050000, LOG_MIN = 0, LOG_MAX = 6;
-  const linY = v => T + PH * (1 - v / LIN_MAX);
-  const logY = v => T + PH * (1 - (Math.log10(Math.max(v, 1)) - LOG_MIN) / (LOG_MAX - LOG_MIN));
-  const y = v => linY(v) * (1 - state.t) + logY(v) * state.t;
+  function el(tag, attrs, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; }
   const money = v => '£' + (v >= 100 ? Math.round(v).toLocaleString('en-GB') : v % 1 ? v.toFixed(2) : v);
+  const short = v => v >= 1e6 ? '£' + v / 1e6 + 'M' : v >= 1e3 ? '£' + Math.round(v / 1e3) + 'K' : '£' + (v % 1 ? v.toFixed(2) : v);
 
-  function el(tag, attrs, text) {
-    const e = document.createElementNS(NS, tag);
-    for (const k in attrs) e.setAttribute(k, attrs[k]);
-    if (text != null) e.textContent = text;
-    return e;
+  /* ============================================================
+     Box plots under any y mapping
+     ============================================================ */
+  function frame() {
+    const L = 58, R = 10, T = 54, B = 34;
+    return { L, R, T, B, PW: box.w - L - R, PH: box.h - T - B, bottom: box.h - B };
   }
+  function boxMode() {
+    if (state.tab === 'then') return 'blend';
+    if (state.tab === 'scale') return 'blend';
+    if (state.tab === 'out') return state.out === 'brk' ? 'brk' : state.out === 'sep' ? 'sep' : 'blend';
+    return 'blend';
+  }
+  function drawBoxes(g) {
+    const F = frame(), mode = boxMode(), t = state.t, bug = state.tab === 'then' && state.ver === '2017';
+    const LIN_MAX = 1050000;
+    const linY = v => F.T + F.PH * (1 - v / LIN_MAX);
+    const logY = v => F.T + F.PH * (1 - Math.log10(Math.max(v, 1)) / 6);
+    const BRK = 60000, lowH = F.PH * 0.8, gapTop = F.T + F.PH * 0.12;
+    let y;
+    if (mode === 'blend') y = v => linY(v) * (1 - t) + logY(v) * t;
+    else if (mode === 'brk') y = v => v <= BRK ? F.bottom - v / BRK * lowH : gapTop - (v - BRK) / (LIN_MAX - BRK) * (F.PH * 0.12 - 4);
+    else y = v => F.bottom - Math.min(v, BRK) / BRK * F.PH;
+    const data = mode === 'sep' ? DATA.slice(0, 4) : DATA;
 
-  function draw() {
-    const svg = $('#chart'), t = state.t, bug = state.ver === '2017' && t > 0.5;
-    [...svg.querySelectorAll(':scope > g')].forEach(g => g.remove());
-    const g = el('g', {});
-    /* gridlines: log ticks fade in, linear ticks fade out */
-    for (let p = 0; p <= 6; p++) {
-      const v = 10 ** p, yy = y(v);
-      const gg = el('g', { opacity: t });
-      gg.append(el('line', { class: 'grid', x1: L, x2: W - R, y1: yy, y2: yy }), el('text', { x: L - 8, y: yy + 4, 'text-anchor': 'end' }, money(v)));
-      g.append(gg);
+    /* gridlines + labels (Doto) */
+    if (mode === 'blend') {
+      for (let p = 0; p <= 6; p++) { const v = 10 ** p, yy = y(v), gg = el('g', { opacity: t }); gg.append(el('line', { class: 'grid', x1: F.L, x2: box.w - F.R, y1: yy, y2: yy }), el('text', { x: F.L - 8, y: yy + 4, 'text-anchor': 'end' }, short(v))); g.append(gg); }
+      for (let v = 0; v <= 1e6; v += 250000) { const yy = linY(v), gg = el('g', { opacity: 1 - t }); gg.append(el('line', { class: 'grid', x1: F.L, x2: box.w - F.R, y1: yy, y2: yy }), el('text', { x: F.L - 8, y: yy + 4, 'text-anchor': 'end' }, v ? short(v) : '£0')); g.append(gg); }
+      if (t > 0.5 && !bug) g.append(el('text', { class: 'dec-t', x: box.w - F.R, y: F.T - 12, 'text-anchor': 'end', opacity: (t - .5) * 2 }, 'Each line is 10× the one below'));
+    } else {
+      for (let v = 0; v <= BRK; v += 20000) { const yy = y(v); g.append(el('line', { class: 'grid', x1: F.L, x2: box.w - F.R, y1: yy, y2: yy }), el('text', { x: F.L - 8, y: yy + 4, 'text-anchor': 'end' }, v ? short(v) : '£0')); }
+      if (mode === 'brk') {
+        const yy = y(1e6); g.append(el('line', { class: 'grid', x1: F.L, x2: box.w - F.R, y1: yy, y2: yy }), el('text', { class: 'dec-d', x: F.L - 8, y: yy + 4, 'text-anchor': 'end' }, '£1M'));
+        /* the break: zigzag across the axis and the whole plot */
+        const yb = F.bottom - lowH - (F.bottom - lowH - gapTop) / 2;
+        const zig = x0 => `M${x0 - 8},${yb + 5} l5,-6 l6,6 l5,-6`;
+        g.append(el('rect', { x: F.L - 12, y: yb - 6, width: box.w - F.L - F.R + 12, height: 12, fill: 'var(--stage)' }));
+        g.append(el('path', { class: 'dec', d: zig(F.L) }), el('path', { class: 'dec', d: zig(box.w - F.R - 8) }));
+        g.append(el('line', { class: 'dec-dash', x1: F.L + 12, x2: box.w - F.R - 14, y1: yb, y2: yb }));
+      }
     }
-    for (let v = 0; v <= 1000000; v += 250000) {
-      const yy = y(Math.max(v, 1e-9)) , gg = el('g', { opacity: 1 - t });
-      gg.append(el('line', { class: 'grid', x1: L, x2: W - R, y1: linY(v), y2: linY(v) }), el('text', { x: L - 8, y: linY(v) + 4, 'text-anchor': 'end' }, money(v)));
-      g.append(gg);
-    }
-    g.append(el('line', { class: 'axis', x1: L, x2: L, y1: T, y2: H - B }), el('line', { class: 'axis', x1: L, x2: W - R, y1: H - B, y2: H - B }));
+    g.append(el('line', { class: 'axis', x1: F.L, x2: F.L, y1: F.T, y2: F.bottom }), el('line', { class: 'axis', x1: F.L, x2: box.w - F.R, y1: F.bottom, y2: F.bottom }));
+    if (bug) g.append(el('text', { class: 'dec-d', x: F.L - 8, y: F.bottom + 16, 'text-anchor': 'end' }, '£0'));
 
-    const step = PW / DATA.length;
-    DATA.forEach((d, i) => {
-      const cx = L + step * (i + .5), [mn, q1, md, q3, mx] = d.v;
-      const grp = el('g', { class: 'grp' + (state.sel === i ? ' on' : ''), tabindex: 0, role: 'button',
-        'aria-label': `${d.name}: ${money(mn)} to ${money(mx)}, median ${money(md)}` });
-      grp.append(el('rect', { class: 'hit', x: cx - step / 2 + 4, y: T, width: step - 8, height: PH, rx: 6 }));
-      /* the 2017 bug: the online maximum drawn to the top of the chart */
-      const yMax = bug && i === 2 ? y(1000000) : y(mx);
-      grp.append(el('line', { class: 'wh', x1: cx, x2: cx, y1: yMax, y2: y(mn) }));
-      grp.append(el('line', { class: 'wh', x1: cx - 5, x2: cx + 5, y1: yMax, y2: yMax }), el('line', { class: 'wh', x1: cx - 5, x2: cx + 5, y1: y(mn), y2: y(mn) }));
+    /* the boxes */
+    const step = F.PW / data.length;
+    data.forEach((d, i) => {
+      const cx = F.L + step * (i + .5), [mn, q1, md, q3, mx] = d.v;
+      const grp = el('g', { class: 'grp' + (state.sel === i ? ' on' : ''), tabindex: 0, role: 'button', 'aria-label': `${d.name}: ${money(mn)} to ${money(mx)}, median ${money(md)}` });
+      grp.append(el('rect', { class: 'hit', x: cx - step / 2 + 3, y: F.T, width: step - 6, height: F.PH, rx: 6 }));
+      const yMax = bug && i === 2 ? y(1e6) : y(mx);
+      const hw = Math.min(11, step * 0.2);
+      grp.append(el('line', { class: 'wh', x1: cx, x2: cx, y1: yMax, y2: y(mn) }), el('line', { class: 'wh', x1: cx - 5, x2: cx + 5, y1: yMax, y2: yMax }), el('line', { class: 'wh', x1: cx - 5, x2: cx + 5, y1: y(mn), y2: y(mn) }));
       const top = y(q3), h = Math.max(2, y(q1) - top);
-      grp.append(el('rect', { class: 'box', x: cx - 9, y: top, width: 18, height: h, rx: 2 }));
-      grp.append(el('circle', { class: 'med', cx, cy: y(md), r: 2.5 }));
-      grp.append(el('text', { class: 'val', x: cx, y: yMax - 7, 'text-anchor': 'middle' }, mx >= 1000 ? money(mx) : mx.toString()));
-      grp.append(el('text', { class: 'cat', x: cx, y: H - B + 20, 'text-anchor': 'middle' }, d.name));
-      grp.addEventListener('pointerenter', () => select(i));
-      grp.addEventListener('focus', () => select(i));
-      grp.addEventListener('click', () => select(i));
+      grp.append(el('rect', { class: 'box', x: cx - hw, y: top, width: hw * 2, height: h, rx: 2 }), el('circle', { class: 'med', cx, cy: y(md), r: 2.5 }));
+      grp.append(el('text', { class: 'val', x: cx, y: yMax - 8, 'text-anchor': 'middle' }, bug && i === 2 ? '250.59' : short(mx)));
+      grp.append(el('text', { class: 'cat', x: cx, y: F.bottom + 18, 'text-anchor': 'middle' }, d.short));
+      ['pointerenter', 'focus', 'click'].forEach(ev => grp.addEventListener(ev, () => readOut(i)));
       g.append(grp);
     });
 
-    /* 2017 annotations: the misplaced label, and £0 on a log axis */
-    if (state.ver === '2017') {
-      const bg = el('g', { class: 'bug', opacity: t });
-      const cx = L + step * 2.5;
-      bg.append(el('circle', { class: 'err', cx, cy: y(1000000) - 6, r: 22 }));
-      bg.append(el('text', { class: 'err-t', x: cx + 28, y: y(1000000) + 16 }, '250.59 on the £1M line'));
-      bg.append(el('text', { class: 'err-t', x: L - 8, y: H - B + 20, 'text-anchor': 'end' }, '£0 ?'));
-      bg.append(el('text', { class: 'err-t', x: L + 8, y: H - B - 8 }, 'log(0) doesn’t exist'));
-      g.append(bg);
+    /* 2017 annotations */
+    if (bug) {
+      const cx = F.L + step * 2.5;
+      g.append(el('circle', { class: 'dec-dash', cx, cy: y(1e6) - 4, r: 22 }));
+      g.append(el('text', { class: 'dec-t', x: cx - 26, y: y(1e6) + 26, 'text-anchor': 'end' }, '250.59 on the £1M line'));
+      g.append(el('text', { class: 'dec-t', x: F.L + step + 4, y: F.bottom - 8 }, '£0 on a log axis?'));
     }
-    svg.append(g);
+    /* separate panel for the outlier */
+    if (mode === 'sep') {
+      const d = DATA[4], w = Math.min(130, box.w * 0.36), h = F.PH * 0.46, x0 = F.L + 10, y0 = F.T + 4;
+      g.append(el('rect', { class: 'inset', x: x0, y: y0, width: w, height: h, rx: 8 }));
+      g.append(el('text', { class: 'dec-d', x: x0 + 10, y: y0 + 18 }, 'Jewellery'));
+      g.append(el('text', { class: 'dec-t', x: x0 + 10, y: y0 + 34 }, 'own scale, log'));
+      const iy = v => y0 + h - 14 - (Math.log10(v) - 2) / 4 * (h - 64), cx = x0 + w / 2 + 10, [mn, q1, md, q3, mx] = d.v;
+      [100, 1e4, 1e6].forEach(v => g.append(el('text', { x: x0 + 34, y: iy(v) + 4, 'text-anchor': 'end' }, short(v))));
+      g.append(el('line', { class: 'wh', x1: cx, x2: cx, y1: iy(mx), y2: iy(mn) }), el('rect', { class: 'box', x: cx - 9, y: iy(q3), width: 18, height: iy(q1) - iy(q3), rx: 2 }), el('circle', { class: 'med', cx, cy: iy(md), r: 2.5 }));
+    }
   }
 
-  function select(i) {
+  /* ============================================================
+     The other chart types
+     ============================================================ */
+  function drawLine(g) {
+    const L = 40, R = 70, T = 54, B = 34, PW = box.w - L - R, PH = box.h - T - B, bottom = box.h - B;
+    const x = m => L + m / 11 * PW, y = v => bottom - v / 60 * PH;
+    for (let v = 0; v <= 60; v += 20) g.append(el('line', { class: 'grid', x1: L, x2: L + PW, y1: y(v), y2: y(v) }), el('text', { x: L - 8, y: y(v) + 4, 'text-anchor': 'end' }, v + '%'));
+    MONTHS.forEach((m, i) => g.append(el('text', { x: x(i), y: bottom + 18, 'text-anchor': 'middle' }, m)));
+    g.append(el('text', { class: 'ttl', x: L, y: T - 14 }, '% of products discounted, 2017'));
+    LINES.forEach((s, k) => {
+      const op = [1, .7, .45, .25][k];
+      g.append(el('path', { class: 'series', d: s.v.map((v, i) => `${i ? 'L' : 'M'}${x(i)},${y(v)}`).join(''), 'stroke-opacity': op }));
+      g.append(el('text', { class: 'val', x: L + PW + 6, y: y(s.v[11]) + 4 + (k === 1 ? -6 : k === 2 ? 6 : 0), 'fill-opacity': Math.max(op, .5) }, s.nm));
+    });
+  }
+  function drawBar(g) {
+    const L = 14, R = 14, T = 70, B = 56, PW = box.w - L - R, PH = box.h - T - B, bottom = box.h - B, n = MIX.length, bw = PW / n * 0.62;
+    const ops = [1, .72, .5, .32, .16];
+    g.append(el('text', { class: 'ttl', x: L, y: T - 30 }, 'Share of products by segment'));
+    MIX.forEach(([nm, sh], i) => {
+      const cx = L + PW / n * (i + .5); let acc = 0;
+      sh.forEach((v, k) => {
+        const h = v * PH, yy = bottom - acc - h; acc += h;
+        g.append(el('rect', { class: 'cell', x: cx - bw / 2, y: yy, width: bw, height: Math.max(0, h - 1.5), 'fill-opacity': ops[k] }));
+        if (h > 18) g.append(el('text', { x: cx, y: yy + h / 2 + 4, 'text-anchor': 'middle', style: `fill:${k < 2 ? 'var(--stage)' : 'var(--ink)'}` }, Math.round(v * 100) + '%'));
+      });
+      g.append(el('text', { class: 'cat', x: cx, y: bottom + 18, 'text-anchor': 'middle' }, nm.replace('Retailer ', '')));
+    });
+    DATA.forEach((d, k) => {
+      const col = k % 3, row = Math.floor(k / 3), lx = L + col * (PW / 3), ly = T - 14 + row * 0;
+      if (row) return;
+      g.append(el('rect', { class: 'cell', x: lx, y: ly - 9, width: 9, height: 9, 'fill-opacity': ops[k] }), el('text', { x: lx + 14, y: ly }, d.short));
+    });
+    DATA.slice(3).forEach((d, j) => { const k = j + 3, lx = L + j * (PW / 3), ly = bottom + 40; g.append(el('rect', { class: 'cell', x: lx, y: ly - 9, width: 9, height: 9, 'fill-opacity': ops[k] }), el('text', { x: lx + 14, y: ly }, d.short)); });
+  }
+  function drawCal(g) {
+    const L = 74, R = 8, T = 90, cw = (box.w - L - R) / WEEKS, chh = Math.min(30, cw * 2.2);
+    g.append(el('text', { class: 'ttl', x: L, y: T - 40 }, 'New products launched, Jan to Jun'));
+    ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'].forEach((m, i) => g.append(el('text', { x: L + i * 4.33 * cw, y: T - 10 }, m)));
+    CAL.forEach((row, s) => {
+      g.append(el('text', { class: 'cat', x: L - 8, y: T + s * (chh + 3) + chh / 2 + 4, 'text-anchor': 'end' }, DATA[s].short));
+      row.forEach((v, w) => g.append(el('rect', { class: 'cell', x: L + w * cw, y: T + s * (chh + 3), width: Math.max(1, cw - 2), height: chh, rx: 2, 'fill-opacity': (0.08 + v * 0.92).toFixed(2) })));
+    });
+    const ly = T + 5 * (chh + 3) + 24;
+    g.append(el('text', { x: L, y: ly + 4 }, 'Fewer'));
+    [.15, .35, .55, .75, 1].forEach((o, i) => g.append(el('rect', { class: 'cell', x: L + 52 + i * 14, y: ly - 6, width: 11, height: 11, rx: 2, 'fill-opacity': o })));
+    g.append(el('text', { x: L + 52 + 5 * 14 + 6, y: ly + 4 }, 'More'));
+  }
+
+  /* ============================================================
+     Draw + render
+     ============================================================ */
+  function draw() {
+    const svg = $('#chart');
+    svg.setAttribute('viewBox', `0 0 ${box.w} ${box.h}`);
+    [...svg.querySelectorAll(':scope > g')].forEach(n => n.remove());
+    const g = el('g', {});
+    if (state.tab === 'chart' && state.chart !== 'box') ({ line: drawLine, bar: drawBar, cal: drawCal })[state.chart](g);
+    else drawBoxes(g);
+    svg.append(g);
+    $('#chartDesc').textContent = current().says;
+  }
+  function current() {
+    const o = OPTIONS[state.tab];
+    return COPY[state.tab][state[o.key]];
+  }
+  function renderHud() {
+    const c = current(), dec = state.tab === 'scale' || state.tab === 'out' || (state.tab === 'then' && state.ver === '2017');
+    $('#hud').textContent = hudOverride || c.hud;
+    $('#canvas').style.setProperty('--hud', hudOverride ? 'var(--ink)' : dec ? 'var(--l-sim)' : 'var(--ink)');
+  }
+  function renderCards() {
+    const o = OPTIONS[state.tab], c = current(), i = TABS.indexOf(state.tab);
+    let h = `<h3>${String(i + 1).padStart(2, '0')} · ${o.label}</h3>`;
+    if (o.q) h += `<p class="q">${o.q}</p>`;
+    h += `<div class="radios" role="radiogroup" aria-label="${o.q || o.label}">` + o.opts.map(([v, lbl]) =>
+      `<button type="button" role="radio" data-v="${v}" aria-checked="${state[o.key] === v}" tabindex="${state[o.key] === v ? 0 : -1}">${lbl}</button>`).join('') + '</div>';
+    if (c.cap) h += `<p class="cap">${c.cap}</p>`;
+    if (state.tab === 'then') h += `<button class="shot" id="shotBtn" type="button" aria-label="Open the original 2017 chart"><img src="visual-assets/edited-2017.png" alt=""></button><p class="shot-cap">The original EDITED chart, 2017. Click to enlarge.</p>`;
+    if (state.tab === 'scale') h += `<p class="cap">Hover a segment to read its range.</p>`;
+    $('#cLeft').innerHTML = h;
+    const img = $('#cLeft .shot img'); if (img) img.onerror = () => { $('#shotBtn').outerHTML = '<p class="cap">Add visual-assets/edited-2017.png to show the original.</p>'; };
+    $('#says').textContent = c.says; $('#hides').textContent = c.hides;
+    document.querySelectorAll('#tabs button').forEach(b => { const on = b.dataset.t === state.tab; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; });
+    $('#count').textContent = `${String(i + 1).padStart(2, '0')} / 04`;
+  }
+  function readOut(i) {
     state.sel = i;
     const d = DATA[i], [mn, q1, md, q3, mx] = d.v;
-    $('#read').innerHTML = `<b>${d.name}</b> · ${d.n.toLocaleString('en-GB')} products · ${money(mn)} to ${money(mx)} · middle half ${money(q1)}–${money(q3)} · median ${money(md)}`;
+    $('#read').innerHTML = `<b>${d.name}</b> · ${money(mn)} to ${money(mx)} · middle half ${money(q1)}–${money(q3)} · median ${money(md)}`;
     draw();
   }
+  function render() { renderCards(); renderHud(); draw(); }
 
-  /* animate t between scales */
+  /* the log/linear tween */
   let raf;
-  function toScale(s) {
-    const target = s === 'log' ? 1 : 0;
-    setSeg('#scale', s);
-    cancelAnimationFrame(raf);
-    if (reduce.matches) { state.t = target; draw(); return; }
-    const from = state.t, start = performance.now(), dur = 900;
-    const ease = x => 1 - Math.pow(1 - x, 3);
-    const tick = now => {
-      const k = Math.min(1, (now - start) / dur);
-      state.t = from + (target - from) * ease(k); draw();
-      if (k < 1) raf = requestAnimationFrame(tick);
-    };
+  function targetT() {
+    if (state.tab === 'scale') return state.scale === 'log' ? 1 : 0;
+    if (state.tab === 'out') return state.out === 'keep' ? 0 : 1;
+    return 1;
+  }
+  function tween() {
+    const target = targetT(); cancelAnimationFrame(raf);
+    if (reduce.matches || Math.abs(state.t - target) < 0.001) { state.t = target; draw(); return; }
+    const from = state.t, start = performance.now(), dur = 900, ease = x => 1 - Math.pow(1 - x, 3);
+    const tick = now => { const k = Math.min(1, (now - start) / dur); state.t = from + (target - from) * ease(k); draw(); if (k < 1) raf = requestAnimationFrame(tick); };
     raf = requestAnimationFrame(tick);
   }
-  function setVer(v) { state.ver = v; setSeg('#ver', v); draw(); }
-  function setSeg(sel, v) { document.querySelectorAll(sel + ' button').forEach(b => b.setAttribute('aria-checked', String(b.dataset.v === v))); }
+  function setTab(t) { state.tab = t; state.sel = null; $('#read').textContent = ''; closeShot(); render(); tween(); announce(`${OPTIONS[t].label}. ${current().says}`); }
+  function setOpt(v) { state[OPTIONS[state.tab].key] = v; render(); tween(); announce(`${current().says} Hides: ${current().hides}`); }
+  const announce = m => { $('#announce').textContent = m; };
 
-  function go(i, animate = true) {
-    state.step = i;
-    const s = STEPS[i], copy = $('#copy');
-    const apply = () => {
-      $('#title').textContent = s.title; $('#body').innerHTML = s.body.map(p => `<p>${p}</p>`).join(''); $('#action').textContent = s.action;
-      $('#action').className = 'btn ' + (i === STEPS.length - 1 ? 'btn-ghost' : 'btn-dark');
-      $('#verWrap').hidden = i < 3;
-      copy.classList.remove('out');
-    };
-    if (animate && !reduce.matches) { copy.classList.add('out'); setTimeout(apply, 180); } else apply();
-    setVer(s.ver); toScale(s.scale);
-    if (i === STEPS.length - 1 && state.sel == null) select(2);
-    if (i < STEPS.length - 1) { state.sel = null; $('#read').textContent = i === 0 ? 'Hover a range to read it.' : ''; }
-    $('#count').textContent = `0${i + 1} / 0${STEPS.length}`;
-    $('#prev').disabled = i === 0; $('#next').disabled = i === STEPS.length - 1;
+  $('#tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setTab(b.dataset.t); });
+  $('#tabs').addEventListener('keydown', e => {
+    const k = { ArrowRight: 1, ArrowLeft: -1 }[e.key]; if (!k) return;
+    e.preventDefault(); const i = (TABS.indexOf(state.tab) + k + 4) % 4; setTab(TABS[i]); $(`#tabs [data-t="${TABS[i]}"]`).focus();
+  });
+  $('#cLeft').addEventListener('click', e => {
+    if (e.target.closest('#shotBtn')) return openShot();
+    const b = e.target.closest('.radios button'); if (b) setOpt(b.dataset.v);
+  });
+  $('#cLeft').addEventListener('keydown', e => {
+    const k = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key]; const b = e.target.closest('.radios button'); if (!k || !b) return;
+    e.preventDefault(); const bs = [...$('#cLeft').querySelectorAll('.radios button')], nb = bs[(bs.indexOf(b) + k + bs.length) % bs.length];
+    setOpt(nb.dataset.v); const f = $(`#cLeft .radios [data-v="${nb.dataset.v}"]`); if (f) f.focus();
+  });
+  const step = d => setTab(TABS[(TABS.indexOf(state.tab) + d + 4) % 4]);
+  $('#prev').addEventListener('click', () => step(-1));
+  $('#next').addEventListener('click', () => step(1));
+  $('#sideBtn').addEventListener('click', () => step(1));
+  function openShot() { $('#shotView').hidden = false; $('#shotClose').focus({ preventScroll: true }); }
+  function closeShot() { $('#shotView').hidden = true; }
+  $('#shotClose').addEventListener('click', closeShot);
+  $('#shotView').addEventListener('click', e => { if (e.target === $('#shotView')) closeShot(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeShot(); });
+
+  /* ============================================================
+     Layout: chart pinned in the centre, between the cards.
+     If the cards would crowd it, they move under the stage.
+     ============================================================ */
+  function layout() {
+    const stage = $('#stage'), cardW = 214, edge = 14, gap = 14;
+    stage.classList.remove('stack');
+    const W = stage.clientWidth, H = stage.clientHeight;
+    const free = W - 2 * (cardW + edge + gap);
+    stage.classList.toggle('stack', free < 300 || H < 420);
+    const stack = stage.classList.contains('stack'), cv = $('#canvas'), cw = cv.clientWidth, ch = cv.clientHeight;
+    const w = stack ? cw - 28 : Math.min(free, 560), h = ch - 30 - 44;
+    box.w = Math.max(260, w); box.h = Math.max(300, h);
+    Object.assign($('#chartBox').style, { left: (cw - box.w) / 2 + 'px', top: '30px', width: box.w + 'px', height: box.h + 'px' });
+    draw();
   }
+  new ResizeObserver(() => layout()).observe($('#demo'));
 
-  $('#scale').addEventListener('click', e => { const b = e.target.closest('button'); if (b) toScale(b.dataset.v); });
-  $('#ver').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setVer(b.dataset.v); });
-  $('#action').addEventListener('click', () => go(state.step === STEPS.length - 1 ? 0 : state.step + 1));
-  $('#next').addEventListener('click', () => state.step < STEPS.length - 1 && go(state.step + 1));
-  $('#prev').addEventListener('click', () => state.step > 0 && go(state.step - 1));
+  /* ============================================================
+     Auto-play: the same data tells two stories
+     ============================================================ */
+  let beats = [], played = false, interacted = false;
+  function startAuto() {
+    if (played || interacted || reduce.matches) return;
+    played = true; $('#hud').classList.add('big');
+    const B = [
+      () => { hudOverride = '£2 → £1,000,000'; renderHud(); },                         // linear: everything flattened
+      () => { hudOverride = null; state.scale = 'log'; render(); tween(); },             // SCALE // LOG ×10
+      () => { state.ver = '2017'; setTab('then'); },                                     // the 2017 version, annotated
+      () => { setOpt('now'); },                                                          // rebuilt
+      () => { $('#hud').classList.remove('big'); }
+    ];
+    B.forEach((b, i) => beats.push(setTimeout(() => { if (!interacted) b(); }, i * 2500)));
+  }
+  function stopAuto() {
+    if (interacted) return;
+    interacted = true; beats.forEach(clearTimeout); $('#hud').classList.remove('big');
+    if (hudOverride) { hudOverride = null; renderHud(); }
+  }
+  ['pointerdown', 'keydown', 'wheel'].forEach(t => $('#demo').addEventListener(t, stopAuto, { capture: true, passive: true }));
+  new IntersectionObserver(es => { if (es[0].isIntersecting && !played) setTimeout(startAuto, 400); }, { threshold: 0.35 }).observe($('#canvas'));
 
-  go(0, false);
+  /* Theme switch (same 'theme' key as the rest of the site) */
+  const isDark = () => (document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
+  const syncThemeBtn = () => $('#themeBtn').setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
+  $('#themeBtn').addEventListener('click', () => {
+    const next = isDark() ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    syncThemeBtn();
+  });
+  syncThemeBtn();
+
+  /* Init: auto-play opens on the flattened linear chart; otherwise on the rebuilt chart */
+  if (!reduce.matches) { state.tab = 'scale'; state.scale = 'lin'; state.t = 0; hudOverride = '£2 → £1,000,000'; }
+  render(); layout();
+  if (document.fonts) document.fonts.load('800 12px Doto').then(draw).catch(() => {});
 
   /* Embed: tell the playground how tall the demo is, follow its theme */
   if (window.parent !== window) {
     const post = () => parent.postMessage({ embedHeight: document.documentElement.scrollHeight }, '*');
     new ResizeObserver(post).observe(document.body); post();
-    addEventListener('message', e => { if (e.data && e.data.theme) document.documentElement.setAttribute('data-theme', e.data.theme); });
+    addEventListener('message', e => { if (e.data && e.data.theme) { document.documentElement.setAttribute('data-theme', e.data.theme); syncThemeBtn(); } });
   }
 })();
 </script>

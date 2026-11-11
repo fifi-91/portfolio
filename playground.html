@@ -1,84 +1,240 @@
 <!DOCTYPE html>
 
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Playground | Sophia Akrofi</title><meta content="A playground for experiments, personal projects and creative explorations by Sophia Akrofi." name="description"/><link href="site.css" rel="stylesheet"/><style>
-/* Playground only: no negative tracking, including inherited site styles. */
-.playground, .playground * {letter-spacing:0 !important}
-.playground-main{padding-top:calc(var(--sec) + 100px)}
-.playground-lead{max-width:680px;margin-bottom:var(--block)}
-.playground-lead h1{font-size:clamp(48px,7vw,88px);line-height:1.05;margin:12px 0 20px}
-.playground-lead p:last-child{max-width:55ch;color:var(--text-subtle)}
-.playground-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 24px}
-.playground-grid > *{min-width:0}
-.play-placeholder{width:100%;height:100%;display:grid;place-items:center;background:var(--bg-subtle);font-size:clamp(64px,11vw,140px);color:var(--text-subtle);font-weight:400}
-.play-gallery-placeholder{height:min(440px,52vh);width:min(620px,75vw);display:grid;place-items:center;border-radius:4px;background:var(--bg);color:var(--text-subtle)}
-.playground-grid .drawer{scroll-margin-top:100px}
-@media(max-width:600px){.playground-grid{grid-template-columns:1fr}.play-gallery-placeholder{height:300px;width:75vw}}
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/><title>Playground | Sophia Akrofi</title><meta content="A playground for experiments, personal projects and creative explorations by Sophia Akrofi." name="description"/><link href="site.css" rel="stylesheet"/><style>/* Playground: wide, editorial project viewer */
+.playground,.playground *{letter-spacing:0!important}
+.playground-main{max-width:1176px;margin:0 auto;padding:106px 16px 20px}
+.pg-heading{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:30px}
+.pg-heading h1{font-size:clamp(38px,4vw,64px);line-height:1.05;font-weight:400}
+.pg-heading p{color:var(--text-subtle);font-size:14px;max-width:70ch}
+.pg-tabs{display:flex;gap:0;align-items:center;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--stroke);margin-bottom:16px}
+.pg-tabs::-webkit-scrollbar{display:none}
+.pg-tab{flex:none;appearance:none;background:none;color:var(--text-subtle);font:inherit;font-size:15px;padding:9px 24px 8px;border:0;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+.pg-tab:first-child{padding-left:0}.pg-tab:hover{color:var(--text)}.pg-tab[aria-selected=true]{color:var(--text);border-bottom-color:var(--text)}
+.pg-project{display:grid;grid-template-columns:minmax(220px,248px) minmax(0,1fr);gap:12px;align-items:stretch}
+.pg-aside{display:flex;flex-direction:column;gap:10px;min-width:0}
+.pg-info{padding:18px 16px;background:var(--bg-subtle);border-radius:var(--radius);flex:1}
+.pg-eyebrow{font-size:12px;color:var(--text-subtle);margin-bottom:12px}
+.pg-info h2{font-size:24px;margin-bottom:12px;font-weight:400}
+.pg-info p{font-size:14px;line-height:1.6;margin-bottom:14px}
+.pg-info .pg-meta{border-top:1px solid var(--stroke);padding-top:14px;margin-top:18px;color:var(--text-subtle);font-size:12px}
+.pg-link{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--bg-inverse);color:var(--text-on-inverse);border-radius:var(--radius);font-size:14px}
+.pg-stage{background:var(--bg-subtle);border-radius:var(--radius);height:100%;min-height:0;overflow:hidden;position:relative;display:grid;place-items:center}
+.pg-stage iframe{width:100%;height:100%;border:0;background:transparent;display:block}
+.pg-stage .pg-video{width:100%;height:100%;object-fit:contain;display:block}
+.pg-stage .pg-gallery{width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:28px 60px}
+.pg-stage .pg-gallery video{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:var(--radius)}
+.pg-stage .pg-arrow{position:absolute;bottom:20px;right:20px;width:42px;height:42px;border:1px solid var(--stroke);border-radius:50%;background:var(--bg);color:var(--text);font:inherit;cursor:pointer}
+.pg-stage .pg-arrow.prev{right:70px}
+.pg-stage .pg-count{position:absolute;bottom:28px;left:24px;font-size:13px;color:var(--text-subtle)}
+/* Keep the desktop project viewer within one viewport. */
+@media(min-width:761px){
+  body.playground{height:100dvh;overflow:hidden}
+  .playground-main{height:100dvh;display:flex;flex-direction:column;min-height:0}
+  .pg-heading,.pg-tabs{flex-shrink:0}
+  .pg-panel:not([hidden]){flex:1;min-height:0;display:flex;flex-direction:column}
+  .pg-project{flex:1;min-height:0}
+  .pg-stage{min-height:0}
+  body.playground>.foot{display:none}
+}
+.pg-panel[hidden]{display:none!important}
+@media(max-width:760px){.playground-main{padding:112px 16px 64px}.pg-heading{margin-bottom:22px}.pg-heading p{margin-top:0}.pg-tabs{margin-bottom:18px}.pg-tab{padding:8px 16px 8px;font-size:14px}.pg-project{grid-template-columns:1fr;gap:12px}.pg-aside{order:2}.pg-stage{order:1;height:min(55dvh,460px);min-height:260px}.pg-info{padding:18px}.pg-stage .pg-gallery{padding:20px 28px}}
+/* Responsive viewer: use the available screen instead of fixed mockup dimensions. */
+.pg-panel:not([hidden]){min-width:0}
+.pg-project,.pg-stage,.pg-aside{min-height:0}
+@media(min-width:761px){
+  .playground-main{box-sizing:border-box;padding-top:clamp(72px,10vh,106px);padding-bottom:16px}
+  .pg-heading{margin-bottom:clamp(12px,2vh,24px);gap:6px}
+  .pg-heading h1{font-size:clamp(34px,4vw,54px)}
+  .pg-tabs{margin-bottom:12px}
+  .pg-project{height:100%;overflow:hidden}
+  .pg-stage{height:100%;overflow:hidden}
+  .pg-stage iframe{height:100%;max-height:100%}
+  .pg-info{overflow:hidden}
+}
+@media(max-width:760px){
+  body.playground{overflow-x:hidden}
+  .playground-main{padding:clamp(68px,10vh,90px) 16px 20px;min-height:100dvh;box-sizing:border-box;display:flex;flex-direction:column}
+  .pg-heading{gap:6px;margin-bottom:14px}
+  .pg-heading h1{font-size:clamp(34px,8vw,44px)}
+  .pg-heading p{font-size:13px;line-height:1.4}
+  .pg-tabs{flex-shrink:0;margin-bottom:12px}
+  .pg-panel:not([hidden]){display:flex;flex-direction:column;flex:1;min-height:0}
+  .pg-project{display:flex;flex-direction:column;gap:10px;min-height:0;flex:1}
+  .pg-stage{order:0;flex:1 1 auto;height:auto;min-height:190px;max-height:min(51dvh,440px);overflow:hidden}
+  .pg-aside{order:1;flex:0 0 auto}
+  .pg-info{padding:12px 14px}
+  .pg-eyebrow{margin-bottom:5px;font-size:11px}
+  .pg-info h2{font-size:20px;margin-bottom:5px}
+  .pg-info p{font-size:12px;line-height:1.4;margin-bottom:6px}
+  .pg-info .pg-meta{font-size:11px;margin-top:7px;padding-top:7px}
+  .pg-stage iframe{width:125%;height:125%;max-height:none;transform:scale(.8);transform-origin:top left}
+  body.playground>.foot{display:none}
+}
+@media(max-width:760px) and (max-height:740px){
+  .playground-main{padding-top:64px}
+  .pg-heading{margin-bottom:8px}
+  .pg-tabs{margin-bottom:8px}
+  .pg-stage{max-height:42dvh;min-height:160px}
+}
+@media(prefers-reduced-motion:no-preference){.pg-panel:not([hidden]){animation:pg-appear .25s ease-out}@keyframes pg-appear{from{opacity:.5}to{opacity:1}}}
 
-.play-card-summary{margin-top:8px;color:var(--text-subtle);line-height:1.5;max-width:52ch}
-.play-card-video{width:100%;height:100%;object-fit:cover;display:block}
-.play-gallery-video{height:min(440px,52vh);width:auto;max-width:75vw;display:block;border-radius:4px;background:#000}
-@media(max-width:600px){.play-gallery-video{height:auto;width:75vw}}
-.play-embed{width:100%;border:0;display:block;height:820px;background:transparent;color-scheme:normal}
-</style></head><body class="playground">
+/* Viewport-fit layout: keep all panels within the available height. */
+.playground-main,.pg-project,.pg-panel,.pg-stage{min-width:0;box-sizing:border-box}
+@media(min-width:761px){
+ body.playground{height:100dvh;overflow:hidden}
+ .playground-main{height:100dvh;padding-top:clamp(68px,9vh,94px);padding-bottom:12px}
+ .pg-heading{margin-bottom:12px}
+ .pg-tabs{margin-bottom:10px}
+ .pg-panel:not([hidden]){min-height:0;overflow:hidden}
+ .pg-project{min-height:0;height:100%;overflow:hidden}
+ .pg-aside,.pg-stage{height:100%;min-height:0;overflow:hidden}
+}
+@media(max-width:760px){
+ body.playground{height:100dvh;overflow:hidden}
+ .playground-main{height:100dvh;min-height:0;padding:clamp(68px,9vh,86px) 16px max(12px,env(safe-area-inset-bottom));overflow:hidden}
+ .pg-heading{flex:0 0 auto;margin-bottom:12px}
+ .pg-heading h1{font-size:clamp(32px,8vw,42px)}
+ .pg-heading p{font-size:12px;line-height:1.35}
+ .pg-tabs{flex:0 0 auto;margin-bottom:10px}
+ .pg-panel:not([hidden]){flex:1;min-height:0;overflow:hidden}
+ .pg-project{flex:1;min-height:0;overflow:hidden;gap:8px}
+ .pg-stage{flex:1 1 auto;min-height:0;max-height:none;height:auto;overflow:hidden}
+ .pg-aside{flex:0 0 auto;max-height:33%;min-height:0;overflow:hidden}
+ .pg-info{overflow:hidden;padding:10px 12px}
+ .pg-info p{font-size:12px;line-height:1.35;margin-bottom:5px}
+ .pg-info .pg-meta{margin-top:5px;padding-top:5px}
+}
+/* Scale the complete embedded demo, not a cropped portion of it. */
+.pg-stage iframe.pg-fitted-frame{position:absolute!important;top:0!important;left:0!important;max-height:none!important;min-height:0!important;transform-origin:top left!important;border:0!important;display:block!important}
+
+/* Info strip above a full-width stage. */
+@media(min-width:761px){
+ .pg-panel:not([hidden]),.pg-project{overflow:visible}
+ .pg-project{display:flex;flex-direction:column;gap:10px;height:100%}
+ .pg-aside{flex:0 0 auto;height:auto;overflow:visible}
+ .pg-info{display:grid;grid-template-columns:minmax(200px,260px) minmax(0,1fr) auto;grid-template-areas:"eye p meta" "h2 p meta";column-gap:40px;row-gap:4px;align-items:start;padding:4px 0 6px;background:none;border-radius:0;flex:none}
+ .pg-eyebrow{grid-area:eye;margin:0}
+ .pg-info h2{grid-area:h2;margin:0;font-size:22px}
+ .pg-info p{grid-area:p;margin:0;max-width:72ch;align-self:center}
+ .pg-info .pg-meta{grid-area:meta;margin:0;padding:0 0 0 20px;border-top:0;border-left:1px solid var(--stroke);align-self:center;white-space:nowrap}
+ .pg-stage{flex:1 1 auto;height:auto;min-height:0}
+}
+@media(min-width:761px) and (max-width:1100px){
+ .pg-info{grid-template-columns:minmax(160px,200px) minmax(0,1fr);grid-template-areas:"eye p" "h2 p"}
+ .pg-info .pg-meta{display:none}
+}
+
+/* Same side margins as the homepage .wrap */
+.playground-main{max-width:1176px;padding-left:max(16px,env(safe-area-inset-left,0px))!important;padding-right:max(16px,env(safe-area-inset-right,0px))!important}
+@media(min-width:1208px){.playground-main{padding-left:0!important;padding-right:0!important}}
+@media(max-width:760px){.pg-info{background:none;padding:4px 0}}
+
+/* Match the homepage column: 1176px, 16px gutters below 1208px. */
+.playground-main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media(min-width:1208px){.playground-main{padding-left:0;padding-right:0}}
+.pg-info{background:none}
+@media(max-width:760px){.pg-info{padding:4px 0 0}}
+/* TouchDesigner: whole video always visible, never cropped. */
+.pg-stage .pg-gallery{position:absolute;inset:0;padding:24px 24px 80px;display:flex;align-items:center;justify-content:center}
+.pg-stage .pg-gallery video{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+@media(max-width:760px){.pg-stage .pg-gallery{padding:12px 12px 64px}}
+
+/* No grey panel behind the demos: they carry their own backgrounds. */
+.pg-stage{background:transparent!important;border-radius:0}
+/* TouchDesigner: videos sit flush left in a row; the next one peeks in. */
+.pg-stage{display:block}
+.pg-stage .pg-gallery{position:absolute;inset:0 0 60px 0;width:auto;height:auto;padding:0;display:flex;gap:12px;justify-content:flex-start;align-items:stretch;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.pg-stage .pg-gallery::-webkit-scrollbar{display:none}
+.pg-stage .pg-gallery video{flex:none;height:100%;width:auto;max-width:none;max-height:none;object-fit:contain;scroll-snap-align:start;border-radius:var(--radius)}
+.pg-stage .pg-count{left:0;bottom:14px}
+.pg-stage .pg-arrow{bottom:0;right:0}
+.pg-stage .pg-arrow.prev{right:50px}
+/* Mobile: natural page scroll, demo sized to its content, no empty space. */
+@media(max-width:760px){
+ body.playground{height:auto;overflow-x:hidden;overflow-y:auto}
+ .playground-main{height:auto;min-height:0;overflow:visible;padding-bottom:40px}
+ .pg-tabs{margin-bottom:20px}
+ .pg-panel:not([hidden]),.pg-project{flex:none;overflow:visible}
+ .pg-project{gap:20px}
+ .pg-stage{flex:none;max-height:none;min-height:0}
+ .pg-stage:has(.pg-gallery){height:min(80vw,360px)}
+ .pg-aside{max-height:none;overflow:visible}
+ .pg-info{padding:0}
+ .pg-stage .pg-gallery{padding:0;inset:0 0 56px 0;align-items:stretch}
+ .pg-stage .pg-gallery video{height:100%;width:auto;max-height:none}
+}
+
+/* Footer back on every size; the viewer still fills the first screen. */
+body.playground{height:auto!important;overflow-x:hidden!important;overflow-y:auto!important}
+body.playground>.foot{display:block!important}
+</style></head><body class="playground" id="top">
 <header class="hdr"><div class="wrap"><div class="hdr-group"><a class="logo" href="index.html#top">Sophia Akrofi</a><button aria-label="Switch colour theme" class="icon-btn" id="theme" type="button"><svg aria-hidden="true" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" fill="none" r="6.5" stroke="currentColor"></circle><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"></path></svg></button></div><div class="hdr-group navwrap" id="navwrap"><nav aria-label="Main" class="nav"><a href="index.html#work">Work</a><a aria-current="page" href="playground.html">Playground</a><a href="index.html#experience">Experience</a><a href="index.html#about">About</a><a class="nav-cta" href="work-with-me.html">Work with me</a></nav><button aria-expanded="false" aria-label="Open menu" class="icon-btn menu-btn" id="menu" type="button"><svg aria-hidden="true" height="16" viewbox="0 0 16 16" width="16"><path d="M2 5h12M2 11h12" stroke="currentColor" stroke-width="1.4"></path></svg></button><a class="btn btn-dark" href="work-with-me.html">Work with me</a></div></div></header>
-<main class="playground-main"><section class="sec"><div class="wrap"><div class="playground-lead"><p class="label">Beyond the brief</p><h1>Playground.</h1><p>A space for experiments, independent ideas and the things I make simply because I'm curious.</p></div><div class="playground-grid" id="playground-grid"><article class="card has-drawer" data-drawer="play-1">
-<div class="card-media"><img class="play-card-video" src="visual-assets/pantry-cover.jpg" alt="Pantry: a phone showing pantry shelves with a low-stock nudge, next to the model’s calculation" loading="lazy"/><span aria-hidden="true" class="go">+</span></div>
-<div><p class="kind">Digital twin · 2026</p><h3>Pantry</h3><p class="play-card-summary">A simulation and digital twin of your grocery cupboard that predicts when things run out.</p></div>
-<button aria-controls="drawer-area" aria-expanded="false" class="card-hit" type="button"><span class="sr">Show Pantry</span></button>
-</article>
-<article class="card has-drawer" data-drawer="play-2">
-<div class="card-media"><img class="play-card-video" src="visual-assets/scale-cover.jpg" alt="Making sense of scale: price ranges on a logarithmic chart" loading="lazy"/><span aria-hidden="true" class="go">+</span></div>
-<div><p class="kind">Data visualisation · 2017 → today</p><h3>Making sense of scale</h3><p class="play-card-summary">Designing for big data and machine learning, from logarithmic charts in 2017 to now.</p></div>
-<button aria-controls="drawer-area" aria-expanded="false" class="card-hit" type="button"><span class="sr">Show Making sense of scale</span></button>
-</article>
-<article class="card has-drawer" data-drawer="play-3">
-<div class="card-media"><video class="play-card-video" src="visual-assets/td-hand-tracking.mp4" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video><span aria-hidden="true" class="go">+</span></div>
-<div><p class="kind">Creative technology · TouchDesigner</p><h3>One shape, three inputs</h3><p class="play-card-summary">One sphere, driven by my hands, by sound and by code.</p></div>
-<button aria-controls="drawer-area" aria-expanded="false" class="card-hit" type="button"><span class="sr">Show One shape, three inputs</span></button>
-</article>
-<article class="card has-drawer" data-drawer="play-4">
-<div class="card-media"><img class="play-card-video" src="visual-assets/customer-360-cover.jpg" alt="The 360° customer: analytics and research around one customer" loading="lazy"/><span aria-hidden="true" class="go">+</span></div>
-<div><p class="kind">Research · Advanced analytics</p><h3>The 360° customer</h3><p class="play-card-summary">How pairing user research with advanced analytics reveals what neither shows alone.</p></div>
-<button aria-controls="drawer-area" aria-expanded="false" class="card-hit" type="button"><span class="sr">Show The 360° customer</span></button>
-</article></div><template id="play-1">
-<div class="dr-top"><div><p class="kind">Digital twin · 2026</p><h3>Pantry</h3></div><button aria-label="Close project" class="round dr-close" type="button">×</button></div>
-<div class="dr-intro"><p>A simulation and digital twin of your grocery cupboard that predicts when things run out, so you don’t have to keep track.</p><dl class="dr-meta"><div><dt>Type</dt><dd>Personal product</dd></div><div><dt>Focus</dt><dd>Simulation, prediction, interaction design</dd></div></dl></div>
-<iframe class="play-embed" src="pantry-demo.html?embed" title="Pantry: interactive demo" loading="lazy"></iframe>
-</template>
-<template id="play-2">
-<div class="dr-top"><div><p class="kind">Data visualisation · 2017 → today</p><h3>Making sense of scale</h3></div><button aria-label="Close project" class="round dr-close" type="button">×</button></div>
-<div class="dr-intro"><p>Designing for big data and machine learning, from logarithmic charts in 2017 to now.</p><dl class="dr-meta"><div><dt>Type</dt><dd>Past work, rebuilt</dd></div><div><dt>Focus</dt><dd>Data visualisation, machine learning</dd></div></dl></div>
-<iframe class="play-embed" src="scale-demo.html?embed" title="Making sense of scale: interactive chart" loading="lazy"></iframe>
-</template>
-<template id="play-3">
-<div class="dr-top"><div><p class="kind">Creative technology · TouchDesigner</p><h3>One shape, three inputs</h3></div><button aria-label="Close project" class="round dr-close" type="button">×</button></div>
-<div class="dr-intro"><p>One sphere, driven three ways: by my hands, by sound and by code. An exploration of how input becomes something you can see and feel, the same question behind every interface I design.</p><dl class="dr-meta"><div><dt>Type</dt><dd>Personal exploration</dd></div><div><dt>Focus</dt><dd>Interaction and real-time visuals</dd></div></dl></div>
-<div aria-label="One shape, three inputs gallery" class="dr-gallery" tabindex="0">
-<figure><video class="play-gallery-video" src="visual-assets/td-hand-tracking.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>Hands: real-time hand tracking</figcaption></figure>
-<figure><video class="play-gallery-video" src="visual-assets/td-audio-particles.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>Sound: audio-reactive particles</figcaption></figure>
-<figure><video class="play-gallery-video" src="visual-assets/td-noise-sphere.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption>Code: generative noise</figcaption></figure>
+<main class="playground-main"><div class="pg-heading"><h1>Playground.</h1><p>A space for experiments, independent ideas and the things I make simply because I'm curious.</p></div>
+<div aria-label="Playground projects" class="pg-tabs" role="tablist">
+<button aria-controls="pg-panel-1" aria-selected="true" class="pg-tab" data-target="1" id="pg-tab-1" role="tab">The 360° customer</button>
+<button aria-controls="pg-panel-2" aria-selected="false" class="pg-tab" data-target="2" id="pg-tab-2" role="tab">Pantry</button>
+<button aria-controls="pg-panel-3" aria-selected="false" class="pg-tab" data-target="3" id="pg-tab-3" role="tab">Making sense of scale</button>
+<button aria-controls="pg-panel-4" aria-selected="false" class="pg-tab" data-target="4" id="pg-tab-4" role="tab">TouchDesigner experiments</button>
 </div>
-<div class="dr-ctrl"><span class="dr-count">01 / 03</span><span><button aria-label="Previous image" class="round dr-prev" type="button">←</button> <button aria-label="Next image" class="round dr-next" type="button">→</button></span></div>
-</template>
-<template id="play-4">
-<div class="dr-top"><div><p class="kind">Research · Advanced analytics</p><h3>The 360° customer</h3></div><button aria-label="Close project" class="round dr-close" type="button">×</button></div>
-<div class="dr-intro"><p>How pairing user research with advanced analytics reveals what neither shows alone.</p><dl class="dr-meta"><div><dt>Type</dt><dd>Framework and visual</dd></div><div><dt>Focus</dt><dd>Research, analytics, segmentation</dd></div></dl></div>
-<iframe class="play-embed" src="customer-360-demo.html?embed" title="The 360° customer: interactive framework" loading="lazy"></iframe>
-</template></div></section></main>
-<footer class="foot"><div class="wrap"><div class="foot-cta"><p class="label">Have something in mind?</p><h2>Let's make something interesting.</h2><a class="btn btn-dark" href="index.html#contact">Get in touch <span class="arrow">↗</span></a></div><div class="foot-cols"><div>Sophia Akrofi</div><div><a href="index.html#work">Selected work</a></div><div><a href="index.html#about">About</a></div><div><a href="work-with-me.html">Work with me</a></div></div></div></footer>
-<script>
-(function(){
-const root=document.documentElement,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+<div aria-labelledby="pg-tab-1" class="pg-panel" id="pg-panel-1" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Research · Advanced analytics</div><h2>The 360° customer</h2><p>How pairing user research with advanced analytics reveals what neither shows alone.</p><div class="pg-meta">Framework and visual<br/>Research, analytics, segmentation</div></div></aside><div class="pg-stage"><iframe scrolling="no" data-src="customer-360-demo.html?embed" loading="lazy" title="The 360° customer interactive framework"></iframe></div></div></div>
+<div aria-labelledby="pg-tab-2" class="pg-panel" id="pg-panel-2" hidden="" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Digital twin · 2026</div><h2>Pantry</h2><p>A simulation and digital twin of your grocery cupboard that predicts when things run out, so you don’t have to keep track.</p><div class="pg-meta">Personal product<br/>Simulation, prediction, interaction design</div></div></aside><div class="pg-stage"><iframe scrolling="no" loading="lazy" data-src="pantry-demo.html?embed" title="Pantry interactive demo"></iframe></div></div></div>
+<div aria-labelledby="pg-tab-3" class="pg-panel" id="pg-panel-3" hidden="" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Data visualisation · 2017 → today</div><h2>Making sense of scale</h2><p>Designing for big data and machine learning, from logarithmic charts in 2017 to now.</p><div class="pg-meta">Past work, rebuilt<br/>Data visualisation, machine learning</div></div></aside><div class="pg-stage"><iframe scrolling="no" data-src="scale-demo.html?embed" loading="lazy" title="Making sense of scale interactive chart"></iframe></div></div></div>
+<div aria-labelledby="pg-tab-4" class="pg-panel" id="pg-panel-4" hidden="" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Creative technology · TouchDesigner</div><h2>TouchDesigner experiments</h2><p>Motion graphics and generative design I make in TouchDesigner. Some respond to my hands, some to sound. It’s where I play with how input becomes something you can see and feel, the same question behind every interface I design.</p><div class="pg-meta">Personal exploration<br/>Generative, audio-reactive, real-time</div></div></aside><div class="pg-stage"><div class="pg-gallery"><video autoplay="" loop="" muted="" playsinline="" preload="metadata" src="visual-assets/td-hand-tracking.mp4" aria-label="Hands: real-time hand tracking"></video><video autoplay="" loop="" muted="" playsinline="" preload="metadata" src="visual-assets/td-audio-particles.mp4" aria-label="Sound: audio-reactive particles"></video></div><span class="pg-count">01 / 02</span><button aria-label="Previous video" class="pg-arrow prev" type="button">←</button><button aria-label="Next video" class="pg-arrow next" type="button">→</button></div></div></div></main>
+<footer class="foot" id="contact">
+<div class="wrap">
+<div class="foot-cta">
+<p class="label">Get in touch</p>
+<h2>Let’s make something meaningful.</h2>
+<a class="btn btn-dark" href="work-with-me.html">Work with me</a>
+</div>
+<div class="foot-cols">
+<div><p class="subtle">Designed and built by Sophia Akrofi · © 2026</p></div>
+<div><h4>Menu</h4><ul><li><a href="index.html#work">Work</a></li><li><a href="index.html#testimonials">Testimonials</a></li><li><a href="index.html#about">About</a></li><li><a href="#top">Back to top ↑</a></li></ul></div>
+<div><h4>Socials</h4><ul><li><a href="https://www.linkedin.com/in/sophia-akrofi/" rel="noopener" target="_blank">LinkedIn</a></li><li><a href="https://www.youtube.com/@sophia_akrofi" rel="noopener" target="_blank">YouTube</a></li><li><a href="https://sophiaakrofi.substack.com/" rel="noopener" target="_blank">Substack</a></li><li><a href="https://www.instagram.com/sophia_akrofi/" rel="noopener" target="_blank">Instagram</a></li></ul></div>
+<div><h4>Contact</h4><ul><li><a href="work-with-me.html">Work with me</a></li><li><a href="work-with-me.html#mentorship">Mentorship</a></li></ul></div>
+</div>
+</div>
+</footer>
+<script>(function(){
+const root=document.documentElement;
 try{const theme=localStorage.getItem('theme');if(theme)root.setAttribute('data-theme',theme)}catch(e){}
-document.getElementById('theme').addEventListener('click',()=>{const current=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');const next=current==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('theme',next)}catch(e){}document.querySelectorAll('.play-embed').forEach(f=>{try{f.contentWindow.postMessage({theme:next},'*')}catch(e){}})});
-addEventListener('message',e=>{const h=e.data&&(e.data.embedHeight||e.data.pantryHeight);if(h){document.querySelectorAll('.play-embed').forEach(f=>{if(f.contentWindow===e.source)f.style.height=Math.ceil(h)+'px'})}});
+document.getElementById('theme').addEventListener('click',()=>{const current=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');const next=current==='dark'?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('theme',next)}catch(e){}document.querySelectorAll('.pg-stage iframe').forEach(f=>{try{f.contentWindow.postMessage({theme:next},'*')}catch(e){}})});
 const nav=document.getElementById('navwrap'),menu=document.getElementById('menu');menu.addEventListener('click',()=>{const opened=nav.classList.toggle('is-open');menu.setAttribute('aria-expanded',String(opened))});
-const grid=document.getElementById('playground-grid');let drawer=null,active=null;
-function close(instant=false){if(!drawer)return;const d=drawer,c=active;drawer=null;active=null;c.classList.remove('is-active');c.querySelector('.card-hit').setAttribute('aria-expanded','false');if(instant)d.remove();else{d.classList.remove('is-open');setTimeout(()=>d.remove(),620)}}
-function rowEnd(card){let last=card;for(const child of grid.children){if(child.classList.contains('card')&&child.offsetTop===card.offsetTop)last=child}return last}
-function gallerySetup(d){const g=d.querySelector('.dr-gallery');if(!g)return;const figs=[...g.querySelectorAll('figure')],count=d.querySelector('.dr-count');let current=0;function update(){let best=Infinity;figs.forEach((f,i)=>{const distance=Math.abs(f.offsetLeft-figs[0].offsetLeft-g.scrollLeft);if(distance<best){best=distance;current=i}});count.textContent=String(current+1).padStart(2,'0')+' / '+String(figs.length).padStart(2,'0')}function go(delta){const i=Math.max(0,Math.min(figs.length-1,current+delta));g.scrollTo({left:figs[i].offsetLeft-figs[0].offsetLeft,behavior:reduce?'auto':'smooth'})}d.querySelector('.dr-prev').addEventListener('click',()=>go(-1));d.querySelector('.dr-next').addEventListener('click',()=>go(1));g.addEventListener('scroll',()=>requestAnimationFrame(update),{passive:true});g.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});let down=null;g.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down={x:e.clientX,scroll:g.scrollLeft};g.setPointerCapture(e.pointerId);g.classList.add('is-dragging')});g.addEventListener('pointermove',e=>{if(down)g.scrollLeft=down.scroll-(e.clientX-down.x)});function end(){down=null;g.classList.remove('is-dragging')}g.addEventListener('pointerup',end);g.addEventListener('pointercancel',end)}
-function open(card){const tpl=document.getElementById(card.dataset.drawer);if(!tpl)return;close(true);const d=document.createElement('div');d.className='drawer';d.setAttribute('role','region');d.innerHTML='<div class="drawer-inner"><div class="dr"></div></div>';d.querySelector('.dr').appendChild(tpl.content.cloneNode(true));d.setAttribute('aria-label',d.querySelector('h3').textContent);rowEnd(card).after(d);drawer=d;active=card;card.classList.add('is-active');card.querySelector('.card-hit').setAttribute('aria-expanded','true');d.querySelector('.dr-close').addEventListener('click',()=>{close();card.querySelector('.card-hit').focus()});gallerySetup(d);void d.offsetHeight;d.classList.add('is-open');setTimeout(()=>d.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'}),180)}
-grid.querySelectorAll('.has-drawer').forEach(card=>card.querySelector('.card-hit').addEventListener('click',()=>active===card?close():open(card)));
-addEventListener('keydown',e=>{if(e.key==='Escape'&&active){const card=active;close();card.querySelector('.card-hit').focus()}});addEventListener('resize',()=>{if(drawer&&active){const end=rowEnd(active);if(end.nextElementSibling!==drawer)end.after(drawer)}});
-})();
-</script></body></html>
+const tabs=[...document.querySelectorAll('.pg-tab')];
+function select(i){tabs.forEach((t,j)=>{const active=i===j;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;const p=document.getElementById('pg-panel-'+(j+1));p.hidden=!active;if(active){const frame=p.querySelector('iframe[data-src]');if(frame){frame.src=frame.dataset.src;frame.removeAttribute('data-src')}p.querySelectorAll('video').forEach(v=>v.play().catch(()=>{}))}else{p.querySelectorAll('video').forEach(v=>v.pause())}})}
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>select(i));t.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const n=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;select(n);tabs[n].focus()}})});
+const panel=document.getElementById('pg-panel-4');const gal=panel.querySelector('.pg-gallery'),vids=[...gal.querySelectorAll('video')],count=panel.querySelector('.pg-count');let current=0;
+function setCount(){count.textContent=String(current+1).padStart(2,'0')+' / '+String(vids.length).padStart(2,'0')}
+function move(n){current=Math.max(0,Math.min(vids.length-1,current+n));gal.scrollTo({left:vids[current].offsetLeft-gal.offsetLeft,behavior:'smooth'});setCount()}
+gal.addEventListener('scroll',()=>{const x=gal.scrollLeft;let best=0;vids.forEach((v,i)=>{if(Math.abs(v.offsetLeft-gal.offsetLeft-x)<Math.abs(vids[best].offsetLeft-gal.offsetLeft-x))best=i});if(gal.scrollLeft+gal.clientWidth>=gal.scrollWidth-2)best=vids.length-1;current=best;setCount()},{passive:true});
+panel.querySelector('.pg-arrow.prev').addEventListener('click',()=>move(-1));panel.querySelector('.pg-arrow.next').addEventListener('click',()=>move(1));setCount();
+select(0);
+
+// The embedded demos use desktop-sized canvases. Scale the entire canvas
+// to the stage's available width AND height, including on narrow phones.
+const FIT_W=1100,FIT_H=760,MAX_W=1680;
+function fitFrames(){
+ const mobile=matchMedia('(max-width:760px)').matches;
+ document.querySelectorAll('.pg-stage iframe').forEach(frame=>{
+   const stage=frame.closest('.pg-stage');if(!stage)return;
+   const w=stage.clientWidth;if(!w)return;
+   frame.classList.add('pg-fitted-frame');
+   if(mobile){
+     const scale=Math.min(w/FIT_W,1);
+     stage.style.height=Math.round(FIT_H*scale)+'px';
+     frame.style.width=FIT_W+'px';frame.style.height=FIT_H+'px';
+     frame.style.transform=`scale(${scale})`;return;
+   }
+   stage.style.height='';
+   const h=stage.clientHeight;if(!h)return;
+   const scale=Math.min(w/FIT_W,h/FIT_H,1);
+   const fw=Math.min(w/scale,MAX_W),fh=h/scale;
+   frame.style.width=fw+'px';frame.style.height=fh+'px';
+   frame.style.transform=`translate(${Math.max(0,(w-fw*scale)/2)}px,0) scale(${scale})`;
+ });
+}
+const fitObserver=new ResizeObserver(fitFrames);
+document.querySelectorAll('.pg-stage').forEach(stage=>fitObserver.observe(stage));
+window.addEventListener('resize',fitFrames);
+fitFrames();
+})();</script></body></html>
