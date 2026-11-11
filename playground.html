@@ -201,6 +201,31 @@ body.playground>.foot{display:block!important}
  .pg-info .pg-meta{display:block!important;align-self:end}
 }
 @media(max-width:760px){.pg-info p{font-size:16px!important;line-height:1.5!important}}
+
+/* Desktop: let the page grow so demos aren't shrunk to fit the screen. */
+@media(min-width:761px){
+ .playground-main{height:auto!important;min-height:0!important}
+ .pg-panel:not([hidden]),.pg-project{flex:none!important;height:auto!important;overflow:visible!important}
+ .pg-stage{flex:none!important}
+ .pg-stage:has(.pg-gallery){height:min(68vh,640px)!important}
+}
+
+/* Header row: label + title on the left, description flush right. */
+@media(min-width:761px){
+ .pg-info{grid-template-columns:auto minmax(0,1fr)!important;grid-template-areas:"eye p" "h2 p"!important;column-gap:64px!important;row-gap:6px!important;align-items:end!important}
+ .pg-info p{grid-area:p!important;justify-self:end!important;align-self:end!important;max-width:54ch!important;margin:0!important;font-size:17px!important;line-height:1.5!important}
+ .pg-info h2{white-space:nowrap}
+}
+@media(min-width:761px) and (max-width:1000px){
+ .pg-info{grid-template-columns:1fr!important;grid-template-areas:"eye" "h2" "p"!important}
+ .pg-info p{justify-self:start!important}
+}
+
+/* No widows in the descriptions. */
+.pg-info p{text-wrap:pretty}
+
+/* No widows in the descriptions. */
+.pg-info p{text-wrap:pretty}
 </style></head><body class="playground" id="top">
 <header class="hdr"><div class="wrap"><div class="hdr-group"><a class="logo" href="index.html#top">Sophia Akrofi</a><button aria-label="Switch colour theme" class="icon-btn" id="theme" type="button"><svg aria-hidden="true" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" fill="none" r="6.5" stroke="currentColor"></circle><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"></path></svg></button></div><div class="hdr-group navwrap" id="navwrap"><nav aria-label="Main" class="nav"><a href="index.html#work">Work</a><a aria-current="page" href="playground.html">Playground</a><a href="index.html#testimonials">Testimonials</a><a href="index.html#beyond">Beyond work</a><a href="index.html#experience">Experience</a><a href="index.html#about">About</a><a class="nav-cta" href="work-with-me.html">Work with me</a></nav><button aria-expanded="false" aria-label="Open menu" class="icon-btn menu-btn" id="menu" type="button"><svg aria-hidden="true" height="16" viewbox="0 0 16 16" width="16"><path d="M2 5h12M2 11h12" stroke="currentColor" stroke-width="1.4"></path></svg></button><a class="btn btn-dark" href="work-with-me.html">Work with me</a></div></div></header>
 <main class="playground-main"><div class="pg-heading"><h1>Playground.</h1></div>
@@ -210,10 +235,10 @@ body.playground>.foot{display:block!important}
 <button aria-controls="pg-panel-3" aria-selected="false" class="pg-tab" data-target="3" id="pg-tab-3" role="tab">Data visualisation</button>
 <button aria-controls="pg-panel-4" aria-selected="false" class="pg-tab" data-target="4" id="pg-tab-4" role="tab">TouchDesigner experiments</button>
 </div>
-<div aria-labelledby="pg-tab-1" class="pg-panel" id="pg-panel-1" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Research · Advanced analytics</div><h2>The 360° customer</h2><p>How pairing user research with advanced analytics reveals what neither shows alone.</p><div class="pg-meta">Framework and visual<br/>Research, analytics, segmentation</div></div></aside><div class="pg-stage"><iframe scrolling="no" data-src="customer-360-demo.html?embed" loading="lazy" title="The 360° customer interactive framework"></iframe></div></div></div>
-<div aria-labelledby="pg-tab-2" class="pg-panel" id="pg-panel-2" hidden="" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Digital twin · 2026</div><h2>Pantry</h2><p>A simulation and digital twin of your grocery cupboard that predicts when things run out, so you don’t have to keep track.</p><div class="pg-meta">Personal product<br/>Simulation, prediction, interaction design</div></div></aside><div class="pg-stage"><iframe scrolling="no" loading="lazy" data-src="pantry-demo.html?embed" title="Pantry interactive demo"></iframe></div></div></div>
-<div aria-labelledby="pg-tab-3" class="pg-panel" id="pg-panel-3" hidden="" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Big data · 2017 → today</div><h2>Data visualisation</h2><p>Designing for big data and machine learning, from logarithmic charts in 2017 to now.</p><div class="pg-meta">Past work, rebuilt<br/>Data visualisation, machine learning</div></div></aside><div class="pg-stage"><iframe scrolling="no" data-src="scale-demo.html?embed" loading="lazy" title="Making sense of scale interactive chart"></iframe></div></div></div>
-<div aria-labelledby="pg-tab-4" class="pg-panel" id="pg-panel-4" hidden="" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Creative technology · TouchDesigner</div><h2>TouchDesigner experiments</h2><p>Motion graphics and generative design I make in TouchDesigner. Some respond to my hands, some to sound. It’s where I play with how input becomes something you can see and feel, the same question behind every interface I design.</p><div class="pg-meta">Personal exploration<br/>Generative, audio-reactive, real-time</div></div></aside><div class="pg-stage"><div class="pg-gallery"><video autoplay="" loop="" muted="" playsinline="" preload="metadata" src="visual-assets/td-hand-tracking.mp4" aria-label="Hands: real-time hand tracking"></video><video autoplay="" loop="" muted="" playsinline="" preload="metadata" src="visual-assets/td-audio-particles.mp4" aria-label="Sound: audio-reactive particles"></video></div><span class="pg-count">01 / 02</span><button aria-label="Previous video" class="pg-arrow prev" type="button">←</button><button aria-label="Next video" class="pg-arrow next" type="button">→</button></div></div></div></main>
+<div aria-labelledby="pg-tab-1" class="pg-panel" id="pg-panel-1" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Research · Analytics · Segmentation</div><h2>The 360° customer</h2><p>How pairing user research with advanced analytics reveals what neither shows&nbsp;alone.</p></div></aside><div class="pg-stage"><iframe scrolling="no" data-src="customer-360-demo.html?embed" loading="lazy" title="The 360° customer interactive framework"></iframe></div></div></div>
+<div aria-labelledby="pg-tab-2" class="pg-panel" id="pg-panel-2" hidden="" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Digital twin · Simulation · Prediction · 2026</div><h2>Pantry</h2><p>A simulation and digital twin of your grocery cupboard that predicts when things run out, so you don’t have to keep&nbsp;track.</p></div></aside><div class="pg-stage"><iframe scrolling="no" loading="lazy" data-src="pantry-demo.html?embed" title="Pantry interactive demo"></iframe></div></div></div>
+<div aria-labelledby="pg-tab-3" class="pg-panel" id="pg-panel-3" hidden="" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">Big data · Machine learning · 2017 → today</div><h2>Data visualisation</h2><p>Designing for big data and machine learning since 2017. I’m fascinated by logarithmic scaling: a nonlinear scale where each step multiplies rather than adds, so £2 and £1,000,000 share one&nbsp;chart.</p></div></aside><div class="pg-stage"><iframe scrolling="no" data-src="scale-demo.html?embed" loading="lazy" title="Data visualisation: interactive demo"></iframe></div></div></div>
+<div aria-labelledby="pg-tab-4" class="pg-panel" id="pg-panel-4" hidden="" role="tabpanel"><div class="pg-project"><aside class="pg-aside"><div class="pg-info"><div class="pg-eyebrow">TouchDesigner · Generative · Audio-reactive</div><h2>TouchDesigner experiments</h2><p>Motion graphics and generative design I make in TouchDesigner. Some respond to my hands, some to sound. It’s where I play with how input becomes something you can see and feel, the same question behind every interface I&nbsp;design.</p></div></aside><div class="pg-stage"><div class="pg-gallery"><video autoplay="" loop="" muted="" playsinline="" preload="metadata" src="visual-assets/td-hand-tracking.mp4" aria-label="Hands: real-time hand tracking"></video><video autoplay="" loop="" muted="" playsinline="" preload="metadata" src="visual-assets/td-audio-particles.mp4" aria-label="Sound: audio-reactive particles"></video></div><span class="pg-count">01 / 02</span><button aria-label="Previous video" class="pg-arrow prev" type="button">←</button><button aria-label="Next video" class="pg-arrow next" type="button">→</button></div></div></div></main>
 <footer class="foot" id="contact">
 <div class="wrap">
 <div class="foot-cta">
@@ -246,7 +271,8 @@ select(0);
 
 // The embedded demos use desktop-sized canvases. Scale the entire canvas
 // to the stage's available width AND height, including on narrow phones.
-const FIT_W=1100,FIT_H=760;
+// MAX_SCALE: how big the demos get on desktop (1 = full size). 0.78 sits between the old fit-to-screen and full size.
+const FIT_W=1100,FIT_H=760,MAX_SCALE=0.78,MIN_SCALE=0.68;
 // Measure the demo's own empty margin (left, right, top) so its first visible
 // box can sit flush with the page column, like the text above it.
 function insets(frame){
@@ -268,14 +294,16 @@ function insets(frame){
  }catch(e){return null}
 }
 function fitFrames(){
- const mobile=matchMedia('(max-width:760px)').matches;
- document.querySelectorAll('.pg-stage iframe').forEach(frame=>{
+  document.querySelectorAll('.pg-stage iframe').forEach(frame=>{
    const stage=frame.closest('.pg-stage');if(!stage)return;
    const w=stage.clientWidth;if(!w)return;
    frame.classList.add('pg-fitted-frame');
    let scale,cw,ch;
-   if(mobile){scale=Math.min(w/FIT_W,1);cw=w/scale;ch=FIT_H;stage.style.height=Math.round(FIT_H*scale)+'px'}
-   else{stage.style.height='';const h=stage.clientHeight;if(!h)return;scale=Math.min(w/FIT_W,h/FIT_H,1);cw=w/scale;ch=h/scale}
+   // Size by width only, so the demo shows at (or near) full size; the page scrolls instead of shrinking it.
+   scale=Math.min(w/FIT_W,MAX_SCALE);
+   // Desktop: shrink a little more if needed so the demo fits the screen, but never below MIN_SCALE.
+   if(innerWidth>760){const top=stage.getBoundingClientRect().top+scrollY;const fit=(innerHeight-top-16)/FIT_H;scale=Math.min(scale,Math.max(MIN_SCALE,fit))}
+cw=w/scale;ch=FIT_H;stage.style.height=Math.round(FIT_H*scale)+'px';
    frame.style.width=cw+'px';frame.style.height=ch+'px';
    const m=insets(frame)||{l:0,r:0,t:0};
    frame.style.width=(cw+m.l+m.r)+'px';frame.style.height=(ch+m.t)+'px';
