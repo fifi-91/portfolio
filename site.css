@@ -323,3 +323,11 @@ a.card:hover .go{transform:rotate(-45deg)}
 .case-support{margin:8px 0 12px;opacity:.78;font-size:.92rem;}
 
 h1,h2,h3,.me h1,.case-title,.stats dt,.bias h2,.acts strong,.links strong,.foot-cta h2,.tg-study h4,.tg-study .tg-section h5{letter-spacing:0!important}
+/* Case studies: more space, bottoms aligned, longer title lines */
+#work .cases{gap:112px 32px}
+#work .cases .case-hero{display:flex;flex-direction:column}
+#work .cases .case-hero .case-body{flex:1;grid-template-rows:1fr auto;gap:24px}
+#work .cases .case-hero .case-title{text-wrap:pretty!important;max-width:none}
+#work .cases .case-hero .stats{grid-template-columns:1fr 1fr!important}
+@media(max-width:600px){#work .cases{gap:48px}}
+#work .kind{font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
