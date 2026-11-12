@@ -321,3 +321,5 @@ a.card:hover .go{transform:rotate(-45deg)}
 .case-summary,.case-support{line-height:1.5;}
 .case-summary{margin:12px 0 8px;}
 .case-support{margin:8px 0 12px;opacity:.78;font-size:.92rem;}
+
+h1,h2,h3,.me h1,.case-title,.stats dt,.bias h2,.acts strong,.links strong,.foot-cta h2,.tg-study h4,.tg-study .tg-section h5{letter-spacing:0!important}
