@@ -186,6 +186,7 @@ a.card:hover .go{transform:rotate(-45deg)}
 .bias .label{color:color-mix(in srgb,var(--text-on-inverse) 60%,transparent)}
 .bias h2{font-size:clamp(56px,9vw,128px);line-height:.92;letter-spacing:-.045em}
 .bias .btn-dark{background:var(--text-on-inverse);color:var(--bg-inverse)}
+.bias .head-l{max-width:none}
 .acts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:var(--block);border-top:1px solid color-mix(in srgb,var(--text-on-inverse) 18%,transparent)}
 .acts div{padding:24px 16px 0 0;display:flex;flex-direction:column;gap:6px;min-width:0}
 .acts div+div{padding-left:16px;border-left:1px solid color-mix(in srgb,var(--text-on-inverse) 18%,transparent)}
